@@ -6,7 +6,7 @@ import de.jformchecker.Criterion;
 /**
  * Checks if string is equal to one of the passed in strings.
  * 
- * @author armandino (at) gmail.com
+ * Based on work of armandino (at) gmail.com
  */
 public final class AcceptString extends Accept {
   private boolean caseSensitive = true;

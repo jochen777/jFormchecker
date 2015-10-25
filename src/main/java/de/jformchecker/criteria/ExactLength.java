@@ -5,7 +5,7 @@ import de.jformchecker.FormCheckerElement;
 /**
  * Checks that the length of the value is equal to the given length.
  * 
- * @author armandino (at) gmail.com
+ * Based on work of armandino (at) gmail.com
  */
 public final class ExactLength extends AbstractCriterion {
   private int length;

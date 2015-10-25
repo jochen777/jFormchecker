@@ -7,7 +7,7 @@ import de.jformchecker.FormCheckerElement;
 /**
  * An abstract criterion that verifies itself and sets an error message if validation fails.
  * 
- * @author armandino (at) gmail.com
+ * Based on work of armandino (at) gmail.com
  */
 public abstract class AbstractCriterion implements Criterion {
   private String messageOnError;

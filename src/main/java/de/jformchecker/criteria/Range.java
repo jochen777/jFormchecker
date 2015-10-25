@@ -5,7 +5,7 @@ import de.jformchecker.FormCheckerElement;
 /**
  * Checks that value is within the given range.
  * 
- * @author armandino (at) gmail.com
+ * Based on work of armandino (at) gmail.com
  */
 public final class Range extends AbstractCriterion {
   private int min;

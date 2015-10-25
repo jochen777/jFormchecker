@@ -5,7 +5,7 @@ import de.jformchecker.FormCheckerElement;
 /**
  * Checks that value is greater than or equal to the given {@link Comparable}.
  * 
- * @author armandino (at) gmail.com
+ * Based on work of armandino (at) gmail.com
  */
 public final class Min extends AbstractCriterion {
   private int min;

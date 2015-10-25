@@ -5,7 +5,7 @@ import de.jformchecker.FormCheckerElement;
 /**
  * Checks if value starts with the given string.
  * 
- * @author armandino (at) gmail.com
+ * Based on work of armandino (at) gmail.com
  */
 public final class StartsWith extends AbstractCriterion {
   private String[] prefixes;

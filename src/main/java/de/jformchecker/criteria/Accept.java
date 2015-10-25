@@ -7,7 +7,7 @@ import de.jformchecker.FormCheckerElement;
 /**
  * Checks that value is equal to one of the acceptable values.
  * 
- * @author armandino (at) gmail.com
+ * Based on work of armandino (at) gmail.com
  */
 public class Accept extends AbstractCriterion {
   private String[] acceptableValues;

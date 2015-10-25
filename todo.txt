@@ -40,7 +40,6 @@
 * influence standard-form in template
 * javascript validaton
 * html5 mode
-* maven build artefact
 
 
 * generate from json (for rosebud :)

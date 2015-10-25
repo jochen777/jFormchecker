@@ -5,7 +5,7 @@ import de.jformchecker.FormCheckerElement;
 /**
  * Checks that value is not greater than the specified maximum.
  * 
- * @author armandino (at) gmail.com
+ * Based on work of armandino (at) gmail.com
  */
 public final class MaxLength extends AbstractCriterion {
   private int maxLength;

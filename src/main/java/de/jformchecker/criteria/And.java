@@ -7,7 +7,7 @@ import de.jformchecker.FormCheckerElement;
 /**
  * Performs an <tt>AND</tt> over all criteria on the given value.
  * 
- * @author armandino (at) gmail.com
+ * Based on work of armandino (at) gmail.com
  */
 public final class And extends AbstractCriterion {
   private Criterion[] criteria;

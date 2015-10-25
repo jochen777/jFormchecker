@@ -6,7 +6,7 @@ import de.jformchecker.Criterion;
 /**
  * A collection of static methods to create commonly used criteria.
  * 
- * @author armandino (at) gmail.com
+ * Based on work of armandino (at) gmail.com
  */
 public class Criteria
 {

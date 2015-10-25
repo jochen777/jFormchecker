@@ -8,7 +8,7 @@ import de.jformchecker.FormCheckerElement;
 /**
  * Checks if a string matches a regular expression.
  * 
- * @author armandino (at) gmail.com
+ * Based on work of armandino (at) gmail.com
  */
 public class Regex extends AbstractCriterion {
   private Pattern pattern;

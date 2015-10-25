@@ -71,7 +71,6 @@ public class Test extends HttpServlet {
     try {
       temp.process(root, response.getWriter());
     } catch (TemplateException e1) {
-      // TODO Auto-generated catch block
       e1.printStackTrace();
     }
 

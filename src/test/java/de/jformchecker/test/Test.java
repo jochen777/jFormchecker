@@ -63,10 +63,10 @@ public class Test {
   @org.junit.Test
   public void testPrebuildForm2() {
     Map<String, String> reqVals = new HashMap<>();
-    String firstname = "Peter";
+    String firstname = "Max";
     String formId = "h";
     reqVals.put("firstname", firstname);
-    reqVals.put("lastname", "Merx");
+    reqVals.put("lastname", "Pan");
     reqVals.put("description", "eine Beschreibung");
 
     reqVals.put(FormChecker.SUBMIT_KEY, FormChecker.SUBMIT_VALUE_PREFIX + formId);

@@ -3,7 +3,7 @@ package de.jformchecker.criteria;
 /**
  * Checks that the value conforms to a valid Canadian postcode.
  * 
- * @author armandino (at) gmail.com
+ *Based on work of armandino (at) gmail.com
  */
 public final class PostcodeCA extends Regex {
   // NOTE: single space required
