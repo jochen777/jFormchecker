@@ -18,6 +18,7 @@
 * add maven (OK)
 * add documentation (OK)
 * deploy to github
+* Check licence
 * xsrf handling
 * introduce max-lengths mandatory
 * fill bean
