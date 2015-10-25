@@ -5,9 +5,10 @@ The form-handling support in current java MVC frameworks is very basic. jFormChe
 
 * central form-definition for reuse and separation of concerns
 * handling the request-response loop for forms
-* handling error-messages and error-highlighting
+* handling error-messages and error-highlighting of the label
+* correct tab-order
 * pre-fillments of form-elements
-* automatically syntactical correct HTML (5)
+* automatically syntactical correct HTML (5) with label and "label-for"
 * pre-fillments of user-input after submit
 * easy validation, easy custom validation
 * all standard form fields and more (date-input)
@@ -16,51 +17,7 @@ The form-handling support in current java MVC frameworks is very basic. jFormChe
 
 jFormChecker is for java what Symfony-Forms is for PHP or Rose::HTML for Perl.
 
-## Remember: Standard form handling
 
-Currently, html forms must be constructed manually in the template.
-
-Example-Definition of a form in spring-mvc:
-```java
-public class Adress {
-
-    @Size(min=2, max=30)
-    private String name;
-
-
-    public String getName() {
-        return this.name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-	...
-}
-
-```
-
-Example-Definition of a form in html (thymeleaf)
-```html
-
-        <form action="#" th:action="@{/}" th:object="${adres}" method="post">
-            <table>
-                <tr>
-                    <td ><span class="error" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name:</span><span class="error" th:else="${#fields.hasErrors('name')}" th:errors="*{name}">Name:</span></td>
-                    <td><input type="text" th:field="*{name}" /></td>
-                    <td th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</td>
-                </tr>
-...
-                <tr>
-                    <td><button type="submit">Submit</button></td>
-                </tr>
-            </table>
-        </form>
-
-```
-
-As you can see, especially on the template side, you have to enter a lot of stuff for basic highlighting errors...
 
 ## The jFormChecker way
 
@@ -130,6 +87,96 @@ ${fc.elements.lasntame.inputTag}
 </div>
 ...
 ```
+
+## Remember: Standard form handling
+
+Currently, html forms must be constructed manually in the template.
+
+Example-Definition of a form in spring-mvc:
+```java
+public class Adress {
+
+    @Size(min=2, max=30)
+    private String name;
+
+
+    public String getName() {
+        return this.name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+	...
+}
+
+```
+
+Example-Definition of a form in html (spring-forms)
+```html
+
+        <form:form class="form-horizontal" method="post" 
+                modelAttribute="userForm" action="${userActionUrl}">
+                <form:hidden path="id" />
+
+		<spring:bind path="name">
+		  <div class="form-group ${status.error ? 'has-error' : ''}">
+			<label class="col-sm-2 control-label" label-for="name">Name</label>
+			<div class="col-sm-10">
+				<form:input path="name" type="text" class="form-control" 
+                                id="name" placeholder="Name" />
+				<form:errors path="name" class="control-label" />
+			</div>
+		  </div>
+		</spring:bind>
+		
+		<spring:bind path="email">
+		  <div class="form-group ${status.error ? 'has-error' : ''}">
+			<label class="col-sm-2 control-label" label-for="email">Email</label>
+			<div class="col-sm-10">
+				<form:input path="email" class="form-control" 
+                                id="email" placeholder="Email" />
+				<form:errors path="email" class="control-label" />
+			</div>
+		  </div>
+		</spring:bind>
+		
+		<spring:bind path="country">
+		  <div class="form-group ${status.error ? 'has-error' : ''}">
+			<label class="col-sm-2 control-label">Country</label>
+			<div class="col-sm-5">
+				<form:select path="country" class="form-control">
+					<form:option value="NONE" label="--- Select ---" />
+					<form:options items="${countryList}" />
+				</form:select>
+				<form:errors path="country" class="control-label" />
+			</div>
+			<div class="col-sm-5"></div>
+		  </div>
+		</spring:bind>
+		
+		...
+		
+			<div class="form-group">
+		  <div class="col-sm-offset-2 col-sm-10">
+			<c:choose>
+			  <c:when test="${userForm['new']}">
+			     <button type="submit" class="btn-lg btn-primary pull-right">Add
+                             </button>
+			  </c:when>
+			  <c:otherwise>
+			     <button type="submit" class="btn-lg btn-primary pull-right">Update
+                             </button>
+			  </c:otherwise>
+			</c:choose>
+		  </div>
+		</div>
+	</form:form>
+
+```
+
+As you can see, especially on the template side, you have to enter a lot of stuff for basic highlighting errors...
 
 ## Thanks
 
