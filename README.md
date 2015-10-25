@@ -79,14 +79,32 @@ Example Form-Definiton:
 public class ExampleForm extends FormCheckerForm {
 
   public ExampleForm() {
-     add(TextInput.build("firstname").setDescription("Your Firstname").setPreSetValue("Jochen")
-        .setCriterias(Criteria.accept("Jochen")));
+     add(TextInput.build("firstname").
+     	setDescription("Your Firstname").
+     	setPreSetValue("Jochen").
+     	setCriterias(Criteria.accept("Jochen")));
 
-    add(TextInput.build("lastname").setDescription("Your lastname:").setPreSetValue("Pier")
-        .setCriterias(Criteria.accept("Pier")));
-}
+    add(TextInput.build("lastname").
+    	setDescription("Your lastname:").
+    	setPreSetValue("Pier").
+    	setCriterias(Criteria.accept("Pier")));
+	}
 }
 ```
+
+Controller code:
+
+```java
+
+	ExampleForm form = new ExampleForm();
+    FormChecker fc = new FormChecker("formId", request);
+    fc.addForm(form);
+    fc.run();
+    
+    model.add("fc", fc);
+
+```
+
 
 Example template output:
 
@@ -95,7 +113,7 @@ Example template output:
 <h1>The form</h1>
 ${fc.genericForm}
 ...
-```html
+```
 
 (yes it is that simple!)
 
@@ -109,4 +127,8 @@ ${fc.elements.lasntame.label}
 ${fc.elements.lasntame.inputTag}
 </div>
 ...
-```html
+```
+
+## Thanks
+
+Thanks to Arman Sharif for his work on jreform.sourceforge.net and the great Critera Classes
