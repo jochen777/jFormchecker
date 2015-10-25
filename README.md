@@ -88,9 +88,9 @@ ${fc.elements.lasntame.inputTag}
 ...
 ```
 
-## Remember: Standard form handling
+## Remember: Standard form handling without jFormChecker
 
-Currently, html forms must be constructed manually in the template.
+Without jFormChecker, html forms must be constructed manually in the template.
 
 Example-Definition of a form in spring-mvc:
 ```java
@@ -144,7 +144,7 @@ Example-Definition of a form in html (spring-forms)
 		
 		<spring:bind path="country">
 		  <div class="form-group ${status.error ? 'has-error' : ''}">
-			<label class="col-sm-2 control-label">Country</label>
+			<label class="col-sm-2 control-label" label-for="country">Country</label>
 			<div class="col-sm-5">
 				<form:select path="country" class="form-control">
 					<form:option value="NONE" label="--- Select ---" />
@@ -160,16 +160,8 @@ Example-Definition of a form in html (spring-forms)
 		
 			<div class="form-group">
 		  <div class="col-sm-offset-2 col-sm-10">
-			<c:choose>
-			  <c:when test="${userForm['new']}">
 			     <button type="submit" class="btn-lg btn-primary pull-right">Add
                              </button>
-			  </c:when>
-			  <c:otherwise>
-			     <button type="submit" class="btn-lg btn-primary pull-right">Update
-                             </button>
-			  </c:otherwise>
-			</c:choose>
 		  </div>
 		</div>
 	</form:form>
