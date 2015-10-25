@@ -22,6 +22,12 @@ public class FormChecker {
   public boolean isValid() {
     return isValid;
   }
+  
+  public static FormChecker build(String _id, HttpServletRequest _req, FormCheckerForm form) {
+    FormChecker fc = new FormChecker(_id, _req);
+    fc.addForm(form);
+    return fc;
+  }
 
   GenericFormBuilder formBuilder = new GenericFormBuilder();
 
@@ -85,7 +91,7 @@ public class FormChecker {
     return this.formBuilder.getLabelForElement(e, style, classes, firstRun);
   }
 
-  public void run() {
+  public FormChecker run() {
     boolean first = true;
     for (Map.Entry<String, FormCheckerElement> entry : elements.entrySet()) {
       if (first) {
@@ -101,6 +107,6 @@ public class FormChecker {
         isValid = false;
       }
     }
-
+    return this;
   }
 }

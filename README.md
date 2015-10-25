@@ -82,12 +82,12 @@ public class ExampleForm extends FormCheckerForm {
      add(TextInput.build("firstname").
      	setDescription("Your Firstname").
      	setPreSetValue("Jochen").
-     	setCriterias(Criteria.accept("Jochen")));
+     	setCriterias(Criteria.accept("Jochen", "John")));
 
     add(TextInput.build("lastname").
     	setDescription("Your lastname:").
     	setPreSetValue("Pier").
-    	setCriterias(Criteria.accept("Pier")));
+    	setCriterias(Criteria.accept("Pier", "Doe")));
 	}
 }
 ```
@@ -96,11 +96,10 @@ Controller code:
 
 ```java
 
-	ExampleForm form = new ExampleForm();
-    FormChecker fc = new FormChecker("formId", request);
-    fc.addForm(form);
-    fc.run();
-    
+ 	FormChecker fc = FormChecker.
+        build("id", request, new ExampleForm()).
+        run();
+             
     model.add("fc", fc);
 
 ```
@@ -111,7 +110,10 @@ Example template output:
 ```html
 ...
 <h1>The form</h1>
+
 ${fc.genericForm}
+
+<p>Lorem ipsum</p>
 ...
 ```
 

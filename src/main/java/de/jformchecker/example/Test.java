@@ -57,10 +57,9 @@ public class Test extends HttpServlet {
     }
 
     // TODO Auto-generated method stub
-    ExampleForm form = new ExampleForm();
-    FormChecker fc = new FormChecker("h", request);
-    fc.addForm(form);
-    fc.run();
+    FormChecker fc = FormChecker.
+        build("id", request, new ExampleForm()).
+        run(); 
 
     Map<String, Object> root = new HashMap<>();
     root.put("fc", fc);
