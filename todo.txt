@@ -17,7 +17,7 @@
 * format with google-format (OK)
 * add maven (OK)
 * add documentation (OK)
-* deploy to github
+* deploy to github (OK)
 * Check licence
 * xsrf handling
 * introduce max-lengths mandatory
