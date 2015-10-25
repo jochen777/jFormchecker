@@ -1,5 +1,10 @@
 package de.jformchecker;
 
+/**
+ * Validator, that checks a complete form
+ * @author jochen
+ *
+ */
 public class Validator {
   String errorMessage = null;
 

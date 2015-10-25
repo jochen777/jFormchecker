@@ -10,7 +10,13 @@ import de.jformchecker.FormChecker;
 import de.jformchecker.FormCheckerElement;
 import de.jformchecker.Validator;
 
-
+/**
+ * Parent Element for all Formchecker elements 
+ * Common stuff like validation...
+ * 
+ * @author jochen
+ *
+ */
 public abstract class AbstractInput implements FormCheckerElement {
 
   protected String name;

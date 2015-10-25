@@ -5,6 +5,10 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+/**
+ * FormChecker handles the initialisation, error- and submit status.
+ * This object should be stored to be accessed from the template-system.
+ */
 public class FormChecker {
   Map<String, FormCheckerElement> elements = new LinkedHashMap<String, FormCheckerElement>();
   HttpServletRequest req;

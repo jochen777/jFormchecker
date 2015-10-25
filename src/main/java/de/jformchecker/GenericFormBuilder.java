@@ -2,7 +2,13 @@ package de.jformchecker;
 
 import java.util.Map;
 
-// builds a generic form
+/**
+ * Builds: 
+ * a generic form 
+ * the label-elements
+ * @author jochen
+ *
+ */
 public class GenericFormBuilder {
 
   String errStyle = "error";
