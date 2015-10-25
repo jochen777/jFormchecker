@@ -21,7 +21,7 @@ public class ExampleForm extends FormCheckerForm {
         .setCriterias(Criteria.accept("Peter")));
 
     add(TextInput.build("lasntame").setDescription("Nachname:").setPreSetValue("pier")
-        .setCriterias(Criteria.accept("Merx")));
+        .setCriterias(Criteria.accept("Pan")));
 
     add(TextInput.build("middelname").setDescription("Name des Authors:")
         .setCriterias(new CustomValidation()));

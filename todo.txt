@@ -16,7 +16,7 @@
 * introduce styling (OK)
 * format with google-format (OK)
 * add maven (OK)
-* add documentation
+* add documentation (OK)
 * deploy to github
 * xsrf handling
 * introduce max-lengths mandatory
