@@ -50,7 +50,7 @@ public class GenericFormBuilder {
         form.append(getLabelForElement(elem, "", "", firstRun));
       }
       // input tag
-      form.append(elem.getInputTag());
+      form.append(elem.getInputTag("","form-control"));
       if (elem.displayLabel()) {
         form.append("\n<br>"); // only append nl, if something was given
                                // out

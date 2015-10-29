@@ -19,8 +19,8 @@
 * add documentation (OK)
 * deploy to github (OK)
 * Check licence (OK)
-* xsrf handling (https://www.owasp.org/index.php/Category:OWASP_CSRFGuard_Project)
-* introduce max-lengths mandatory
+* xsrf handling (https://www.owasp.org/index.php/Category:OWASP_CSRFGuard_Project) (OK)
+* introduce max-lengths mandatory (OK)
 * fill bean
 * allow html
 * correctly handle date-input (validate, give date-val to output)
