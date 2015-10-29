@@ -1,5 +1,7 @@
 package de.jformchecker;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 /**
@@ -67,7 +69,7 @@ public interface FormCheckerElement {
 
   public FormCheckerElement setRequired();
 
-  public Criterion[] getCriteria();
+  public List<Criterion> getCriteria();
 
   public void setFormChecker(FormChecker fc);
 

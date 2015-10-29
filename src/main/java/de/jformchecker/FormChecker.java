@@ -9,9 +9,12 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang3.StringEscapeUtils;
 
+import de.jformchecker.criteria.Criteria;
+import de.jformchecker.criteria.MaxLength;
+
 /**
- * FormChecker handles the initialisation, error- and submit status.
- * This object should be stored to be accessed from the template-system.
+ * FormChecker handles the initialisation, error- and submit status. This object should be stored to
+ * be accessed from the template-system.
  */
 public class FormChecker {
   Map<String, FormCheckerElement> elements = new LinkedHashMap<String, FormCheckerElement>();
@@ -19,18 +22,19 @@ public class FormChecker {
   boolean firstRun = true;
   boolean isMultipart = false;
   boolean isValid = true;
-  boolean protectedAgainstCSRF = false; // TBD: Default no protection, because the normal case is not logged in?!?
+  boolean protectedAgainstCSRF = false; // TBD: Default no protection, because the normal case is
+                                        // not logged in?!?
   String completeForm;
-  int defaultMaxLenElements = 2000; // override this for each element, if you want longer vals!
+  int defaultMaxLenElements = 1000; // override this for each element, if you want longer vals!
   private final SecureRandom random = new SecureRandom();
-  
+
   public static final String SUBMIT_KEY = "submitted";
   public static final String SUBMIT_VALUE_PREFIX = "FORMCHECKER_";
 
   public boolean isValid() {
     return isValid;
   }
-  
+
   public static FormChecker build(String _id, HttpServletRequest _req, FormCheckerForm form) {
     FormChecker fc = new FormChecker(_id, _req);
     fc.addForm(form);
@@ -41,18 +45,18 @@ public class FormChecker {
     protectedAgainstCSRF = true;
     return this;
   }
-  
-  
+
+
   // TODO: place this in separate class.
   String buildCSRFTokens() {
     // is firstrun - then generate a complete new token
     StringBuilder tags = new StringBuilder();
     String name = "";
     String xsrfVal = "";
-    
+
     String tokenName = "tokenname";
     String tokenVal = "tokenVal";
-    
+
     if (!firstRun) {
       name = req.getParameter(tokenName);
       xsrfVal = req.getParameter(tokenVal);
@@ -60,28 +64,26 @@ public class FormChecker {
       if (xsrfVal == null || !xsrfVal.equals(req.getSession().getAttribute(name))) {
         throw new RuntimeException("Security Problem!");
       }
-      
+
     }
     name = "token_" + Math.random();
     xsrfVal = getRandomValue();
     req.getSession().setAttribute(name, xsrfVal);
 
-    
-    tags.append("<input type=\"hidden\" name=\"" + tokenName + "\" value=\""+
-        StringEscapeUtils.escapeHtml4(name)
-        +"\">");
-    tags.append("<input type=\"hidden\" name=\"" + tokenVal + "\" value=\""+
-        StringEscapeUtils.escapeHtml4(xsrfVal)
-        +"\">");
-      return tags.toString();
+
+    tags.append("<input type=\"hidden\" name=\"" + tokenName + "\" value=\""
+        + StringEscapeUtils.escapeHtml4(name) + "\">");
+    tags.append("<input type=\"hidden\" name=\"" + tokenVal + "\" value=\""
+        + StringEscapeUtils.escapeHtml4(xsrfVal) + "\">");
+    return tags.toString();
   }
-  
+
   String getRandomValue() {
     final byte[] bytes = new byte[32];
     random.nextBytes(bytes);
     return Base64.getEncoder().encodeToString(bytes);
   }
-  
+
   GenericFormBuilder formBuilder = new GenericFormBuilder();
 
   public GenericFormBuilder getFormBuilder() {
@@ -126,11 +128,20 @@ public class FormChecker {
 
   public FormCheckerElement add(FormCheckerElement element) {
     element.setFormChecker(this);
-    
+
     // check, if maxLen is set. If not, add default-max-len
-    //defaultMaxLenElements;
-    Criterion[] crits = element.getCriteria();
+    // defaultMaxLenElements;
+    boolean maxLenAvail = false;
     
+    for (Criterion criterion : element.getCriteria()) {
+      if (criterion instanceof MaxLength) {
+        maxLenAvail = true;
+      }
+    }    
+    if (!maxLenAvail){
+     element.getCriteria().add(Criteria.maxLength(defaultMaxLenElements)); 
+    }
+
     elements.put(element.getName(), element);
     return element;
   }

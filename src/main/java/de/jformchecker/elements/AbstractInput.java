@@ -1,6 +1,10 @@
 package de.jformchecker.elements;
 
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang3.StringEscapeUtils;
@@ -11,7 +15,7 @@ import de.jformchecker.FormCheckerElement;
 import de.jformchecker.Validator;
 
 /**
- * Parent Element for all Formchecker elements 
+ * Parent Element for all Formchecker elements  
  * Common stuff like validation...
  * 
  * @author jochen
@@ -23,7 +27,7 @@ public abstract class AbstractInput implements FormCheckerElement {
   protected String value;
   protected String desc;
   protected String preSetValue = "";
-  private Criterion[] criteria = new Criterion[0];
+  private List<Criterion> criteria = new ArrayList<>();
   boolean required;
   private int tabIndex;
   String errorMessage = "";
@@ -144,7 +148,7 @@ public abstract class AbstractInput implements FormCheckerElement {
 
 
   public AbstractInput setCriterias(Criterion... criteria) {
-    this.criteria = criteria;
+    this.criteria.addAll(Arrays.asList(criteria));
     return this;
   }
 
@@ -165,7 +169,7 @@ public abstract class AbstractInput implements FormCheckerElement {
     return this;
   }
 
-  public Criterion[] getCriteria() {
+  public List<Criterion> getCriteria() {
     return criteria;
   }
 
