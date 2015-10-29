@@ -21,7 +21,7 @@ public class GenericFormBuilder {
   String submitClass = "";
 
   public String getGenericForm(String id, String formAction,
-      Map<String, FormCheckerElement> elements, boolean isMultipart, boolean firstRun) {
+      Map<String, FormCheckerElement> elements, boolean isMultipart, boolean firstRun, FormChecker fc) {
     StringBuilder form = new StringBuilder();
     if (isMultipart) {
       form.append("<form name=\"" + id + "\" id=\"form_" + id + "\" action=\"" + formAction
@@ -31,6 +31,10 @@ public class GenericFormBuilder {
           + "\" method=\"GET\" >\n");
     }
     form.append(getSubmittedTag(id));
+    if (fc.protectedAgainstCSRF) { 
+      form.append(fc.buildCSRFTokens());
+    }
+    
     int tabOrder = 0;
     for (String key : elements.keySet()) {
       // label

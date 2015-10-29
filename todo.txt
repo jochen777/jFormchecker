@@ -19,7 +19,7 @@
 * add documentation (OK)
 * deploy to github (OK)
 * Check licence (OK)
-* xsrf handling
+* xsrf handling (https://www.owasp.org/index.php/Category:OWASP_CSRFGuard_Project)
 * introduce max-lengths mandatory
 * fill bean
 * allow html
@@ -40,6 +40,7 @@
 * influence standard-form in template
 * javascript validaton
 * html5 mode
+* consider use of owasp encoder (https://www.owasp.org/index.php/OWASP_Java_Encoder_Project#tab=Use_the_Java_Encoder_Project)
 
 
 * generate from json (for rosebud :)

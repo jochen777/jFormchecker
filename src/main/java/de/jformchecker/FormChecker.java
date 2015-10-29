@@ -1,9 +1,13 @@
 package de.jformchecker;
 
+import java.security.SecureRandom;
+import java.util.Base64;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+
+import org.apache.commons.lang3.StringEscapeUtils;
 
 /**
  * FormChecker handles the initialisation, error- and submit status.
@@ -15,7 +19,11 @@ public class FormChecker {
   boolean firstRun = true;
   boolean isMultipart = false;
   boolean isValid = true;
-
+  boolean protectedAgainstCSRF = false; // TBD: Default no protection, because the normal case is not logged in?!?
+  String completeForm;
+  int defaultMaxLenElements = 2000; // override this for each element, if you want longer vals!
+  private final SecureRandom random = new SecureRandom();
+  
   public static final String SUBMIT_KEY = "submitted";
   public static final String SUBMIT_VALUE_PREFIX = "FORMCHECKER_";
 
@@ -29,6 +37,51 @@ public class FormChecker {
     return fc;
   }
 
+  public FormChecker setProtectAgainstCSRF() {
+    protectedAgainstCSRF = true;
+    return this;
+  }
+  
+  
+  // TODO: place this in separate class.
+  String buildCSRFTokens() {
+    // is firstrun - then generate a complete new token
+    StringBuilder tags = new StringBuilder();
+    String name = "";
+    String xsrfVal = "";
+    
+    String tokenName = "tokenname";
+    String tokenVal = "tokenVal";
+    
+    if (!firstRun) {
+      name = req.getParameter(tokenName);
+      xsrfVal = req.getParameter(tokenVal);
+      System.out.println("xsrf-check: " + xsrfVal + "::" + req.getSession().getAttribute(name));
+      if (xsrfVal == null || !xsrfVal.equals(req.getSession().getAttribute(name))) {
+        throw new RuntimeException("Security Problem!");
+      }
+      
+    }
+    name = "token_" + Math.random();
+    xsrfVal = getRandomValue();
+    req.getSession().setAttribute(name, xsrfVal);
+
+    
+    tags.append("<input type=\"hidden\" name=\"" + tokenName + "\" value=\""+
+        StringEscapeUtils.escapeHtml4(name)
+        +"\">");
+    tags.append("<input type=\"hidden\" name=\"" + tokenVal + "\" value=\""+
+        StringEscapeUtils.escapeHtml4(xsrfVal)
+        +"\">");
+      return tags.toString();
+  }
+  
+  String getRandomValue() {
+    final byte[] bytes = new byte[32];
+    random.nextBytes(bytes);
+    return Base64.getEncoder().encodeToString(bytes);
+  }
+  
   GenericFormBuilder formBuilder = new GenericFormBuilder();
 
   public GenericFormBuilder getFormBuilder() {
@@ -73,6 +126,11 @@ public class FormChecker {
 
   public FormCheckerElement add(FormCheckerElement element) {
     element.setFormChecker(this);
+    
+    // check, if maxLen is set. If not, add default-max-len
+    //defaultMaxLenElements;
+    Criterion[] crits = element.getCriteria();
+    
     elements.put(element.getName(), element);
     return element;
   }
@@ -84,7 +142,7 @@ public class FormChecker {
   }
 
   public String getGenericForm() {
-    return formBuilder.getGenericForm(id, formAction, elements, isMultipart, firstRun);
+    return formBuilder.getGenericForm(id, formAction, elements, isMultipart, firstRun, this);
   }
 
   public String getLabelForElement(FormCheckerElement e, String style, String classes) {
@@ -107,6 +165,12 @@ public class FormChecker {
         isValid = false;
       }
     }
+    // build complete Form here!
+    completeForm = this.getGenericForm();
     return this;
+  }
+
+  public String getCompleteForm() {
+    return completeForm;
   }
 }

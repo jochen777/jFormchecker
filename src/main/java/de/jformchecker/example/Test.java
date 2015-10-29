@@ -59,6 +59,7 @@ public class Test extends HttpServlet {
     // TODO Auto-generated method stub
     FormChecker fc = FormChecker.
         build("id", request, new ExampleForm()).
+        setProtectAgainstCSRF().
         run(); 
 
     Map<String, Object> root = new HashMap<>();
