@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import de.jformchecker.FormChecker;
 import de.jformchecker.Utils;
+import de.jformchecker.elements.DateInput;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
@@ -58,18 +59,17 @@ public class Test extends HttpServlet {
     }
 
     // TODO Auto-generated method stub
-    FormChecker fc = FormChecker.
-        build("id", request, new ExampleForm()).
-        setProtectAgainstCSRF().
-        run(); 
+    FormChecker fc =
+        FormChecker.build("id", request, new ExampleForm()).setProtectAgainstCSRF().run();
 
     if (fc.isValid()) {
-      ExampleBean bean = new ExampleBean(); 
-      
-      Utils.fillBean(fc.getElements(), bean);   
+      ExampleBean bean = new ExampleBean();
+
+      Utils.fillBean(fc.getElements(), bean);
       System.out.println("bean:" + bean);
-      }
-    
+      System.out.println(((DateInput)fc.getElements().get("date")).getDateValue());
+    }
+
     Map<String, Object> root = new HashMap<>();
     root.put("fc", fc);
 

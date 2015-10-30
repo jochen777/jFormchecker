@@ -1,5 +1,11 @@
 package de.jformchecker.elements;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang3.StringEscapeUtils;
@@ -24,6 +30,7 @@ public class DateInput extends AbstractInput implements FormCheckerElement {
   String monthVal = "";
   String yearVal = "";
 
+  Date internalDate = null;
 
   @Override
   public String getInputTag(String additionalTag, String classes) {
@@ -34,13 +41,22 @@ public class DateInput extends AbstractInput implements FormCheckerElement {
 
   }
 
+  public void presetValue(Date t) {
+    internalDate = t;
+    GregorianCalendar gc = new GregorianCalendar();
+    gc.setTime(t);
+    yearVal = "" + gc.get(Calendar.YEAR);
+    dayVal = "" + gc.get(Calendar.DAY_OF_MONTH);
+    monthVal = "" + (gc.get(Calendar.MONTH) + 1);
+  }
+
 
   public String getDatePartTag(int field, String additionalTag, String classes) {
     String inputField = "wrong field desc!";
     switch (field) {
       case MONTH:
-        inputField = "<input " + getElementId() + " " + additionalTag + " class=\"" + classes + "\" type=\"text\" id=\""
-            + name + "_month\" name=\"" + name + "_month\"  value=\""
+        inputField = "<input " + getElementId() + " " + additionalTag + " class=\"" + classes
+            + "\" type=\"text\" id=\"" + name + "_month\" name=\"" + name + "_month\"  value=\""
             + (StringEscapeUtils.escapeHtml4(monthVal)) + "\" >";
         break;
       case YEAR:
@@ -65,16 +81,34 @@ public class DateInput extends AbstractInput implements FormCheckerElement {
       dayVal = request.getParameter(name + "_day");
       yearVal = request.getParameter(name + "_year");
       monthVal = request.getParameter(name + "_month");
+      String dateVal = yearVal + "-" + monthVal + "-" + dayVal;
+      this.setValue(dateVal);
 
-
-      this.setValue(yearVal + "." + monthVal + "." + dayVal);
-      Validator v = new Validator();
-      String errMsg = v.validate(this);
-      if (errMsg != null) {
+      SimpleDateFormat formater = new SimpleDateFormat("yy-MM-dd");
+      try {
+        formater.setLenient(false);
+        internalDate = formater.parse(dateVal);
+        this.valid = true;
+        Validator v = new Validator();
+        String errMsg = v.validate(this);
+        if (errMsg != null) {
+          this.valid = false;
+          this.setErrorMessage(errMsg);
+        }
+      } catch (ParseException e) {
         this.valid = false;
-        this.setErrorMessage(errMsg);
+        this.setErrorMessage("Wrong Date format...");
+
       }
     }
+  }
+
+  public String getValue() {
+    return value;
+  }
+
+  public Date getDateValue() {
+    return internalDate;
   }
 
 }

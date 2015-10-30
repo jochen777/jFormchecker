@@ -21,8 +21,8 @@
 * Check licence (OK)
 * xsrf handling (https://www.owasp.org/index.php/Category:OWASP_CSRFGuard_Project) (OK)
 * introduce max-lengths mandatory (OK)
-* fill bean
-* allow html
+* fill bean (OK)
+* allow html (OK)
 * correctly handle date-input (validate, give date-val to output)
 * check, if select-box, radio and checkbox can be manipulated
 * debug-output
@@ -35,6 +35,7 @@
 * handle image - uploads
 * enable ajax handling
 * support complex-inputs?? (adress-field that contains several own-fields?)
+* multi-select (means: brand -> modell...)
 
 * generate standard-form with alternative rendering in template (for mobile)
 * influence standard-form in template
