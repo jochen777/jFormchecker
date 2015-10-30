@@ -47,6 +47,12 @@
 			<version>2.3.23</version>
 		</dependency>
 
+		<dependency>
+			<groupId>commons-beanutils</groupId>
+			<artifactId>commons-beanutils</artifactId>
+			<version>1.9.2</version>
+		</dependency>
+
 
 
 	</dependencies>

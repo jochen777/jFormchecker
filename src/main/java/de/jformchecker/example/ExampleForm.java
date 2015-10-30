@@ -20,7 +20,7 @@ public class ExampleForm extends FormCheckerForm {
     add(TextInput.build("firstname").setDescription("Your Firstname").setPreSetValue("Jochen")
         .setCriterias(Criteria.accept("Jochen", "Max")));
 
-    add(TextInput.build("lasntame").setDescription("Your Lastname").setPreSetValue("pier")
+    add(TextInput.build("lastname").setDescription("Your Lastname").setPreSetValue("pier")
         .setCriterias(Criteria.accept("Pan", "Mustermann")));
 
     add(TextInput.build("middelname").setDescription("Your Middelname")

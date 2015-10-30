@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import de.jformchecker.FormChecker;
+import de.jformchecker.Utils;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
@@ -62,6 +63,13 @@ public class Test extends HttpServlet {
         setProtectAgainstCSRF().
         run(); 
 
+    if (fc.isValid()) {
+      ExampleBean bean = new ExampleBean(); 
+      
+      Utils.fillBean(fc.getElements(), bean);   
+      System.out.println("bean:" + bean);
+      }
+    
     Map<String, Object> root = new HashMap<>();
     root.put("fc", fc);
 
