@@ -155,6 +155,10 @@ public abstract class AbstractInput implements FormCheckerElement {
   public boolean isRequired() {
     return required;
   }
+  
+  protected String getElementId() {
+    return " id=\"form_" + name+"\" ";
+  }
 
   public int getTabIndex() {
     /*

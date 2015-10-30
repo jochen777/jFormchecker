@@ -15,7 +15,7 @@ public class CheckboxInput extends AbstractInput implements FormCheckerElement {
   @Override
   public String getInputTag(String additionalTag, String classes) {
     String style = "";
-    return "<input " + additionalTag + " class=\"" + classes + "\" type=\"checkbox\" name=\"" + name
+    return "<input " + getElementId() + " " + additionalTag + " class=\"" + classes + "\" type=\"checkbox\" name=\"" + name
         + "\" id=\"" + name + "\" value=\"" + name + "\" " + style + " " + getCheckedStatus(name)
         + ">";
   }

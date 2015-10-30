@@ -19,8 +19,8 @@ public class SelectInput extends AbstractInput implements FormCheckerElement {
   public String getInputTag(String additionalTag, String classes) {
 
     String style = "";
-    String inputTag = "<select " + additionalTag + " class=\"" + classes + "\" name=\"" + name
-        + "\" id=\"" + name + "\" " + style + " " + " " + ">\n";
+    String inputTag = "<select " + getElementId() + " " + additionalTag + " class=\"" + classes + "\" name=\"" + name
+        + "\"  " + style + " " + " " + ">\n";
     for (String key : possibleNames.keySet()) {
       String sel = "";
       if (value != null && value.equals(key)) {

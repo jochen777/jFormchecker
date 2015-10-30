@@ -108,7 +108,7 @@ public class GenericFormBuilder {
       /*
        * if (classes!=null) okStyle+=" "+classes;
        */
-      buf.append("<label class=\"" + okStyle + paramClasses + "\" for=\"" + e.getName() + "\""
+      buf.append("<label class=\"" + okStyle + paramClasses + "\" for=\"form_" + e.getName() + "\""
           + tagAddition + " id=\"" + e.getName() + "_label\">" + e.getDescription() + addToLabel
           + (e.isRequired() ? requiredChars : "") + "</label>");
     } else {

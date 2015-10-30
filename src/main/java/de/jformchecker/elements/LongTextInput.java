@@ -13,7 +13,7 @@ public class LongTextInput extends TextInput implements FormCheckerElement {
 
   @Override
   public String getInputTag(String additionalTag, String classes) {
-    return "<textarea " + additionalTag + " class=\"" + classes + "\" name=\"" + name + "\" id=\""
+    return "<textarea " + getElementId() + " " + additionalTag + " class=\"" + classes + "\" name=\"" + name + "\" id=\""
         + name + "\" " + ">" + (value == null ? "" : getValueHtmlEncoded()) + "</textarea>";
   }
 

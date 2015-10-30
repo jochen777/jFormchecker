@@ -39,7 +39,7 @@ public class DateInput extends AbstractInput implements FormCheckerElement {
     String inputField = "wrong field desc!";
     switch (field) {
       case MONTH:
-        inputField = "<input " + additionalTag + " class=\"" + classes + "\" type=\"text\" id=\""
+        inputField = "<input " + getElementId() + " " + additionalTag + " class=\"" + classes + "\" type=\"text\" id=\""
             + name + "_month\" name=\"" + name + "_month\"  value=\""
             + (StringEscapeUtils.escapeHtml4(monthVal)) + "\" >";
         break;
