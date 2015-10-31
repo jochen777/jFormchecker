@@ -23,8 +23,8 @@
 * introduce max-lengths mandatory (OK)
 * fill bean (OK)
 * allow html (OK)
-* correctly handle date-input (validate, give date-val to output)
-* check, if select-box, radio and checkbox can be manipulated
+* correctly handle date-input (validate, give date-val to output) (OK)
+* check, if select-box, radio and checkbox can be manipulated (OK)
 * debug-output
 * check, if FormCheckerElement can have less (public) methods
 * placeholder support
@@ -36,6 +36,9 @@
 * enable ajax handling
 * support complex-inputs?? (adress-field that contains several own-fields?)
 * multi-select (means: brand -> modell...)
+* add button input field
+* use attribute-map to add attributes to an input-field
+* groups of beans in form (example: product, adress) 
 
 * generate standard-form with alternative rendering in template (for mobile)
 * influence standard-form in template

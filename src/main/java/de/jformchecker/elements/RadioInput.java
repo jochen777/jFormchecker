@@ -48,6 +48,12 @@ public class RadioInput extends AbstractInput implements FormCheckerElement {
     return this;
   }
 
+  @Override
+  public void setValue(String value) {
+    if (possibleNames.containsKey(value)){
+      this.value = value;
+    }
+  }
 
 
 }

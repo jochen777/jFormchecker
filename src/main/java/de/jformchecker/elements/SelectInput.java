@@ -2,7 +2,10 @@ package de.jformchecker.elements;
 
 import java.util.LinkedHashMap;
 
+import javax.servlet.http.HttpServletRequest;
+
 import de.jformchecker.FormCheckerElement;
+import de.jformchecker.Validator;
 
 public class SelectInput extends AbstractInput implements FormCheckerElement {
 
@@ -39,6 +42,11 @@ public class SelectInput extends AbstractInput implements FormCheckerElement {
     return this;
   }
 
-
+  @Override
+  public void setValue(String value) {
+    if (possibleNames.containsKey(value)){
+      this.value = value;
+    }
+  }
 
 }
