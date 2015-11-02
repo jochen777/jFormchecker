@@ -41,46 +41,58 @@ public class Test extends HttpServlet {
     cfg.setDefaultEncoding("UTF-8");
     cfg.setTemplateExceptionHandler(TemplateExceptionHandler.RETHROW_HANDLER);
     cfg.setTemplateUpdateDelayMilliseconds(4);
-    System.out.println("init");
-
   }
 
-  /**
-   * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-   */
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
 
+    initRequest(request, response);
+
+    /****************************************
+     * prepare jFormchecker
+     */
+    FormChecker fc =
+        FormChecker.build("id", request, new ExampleForm()).setProtectAgainstCSRF().run();
+
+    processResult(fc);
+
+
+
+    /* Merge data-model with template */
+    try {
+    
+      Map<String, Object> root = new HashMap<>();
+
+      /****************************************
+       * put jFormChecker in the map for the template processing
+       */
+      root.put("fc", fc);
+      Template temp = cfg.getTemplate("test.ftl");
+      temp.process(root, response.getWriter());
+
+    } catch (TemplateException e1) {
+      e1.printStackTrace();
+    }
+
+  }
+  
+  
+
+  private void processResult(FormChecker fc) {
+    if (fc.isValid()) {
+      ExampleBean bean = new ExampleBean();
+      Utils.fillBean(fc.getElements(), bean);
+      System.out.println("bean:" + bean);
+      System.out.println(((DateInput)fc.getElements().get("date")).getDateValue());
+    }
+  }
+
+  private void initRequest(HttpServletRequest request, HttpServletResponse response) {
     response.setContentType("text/html; charset=UTF-8");
     response.setCharacterEncoding("UTF-8");
 
     if (cfg == null) {
       init(request.getServletContext());
     }
-
-    // TODO Auto-generated method stub
-    FormChecker fc =
-        FormChecker.build("id", request, new ExampleForm()).setProtectAgainstCSRF().run();
-
-    if (fc.isValid()) {
-      ExampleBean bean = new ExampleBean();
-
-      Utils.fillBean(fc.getElements(), bean);
-      System.out.println("bean:" + bean);
-      System.out.println(((DateInput)fc.getElements().get("date")).getDateValue());
-    }
-
-    Map<String, Object> root = new HashMap<>();
-    root.put("fc", fc);
-
-    Template temp = cfg.getTemplate("test.ftl");
-
-    /* Merge data-model with template */
-    try {
-      temp.process(root, response.getWriter());
-    } catch (TemplateException e1) {
-      e1.printStackTrace();
-    }
-
   }
 }

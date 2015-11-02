@@ -17,47 +17,92 @@ import de.jformchecker.elements.TextInput;
 public class ExampleForm extends FormCheckerForm {
 
   public ExampleForm() {
-    add(TextInput.build("firstname").setDescription("Your Firstname").setPreSetValue("Jochen")
-        .setCriterias(Criteria.accept("Jochen", "Max")));
+    add(TextInput
+        .build("firstname")
+        .setDescription("Your Firstname")
+        .setPreSetValue("Peter")
+        .setCriterias(Criteria.accept("Peter", "Max"))
+        );
 
-    add(TextInput.build("lastname").setDescription("Your Lastname").setPreSetValue("pier")
-        .setCriterias(Criteria.accept("Pan", "Mustermann")));
+    add(TextInput
+        .build("lastname")
+        .setDescription("Your Lastname")
+        .setPreSetValue("pier")
+        .setCriterias(Criteria.accept("Pan", "Mustermann"))
+        );
 
-    add(TextInput.build("middelname").setDescription("Your Middelname")
-        .setCriterias(new CustomValidation()));
+    add(TextInput
+        .build("middelname")
+        .setDescription("Your Middelname")
+        .setCriterias(new CustomValidation())
+        );
 
-    add(Headline.build("headline").setDescription("Example Headline"));
+    add(Headline
+        .build("headline")
+        .setDescription("Example Headline")
+        );
 
-    add(HiddenInput.build("hidden").setPreSetValue("something to remember"));
+    add(HiddenInput
+        .build("hidden")
+        .setPreSetValue("something to remember")
+        );
 
-    add(DateInput.build("date").setDescription("Birthday"));
+    add(DateInput
+        .build("date")
+        .setDescription("Birthday")
+        );
 
 
 
-    add(PasswordInput.build("password").setDescription("Password"));
+    add(PasswordInput
+        .build("password")
+        .setDescription("Password")
+        );
 
-    add(LongTextInput.build("description").setRequired().setDescription("Your Description"));
-
-    LinkedHashMap<String, String> radioEntries = new LinkedHashMap<>();
-    radioEntries.put("one", "One $");
-    radioEntries.put("two", "Two $");
-    radioEntries.put("three", "Three $");
+    add(LongTextInput
+        .build("description")
+        .setRequired()
+        .setDescription("Your Description")
+        );
 
     // RFE: simple map-builder
+    LinkedHashMap<String, String> radioEntries = createRadioMap();
 
-    add(RadioInput.build("rdio").setPossibleValues(radioEntries).setDescription("Your Choice"));
 
+    add(RadioInput
+        .build("rdio")
+        .setPossibleValues(radioEntries)
+        .setDescription("Your Choice")
+        );
+
+    LinkedHashMap<String, String> selectEntries = createSelectMap();
+
+    add(SelectInput
+        .build("select")
+        .setPossibleValues(selectEntries)
+        .setDescription("Your Selection")
+        );
+
+    add(CheckboxInput
+        .build("check")
+        .setDescription("I order everything")
+        );
+
+  }
+
+  private LinkedHashMap<String, String> createSelectMap() {
     LinkedHashMap<String, String> selectEntries = new LinkedHashMap<>();
     selectEntries.put("green", "Green");
     selectEntries.put("blue", "Blue");
     selectEntries.put("yellow", "Yellow");
+    return selectEntries;
+  }
 
-    // RFE: simple map-builder
-
-    add(SelectInput.build("select").setPossibleValues(selectEntries)
-        .setDescription("Your Selection"));
-
-    add(CheckboxInput.build("check").setDescription("I order everything"));
-
+  private LinkedHashMap<String, String> createRadioMap() {
+    LinkedHashMap<String, String> radioEntries = new LinkedHashMap<>();
+    radioEntries.put("one", "One $");
+    radioEntries.put("two", "Two $");
+    radioEntries.put("three", "Three $");
+    return radioEntries;
   }
 }

@@ -9,6 +9,7 @@ import java.util.GregorianCalendar;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang3.StringEscapeUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import de.jformchecker.FormCheckerElement;
 import de.jformchecker.Validator;
@@ -81,24 +82,31 @@ public class DateInput extends AbstractInput implements FormCheckerElement {
       dayVal = request.getParameter(name + "_day");
       yearVal = request.getParameter(name + "_year");
       monthVal = request.getParameter(name + "_month");
-      String dateVal = yearVal + "-" + monthVal + "-" + dayVal;
-      this.setValue(dateVal);
-
-      SimpleDateFormat formater = new SimpleDateFormat("yy-MM-dd");
-      try {
-        formater.setLenient(false);
-        internalDate = formater.parse(dateVal);
+      // if empty and not required, everything is fine
+      if (!isRequired() && StringUtils.isEmpty(dayVal) && 
+          StringUtils.isEmpty(yearVal) &&
+          StringUtils.isEmpty(monthVal)) {
         this.valid = true;
-        Validator v = new Validator();
-        String errMsg = v.validate(this);
-        if (errMsg != null) {
+      } else {  // check date format
+        String dateVal = yearVal + "-" + monthVal + "-" + dayVal;
+        this.setValue(dateVal);
+  
+        SimpleDateFormat formater = new SimpleDateFormat("yy-MM-dd");
+        try {
+          formater.setLenient(false);
+          internalDate = formater.parse(dateVal);
+          this.valid = true;
+          Validator v = new Validator();
+          String errMsg = v.validate(this);
+          if (errMsg != null) {
+            this.valid = false;
+            this.setErrorMessage(errMsg);
+          }
+        } catch (ParseException e) {
           this.valid = false;
-          this.setErrorMessage(errMsg);
+          this.setErrorMessage("Wrong Date format...");
+  
         }
-      } catch (ParseException e) {
-        this.valid = false;
-        this.setErrorMessage("Wrong Date format...");
-
       }
     }
   }

@@ -132,14 +132,14 @@ public class FormChecker {
     // check, if maxLen is set. If not, add default-max-len
     // defaultMaxLenElements;
     boolean maxLenAvail = false;
-    
+
     for (Criterion criterion : element.getCriteria()) {
       if (criterion instanceof MaxLength) {
         maxLenAvail = true;
       }
-    }    
-    if (!maxLenAvail){
-     element.getCriteria().add(Criteria.maxLength(defaultMaxLenElements)); 
+    }
+    if (!maxLenAvail) {
+      element.getCriteria().add(Criteria.maxLength(defaultMaxLenElements));
     }
 
     elements.put(element.getName(), element);
@@ -161,15 +161,10 @@ public class FormChecker {
   }
 
   public FormChecker run() {
-    boolean first = true;
+    if ((FormChecker.SUBMIT_VALUE_PREFIX + id).equals(req.getParameter(FormChecker.SUBMIT_KEY))) {
+      firstRun = false;
+    }
     for (Map.Entry<String, FormCheckerElement> entry : elements.entrySet()) {
-      if (first) {
-        if ((FormChecker.SUBMIT_VALUE_PREFIX + id)
-            .equals(req.getParameter(FormChecker.SUBMIT_KEY))) {
-          firstRun = false;
-        }
-        first = false;
-      }
       FormCheckerElement elem = entry.getValue();
       elem.init(req, firstRun);
       if (!elem.isValid()) {
