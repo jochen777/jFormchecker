@@ -40,12 +40,10 @@ public class ExampleForm extends FormCheckerForm {
   public ExampleForm() {
      add(TextInput.build("firstname").
      	setDescription("Your Firstname").
-     	setPreSetValue("Jochen").
      	setCriterias(Criteria.accept("John")));
 
     add(TextInput.build("lastname").
     	setDescription("Your lastname:").
-    	setPreSetValue("Pier").
     	setCriterias(Criteria.accept("Doe")));
 	}
 }
