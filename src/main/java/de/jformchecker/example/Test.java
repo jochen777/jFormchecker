@@ -84,6 +84,8 @@ public class Test extends HttpServlet {
       Utils.fillBean(fc.getElements(), bean);
       System.out.println("bean:" + bean);
       System.out.println(((DateInput)fc.getElements().get("date")).getDateValue());
+      System.out.println("--------------");
+      System.out.println(Utils.getDebugOutput(fc.getElements()));
     }
   }
 

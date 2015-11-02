@@ -25,7 +25,7 @@
 * allow html (OK)
 * correctly handle date-input (validate, give date-val to output) (OK)
 * check, if select-box, radio and checkbox can be manipulated (OK)
-* debug-output
+* debug-output (OK)
 * check, if FormCheckerElement can have less (public) methods
 * placeholder support
 * configurable formbuilder
