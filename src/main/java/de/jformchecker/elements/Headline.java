@@ -11,6 +11,11 @@ public class Headline extends AbstractInput implements FormCheckerElement {
     i.name = name;
     return i;
   }
+  
+  @Override
+  public String getValue() {
+    return this.getDescription();
+  }
 
 
   @Override
