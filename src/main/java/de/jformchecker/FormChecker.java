@@ -35,6 +35,11 @@ public class FormChecker {
     return isValid;
   }
 
+  public boolean isValidAndNotFirstRun() {
+    return isValid && !firstRun;
+  }
+
+
   public static FormChecker build(String _id, HttpServletRequest _req, FormCheckerForm form) {
     FormChecker fc = new FormChecker(_id, _req);
     fc.addForm(form);

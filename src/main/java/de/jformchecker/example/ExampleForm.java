@@ -4,6 +4,7 @@ import java.util.LinkedHashMap;
 
 import de.jformchecker.FormCheckerForm;
 import de.jformchecker.criteria.Criteria;
+import de.jformchecker.elements.ButtonInput;
 import de.jformchecker.elements.CheckboxInput;
 import de.jformchecker.elements.DateInput;
 import de.jformchecker.elements.Headline;
@@ -47,6 +48,13 @@ public class ExampleForm extends FormCheckerForm {
         .setPreSetValue("something to remember")
         );
 
+    add(ButtonInput
+        .build("btn")
+        .setDescription("Add")
+        .setPreSetValue("add")
+        );
+
+    
     add(DateInput
         .build("date")
         .setDescription("Birthday")

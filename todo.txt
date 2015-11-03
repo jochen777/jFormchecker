@@ -26,24 +26,26 @@
 * correctly handle date-input (validate, give date-val to output) (OK)
 * check, if select-box, radio and checkbox can be manipulated (OK)
 * debug-output (OK)
-* check, if FormCheckerElement can have less (public) methods
+* add button input field 
+* create example that adds fields if a button is pressed
+* haedline without ":" 
+* use attribute-map to add attributes to an input-field
 * placeholder support
 * configurable formbuilder
-* generate from bean (with annotations for descriptions, validation...)
+* generate from bean (with annotations for descriptions, validation...) / * check bean-validation
 * Double Password-Validator
-* check bean-validation
 * handle image - uploads
 * enable ajax handling
 * support complex-inputs?? (adress-field that contains several own-fields?)
 * multi-select (means: brand -> modell...)
-* add button input field
-* use attribute-map to add attributes to an input-field
 * groups of beans in form (example: product, adress) 
+* check, if FormCheckerElement can have less (public) methods
 
 * generate standard-form with alternative rendering in template (for mobile)
 * influence standard-form in template
 * javascript validaton
 * html5 mode
+* introduce framework modes (bootstrap/ionic/material...)
 * consider use of owasp encoder (https://www.owasp.org/index.php/OWASP_Java_Encoder_Project#tab=Use_the_Java_Encoder_Project)
 
 
