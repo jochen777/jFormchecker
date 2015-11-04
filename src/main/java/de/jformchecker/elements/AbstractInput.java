@@ -3,7 +3,9 @@ package de.jformchecker.elements;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -34,9 +36,16 @@ public abstract class AbstractInput implements FormCheckerElement {
   boolean valid = true;
   FormChecker parent;
 
+  protected String buildAttributes(Map<String, String> attributes) {
+    StringBuilder attrStr = new StringBuilder();
+    for (String attribute : attributes.keySet()) {
+      attrStr.append(attribute).append("=\"").append(attributes.get(attribute)).append("\" ");
+    }
+    return attrStr.toString();
+  }
 
   public String getInputTag() {
-    return getInputTag("", "");
+    return getInputTag(new HashMap<>());
   }
 
   @Override

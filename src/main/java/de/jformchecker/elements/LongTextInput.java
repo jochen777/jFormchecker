@@ -1,5 +1,7 @@
 package de.jformchecker.elements;
 
+import java.util.Map;
+
 import de.jformchecker.FormCheckerElement;
 
 public class LongTextInput extends TextInput implements FormCheckerElement {
@@ -12,8 +14,8 @@ public class LongTextInput extends TextInput implements FormCheckerElement {
 
 
   @Override
-  public String getInputTag(String additionalTag, String classes) {
-    return "<textarea " + getElementId() + " " + additionalTag + " class=\"" + classes + "\" name=\"" + name + "\" id=\""
+  public String getInputTag(Map<String, String> attributes) {
+    return "<textarea " + getElementId() +  buildAttributes(attributes) + " name=\"" + name + "\" id=\""
         + name + "\" " + ">" + (value == null ? "" : getValueHtmlEncoded()) + "</textarea>";
   }
 

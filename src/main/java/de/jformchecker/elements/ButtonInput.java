@@ -1,5 +1,7 @@
 package de.jformchecker.elements;
 
+import java.util.Map;
+
 import de.jformchecker.FormCheckerElement;
 
 public class ButtonInput extends AbstractInput implements FormCheckerElement{
@@ -17,7 +19,7 @@ public class ButtonInput extends AbstractInput implements FormCheckerElement{
 
   
   @Override
-  public String getInputTag(String additionalTags, String classes) {
+  public String getInputTag(Map<String, String> attributes) {
     return "<button type=\"submit\" name=\""+name+"\" value=\""+getPreSetValue()+"\">"+getDescription()+
         "</button><br/>";
   }

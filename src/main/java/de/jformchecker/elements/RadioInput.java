@@ -1,6 +1,7 @@
 package de.jformchecker.elements;
 
 import java.util.LinkedHashMap;
+import java.util.Map;
 
 import de.jformchecker.FormCheckerElement;
 
@@ -16,21 +17,20 @@ public class RadioInput extends AbstractInput implements FormCheckerElement {
   }
 
 
-  public String getInputTag(String additionalTag, String classes) {
+  public String getInputTag(Map<String, String> attributes) {
     StringBuffer inputTag = new StringBuffer();
     for (String key : possibleNames.keySet()) {
       // leer - bedeutet: Radio - Button ist optional, also nicht als radio ausgeben!
       if (!"".equals(possibleNames.get(key))) {
-        inputTag.append(this.getInputTag(key, additionalTag, classes) + " <label for=\"form_radio_"+key+"\" class=\"" + ""
+        inputTag.append(this.getInputTag(key, attributes) + " <label for=\"form_radio_"+key+"\" class=\"" + ""
             + "\" id=\"label_" + name + "_" + key + "\">" + possibleNames.get(key) + " </label>");
       }
     }
     return inputTag.toString();
   }
 
-  public String getInputTag(String curValue, String additionalTag, String classes) {
-    return "<input id=\"form_radio_" + curValue + "\"" + additionalTag + " class=\"" + classes
-        + "\" type=\"radio\" name=\"" + name + "\"  value=\"" + curValue + "\" "
+  public String getInputTag(String curValue, Map<String, String> attributes) {
+    return "<input id=\"form_radio_" + curValue + "\" " + buildAttributes(attributes)+ " type=\"radio\" name=\"" + name + "\"  value=\"" + curValue + "\" "
         + getCheckedStatus(curValue) + "" + " " + " >";
   }
 

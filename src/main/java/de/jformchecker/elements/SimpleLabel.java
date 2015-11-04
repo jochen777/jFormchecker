@@ -1,5 +1,7 @@
 package de.jformchecker.elements;
 
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 
 import de.jformchecker.FormCheckerElement;
@@ -19,7 +21,7 @@ public class SimpleLabel extends AbstractInput implements FormCheckerElement {
 
 
   @Override
-  public String getInputTag(String additionalTag, String classes) {
+  public String getInputTag(Map<String, String> attributes) {
     return ""; // output nothing, because headline will be outputted as label
   }
 

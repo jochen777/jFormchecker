@@ -1,6 +1,7 @@
 package de.jformchecker.elements;
 
 import java.util.LinkedHashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -19,10 +20,10 @@ public class SelectInput extends AbstractInput implements FormCheckerElement {
   }
 
 
-  public String getInputTag(String additionalTag, String classes) {
+  public String getInputTag(Map<String, String> attributes) {
 
     String style = "";
-    String inputTag = "<select " + getElementId() + " " + additionalTag + " class=\"" + classes + "\" name=\"" + name
+    String inputTag = "<select " + getElementId() + buildAttributes(attributes) + " name=\"" + name
         + "\"  " + style + " " + " " + ">\n";
     for (String key : possibleNames.keySet()) {
       String sel = "";

@@ -1,6 +1,7 @@
 package de.jformchecker;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -63,7 +64,7 @@ public interface FormCheckerElement {
 
   public String getInputTag();
 
-  public String getInputTag(String additionalTags, String classes);
+  public String getInputTag(Map<String, String> attributes);
 
   public boolean isRequired();
 

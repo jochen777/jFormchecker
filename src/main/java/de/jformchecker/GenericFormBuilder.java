@@ -1,5 +1,6 @@
 package de.jformchecker;
 
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
@@ -50,7 +51,9 @@ public class GenericFormBuilder {
         form.append(getLabelForElement(elem, "", "", firstRun));
       }
       // input tag
-      form.append(elem.getInputTag("","form-control"));
+      Map<String, String> attribs = new LinkedHashMap<>();
+      attribs.put("class", "form-control");
+      form.append(elem.getInputTag(attribs));
       if (elem.displayLabel()) {
         form.append("\n<br>"); // only append nl, if something was given
                                // out

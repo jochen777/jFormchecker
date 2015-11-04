@@ -1,5 +1,7 @@
 package de.jformchecker.elements;
 
+import java.util.Map;
+
 import de.jformchecker.FormCheckerElement;
 
 public class HiddenInput extends AbstractInput implements FormCheckerElement {
@@ -13,8 +15,8 @@ public class HiddenInput extends AbstractInput implements FormCheckerElement {
 
 
   @Override
-  public String getInputTag(String additionalTag, String classes) {
-    return "<input " + additionalTag + " class=\"" + classes + "\" type=\"hidden\"  name=\"" + name
+  public String getInputTag(Map<String, String> attributes) {
+    return "<input " + buildAttributes(attributes) + " type=\"hidden\"  name=\"" + name
         + "\"  id=\"" + name + "\" value=\"" + (value == null ? "" : getValueHtmlEncoded()) + "\">";
   }
 

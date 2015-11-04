@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -34,11 +35,10 @@ public class DateInput extends AbstractInput implements FormCheckerElement {
   Date internalDate = null;
 
   @Override
-  public String getInputTag(String additionalTag, String classes) {
-    String style = classes;
-    return getDatePartTag(DateInput.DAY, additionalTag, style) + " "
-        + getDatePartTag(DateInput.MONTH, additionalTag, style) + " "
-        + getDatePartTag(DateInput.YEAR, additionalTag, style);
+  public String getInputTag(Map<String, String> attributes) {
+    return getDatePartTag(DateInput.DAY, attributes) + " "
+        + getDatePartTag(DateInput.MONTH, attributes) + " "
+        + getDatePartTag(DateInput.YEAR, attributes);
 
   }
 
@@ -52,21 +52,21 @@ public class DateInput extends AbstractInput implements FormCheckerElement {
   }
 
 
-  public String getDatePartTag(int field, String additionalTag, String classes) {
+  public String getDatePartTag(int field, Map<String, String> attributes) {
     String inputField = "wrong field desc!";
     switch (field) {
       case MONTH:
-        inputField = "<input " + getElementId() + " " + additionalTag + " class=\"" + classes
-            + "\" type=\"text\" id=\"" + name + "_month\" name=\"" + name + "_month\"  value=\""
+        inputField = "<input " + getElementId() + buildAttributes(attributes) 
+            + " type=\"text\" id=\"" + name + "_month\" name=\"" + name + "_month\"  value=\""
             + (StringEscapeUtils.escapeHtml4(monthVal)) + "\" >";
         break;
       case YEAR:
-        inputField = "<input type=\"text\" " + additionalTag + " class=\"" + classes + "\" id=\""
+        inputField = "<input type=\"text\" " +  buildAttributes(attributes) + " id=\""
             + name + "_year\" name=\"" + name + "_year\"  value=\""
             + (StringEscapeUtils.escapeHtml4(yearVal)) + "\" >";
         break;
       case DAY:
-        inputField = "<input type=\"text\" " + additionalTag + " class=\"" + classes + "\" id=\""
+        inputField = "<input type=\"text\" " +  buildAttributes(attributes) +" id=\""
             + name + "_day\" name=\"" + name + "_day\"  value=\""
             + (StringEscapeUtils.escapeHtml4(dayVal)) + "\" >";
         break;

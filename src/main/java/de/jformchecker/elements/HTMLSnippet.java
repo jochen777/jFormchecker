@@ -1,5 +1,7 @@
 package de.jformchecker.elements;
 
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 
 import de.jformchecker.FormCheckerElement;
@@ -26,7 +28,7 @@ public class HTMLSnippet extends AbstractInput implements FormCheckerElement {
 
 
   @Override
-  public String getInputTag(String additionalTag, String classes) {
+  public String getInputTag(Map<String, String> attributes) {
     return html;
   }
 

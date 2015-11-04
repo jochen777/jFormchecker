@@ -1,5 +1,7 @@
 package de.jformchecker.elements;
 
+import java.util.Map;
+
 import de.jformchecker.FormCheckerElement;
 
 public class TextInput extends AbstractInput implements FormCheckerElement {
@@ -13,9 +15,9 @@ public class TextInput extends AbstractInput implements FormCheckerElement {
 
 
   @Override
-  public String getInputTag(String additionalTag, String classes) {
+  public String getInputTag(Map<String, String> attributes) {
     return String.format(
-        "<input " + getElementId() + " " + additionalTag + " class=\"" + classes + "\" tabindex=\"" + getTabIndex()
+        "<input " + getElementId() + buildAttributes(attributes) + " tabindex=\"" + getTabIndex()
             + "\" type=\"text\" name=\"%s\" value=\"%s\">",
         name, (value == null ? "" : getValueHtmlEncoded()));
   }
