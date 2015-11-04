@@ -4,10 +4,10 @@ import javax.servlet.http.HttpServletRequest;
 
 import de.jformchecker.FormCheckerElement;
 
-public class Headline extends AbstractInput implements FormCheckerElement {
+public class SimpleLabel extends AbstractInput implements FormCheckerElement {
 
-  public static Headline build(String name) {
-    Headline i = new Headline();
+  public static SimpleLabel build(String name) {
+    SimpleLabel i = new SimpleLabel();
     i.name = name;
     return i;
   }

@@ -6,7 +6,6 @@ import de.jformchecker.FormCheckerForm;
 import de.jformchecker.criteria.Criteria;
 import de.jformchecker.elements.CheckboxInput;
 import de.jformchecker.elements.DateInput;
-import de.jformchecker.elements.Headline;
 import de.jformchecker.elements.HiddenInput;
 import de.jformchecker.elements.LongTextInput;
 import de.jformchecker.elements.PasswordInput;
@@ -36,9 +35,6 @@ public class ExampleFormTest extends FormCheckerForm {
         .setDescription("Your Middelname")
         .setCriterias(new CustomValidation()));
 
-    add(Headline
-        .build("headline")
-        .setDescription("Example Headline"));
 
     add(HiddenInput
         .build("hidden")

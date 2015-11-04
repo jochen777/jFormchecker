@@ -7,7 +7,7 @@ import de.jformchecker.criteria.Criteria;
 import de.jformchecker.elements.ButtonInput;
 import de.jformchecker.elements.CheckboxInput;
 import de.jformchecker.elements.DateInput;
-import de.jformchecker.elements.Headline;
+import de.jformchecker.elements.HTMLSnippet;
 import de.jformchecker.elements.HiddenInput;
 import de.jformchecker.elements.LongTextInput;
 import de.jformchecker.elements.PasswordInput;
@@ -38,9 +38,9 @@ public class ExampleForm extends FormCheckerForm {
         .setCriterias(new CustomValidation())
         );
 
-    add(Headline
+    add(HTMLSnippet
         .build("headline")
-        .setDescription("Example Headline")
+        .setHTML("<h1>Headline</h1>")
         );
 
     add(HiddenInput

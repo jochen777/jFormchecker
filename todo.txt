@@ -26,9 +26,9 @@
 * correctly handle date-input (validate, give date-val to output) (OK)
 * check, if select-box, radio and checkbox can be manipulated (OK)
 * debug-output (OK)
-* add button input field 
-* create example that adds fields if a button is pressed
-* haedline without ":" 
+* add button input field (OK)
+* create example that adds fields if a button is pressed (OK)
+* discard headline and introduce a "free html" field (OK)
 * use attribute-map to add attributes to an input-field
 * placeholder support
 * configurable formbuilder
