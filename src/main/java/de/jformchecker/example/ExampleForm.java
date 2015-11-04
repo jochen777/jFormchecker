@@ -96,7 +96,7 @@ public class ExampleForm extends FormCheckerForm {
         .setDescription("I order everything")
         );
     
-    setPlaceholderMode();
+    //setPlaceholderMode();
 
   }
 

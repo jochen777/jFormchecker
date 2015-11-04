@@ -24,7 +24,7 @@ public class SelectInput extends AbstractInput implements FormCheckerElement {
 
     String style = "";
     String inputTag = "<select " + getElementId() + buildAttributes(attributes) + " name=\"" + name
-        + "\"  " + style + " " + " " + ">\n";
+        + "\"  " + style + " " + getTabIndexTag()+" >\n";
     for (String key : possibleNames.keySet()) {
       String sel = "";
       if (value != null && value.equals(key)) {

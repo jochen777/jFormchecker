@@ -16,8 +16,8 @@ public class PasswordInput extends AbstractInput implements FormCheckerElement {
   @Override
   public String getInputTag(Map<String, String> attributes) {
     return String.format(
-        "<input " + getElementId()  + buildAttributes(attributes) + " tabindex=\"" + getTabIndex()
-            + "\" type=\"password\" name=\"%s\" value=\"%s\">",
+        "<input " + getElementId()  + buildAttributes(attributes) + getTabIndexTag() 
+            + " type=\"password\" name=\"%s\" value=\"%s\">",
         name, (value == null ? "" : getValueHtmlEncoded()));
   }
 

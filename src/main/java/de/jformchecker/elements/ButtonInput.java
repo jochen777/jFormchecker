@@ -20,7 +20,7 @@ public class ButtonInput extends AbstractInput implements FormCheckerElement{
   
   @Override
   public String getInputTag(Map<String, String> attributes) {
-    return "<button type=\"submit\" name=\""+name+"\" value=\""+getPreSetValue()+"\">"+getDescription()+
+    return "<button type=\"submit\" name=\""+name+"\" value=\""+getPreSetValue()+ getTabIndexTag() + "\">"+getDescription()+
         "</button><br/>";
   }
 

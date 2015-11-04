@@ -23,7 +23,7 @@ public class Test {
     ti.init(request, false);
     String inputTag = ti.getInputTag();
     assertEquals(
-        "<input  id=\"form_firstname\"  tabindex=\"0\" type=\"text\" name=\"firstname\" value=\"Jochen Pier&lt;bold&gt;\">",
+        "<input  id=\"form_firstname\" tabindex=\"0\" type=\"text\" name=\"firstname\" value=\"Jochen Pier&lt;bold&gt;\">",
         inputTag);
   }
 
@@ -35,7 +35,7 @@ public class Test {
     HttpServletRequest request = buildEmptyHttpRequest();
     ti.init(request, true);
     String inputTag = ti.getInputTag();
-    assertEquals("<input  id=\"form_firstname\"  tabindex=\"0\" type=\"text\" name=\"firstname\" value=\"Jochen\">",
+    assertEquals("<input  id=\"form_firstname\" tabindex=\"0\" type=\"text\" name=\"firstname\" value=\"Jochen\">",
         inputTag);
   }
 

@@ -174,7 +174,11 @@ public abstract class AbstractInput implements FormCheckerElement {
      * multiply times 10 because some form-elements may contain more than one input-element ( for
      * example the date element: It can use tabIndex*10+1, +2 to use own input-types
      */
-    return tabIndex * 10;
+    return  tabIndex * 10 ;
+  }
+  
+  public String getTabIndexTag() {
+    return "tabindex=\"" + getTabIndex() + "\" ";
   }
 
   public AbstractInput setTabIndex(int tabIndex) {

@@ -33,8 +33,8 @@ public class TextInput extends AbstractInput implements FormCheckerElement {
   @Override
   public String getInputTag(Map<String, String> attributes) {
     return String.format(
-        "<input " + getElementId() + buildAttributes(attributes) + " tabindex=\"" + getTabIndex()
-            + "\" type=\"text\" name=\"%s\" value=\"%s\""+getPlaceholder()+">",
+        "<input " + getElementId() + buildAttributes(attributes) + getTabIndexTag()
+            + "type=\"text\" name=\"%s\" value=\"%s\""+getPlaceholder()+">",
         name, (value == null ? "" : getValueHtmlEncoded()));
   }
 

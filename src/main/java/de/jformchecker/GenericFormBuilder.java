@@ -68,7 +68,7 @@ public class GenericFormBuilder {
   }
 
   public String getSubmit(int tabOrder) {
-    return "<input tabindex=\"" + tabOrder + "\" class=\"" + submitClass
+    return "<input tabindex=\"" + tabOrder*10 + "\" class=\"" + submitClass
         + "\" type=\"submit\" value=\"" + submitLabel + "\">\n";
   }
 
