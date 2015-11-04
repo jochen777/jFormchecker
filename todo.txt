@@ -29,8 +29,9 @@
 * add button input field (OK)
 * create example that adds fields if a button is pressed (OK)
 * discard headline and introduce a "free html" field (OK)
-* use attribute-map to add attributes to an input-field
-* placeholder support
+* use attribute-map to add attributes to an input-field (OK)
+* placeholder support (OK)
+* Check why tab-index does not work
 * configurable formbuilder
 * generate from bean (with annotations for descriptions, validation...) / * check bean-validation
 * Double Password-Validator

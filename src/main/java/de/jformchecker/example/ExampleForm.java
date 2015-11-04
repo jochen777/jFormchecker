@@ -95,6 +95,8 @@ public class ExampleForm extends FormCheckerForm {
         .build("check")
         .setDescription("I order everything")
         );
+    
+    setPlaceholderMode();
 
   }
 

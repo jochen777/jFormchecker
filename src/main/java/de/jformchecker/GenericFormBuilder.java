@@ -47,6 +47,7 @@ public class GenericFormBuilder {
       if (elem.getTabIndex() == 0) {
         elem.setTabIndex(tabOrder);
       }
+      form.append(getErrors(elem, firstRun));
       if (elem.displayLabel()) {
         form.append(getLabelForElement(elem, "", "", firstRun));
       }
@@ -90,6 +91,13 @@ public class GenericFormBuilder {
     this.grouping = grouping;
   }
 
+  public String getErrors(FormCheckerElement e, boolean firstRun) {
+    if (!firstRun && !e.isValid()) {
+      return("Problem: " + e.getErrorMessage() + "!!<br>");
+    }
+    return "";
+  }
+  
   public String getLabelForElement(FormCheckerElement e, String tagAddition, String classes,
       boolean firstRun) {
 
@@ -108,17 +116,10 @@ public class GenericFormBuilder {
       buf.append("<div id=\"fc-" + e.getName() + "-label-container\">");
 
     if (firstRun || e.isValid()) {
-      /*
-       * if (classes!=null) okStyle+=" "+classes;
-       */
       buf.append("<label class=\"" + okStyle + paramClasses + "\" for=\"form_" + e.getName() + "\""
           + tagAddition + " id=\"" + e.getName() + "_label\">" + e.getDescription() + addToLabel
           + (e.isRequired() ? requiredChars : "") + "</label>");
     } else {
-      /*
-       * if (classes!=null) errStyle+=" "+classes;
-       */
-      buf.append("Problem: " + e.getErrorMessage() + "!!<br>");
       buf.append("<label class=\"" + errStyle + paramClasses + "\"  for=\"" + e.getName() + "\""
           + tagAddition + " id=\"" + e.getName() + "_label\">" + e.getDescription() + addToLabel
           + (e.isRequired() ? requiredChars : "") + "</label>");

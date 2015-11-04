@@ -3,6 +3,8 @@ package de.jformchecker;
 import java.util.ArrayList;
 import java.util.List;
 
+import de.jformchecker.elements.TextInput;
+
 // holds a collection of form-Elements that can be rendered by formchecker
 public class FormCheckerForm {
 
@@ -18,5 +20,12 @@ public class FormCheckerForm {
     return elements;
   }
 
+  public void setPlaceholderMode() {
+    for (FormCheckerElement formCheckerElement : elements) {
+      if (formCheckerElement instanceof TextInput) {
+        ((TextInput)formCheckerElement).setPlaceHolderMode();
+      }
+    }
+  }
 
 }
