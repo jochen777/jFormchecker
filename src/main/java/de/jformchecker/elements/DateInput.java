@@ -55,20 +55,25 @@ public class DateInput extends AbstractInput implements FormCheckerElement {
   public String getDatePartTag(int field, Map<String, String> attributes) {
     String inputField = "wrong field desc!";
     switch (field) {
+      case DAY:
+        inputField = "<input type=\"text\" " +  buildAttributes(attributes) 
+            + getTabIndexTag() + " id=\""
+            + name + "_day\" name=\"" + name + "_day\"  value=\""
+            + (StringEscapeUtils.escapeHtml4(dayVal)) + "\"  placeholder=\"day\">";
+          
+        break;
       case MONTH:
-        inputField = "<input " + getElementId() + buildAttributes(attributes) 
+        setTabIndex(getTabIndex()+1);
+        inputField = "<input " + getElementId() + buildAttributes(attributes) + getTabIndexTag()
             + " type=\"text\" id=\"" + name + "_month\" name=\"" + name + "_month\"  value=\""
             + (StringEscapeUtils.escapeHtml4(monthVal)) + "\" placeholder=\"month\">";
         break;
       case YEAR:
-        inputField = "<input type=\"text\" " +  buildAttributes(attributes) + " id=\""
+        setTabIndex(getTabIndex()+1);
+        inputField = "<input type=\"text\" " +  buildAttributes(attributes) + getTabIndexTag()+
+            " id=\""
             + name + "_year\" name=\"" + name + "_year\"  value=\""
             + (StringEscapeUtils.escapeHtml4(yearVal)) + "\"  placeholder=\"year\">";
-        break;
-      case DAY:
-        inputField = "<input type=\"text\" " +  buildAttributes(attributes) +" id=\""
-            + name + "_day\" name=\"" + name + "_day\"  value=\""
-            + (StringEscapeUtils.escapeHtml4(dayVal)) + "\"  placeholder=\"day\">";
         break;
     }
     return inputField;
@@ -111,6 +116,12 @@ public class DateInput extends AbstractInput implements FormCheckerElement {
     }
   }
 
+  @Override
+  public int getLastTabIndex() {
+    return this.getTabIndex() + 3;
+  }
+
+  
   public String getValue() {
     return value;
   }

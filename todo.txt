@@ -1,7 +1,7 @@
 * builder pattern for form-elements (OK)
 * include tab-index (OK)
 * validation (OK)
-* github
+* github (OK)
 * generateStandard-Form with tab-Index (OK)
 * check, if multiple forms on a page works (OK)
 * access to all details in template (ok)
@@ -33,8 +33,10 @@
 * placeholder support (OK)
 * Check why tab-index does not work
 * configurable formbuilder
-* generate from bean (with annotations for descriptions, validation...) / * check bean-validation
 * Double Password-Validator
+* generate from bean (with annotations for descriptions, validation...) / * check bean-validation
+* javascript validaton
+* html5 mode
 * handle image - uploads
 * enable ajax handling
 * support complex-inputs?? (adress-field that contains several own-fields?)
@@ -44,8 +46,6 @@
 
 * generate standard-form with alternative rendering in template (for mobile)
 * influence standard-form in template
-* javascript validaton
-* html5 mode
 * introduce framework modes (bootstrap/ionic/material...)
 * consider use of owasp encoder (https://www.owasp.org/index.php/OWASP_Java_Encoder_Project#tab=Use_the_Java_Encoder_Project)
 

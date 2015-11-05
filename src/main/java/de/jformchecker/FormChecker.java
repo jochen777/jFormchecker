@@ -166,9 +166,13 @@ public class FormChecker {
   }
 
   public FormChecker run() {
-    if ((FormChecker.SUBMIT_VALUE_PREFIX + id).equals(req.getParameter(FormChecker.SUBMIT_KEY))) {
-      firstRun = false;
-    }
+
+    sortTabIndexes();
+
+    checkIfFirstRun();
+
+
+
     for (Map.Entry<String, FormCheckerElement> entry : elements.entrySet()) {
       FormCheckerElement elem = entry.getValue();
       elem.init(req, firstRun);
@@ -179,6 +183,24 @@ public class FormChecker {
     // build complete Form here!
     completeForm = this.getGenericForm();
     return this;
+  }
+
+  // resort tab-indexes
+  private void sortTabIndexes() {
+    int tabIndex = 100;
+    for (Map.Entry<String, FormCheckerElement> entry : elements.entrySet()) {
+      FormCheckerElement elem = entry.getValue();
+      System.out.println("tabindex: " + elem.getName() + ": " + tabIndex);
+      elem.setTabIndex(tabIndex);
+      tabIndex = elem.getLastTabIndex();
+      tabIndex++;
+    }
+  }
+
+  private void checkIfFirstRun() {
+    if ((FormChecker.SUBMIT_VALUE_PREFIX + id).equals(req.getParameter(FormChecker.SUBMIT_KEY))) {
+      firstRun = false;
+    }
   }
 
   public String getCompleteForm() {

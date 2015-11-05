@@ -35,6 +35,8 @@ public interface FormCheckerElement {
   public FormCheckerElement setTabIndex(int tabIndex);
 
   public int getTabIndex();
+  
+  public int getLastTabIndex();
 
   /*
    *  default: true, if the label of this element should be displayed

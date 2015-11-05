@@ -18,20 +18,23 @@ public class RadioInput extends AbstractInput implements FormCheckerElement {
 
 
   public String getInputTag(Map<String, String> attributes) {
+    System.out.println("Radio-TabIndex: " + getTabIndex());
     StringBuffer inputTag = new StringBuffer();
     for (String key : possibleNames.keySet()) {
       // leer - bedeutet: Radio - Button ist optional, also nicht als radio ausgeben!
       if (!"".equals(possibleNames.get(key))) {
         inputTag.append(this.getInputTag(key, attributes) + " <label for=\"form_radio_"+key+"\" class=\"" + ""
-            + "\" id=\"label_" + name + "_" + key + "\">" + possibleNames.get(key) + " </label>");
+            + "\" id=\"label_" + name + "_" + key + "\">" + possibleNames.get(key) + " </label>\n");
       }
     }
     return inputTag.toString();
   }
 
   public String getInputTag(String curValue, Map<String, String> attributes) {
-    return "<input id=\"form_radio_" + curValue + "\" " + buildAttributes(attributes)+ " type=\"radio\" name=\"" + name + "\"  value=\"" + curValue + "\" "
-        + getCheckedStatus(curValue) + "" + " " + " >";
+    setTabIndex(getTabIndex()+1);
+    return "<input id=\"form_radio_" + curValue + "\" " + buildAttributes(attributes)+ 
+        getTabIndexTag() + " type=\"radio\" name=\"" + name + "\"  value=\"" + curValue + "\" "
+        + getCheckedStatus(curValue) + "" + " " + " >\n";
   }
 
   private String getCheckedStatus(String _name) {
@@ -41,6 +44,12 @@ public class RadioInput extends AbstractInput implements FormCheckerElement {
       return "";
     }
   }
+  
+  @Override
+  public int getLastTabIndex() {
+    return this.getTabIndex() + possibleNames.size();
+  }
+
 
   // RFE: We need a map here!
   public RadioInput setPossibleValues(LinkedHashMap<String, String> possibleNames) {

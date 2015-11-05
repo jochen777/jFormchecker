@@ -12,6 +12,7 @@ The form-handling support in current java MVC frameworks is very basic. jFormChe
 * pre-fillments of form-elements
 * automatically syntactical correct HTML (5) with label and "label-for"
 * pre-fillments of user-input after submit
+* max-lenght constraint on every element to avoid security issues
 * easy validation, easy custom validation
 * all standard form fields and more (date-input)
 * Very compact output in sourcecode

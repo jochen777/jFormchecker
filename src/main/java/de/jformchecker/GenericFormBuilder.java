@@ -36,20 +36,12 @@ public class GenericFormBuilder {
       form.append(fc.buildCSRFTokens());
     }
     
-    int tabOrder = 0;
     for (String key : elements.keySet()) {
       // label
       FormCheckerElement elem = elements.get(key);
-      /*
-       * set tabIndex if not already-provided Attention: This may mix an order where a form has some
-       * elements with order and some without order.
-       */
-      if (elem.getTabIndex() == 0) {
-        elem.setTabIndex(tabOrder);
-      }
       form.append(getErrors(elem, firstRun));
       if (elem.displayLabel()) {
-        form.append(getLabelForElement(elem, "", "", firstRun));
+        form.append(getLabelForElement(elem, "", "", firstRun)).append("\n");
       }
       // input tag
       Map<String, String> attribs = new LinkedHashMap<>();
@@ -59,16 +51,15 @@ public class GenericFormBuilder {
         form.append("\n<br>"); // only append nl, if something was given
                                // out
       }
-      tabOrder++;
     }
-    form.append(getSubmit(tabOrder));
+    form.append(getSubmit(200));
     form.append("</form>\n");
 
     return form.toString();
   }
 
   public String getSubmit(int tabOrder) {
-    return "<input tabindex=\"" + tabOrder*10 + "\" class=\"" + submitClass
+    return "<input tabindex=\"" + tabOrder + "\" class=\"" + submitClass
         + "\" type=\"submit\" value=\"" + submitLabel + "\">\n";
   }
 

@@ -48,6 +48,11 @@ public abstract class AbstractInput implements FormCheckerElement {
     return getInputTag(new HashMap<>());
   }
 
+  // return highest tabindex of this element
+  public int getLastTabIndex() {
+    return tabIndex;
+  }
+  
   @Override
   public void setFormChecker(FormChecker fc) {
     parent = fc;
@@ -170,11 +175,7 @@ public abstract class AbstractInput implements FormCheckerElement {
   }
 
   public int getTabIndex() {
-    /*
-     * multiply times 10 because some form-elements may contain more than one input-element ( for
-     * example the date element: It can use tabIndex*10+1, +2 to use own input-types
-     */
-    return  tabIndex * 10 ;
+    return  tabIndex;
   }
   
   public String getTabIndexTag() {
