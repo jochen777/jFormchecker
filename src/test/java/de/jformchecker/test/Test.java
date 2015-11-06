@@ -19,7 +19,7 @@ public class Test {
   @org.junit.Test
   public void testXSS() {
     TextInput ti = buildExampleTextInput();
-    HttpServletRequest request = buildExampleHttpRequest();
+    HttpServletRequest request = RequestBuilders.buildExampleHttpRequest();
     ti.init(request, false);
     String inputTag = ti.getInputTag();
     assertEquals(
@@ -32,7 +32,7 @@ public class Test {
   @org.junit.Test
   public void testPrefillText() {
     TextInput ti = buildExampleTextInput();
-    HttpServletRequest request = buildEmptyHttpRequest();
+    HttpServletRequest request = RequestBuilders.buildEmptyHttpRequest();
     ti.init(request, true);
     String inputTag = ti.getInputTag();
     assertEquals("<input  id=\"form_firstname\" tabindex=\"0\" type=\"text\" name=\"firstname\" value=\"Jochen\">",
@@ -46,7 +46,7 @@ public class Test {
     String formId = "h";
     reqVals.put("firstname", "Jochen2");
     reqVals.put(FormChecker.SUBMIT_KEY, FormChecker.SUBMIT_VALUE_PREFIX + formId);
-    HttpServletRequest request = buildExampleHttpRequest(reqVals);
+    HttpServletRequest request = RequestBuilders.buildExampleHttpRequest(reqVals);
 
     ExampleFormTest form = new ExampleFormTest();
     FormChecker fc = new FormChecker(formId, request);
@@ -71,7 +71,7 @@ public class Test {
 
     reqVals.put(FormChecker.SUBMIT_KEY, FormChecker.SUBMIT_VALUE_PREFIX + formId);
 
-    HttpServletRequest request = buildExampleHttpRequest(reqVals);
+    HttpServletRequest request = RequestBuilders.buildExampleHttpRequest(reqVals);
 
     ExampleFormTest form = new ExampleFormTest();
     FormChecker fc = new FormChecker(formId, request);
@@ -96,26 +96,6 @@ public class Test {
 
 
 
-  private HttpServletRequest buildExampleHttpRequest() {
-    MockHttpServletRequest request = new MockHttpServletRequest();
-    request.setParameter("firstname", "Jochen Pier<bold>");
-    return request;
-  }
-
-  private HttpServletRequest buildExampleHttpRequest(Map<String, String> reqVals) {
-    MockHttpServletRequest request = new MockHttpServletRequest();
-
-    for (String key : reqVals.keySet()) {
-      request.setParameter(key, reqVals.get(key));
-    }
-    return request;
-  }
-
-
-  private HttpServletRequest buildEmptyHttpRequest() {
-    MockHttpServletRequest request = new MockHttpServletRequest();
-    return request;
-  }
 
 
   private TextInput buildExampleTextInput() {

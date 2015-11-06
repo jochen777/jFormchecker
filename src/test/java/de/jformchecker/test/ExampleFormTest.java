@@ -55,14 +55,14 @@ public class ExampleFormTest extends FormCheckerForm {
         .setRequired()
         .setDescription("Your Description"));
 
-    LinkedHashMap<String, String> radioEntries = generateRadioMap();
+    LinkedHashMap<String, String> radioEntries = SampleMapGenerators.generateRadioMap();
 
     add(RadioInput
         .build("rdio")
         .setPossibleValues(radioEntries)
         .setDescription("Your Choice"));
 
-    LinkedHashMap<String, String> selectEntries = generateSelectMap();
+    LinkedHashMap<String, String> selectEntries = SampleMapGenerators.generateSelectMap();
 
     add(SelectInput
         .build("select")
@@ -75,19 +75,5 @@ public class ExampleFormTest extends FormCheckerForm {
 
   }
 
-  private LinkedHashMap<String, String> generateSelectMap() {
-    LinkedHashMap<String, String> selectEntries = new LinkedHashMap<>();
-    selectEntries.put("green", "Green");
-    selectEntries.put("blue", "Blue");
-    selectEntries.put("yellow", "Yellow");
-    return selectEntries;
-  }
-
-  private LinkedHashMap<String, String> generateRadioMap() {
-    LinkedHashMap<String, String> radioEntries = new LinkedHashMap<>();
-    radioEntries.put("one", "One $");
-    radioEntries.put("two", "Two $");
-    radioEntries.put("three", "Three $");
-    return radioEntries;
-  }
+ 
 }

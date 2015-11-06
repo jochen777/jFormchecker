@@ -25,13 +25,13 @@ public class RadioInput extends AbstractInput implements FormCheckerElement {
       if (!"".equals(possibleNames.get(key))) {
         inputTag.append(this.getInputTag(key, attributes) + " <label for=\"form_radio_"+key+"\" class=\"" + ""
             + "\" id=\"label_" + name + "_" + key + "\">" + possibleNames.get(key) + " </label>\n");
+        setTabIndex(getTabIndex()+1);
       }
     }
     return inputTag.toString();
   }
 
   public String getInputTag(String curValue, Map<String, String> attributes) {
-    setTabIndex(getTabIndex()+1);
     return "<input id=\"form_radio_" + curValue + "\" " + buildAttributes(attributes)+ 
         getTabIndexTag() + " type=\"radio\" name=\"" + name + "\"  value=\"" + curValue + "\" "
         + getCheckedStatus(curValue) + "" + " " + " >\n";
@@ -47,7 +47,7 @@ public class RadioInput extends AbstractInput implements FormCheckerElement {
   
   @Override
   public int getLastTabIndex() {
-    return this.getTabIndex() + possibleNames.size();
+    return this.getTabIndex() + possibleNames.size() -1;
   }
 
 
