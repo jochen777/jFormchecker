@@ -32,7 +32,7 @@
 * use attribute-map to add attributes to an input-field (OK)
 * placeholder support (OK)
 * Check why tab-index does not work (OK)
-* configurable formbuilder
+* configurable formbuilder (OK) 
 * Double Password-Validator
 * label with attribute map
 * generate from bean (with annotations for descriptions, validation...) / * check bean-validation
@@ -44,6 +44,7 @@
 * multi-select (means: brand -> modell...)
 * groups of beans in form (example: product, adress) 
 * check, if FormCheckerElement can have less (public) methods
+* bootstrap style error-handling
 
 * generate standard-form with alternative rendering in template (for mobile)
 * TBD: Do not pass complete request object but only atrributes and session?

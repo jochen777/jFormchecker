@@ -16,6 +16,7 @@ The form-handling support in current java MVC frameworks is very basic. jFormChe
 * easy validation, easy custom validation
 * all standard form fields and more (date-input)
 * Very compact output in sourcecode
+* prebuild Bootstrap Styles
 * Avoiding a lot of boilerplate code
 
 jFormChecker is for java what Symfony-Forms is for PHP or Rose::HTML for Perl.

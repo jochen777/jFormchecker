@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import de.jformchecker.BasicBootstrapFormBuilder;
 import de.jformchecker.FormChecker;
 import de.jformchecker.Utils;
 import de.jformchecker.elements.DateInput;
@@ -52,7 +53,9 @@ public class Test extends HttpServlet {
      * prepare jFormchecker
      */
     FormChecker fc =
-        FormChecker.build("id", request, new ExampleForm()).setProtectAgainstCSRF().run();
+        FormChecker.build("id", request, new ExampleForm()).setProtectAgainstCSRF()
+        .setFormBuilder(new BasicBootstrapFormBuilder())
+        .run();
 
     processResult(fc);
 

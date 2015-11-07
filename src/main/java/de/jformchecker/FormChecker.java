@@ -95,8 +95,9 @@ public class FormChecker {
     return formBuilder;
   }
 
-  public void setFormBuilder(GenericFormBuilder formBuilder) {
+  public FormChecker setFormBuilder(GenericFormBuilder formBuilder) {
     this.formBuilder = formBuilder;
+    return this;
   }
 
   // where the form is submitted to

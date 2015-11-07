@@ -20,7 +20,7 @@ public class GenericFormBuilder {
   String submitLabel = "OK";
   String submitClass = "";
 
-  public String getGenericForm(String id, String formAction,
+  final public String getGenericForm(String id, String formAction,
       Map<String, FormCheckerElement> elements, boolean isMultipart, boolean firstRun,
       FormChecker fc) {
     StringBuilder form = new StringBuilder();
@@ -65,7 +65,7 @@ public class GenericFormBuilder {
   }
 
 
-  private TagAtrributes getLabelAttributes(FormCheckerElement elem) {
+  public TagAtrributes getLabelAttributes(FormCheckerElement elem) {
     TagAtrributes attributes = new TagAtrributes();
     attributes.put("class", "col-sm-2 control-label");
     return attributes;
@@ -80,7 +80,7 @@ public class GenericFormBuilder {
     return "</div>";
   }
 
-  private Map<String, String> getFormAttributes() {
+  public Map<String, String> getFormAttributes() {
     Map<String, String> attributes = new LinkedHashMap<>();
     attributes.put("class", "form-horizontal");
     return attributes;
