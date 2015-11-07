@@ -34,6 +34,7 @@
 * Check why tab-index does not work (OK)
 * configurable formbuilder
 * Double Password-Validator
+* label with attribute map
 * generate from bean (with annotations for descriptions, validation...) / * check bean-validation
 * javascript validaton
 * html5 mode
@@ -45,6 +46,7 @@
 * check, if FormCheckerElement can have less (public) methods
 
 * generate standard-form with alternative rendering in template (for mobile)
+* TBD: Do not pass complete request object but only atrributes and session?
 * influence standard-form in template
 * introduce framework modes (bootstrap/ionic/material...)
 * consider use of owasp encoder (https://www.owasp.org/index.php/OWASP_Java_Encoder_Project#tab=Use_the_Java_Encoder_Project)

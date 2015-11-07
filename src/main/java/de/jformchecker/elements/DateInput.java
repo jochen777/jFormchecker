@@ -36,9 +36,9 @@ public class DateInput extends AbstractInput implements FormCheckerElement {
 
   @Override
   public String getInputTag(Map<String, String> attributes) {
-    return getDatePartTag(DateInput.DAY, attributes) + " "
+    return "<div>" + getDatePartTag(DateInput.DAY, attributes) + " "
         + getDatePartTag(DateInput.MONTH, attributes) + " "
-        + getDatePartTag(DateInput.YEAR, attributes);
+        + getDatePartTag(DateInput.YEAR, attributes) + "</div>";
 
   }
 

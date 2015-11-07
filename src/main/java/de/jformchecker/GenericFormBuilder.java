@@ -28,7 +28,8 @@ public class GenericFormBuilder {
       form.append("<form name=\"" + id + "\" id=\"form_" + id + "\" action=\"" + formAction
           + "\" method=\"GET\" enctype=\"multipart/form-data\">\n");
     } else {
-      form.append("<form name=\"" + id + "\" id=\"form_" + id + "\" action=\"" + formAction
+      form.append("<form name=\"" + id + "\" id=\"form_" + id + "\" "+
+          Utils.buildAttributes(getFormAttributes())+" action=\"" + formAction
           + "\" method=\"GET\" >\n");
     }
     form.append(getSubmittedTag(id));
@@ -39,24 +40,65 @@ public class GenericFormBuilder {
     for (String key : elements.keySet()) {
       // label
       FormCheckerElement elem = elements.get(key);
+      form.append(getBeforeElem(elem));
       form.append(getErrors(elem, firstRun));
       if (elem.displayLabel()) {
-        form.append(getLabelForElement(elem, "", "", firstRun)).append("\n");
+        form.append(getLabelForElement(elem, getLabelAttributes(elem), firstRun)).append("\n");
       }
       // input tag
       Map<String, String> attribs = new LinkedHashMap<>();
-      attribs.put("class", "form-control");
+      addAttributesToInputFields(attribs, elem);
+      form.append(getBeforeInput(elem));
       form.append(elem.getInputTag(attribs));
       if (elem.displayLabel()) {
         form.append("\n<br>"); // only append nl, if something was given
                                // out
       }
+      form.append(getAfterInput(elem));
+      form.append(getAfterElem(elem));
       lastTabIndex = elem.getLastTabIndex();
     }
-    form.append(getSubmit(lastTabIndex+1));
+    form.append(getSubmit(lastTabIndex + 1));
     form.append("</form>\n");
 
     return form.toString();
+  }
+
+
+  private TagAtrributes getLabelAttributes(FormCheckerElement elem) {
+    TagAtrributes attributes = new TagAtrributes();
+    attributes.put("class", "col-sm-2 control-label");
+    return attributes;
+  }
+
+
+  public String getBeforeInput(FormCheckerElement elem) {
+    return "<div class=\"col-sm-10\">";
+  }
+
+  public String getAfterInput(FormCheckerElement elem) {
+    return "</div>";
+  }
+
+  private Map<String, String> getFormAttributes() {
+    Map<String, String> attributes = new LinkedHashMap<>();
+    attributes.put("class", "form-horizontal");
+    return attributes;
+  }
+
+  public void addAttributesToInputFields(Map<String, String> attribs, FormCheckerElement elem) {
+    attribs.put("class", "form-control");
+  }
+
+
+  // returns the HTML code that should be given out, before an input-element is written
+  public String getBeforeElem(FormCheckerElement elem) {
+    return "<div class=\"form-group\">";
+  }
+
+  // returns the HTML code that should be given out, after an input-element is written
+  public String getAfterElem(FormCheckerElement elem) {
+    return "</div>";
   }
 
   public String getSubmit(int tabOrder) {
@@ -69,19 +111,6 @@ public class GenericFormBuilder {
   }
 
 
-  // 1 = ohne div
-  // 2 = divs umn label und element
-  private int grouping = 1;
-  public final static int GROUPING_NO = 1;
-  public final static int GROUPING_DIV = 2;
-
-  public int getGrouping() {
-    return grouping;
-  }
-
-  public void setGrouping(int grouping) {
-    this.grouping = grouping;
-  }
 
   public String getErrors(FormCheckerElement e, boolean firstRun) {
     if (!firstRun && !e.isValid()) {
@@ -90,39 +119,20 @@ public class GenericFormBuilder {
     return "";
   }
 
-  public String getLabelForElement(FormCheckerElement e, String tagAddition, String classes,
+  public String getLabelForElement(FormCheckerElement e, TagAtrributes attribs,
       boolean firstRun) {
 
-    StringBuffer buf = new StringBuffer();
-    String paramClasses = new String();
-
-    if (classes != null && !"".equals(classes))
-      paramClasses += " " + classes;
-
-    // no label for hidden elements
-    // if (e.getClass()==Hidden.class) return "";
-
-    // buf.append("\n");
-    // prepend <div> if enabled
-    if (getGrouping() == GenericFormBuilder.GROUPING_DIV)
-      buf.append("<div id=\"fc-" + e.getName() + "-label-container\">");
-
+    
+    String statusClassToAdd = errStyle;
     if (firstRun || e.isValid()) {
-      buf.append("<label class=\"" + okStyle + paramClasses + "\" for=\"form_" + e.getName() + "\""
-          + tagAddition + " id=\"" + e.getName() + "_label\">" + e.getDescription() + addToLabel
-          + (e.isRequired() ? requiredChars : "") + "</label>");
-    } else {
-      buf.append("<label class=\"" + errStyle + paramClasses + "\"  for=\"" + e.getName() + "\""
-          + tagAddition + " id=\"" + e.getName() + "_label\">" + e.getDescription() + addToLabel
-          + (e.isRequired() ? requiredChars : "") + "</label>");
-    }
-    // append </div> if enabled
-    if (getGrouping() == GenericFormBuilder.GROUPING_DIV)
-      buf.append("</div>");
+      statusClassToAdd = okStyle;
+    } 
 
-    // buf.append("\n");
-
-    return buf.toString();
+    attribs.addToAttribute("class", statusClassToAdd);
+    
+    return ("<label "+Utils.buildAttributes(attribs)+" for=\"form_" + e.getName() + "\""
+        + " id=\"" + e.getName() + "_label\">" + e.getDescription() + addToLabel
+       + (e.isRequired() ? requiredChars : "") + "</label>");
   }
 
   public String getSubmittedTag(String id) {

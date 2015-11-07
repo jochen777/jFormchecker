@@ -4,6 +4,7 @@ package de.jformchecker.elements;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -14,6 +15,7 @@ import org.apache.commons.lang3.StringEscapeUtils;
 import de.jformchecker.Criterion;
 import de.jformchecker.FormChecker;
 import de.jformchecker.FormCheckerElement;
+import de.jformchecker.Utils;
 import de.jformchecker.Validator;
 
 /**
@@ -36,12 +38,9 @@ public abstract class AbstractInput implements FormCheckerElement {
   boolean valid = true;
   FormChecker parent;
 
+  // RFE: refactor inputs so they use Utils. directly
   protected String buildAttributes(Map<String, String> attributes) {
-    StringBuilder attrStr = new StringBuilder();
-    for (String attribute : attributes.keySet()) {
-      attrStr.append(attribute).append("=\"").append(attributes.get(attribute)).append("\" ");
-    }
-    return attrStr.toString();
+    return Utils.buildAttributes(attributes);
   }
 
   public String getInputTag() {
@@ -88,12 +87,14 @@ public abstract class AbstractInput implements FormCheckerElement {
 
   @Override
   public String getLabel() {
-    return parent.getLabelForElement(this, "", "");
+    Map<String, String> map = new LinkedHashMap<>();    // TODO! - use atrribues
+    return parent.getLabelForElement(this, map);
   }
 
   @Override
   public String getLabelParam(String style, String classes) {
-    return parent.getLabelForElement(this, style, classes);
+    Map<String, String> map = new LinkedHashMap<>();    // TODO! - use atrribues and put style and classes
+    return parent.getLabelForElement(this, map);
   }
 
   @Override

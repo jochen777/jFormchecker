@@ -22,6 +22,23 @@ public class Utils {
     }
   }
   
+   public static String buildAttributes(Map<String, String> attributes) {
+    StringBuilder attrStr = new StringBuilder();
+    for (String attribute : attributes.keySet()) {
+      attrStr.append(attribute).append("=\"").append(attributes.get(attribute)).append("\" ");
+    }
+    return attrStr.toString();
+  }
+
+   public static String buildAttributes(TagAtrributes attributes) {
+     StringBuilder attrStr = new StringBuilder();
+     for (String attribute : attributes.keySet()) {
+       attrStr.append(attribute).append("=\"").append(attributes.get(attribute)).append("\" ");
+     }
+     return attrStr.toString();
+   }
+
+   
   /**
    * Return a nicely formated form of the form for debugging or other purposes
    * @param fc-elements 
