@@ -31,7 +31,7 @@
 * discard headline and introduce a "free html" field (OK)
 * use attribute-map to add attributes to an input-field (OK)
 * placeholder support (OK)
-* Check why tab-index does not work
+* Check why tab-index does not work (OK)
 * configurable formbuilder
 * Double Password-Validator
 * generate from bean (with annotations for descriptions, validation...) / * check bean-validation

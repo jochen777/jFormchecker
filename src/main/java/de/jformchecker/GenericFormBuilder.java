@@ -4,9 +4,8 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
- * Builds: 
- * a generic form 
- * the label-elements
+ * Builds: a generic form the label-elements
+ * 
  * @author jochen
  *
  */
@@ -22,7 +21,8 @@ public class GenericFormBuilder {
   String submitClass = "";
 
   public String getGenericForm(String id, String formAction,
-      Map<String, FormCheckerElement> elements, boolean isMultipart, boolean firstRun, FormChecker fc) {
+      Map<String, FormCheckerElement> elements, boolean isMultipart, boolean firstRun,
+      FormChecker fc) {
     StringBuilder form = new StringBuilder();
     if (isMultipart) {
       form.append("<form name=\"" + id + "\" id=\"form_" + id + "\" action=\"" + formAction
@@ -32,10 +32,10 @@ public class GenericFormBuilder {
           + "\" method=\"GET\" >\n");
     }
     form.append(getSubmittedTag(id));
-    if (fc.protectedAgainstCSRF) { 
+    if (fc.protectedAgainstCSRF) {
       form.append(fc.buildCSRFTokens());
     }
-    
+    int lastTabIndex = 0;
     for (String key : elements.keySet()) {
       // label
       FormCheckerElement elem = elements.get(key);
@@ -51,8 +51,9 @@ public class GenericFormBuilder {
         form.append("\n<br>"); // only append nl, if something was given
                                // out
       }
+      lastTabIndex = elem.getLastTabIndex();
     }
-    form.append(getSubmit(200));
+    form.append(getSubmit(lastTabIndex+1));
     form.append("</form>\n");
 
     return form.toString();
@@ -84,11 +85,11 @@ public class GenericFormBuilder {
 
   public String getErrors(FormCheckerElement e, boolean firstRun) {
     if (!firstRun && !e.isValid()) {
-      return("Problem: " + e.getErrorMessage() + "!!<br>");
+      return ("Problem: " + e.getErrorMessage() + "!!<br>");
     }
     return "";
   }
-  
+
   public String getLabelForElement(FormCheckerElement e, String tagAddition, String classes,
       boolean firstRun) {
 

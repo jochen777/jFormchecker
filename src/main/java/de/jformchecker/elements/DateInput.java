@@ -63,14 +63,12 @@ public class DateInput extends AbstractInput implements FormCheckerElement {
           
         break;
       case MONTH:
-        setTabIndex(getTabIndex()+1);
-        inputField = "<input " + getElementId() + buildAttributes(attributes) + getTabIndexTag()
+        inputField = "<input " + getElementId() + buildAttributes(attributes) + getTabIndexTagIncreaseBy(1)
             + " type=\"text\" id=\"" + name + "_month\" name=\"" + name + "_month\"  value=\""
             + (StringEscapeUtils.escapeHtml4(monthVal)) + "\" placeholder=\"month\">";
         break;
       case YEAR:
-        setTabIndex(getTabIndex()+1);
-        inputField = "<input type=\"text\" " +  buildAttributes(attributes) + getTabIndexTag()+
+        inputField = "<input type=\"text\" " +  buildAttributes(attributes) + getTabIndexTagIncreaseBy(2)+
             " id=\""
             + name + "_year\" name=\"" + name + "_year\"  value=\""
             + (StringEscapeUtils.escapeHtml4(yearVal)) + "\"  placeholder=\"year\">";
@@ -118,7 +116,7 @@ public class DateInput extends AbstractInput implements FormCheckerElement {
 
   @Override
   public int getLastTabIndex() {
-    return this.getTabIndex() + 3;
+    return this.getTabIndex() +2;
   }
 
   

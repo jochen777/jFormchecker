@@ -18,15 +18,14 @@ public class RadioInput extends AbstractInput implements FormCheckerElement {
 
 
   public String getInputTag(Map<String, String> attributes) {
-    System.out.println("Radio-TabIndex: " + getTabIndex());
     StringBuffer inputTag = new StringBuffer();
     for (String key : possibleNames.keySet()) {
       // leer - bedeutet: Radio - Button ist optional, also nicht als radio ausgeben!
       if (!"".equals(possibleNames.get(key))) {
         inputTag.append(this.getInputTag(key, attributes) + " <label for=\"form_radio_"+key+"\" class=\"" + ""
             + "\" id=\"label_" + name + "_" + key + "\">" + possibleNames.get(key) + " </label>\n");
-        setTabIndex(getTabIndex()+1);
       }
+      // do not increase tab-index: http://stackoverflow.com/questions/14322564/can-you-tab-through-all-radio-buttons
     }
     return inputTag.toString();
   }
@@ -47,11 +46,10 @@ public class RadioInput extends AbstractInput implements FormCheckerElement {
   
   @Override
   public int getLastTabIndex() {
-    return this.getTabIndex() + possibleNames.size() -1;
+    return this.getTabIndex() ;
   }
 
 
-  // RFE: We need a map here!
   public RadioInput setPossibleValues(LinkedHashMap<String, String> possibleNames) {
     this.possibleNames = possibleNames;
     return this;

@@ -178,8 +178,13 @@ public abstract class AbstractInput implements FormCheckerElement {
     return  tabIndex;
   }
   
+
   public String getTabIndexTag() {
     return "tabindex=\"" + getTabIndex() + "\" ";
+  }
+
+  public String getTabIndexTagIncreaseBy(int addition) {
+    return "tabindex=\"" + (getTabIndex()+addition) +  "\" ";
   }
 
   public AbstractInput setTabIndex(int tabIndex) {
