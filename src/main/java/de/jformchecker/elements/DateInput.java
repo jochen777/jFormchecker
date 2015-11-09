@@ -59,19 +59,19 @@ public class DateInput extends AbstractInput implements FormCheckerElement {
         inputField = "<input type=\"text\" " +  buildAttributes(attributes) 
             + getTabIndexTag() + " id=\""
             + name + "_day\" name=\"" + name + "_day\"  value=\""
-            + (StringEscapeUtils.escapeHtml4(dayVal)) + "\"  placeholder=\"day\">";
+            + (StringEscapeUtils.escapeHtml4(dayVal)) + "\" maxlength=\"2\" placeholder=\"day\">";
           
         break;
       case MONTH:
         inputField = "<input " + getElementId() + buildAttributes(attributes) + getTabIndexTagIncreaseBy(1)
             + " type=\"text\" id=\"" + name + "_month\" name=\"" + name + "_month\"  value=\""
-            + (StringEscapeUtils.escapeHtml4(monthVal)) + "\" placeholder=\"month\">";
+            + (StringEscapeUtils.escapeHtml4(monthVal)) + "\" maxlength=\"2\" placeholder=\"month\">";
         break;
       case YEAR:
         inputField = "<input type=\"text\" " +  buildAttributes(attributes) + getTabIndexTagIncreaseBy(2)+
             " id=\""
             + name + "_year\" name=\"" + name + "_year\"  value=\""
-            + (StringEscapeUtils.escapeHtml4(yearVal)) + "\"  placeholder=\"year\">";
+            + (StringEscapeUtils.escapeHtml4(yearVal)) + "\" maxlength=\"4\" placeholder=\"year\">";
         break;
     }
     return inputField;

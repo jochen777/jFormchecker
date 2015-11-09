@@ -22,7 +22,7 @@ public class ExampleForm extends FormCheckerForm {
         .build("firstname")
         .setDescription("Your Firstname")
         .setPreSetValue("Peter")
-        .setCriterias(Criteria.accept("Peter", "Max"))
+        .setCriterias(Criteria.accept("Peter", "Max"), Criteria.maxLength(10))
         );
 
     add(TextInput

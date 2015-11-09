@@ -33,7 +33,8 @@
 * placeholder support (OK)
 * Check why tab-index does not work (OK)
 * configurable formbuilder (OK) 
-* Double Password-Validator
+* maxlenght attributes  (OK)
+* Double Password-Validator / form-validator
 * label with attribute map
 * generate from bean (with annotations for descriptions, validation...) / * check bean-validation
 * javascript validaton
@@ -45,8 +46,12 @@
 * groups of beans in form (example: product, adress) 
 * check, if FormCheckerElement can have less (public) methods
 * bootstrap style error-handling
+* different placeholder mode
+* wrap - method that returns a before and end to avoid too much "before" and "end" Methods
+* combine buildMaxlen, buildTabIndex, buildAttributes to one method
 
 * generate standard-form with alternative rendering in template (for mobile)
+* more attributes: (http://www.w3schools.com/tags/tag_input.asp)
 * TBD: Do not pass complete request object but only atrributes and session?
 * influence standard-form in template
 * introduce framework modes (bootstrap/ionic/material...)

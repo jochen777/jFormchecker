@@ -16,7 +16,7 @@ public class HiddenInput extends AbstractInput implements FormCheckerElement {
 
   @Override
   public String getInputTag(Map<String, String> attributes) {
-    return "<input " + buildAttributes(attributes) + " type=\"hidden\"  name=\"" + name
+    return "<input " + buildAttributes(attributes) + buildMaxLen()+ " type=\"hidden\"  name=\"" + name
         + "\"  id=\"" + name + "\" value=\"" + (value == null ? "" : getValueHtmlEncoded()) + "\">";
   }
 

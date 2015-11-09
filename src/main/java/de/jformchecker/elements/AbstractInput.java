@@ -17,10 +17,10 @@ import de.jformchecker.FormChecker;
 import de.jformchecker.FormCheckerElement;
 import de.jformchecker.Utils;
 import de.jformchecker.Validator;
+import de.jformchecker.criteria.MaxLength;
 
 /**
- * Parent Element for all Formchecker elements  
- * Common stuff like validation...
+ * Parent Element for all Formchecker elements Common stuff like validation...
  * 
  * @author jochen
  *
@@ -51,7 +51,7 @@ public abstract class AbstractInput implements FormCheckerElement {
   public int getLastTabIndex() {
     return tabIndex;
   }
-  
+
   @Override
   public void setFormChecker(FormChecker fc) {
     parent = fc;
@@ -87,13 +87,14 @@ public abstract class AbstractInput implements FormCheckerElement {
 
   @Override
   public String getLabel() {
-    Map<String, String> map = new LinkedHashMap<>();    // TODO! - use atrribues
+    Map<String, String> map = new LinkedHashMap<>(); // TODO! - use atrribues
     return parent.getLabelForElement(this, map);
   }
 
   @Override
   public String getLabelParam(String style, String classes) {
-    Map<String, String> map = new LinkedHashMap<>();    // TODO! - use atrribues and put style and classes
+    Map<String, String> map = new LinkedHashMap<>(); // TODO! - use atrribues and put style and
+                                                     // classes
     return parent.getLabelForElement(this, map);
   }
 
@@ -114,6 +115,18 @@ public abstract class AbstractInput implements FormCheckerElement {
     return getLabel() + getInputTag();
   }
 
+  // builds the maxlen attribute
+  public String buildMaxLen() {
+    List<Criterion> criteria = this.getCriteria();
+    if (criteria != null) {
+      for (Criterion criterion : criteria) {
+        if (criterion instanceof MaxLength) {
+          return "maxlength=\""+((MaxLength)criterion).getMaxLength()+"\"";
+        }
+      }
+    }
+    return "";
+  }
 
   @Override
   public String getName() {
@@ -170,22 +183,22 @@ public abstract class AbstractInput implements FormCheckerElement {
   public boolean isRequired() {
     return required;
   }
-  
+
   protected String getElementId() {
-    return " id=\"form_" + name+"\" ";
+    return " id=\"form_" + name + "\" ";
   }
 
   public int getTabIndex() {
-    return  tabIndex;
+    return tabIndex;
   }
-  
+
 
   public String getTabIndexTag() {
     return "tabindex=\"" + getTabIndex() + "\" ";
   }
 
   public String getTabIndexTagIncreaseBy(int addition) {
-    return "tabindex=\"" + (getTabIndex()+addition) +  "\" ";
+    return "tabindex=\"" + (getTabIndex() + addition) + "\" ";
   }
 
   public AbstractInput setTabIndex(int tabIndex) {

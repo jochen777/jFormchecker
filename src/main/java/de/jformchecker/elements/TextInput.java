@@ -20,7 +20,7 @@ public class TextInput extends AbstractInput implements FormCheckerElement {
     placeholderMode = true;
     return this;
   }
-  
+
   @Override
   public boolean displayLabel() {
     if (placeholderMode) {
@@ -33,7 +33,7 @@ public class TextInput extends AbstractInput implements FormCheckerElement {
   @Override
   public String getInputTag(Map<String, String> attributes) {
     return String.format(
-        "<input " + getElementId() + buildAttributes(attributes) + getTabIndexTag()
+        "<input " + getElementId() + buildAttributes(attributes) + getTabIndexTag() + buildMaxLen()
             + "type=\"text\" name=\"%s\" value=\"%s\""+getPlaceholder()+">",
         name, (value == null ? "" : getValueHtmlEncoded()));
   }

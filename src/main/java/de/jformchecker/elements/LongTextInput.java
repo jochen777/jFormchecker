@@ -15,7 +15,8 @@ public class LongTextInput extends TextInput implements FormCheckerElement {
 
   @Override
   public String getInputTag(Map<String, String> attributes) {
-    return "<textarea " + getElementId() +  buildAttributes(attributes) + getTabIndexTag() + " name=\"" + name + "\" id=\""
+    return "<textarea " + getElementId() +  buildAttributes(attributes) + getTabIndexTag() + 
+        buildMaxLen() + " name=\"" + name + "\" id=\""
         + name + "\" " + ">" + (value == null ? "" : getValueHtmlEncoded()) + "</textarea>";
   }
 

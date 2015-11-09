@@ -14,6 +14,10 @@ public final class MaxLength extends AbstractCriterion {
     this.maxLength = maxLength;
   }
 
+  public int getMaxLength() {
+    return maxLength;
+  }
+
   protected boolean verify(FormCheckerElement value) {
     return value.getValue().length() <= maxLength;
   }
