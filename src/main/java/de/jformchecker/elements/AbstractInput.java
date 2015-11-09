@@ -61,6 +61,10 @@ public abstract class AbstractInput implements FormCheckerElement {
     return StringEscapeUtils.escapeHtml4(value);
   }
 
+  public void setInvalid(){
+    valid = false;
+  }
+  
   @Override
   public void init(HttpServletRequest request, boolean firstRun) {
     if (firstRun) {

@@ -63,8 +63,13 @@ public class ExampleForm extends FormCheckerForm {
 
 
     add(PasswordInput
-        .build("password")
+        .build("password1")
         .setDescription("Password")
+        );
+
+    add(PasswordInput
+        .build("password2")
+        .setDescription("Repeat password")
         );
 
     add(LongTextInput
@@ -95,6 +100,8 @@ public class ExampleForm extends FormCheckerForm {
         .build("check")
         .setDescription("I order everything")
         );
+    
+    addFormValidator(new PasswordFormValidator());
     
     //setPlaceholderMode();
 

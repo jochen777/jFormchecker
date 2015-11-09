@@ -35,6 +35,7 @@
 * configurable formbuilder (OK) 
 * maxlenght attributes  (OK)
 * Double Password-Validator / form-validator
+* manual setting formElements to wrong
 * label with attribute map
 * generate from bean (with annotations for descriptions, validation...) / * check bean-validation
 * javascript validaton
@@ -53,6 +54,7 @@
 * generate standard-form with alternative rendering in template (for mobile)
 * more attributes: (http://www.w3schools.com/tags/tag_input.asp)
 * TBD: Do not pass complete request object but only atrributes and session?
+* Perhaps form-Class mandatory? So no own handling of the form-elements within the FormChecker class
 * influence standard-form in template
 * introduce framework modes (bootstrap/ionic/material...)
 * consider use of owasp encoder (https://www.owasp.org/index.php/OWASP_Java_Encoder_Project#tab=Use_the_Java_Encoder_Project)

@@ -9,6 +9,11 @@ import de.jformchecker.elements.TextInput;
 public class FormCheckerForm {
 
   List<FormCheckerElement> elements = new ArrayList<>();
+  List<FormValidator> validators = new ArrayList<>();
+
+  public List<FormValidator> getValidators() {
+    return validators;
+  }
 
   public FormCheckerForm add(FormCheckerElement elem) {
     // RFE: Exception, if elem is added twice!
@@ -21,11 +26,17 @@ public class FormCheckerForm {
   }
 
   public void setPlaceholderMode() {
+    // RFE: Better set a var and do this befor running FC
     for (FormCheckerElement formCheckerElement : elements) {
       if (formCheckerElement instanceof TextInput) {
         ((TextInput)formCheckerElement).setPlaceHolderMode();
       }
     }
+  }
+  
+  public FormCheckerForm addFormValidator(FormValidator formValidator) {
+    validators.add(formValidator);
+    return this;
   }
 
 }

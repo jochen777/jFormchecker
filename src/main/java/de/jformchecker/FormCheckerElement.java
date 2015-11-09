@@ -54,6 +54,8 @@ public interface FormCheckerElement {
 
   // returns true if element is valid
   public boolean isValid();
+  
+  public void setInvalid();
 
   // inits the value with the current http-reques
   public void init(HttpServletRequest request, boolean firstrun);

@@ -17,11 +17,12 @@ import de.jformchecker.criteria.MaxLength;
  * be accessed from the template-system.
  */
 public class FormChecker {
-  Map<String, FormCheckerElement> elements = new LinkedHashMap<String, FormCheckerElement>();
+  LinkedHashMap<String, FormCheckerElement> elements = new LinkedHashMap<String, FormCheckerElement>();
   HttpServletRequest req;
   boolean firstRun = true;
   boolean isMultipart = false;
   boolean isValid = true;
+  FormCheckerForm form = null;
   boolean protectedAgainstCSRF = false; // TBD: Default no protection, because the normal case is
                                         // not logged in?!?
   String completeForm;
@@ -103,7 +104,7 @@ public class FormChecker {
   // where the form is submitted to
   private String formAction = "#";
 
-  public Map<String, FormCheckerElement> getElements() {
+  public LinkedHashMap<String, FormCheckerElement> getElements() {
     return elements;
   }
 
@@ -157,6 +158,7 @@ public class FormChecker {
     for (FormCheckerElement element : form.getElements()) {
       add(element);
     }
+    this.form = form;
   }
 
   public String getGenericForm() {
@@ -176,6 +178,7 @@ public class FormChecker {
 
 
 
+    // process and validate each field
     for (Map.Entry<String, FormCheckerElement> entry : elements.entrySet()) {
       FormCheckerElement elem = entry.getValue();
       elem.init(req, firstRun);
@@ -183,6 +186,16 @@ public class FormChecker {
         isValid = false;
       }
     }
+    
+    // validate the complete form
+    if (form != null) {
+      for (FormValidator formValidator : form.getValidators()) {
+        formValidator.validate(elements);
+      }
+    }
+    
+    
+    
     // build complete Form here!
     completeForm = this.getGenericForm();
     return this;
