@@ -34,28 +34,29 @@
 * Check why tab-index does not work (OK)
 * configurable formbuilder (OK) 
 * maxlenght attributes  (OK)
-* Double Password-Validator / form-validator
-* manual setting formElements to wrong
+* Double Password-Validator / form-validator (OK)
+* manual setting formElements to wrong (OK)
+* wrap - method that returns a before and end to avoid too much "before" and "end" Methods
+* combine buildMaxlen, buildTabIndex, buildAttributes to one method
 * label with attribute map
+* html5 mode
+* check, if FormCheckerElement can have less (public) methods
+* bootstrap style error-handling
+* different placeholder mode
 * generate from bean (with annotations for descriptions, validation...) / * check bean-validation
 * javascript validaton
-* html5 mode
 * handle image - uploads
 * enable ajax handling
 * support complex-inputs?? (adress-field that contains several own-fields?)
 * multi-select (means: brand -> modell...)
 * groups of beans in form (example: product, adress) 
-* check, if FormCheckerElement can have less (public) methods
-* bootstrap style error-handling
-* different placeholder mode
-* wrap - method that returns a before and end to avoid too much "before" and "end" Methods
-* combine buildMaxlen, buildTabIndex, buildAttributes to one method
 
 * generate standard-form with alternative rendering in template (for mobile)
 * more attributes: (http://www.w3schools.com/tags/tag_input.asp)
 * TBD: Do not pass complete request object but only atrributes and session?
 * Perhaps form-Class mandatory? So no own handling of the form-elements within the FormChecker class
 * influence standard-form in template
+* translates for error-msg and texts
 * introduce framework modes (bootstrap/ionic/material...)
 * consider use of owasp encoder (https://www.owasp.org/index.php/OWASP_Java_Encoder_Project#tab=Use_the_Java_Encoder_Project)
 
