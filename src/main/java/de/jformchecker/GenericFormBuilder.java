@@ -40,7 +40,8 @@ public class GenericFormBuilder {
     for (String key : elements.keySet()) {
       // label
       FormCheckerElement elem = elements.get(key);
-      form.append(getBeforeElem(elem));
+      Wrapper elementWrapper = getWrapperForElem(elem);
+      form.append(elementWrapper.start);
       form.append(getErrors(elem, firstRun));
       if (elem.displayLabel()) {
         form.append(getLabelForElement(elem, getLabelAttributes(elem), firstRun)).append("\n");
@@ -48,14 +49,15 @@ public class GenericFormBuilder {
       // input tag
       Map<String, String> attribs = new LinkedHashMap<>();
       addAttributesToInputFields(attribs, elem);
-      form.append(getBeforeInput(elem));
+      Wrapper inputWrapper = getWrapperForInput(elem);
+      form.append(inputWrapper.start);
       form.append(elem.getInputTag(attribs));
       if (elem.displayLabel()) {
         form.append("\n<br>"); // only append nl, if something was given
                                // out
       }
-      form.append(getAfterInput(elem));
-      form.append(getAfterElem(elem));
+      form.append(inputWrapper.end);
+      form.append(elementWrapper.end);
       lastTabIndex = elem.getLastTabIndex();
     }
     form.append(getSubmit(lastTabIndex + 1));
@@ -72,13 +74,10 @@ public class GenericFormBuilder {
   }
 
 
-  public String getBeforeInput(FormCheckerElement elem) {
-    return "<div class=\"col-sm-10\">";
+  public Wrapper getWrapperForInput(FormCheckerElement elem) {
+    return new Wrapper("<div class=\"col-sm-10\">", "</div>");
   }
 
-  public String getAfterInput(FormCheckerElement elem) {
-    return "</div>";
-  }
 
   public Map<String, String> getFormAttributes() {
     Map<String, String> attributes = new LinkedHashMap<>();
@@ -91,15 +90,11 @@ public class GenericFormBuilder {
   }
 
 
-  // returns the HTML code that should be given out, before an input-element is written
-  public String getBeforeElem(FormCheckerElement elem) {
-    return "<div class=\"form-group\">";
+  // returns the HTML code that should be given out, before and after an input-element is written
+  public Wrapper getWrapperForElem(FormCheckerElement elem) {
+    return new Wrapper("<div class=\"form-group\">", "</div>");
   }
 
-  // returns the HTML code that should be given out, after an input-element is written
-  public String getAfterElem(FormCheckerElement elem) {
-    return "</div>";
-  }
 
   public String getSubmit(int tabOrder) {
     return "<input tabindex=\"" + tabOrder + "\" class=\"" + submitClass

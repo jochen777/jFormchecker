@@ -36,7 +36,7 @@
 * maxlenght attributes  (OK)
 * Double Password-Validator / form-validator (OK)
 * manual setting formElements to wrong (OK)
-* wrap - method that returns a before and end to avoid too much "before" and "end" Methods
+* wrap - method that returns a before and end to avoid too much "before" and "end" Methods (OK)
 * combine buildMaxlen, buildTabIndex, buildAttributes to one method
 * label with attribute map
 * html5 mode

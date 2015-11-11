@@ -5,19 +5,18 @@ import java.util.Map;
 
 public class BasicBootstrapFormBuilder extends GenericFormBuilder{
 
+  @Override
   public Map<String, String> getFormAttributes() {
     Map<String, String> attributes = new LinkedHashMap<>();
     return attributes;
   }
 
-  public String getBeforeInput(FormCheckerElement elem) {
-    return "";
+  @Override
+  public Wrapper getWrapperForInput(FormCheckerElement elem) {
+    return new Wrapper("", "");
   }
 
-  public String getAfterInput(FormCheckerElement elem) {
-    return "";
-  }
-
+  @Override
   public TagAtrributes getLabelAttributes(FormCheckerElement elem) {
     return new TagAtrributes();
   }
