@@ -20,7 +20,7 @@ public class CheckboxInput extends AbstractInput implements FormCheckerElement {
   @Override
   public String getInputTag(Map<String, String> attributes) {
     String style = "";
-    return "<input " + getElementId() + buildAttributes(attributes)  +getTabIndexTag() +  " type=\"checkbox\" name=\"" + name
+    return "<input " + buildAllAttributes(attributes) +  " type=\"checkbox\" name=\"" + name
         + "\" id=\"" + name + "\" value=\"" + name + "\" " + style + " " + getCheckedStatus(name)
         + ">";
   }

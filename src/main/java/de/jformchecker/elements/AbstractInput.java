@@ -38,6 +38,15 @@ public abstract class AbstractInput implements FormCheckerElement {
   boolean valid = true;
   FormChecker parent;
 
+  // builds attribs, elementId, TabIndex
+  protected String buildAllAttributes(Map<String, String> attributes) {
+    StringBuilder allAttribs = new StringBuilder();
+    allAttribs.append(this.buildAttributes(attributes));
+    allAttribs.append(getElementId());
+    allAttribs.append(getTabIndexTag());
+    return allAttribs.toString();
+  }
+  
   // RFE: refactor inputs so they use Utils. directly
   protected String buildAttributes(Map<String, String> attributes) {
     return Utils.buildAttributes(attributes);
