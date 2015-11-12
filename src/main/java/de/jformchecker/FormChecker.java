@@ -66,7 +66,6 @@ public class FormChecker {
     if (!firstRun) {
       name = req.getParameter(tokenName);
       xsrfVal = req.getParameter(tokenVal);
-      System.out.println("xsrf-check: " + xsrfVal + "::" + req.getSession().getAttribute(name));
       if (xsrfVal == null || !xsrfVal.equals(req.getSession().getAttribute(name))) {
         throw new RuntimeException("Security Problem!");
       }
@@ -206,7 +205,6 @@ public class FormChecker {
     int tabIndex = 100;
     for (Map.Entry<String, FormCheckerElement> entry : elements.entrySet()) {
       FormCheckerElement elem = entry.getValue();
-      System.out.println("tabindex: " + elem.getName() + ": " + tabIndex);
       elem.setTabIndex(tabIndex);
       tabIndex = elem.getLastTabIndex();
       tabIndex++;
