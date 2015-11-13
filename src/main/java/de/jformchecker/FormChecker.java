@@ -79,7 +79,7 @@ public class FormChecker {
     tags.append("<input type=\"hidden\" name=\"" + tokenName + "\" value=\""
         + StringEscapeUtils.escapeHtml4(name) + "\">");
     tags.append("<input type=\"hidden\" name=\"" + tokenVal + "\" value=\""
-        + StringEscapeUtils.escapeHtml4(xsrfVal) + "\">");
+        + StringEscapeUtils.escapeHtml4(xsrfVal) + "\">\n");
     return tags.toString();
   }
 

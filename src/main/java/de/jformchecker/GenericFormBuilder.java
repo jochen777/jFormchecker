@@ -13,7 +13,6 @@ public class GenericFormBuilder {
 
   String errStyle = "error";
   String okStyle = "";
-  String formStyle = "";
   String requiredChars = " *";
   String addToLabel = ": ";
   String labelStyle = "";
@@ -79,8 +78,8 @@ public class GenericFormBuilder {
   }
 
 
-  public Map<String, String> getFormAttributes() {
-    Map<String, String> attributes = new LinkedHashMap<>();
+  public TagAtrributes getFormAttributes() {
+    TagAtrributes attributes = new TagAtrributes();
     attributes.put("class", "form-horizontal");
     return attributes;
   }

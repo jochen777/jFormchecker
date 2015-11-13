@@ -1,13 +1,10 @@
 package de.jformchecker;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
-
 public class BasicBootstrapFormBuilder extends GenericFormBuilder{
 
   @Override
-  public Map<String, String> getFormAttributes() {
-    Map<String, String> attributes = new LinkedHashMap<>();
+  public TagAtrributes getFormAttributes() {
+    TagAtrributes attributes = new TagAtrributes();
     return attributes;
   }
 

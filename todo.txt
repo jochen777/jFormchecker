@@ -37,11 +37,12 @@
 * Double Password-Validator / form-validator (OK)
 * manual setting formElements to wrong (OK)
 * wrap - method that returns a before and end to avoid too much "before" and "end" Methods (OK)
-* combine buildMaxlen, buildTabIndex, buildAttributes to one method
-* label with attribute map
+* combine buildMaxlen, buildTabIndex, buildAttributes to one method (OK)
+* label with attribute map (OK)
+* More TagAttributes everywhere
 * html5 mode
-* check, if FormCheckerElement can have less (public) methods
 * bootstrap style error-handling
+* check, if FormCheckerElement can have less (public) methods
 * different placeholder mode
 * generate from bean (with annotations for descriptions, validation...) / * check bean-validation
 * javascript validaton

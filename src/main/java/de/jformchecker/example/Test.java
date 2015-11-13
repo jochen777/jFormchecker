@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import de.jformchecker.BasicBootstrapFormBuilder;
+import de.jformchecker.BasicMaterialLightFormBuilder;
 import de.jformchecker.FormChecker;
 import de.jformchecker.Utils;
 import de.jformchecker.elements.DateInput;
@@ -54,7 +55,7 @@ public class Test extends HttpServlet {
      */
     FormChecker fc =
         FormChecker.build("id", request, new ExampleForm()).setProtectAgainstCSRF()
-        .setFormBuilder(new BasicBootstrapFormBuilder())
+        .setFormBuilder(new BasicMaterialLightFormBuilder())
         .run();
 
     processResult(fc);
@@ -70,7 +71,7 @@ public class Test extends HttpServlet {
        * put jFormChecker in the map for the template processing
        */
       root.put("fc", fc);
-      Template temp = cfg.getTemplate("test.ftl");
+      Template temp = cfg.getTemplate("test_material.ftl");
       temp.process(root, response.getWriter());
 
     } catch (TemplateException e1) {
