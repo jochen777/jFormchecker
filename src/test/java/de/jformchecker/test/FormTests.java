@@ -98,7 +98,6 @@ public class FormTests {
       }
     });
     fc.run();
-    System.out.println(fc.getCompleteForm());
     Assert.assertTrue("Form should contain a label!", (fc.getCompleteForm().contains("label")));
 
   }
@@ -115,7 +114,6 @@ public class FormTests {
       }
     });
     fc.run();
-    System.out.println(fc.getCompleteForm());
     Assert.assertTrue("Form should not contain a label!", !(fc.getCompleteForm().contains("label")));
 
   }

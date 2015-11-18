@@ -130,7 +130,7 @@ public abstract class AbstractInput implements FormCheckerElement {
     if (criteria != null) {
       for (Criterion criterion : criteria) {
         if (criterion instanceof MaxLength) {
-          return "maxlength=\""+((MaxLength)criterion).getMaxLength()+"\"";
+          return "maxlength=\""+((MaxLength)criterion).getMaxLength()+"\" ";
         }
       }
     }

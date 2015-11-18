@@ -41,7 +41,7 @@
 * label with attribute map (OK)
 * More TagAttributes everywhere (OK)
 * html5 mode
-* fix missing space between attributes (maxlenght)
+* fix missing space between attributes (maxlenght) (OK)
 * bootstrap style error-handling
 * PlaceholderMode implementieren
 * check, if FormCheckerElement can have less (public) methods
