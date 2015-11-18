@@ -12,7 +12,13 @@ public class FormCheckerForm {
   List<FormValidator> validators = new ArrayList<>();
   HTML5Mode html5Mode = HTML5Mode.disableHtml;
 
+  {
+    init();
+  }
 
+  public void init() {
+  }
+  
   public HTML5Mode getHtml5Mode() {
     return html5Mode;
   }

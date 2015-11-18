@@ -8,15 +8,17 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import org.junit.Assert;
-import org.springframework.mock.web.MockHttpServletRequest;
+import org.junit.Test;
 
 import de.jformchecker.FormChecker;
+import de.jformchecker.FormCheckerElement;
+import de.jformchecker.FormCheckerForm;
 import de.jformchecker.criteria.Criteria;
 import de.jformchecker.elements.TextInput;
 
-public class Test {
+public class FormTests {
 
-  @org.junit.Test
+  @Test
   public void testXSS() {
     TextInput ti = buildExampleTextInput();
     HttpServletRequest request = RequestBuilders.buildExampleHttpRequest();
@@ -29,18 +31,19 @@ public class Test {
 
 
 
-  @org.junit.Test
+  @Test
   public void testPrefillText() {
     TextInput ti = buildExampleTextInput();
     HttpServletRequest request = RequestBuilders.buildEmptyHttpRequest();
     ti.init(request, true);
     String inputTag = ti.getInputTag();
-    assertEquals("<input  id=\"form_firstname\" tabindex=\"0\" type=\"text\" name=\"firstname\" value=\"Jochen\">",
+    assertEquals(
+        "<input  id=\"form_firstname\" tabindex=\"0\" type=\"text\" name=\"firstname\" value=\"Jochen\">",
         inputTag);
   }
 
 
-  @org.junit.Test
+  @Test
   public void testPrebuildForm() {
     Map<String, String> reqVals = new HashMap<>();
     String formId = "h";
@@ -60,7 +63,7 @@ public class Test {
 
 
 
-  @org.junit.Test
+  @Test
   public void testPrebuildForm2() {
     Map<String, String> reqVals = new HashMap<>();
     String firstname = "Max";
@@ -82,19 +85,51 @@ public class Test {
 
   }
 
+  @Test
+  public void testLabel() {
+    FormChecker fc = new FormChecker("", RequestBuilders.buildEmptyHttpRequest());
+    fc.addForm(new FormCheckerForm() {
+      @Override
+      public void init() {
+        add(TextInput.build("firstname")
+            .setDescription("Your Firstname")
+            .setPreSetValue("Peter")
+            );
+      }
+    });
+    fc.run();
+    System.out.println(fc.getCompleteForm());
+    Assert.assertTrue("Form should contain a label!", (fc.getCompleteForm().contains("label")));
+
+  }
+
+  @Test
+  public void testNoLabel() {
+    FormChecker fc = new FormChecker("", RequestBuilders.buildEmptyHttpRequest());
+    fc.addForm(new FormCheckerForm() {
+      @Override
+      public void init() {
+        add(TextInput.build("firstname")
+            .setPreSetValue("Peter")
+            );
+      }
+    });
+    fc.run();
+    System.out.println(fc.getCompleteForm());
+    Assert.assertTrue("Form should not contain a label!", !(fc.getCompleteForm().contains("label")));
+
+  }
 
 
-  @org.junit.Test
+  @Test
   public void testRequired() {
-    //fail("Not yet implemented");
+    // fail("Not yet implemented");
   }
 
-  @org.junit.Test
+  @Test
   public void testForbiddenSelect() {
-    //fail("Not yet implemented");
+    // fail("Not yet implemented");
   }
-
-
 
 
 
