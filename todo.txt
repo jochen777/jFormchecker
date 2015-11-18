@@ -39,9 +39,10 @@
 * wrap - method that returns a before and end to avoid too much "before" and "end" Methods (OK)
 * combine buildMaxlen, buildTabIndex, buildAttributes to one method (OK)
 * label with attribute map (OK)
-* More TagAttributes everywhere
+* More TagAttributes everywhere (OK)
 * html5 mode
 * bootstrap style error-handling
+* PlaceholderMode implementieren
 * check, if FormCheckerElement can have less (public) methods
 * different placeholder mode
 * generate from bean (with annotations for descriptions, validation...) / * check bean-validation

@@ -55,7 +55,7 @@ public class Test extends HttpServlet {
      */
     FormChecker fc =
         FormChecker.build("id", request, new ExampleForm()).setProtectAgainstCSRF()
-        .setFormBuilder(new BasicMaterialLightFormBuilder())
+        .setFormBuilder(new BasicBootstrapFormBuilder())
         .run();
 
     processResult(fc);
@@ -71,7 +71,7 @@ public class Test extends HttpServlet {
        * put jFormChecker in the map for the template processing
        */
       root.put("fc", fc);
-      Template temp = cfg.getTemplate("test_material.ftl");
+      Template temp = cfg.getTemplate("test.ftl");
       temp.process(root, response.getWriter());
 
     } catch (TemplateException e1) {

@@ -1,12 +1,18 @@
 package de.jformchecker;
 
 import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Set;
 
 // class that holds html tag-attributes
 public class TagAtrributes {
   LinkedHashMap<String, String> attributes;
 
+  public TagAtrributes(Map<String, String> attribs) {
+    attributes = new LinkedHashMap<>(attribs);
+  }
+  
+  
   public TagAtrributes(LinkedHashMap<String, String> attribs) {
     attributes = attribs;
   }

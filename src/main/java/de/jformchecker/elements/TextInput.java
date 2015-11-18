@@ -3,32 +3,25 @@ package de.jformchecker.elements;
 import java.util.Map;
 
 import org.apache.commons.lang3.StringEscapeUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import de.jformchecker.FormCheckerElement;
 
 public class TextInput extends AbstractInput implements FormCheckerElement {
 
-  boolean placeholderMode = false;
+  private String placeholderText = "";
+  
   
   public static TextInput build(String name) {
     TextInput i = new TextInput();
     i.name = name;
     return i;
   }
-  
-  public TextInput setPlaceHolderMode() {
-    placeholderMode = true;
+
+  public TextInput setPlaceholerText(String placeholderText) {
+    this.placeholderText = placeholderText;
     return this;
   }
-
-  @Override
-  public boolean displayLabel() {
-    if (placeholderMode) {
-      return false;
-    }
-    return true;
-  }
-  
 
   @Override
   public String getInputTag(Map<String, String> attributes) {
@@ -39,8 +32,8 @@ public class TextInput extends AbstractInput implements FormCheckerElement {
   }
 
   private String getPlaceholder() {
-    return placeholderMode?" placeholder=\""+
-        StringEscapeUtils.escapeHtml4(getDescription())+"\"":"";
+    return StringUtils.isEmpty(placeholderText)?"":" placeholder=\""+
+        StringEscapeUtils.escapeHtml4(placeholderText)+"\"";
   }
 
 

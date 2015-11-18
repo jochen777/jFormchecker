@@ -36,7 +36,6 @@ public class SelectInput extends AbstractInput implements FormCheckerElement {
   }
 
 
-  // RFE: We need a map here!
   public SelectInput setPossibleValues(LinkedHashMap<String, String> possibleNames) {
     this.possibleNames = possibleNames;
     return this;

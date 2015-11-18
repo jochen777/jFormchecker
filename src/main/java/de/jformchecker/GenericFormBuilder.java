@@ -3,6 +3,8 @@ package de.jformchecker;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import org.apache.commons.lang3.StringUtils;
+
 /**
  * Builds: a generic form the label-elements
  * 
@@ -42,7 +44,8 @@ public class GenericFormBuilder {
       Wrapper elementWrapper = getWrapperForElem(elem);
       form.append(elementWrapper.start);
       form.append(getErrors(elem, firstRun));
-      if (elem.displayLabel()) {
+      boolean displayLabel = !StringUtils.isEmpty(elem.getDescription()); 
+      if (displayLabel) {
         form.append(getLabelForElement(elem, getLabelAttributes(elem), firstRun)).append("\n");
       }
       // input tag
@@ -51,7 +54,7 @@ public class GenericFormBuilder {
       Wrapper inputWrapper = getWrapperForInput(elem);
       form.append(inputWrapper.start);
       form.append(elem.getInputTag(attribs));
-      if (elem.displayLabel()) {
+      if (displayLabel) {
         form.append("\n<br>"); // only append nl, if something was given
                                // out
       }

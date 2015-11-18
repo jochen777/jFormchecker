@@ -90,7 +90,11 @@ ${fc.elements.lasntame.inputTag}
 ...
 ```
 
-## Remember: Standard form handling without jFormChecker
+## Features
+
+* If you don't specify a description, the label will be dismissed automatically
+
+## Remember: Standard form handling WITHOUT jFormChecker
 
 Without jFormChecker, html forms must be constructed manually in the template.
 

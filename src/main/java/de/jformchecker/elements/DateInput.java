@@ -42,13 +42,14 @@ public class DateInput extends AbstractInput implements FormCheckerElement {
 
   }
 
-  public void presetValue(Date t) {
+  public DateInput presetValue(Date t) {
     internalDate = t;
     GregorianCalendar gc = new GregorianCalendar();
     gc.setTime(t);
     yearVal = "" + gc.get(Calendar.YEAR);
     dayVal = "" + gc.get(Calendar.DAY_OF_MONTH);
     monthVal = "" + (gc.get(Calendar.MONTH) + 1);
+    return this;
   }
 
 

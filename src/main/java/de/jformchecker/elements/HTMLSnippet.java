@@ -32,10 +32,6 @@ public class HTMLSnippet extends AbstractInput implements FormCheckerElement {
     return html;
   }
 
-  public boolean displayLabel() {
-    return false;
-  }
-  
   @Override
   public void init(HttpServletRequest request, boolean firstRun) {}
 

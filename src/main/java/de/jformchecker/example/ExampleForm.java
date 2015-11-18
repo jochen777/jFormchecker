@@ -27,8 +27,7 @@ public class ExampleForm extends FormCheckerForm {
 
     add(TextInput
         .build("lastname")
-        .setDescription("Your Lastname")
-        .setPreSetValue("pier")
+        .setPlaceholerText("Mustermann")
         .setCriterias(Criteria.accept("Pan", "Mustermann"))
         );
 
@@ -50,7 +49,7 @@ public class ExampleForm extends FormCheckerForm {
 
     add(ButtonInput
         .build("btn")
-        .setDescription("Add")
+        .setButtonText("Add...")
         .setPreSetValue("add")
         );
 
@@ -103,7 +102,6 @@ public class ExampleForm extends FormCheckerForm {
     
     addFormValidator(new PasswordFormValidator());
     
-    //setPlaceholderMode();
 
   }
 

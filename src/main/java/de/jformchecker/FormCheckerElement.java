@@ -38,12 +38,6 @@ public interface FormCheckerElement {
   
   public int getLastTabIndex();
 
-  /*
-   *  default: true, if the label of this element should be displayed
-   *  (used for Hidden-Input, where the label should not be printed)
-   */
-  public boolean displayLabel();
-
   // set the test in the label (builder pattern)
   public FormCheckerElement setDescription(String desc);
 

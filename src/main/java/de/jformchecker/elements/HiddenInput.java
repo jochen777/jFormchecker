@@ -20,10 +20,6 @@ public class HiddenInput extends AbstractInput implements FormCheckerElement {
         + "\"  id=\"" + name + "\" value=\"" + (value == null ? "" : getValueHtmlEncoded()) + "\">";
   }
 
-  public boolean displayLabel() {
-    return false;
-  }
-
 
 
 }

@@ -94,10 +94,6 @@ public abstract class AbstractInput implements FormCheckerElement {
     return this;
   }
 
-  public boolean displayLabel() {
-    return true;
-  }
-
   @Override
   public String getLabel() {
     Map<String, String> map = new LinkedHashMap<>(); // TODO! - use atrribues
