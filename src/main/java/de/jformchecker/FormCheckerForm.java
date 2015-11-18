@@ -6,18 +6,18 @@ import java.util.List;
 import de.jformchecker.config.HTML5Mode;
 
 // holds a collection of form-Elements that can be rendered by formchecker
-public class FormCheckerForm {
+public abstract class FormCheckerForm {
 
   List<FormCheckerElement> elements = new ArrayList<>();
   List<FormValidator> validators = new ArrayList<>();
-  HTML5Mode html5Mode = HTML5Mode.disableHtml;
+  HTML5Mode html5Mode = HTML5Mode.disable;
 
   {
     init();
   }
 
-  public void init() {
-  }
+  // Should be overriden
+  public abstract void init();
   
   public HTML5Mode getHtml5Mode() {
     return html5Mode;

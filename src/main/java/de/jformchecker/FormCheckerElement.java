@@ -5,6 +5,8 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import de.jformchecker.config.HTML5Mode;
+
 /**
  * Interface for Input-Elements handled by formchecker
  * 
@@ -46,6 +48,8 @@ public interface FormCheckerElement {
 
   public String getDescription();
 
+  public void setHtml5mode(HTML5Mode html5mode);
+  
   // returns true if element is valid
   public boolean isValid();
   

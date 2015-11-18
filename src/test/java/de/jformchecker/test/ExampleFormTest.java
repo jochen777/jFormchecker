@@ -16,7 +16,8 @@ import de.jformchecker.example.CustomValidation;
 
 public class ExampleFormTest extends FormCheckerForm {
 
-  public ExampleFormTest() {
+  @Override
+  public void init() {
 
     add(TextInput
         .build("firstname")

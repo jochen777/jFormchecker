@@ -17,7 +17,7 @@ import de.jformchecker.elements.TextInput;
 
 public class ExampleForm extends FormCheckerForm {
 
-  public ExampleForm() {
+  public void init() {
     add(TextInput
         .build("firstname")
         .setDescription("Your Firstname")

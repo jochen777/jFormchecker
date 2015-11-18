@@ -43,7 +43,8 @@ public class RadioTabIndexTest {
   }
   
   class Form extends FormCheckerForm {
-    public Form() {
+    @Override
+    public void init() {
 
       add(RadioInput
           .build("rdio")

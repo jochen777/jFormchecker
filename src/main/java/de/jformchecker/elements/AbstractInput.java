@@ -17,6 +17,7 @@ import de.jformchecker.FormChecker;
 import de.jformchecker.FormCheckerElement;
 import de.jformchecker.Utils;
 import de.jformchecker.Validator;
+import de.jformchecker.config.HTML5Mode;
 import de.jformchecker.criteria.MaxLength;
 
 /**
@@ -37,6 +38,11 @@ public abstract class AbstractInput implements FormCheckerElement {
   String errorMessage = "";
   boolean valid = true;
   FormChecker parent;
+  HTML5Mode html5mode = HTML5Mode.disable;
+
+  public void setHtml5mode(HTML5Mode html5mode) {
+    this.html5mode = html5mode;
+  }
 
   // builds attribs, elementId, TabIndex
   protected String buildAllAttributes(Map<String, String> attributes) {
