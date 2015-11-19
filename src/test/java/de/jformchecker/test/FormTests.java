@@ -87,7 +87,7 @@ public class FormTests {
 
   @Test
   public void testLabel() {
-    FormChecker fc = new FormChecker("", RequestBuilders.buildEmptyHttpRequest());
+    FormChecker fc = RequestBuilders.buildFcWithEmptyRequest();
     fc.addForm(new FormCheckerForm() {
       @Override
       public void init() {
@@ -104,7 +104,7 @@ public class FormTests {
 
   @Test
   public void testNoLabel() {
-    FormChecker fc = new FormChecker("", RequestBuilders.buildEmptyHttpRequest());
+    FormChecker fc = RequestBuilders.buildFcWithEmptyRequest();
     fc.addForm(new FormCheckerForm() {
       @Override
       public void init() {

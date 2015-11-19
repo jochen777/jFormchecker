@@ -29,7 +29,8 @@ public class ExampleFormTest extends FormCheckerForm {
         .build("lasntame")
         .setDescription("Your Lastname")
         .setPreSetValue("pier")
-        .setCriterias(Criteria.accept("Pan", "Mustermann")));
+        .setCriterias(Criteria.accept("Pan", "Mustermann"))
+        );
 
     add(TextInput
         .build("middelname")
@@ -49,6 +50,7 @@ public class ExampleFormTest extends FormCheckerForm {
 
     add(PasswordInput
         .build("password")
+        .setRequired()
         .setDescription("Password"));
 
     add(LongTextInput

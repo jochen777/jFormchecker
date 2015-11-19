@@ -22,12 +22,14 @@ public class ExampleForm extends FormCheckerForm {
         .build("firstname")
         .setDescription("Your Firstname")
         .setPreSetValue("Peter")
+        .setRequired()
         .setCriterias(Criteria.accept("Peter", "Max"), Criteria.maxLength(10))
         );
 
     add(TextInput
         .build("lastname")
         .setPlaceholerText("Mustermann")
+        .setDescription("Your Lastname")
         .setCriterias(Criteria.accept("Pan", "Mustermann"))
         );
 
@@ -63,11 +65,13 @@ public class ExampleForm extends FormCheckerForm {
 
     add(PasswordInput
         .build("password1")
+        .setRequired()
         .setDescription("Password")
         );
 
     add(PasswordInput
         .build("password2")
+        .setRequired()
         .setDescription("Repeat password")
         );
 

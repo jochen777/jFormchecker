@@ -10,7 +10,6 @@ public abstract class FormCheckerForm {
 
   List<FormCheckerElement> elements = new ArrayList<>();
   List<FormValidator> validators = new ArrayList<>();
-  HTML5Mode html5Mode = HTML5Mode.disable;
 
   {
     init();
@@ -19,13 +18,6 @@ public abstract class FormCheckerForm {
   // Should be overriden
   public abstract void init();
   
-  public HTML5Mode getHtml5Mode() {
-    return html5Mode;
-  }
-
-  public void setHtml5Mode(HTML5Mode html5Mode) {
-    this.html5Mode = html5Mode;
-  }
 
   public List<FormValidator> getValidators() {
     return validators;

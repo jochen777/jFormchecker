@@ -48,7 +48,6 @@ public interface FormCheckerElement {
 
   public String getDescription();
 
-  public void setHtml5mode(HTML5Mode html5mode);
   
   // returns true if element is valid
   public boolean isValid();

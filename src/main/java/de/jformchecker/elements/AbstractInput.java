@@ -38,11 +38,6 @@ public abstract class AbstractInput implements FormCheckerElement {
   String errorMessage = "";
   boolean valid = true;
   FormChecker parent;
-  HTML5Mode html5mode = HTML5Mode.disable;
-
-  public void setHtml5mode(HTML5Mode html5mode) {
-    this.html5mode = html5mode;
-  }
 
   // builds attribs, elementId, TabIndex
   protected String buildAllAttributes(Map<String, String> attributes) {
@@ -50,12 +45,21 @@ public abstract class AbstractInput implements FormCheckerElement {
     allAttribs.append(this.buildAttributes(attributes));
     allAttribs.append(getElementId());
     allAttribs.append(getTabIndexTag());
+    allAttribs.append(buildRequiredAttribute());
     return allAttribs.toString();
   }
   
   // RFE: refactor inputs so they use Utils. directly
   protected String buildAttributes(Map<String, String> attributes) {
     return Utils.buildAttributes(attributes);
+  }
+  
+  protected String buildRequiredAttribute() {
+    if (required){
+      return "required ";
+    } else {
+      return "";
+    }
   }
 
   public String getInputTag() {
@@ -95,8 +99,8 @@ public abstract class AbstractInput implements FormCheckerElement {
     }
   }
 
-  public FormCheckerElement setRequired() {
-    required = true;
+  public AbstractInput setRequired() {
+    this.required = true;
     return this;
   }
 

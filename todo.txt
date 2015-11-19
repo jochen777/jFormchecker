@@ -41,6 +41,7 @@
 * label with attribute map (OK)
 * More TagAttributes everywhere (OK)
 * html5 mode
+* add novalidate to form if wanted to disable html5 validation 
 * fix missing space between attributes (maxlenght) (OK)
 * bootstrap style error-handling
 * PlaceholderMode implementieren
@@ -53,6 +54,7 @@
 * support complex-inputs?? (adress-field that contains several own-fields?)
 * multi-select (means: brand -> modell...)
 * groups of beans in form (example: product, adress) 
+* for security: Cut input after a max input field lenght - despite of maxlen!!
 
 * generate standard-form with alternative rendering in template (for mobile)
 * more attributes: (http://www.w3schools.com/tags/tag_input.asp)
