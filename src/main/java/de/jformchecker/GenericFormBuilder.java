@@ -1,6 +1,7 @@
 package de.jformchecker;
 
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
@@ -22,7 +23,7 @@ public class GenericFormBuilder {
   String submitClass = "";
 
   final public String getGenericForm(String id, String formAction,
-      Map<String, FormCheckerElement> elements, boolean isMultipart, boolean firstRun,
+      List< FormCheckerElement> elements, boolean isMultipart, boolean firstRun,
       FormChecker fc) {
     StringBuilder formHtml = new StringBuilder();
     String novalidateAddition = "";
@@ -42,9 +43,8 @@ public class GenericFormBuilder {
       formHtml.append(fc.buildCSRFTokens());
     }
     int lastTabIndex = 0;
-    for (String key : elements.keySet()) {
+    for(FormCheckerElement elem : elements){
       // label
-      FormCheckerElement elem = elements.get(key);
       Wrapper elementWrapper = getWrapperForElem(elem);
       formHtml.append(elementWrapper.start);
       formHtml.append(getErrors(elem, firstRun));

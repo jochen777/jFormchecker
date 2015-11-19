@@ -1,20 +1,20 @@
 package de.jformchecker;
 
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.commons.lang3.StringUtils;
 
 public class Utils {
-  public static void fillBean(Map<String, FormCheckerElement> elements, Object bean) {
-    Iterator<String> it = elements.keySet().iterator();
-    while (it.hasNext()) {
-      String key = it.next();
+  public static void fillBean(List<FormCheckerElement> elements, Object bean) {
+    for (FormCheckerElement elem : elements) {
+      String key = elem.getName();
       if (PropertyUtils.isWriteable(bean, key)) {
         try {
           // TODO: Destinguish between Strings/Dates/Boolean...
-          PropertyUtils.setSimpleProperty(bean, key, elements.get(key).getValue());
+          PropertyUtils.setSimpleProperty(bean, key, elem.getValue());
         } catch (Exception e) {
           System.err.println("problem with setting bean-property:" + key);
         }

@@ -17,7 +17,6 @@ import de.jformchecker.criteria.MaxLength;
  * be accessed from the template-system.
  */
 public class FormChecker {
-  LinkedHashMap<String, FormCheckerElement> elements = new LinkedHashMap<String, FormCheckerElement>();
   HttpServletRequest req;
   boolean firstRun = true;
   boolean isMultipart = false;
@@ -107,12 +106,9 @@ public class FormChecker {
   // where the form is submitted to
   private String formAction = "#";
 
-  public LinkedHashMap<String, FormCheckerElement> getElements() {
-    return elements;
-  }
 
   public String getValue(String elementName) {
-    return elements.get(elementName).getValue();
+    return form.getElement(elementName).getValue();
   }
 
   public String getSubmitTag() {
@@ -120,11 +116,11 @@ public class FormChecker {
   }
 
   public String getLabelTag(String elementName) {
-    return formBuilder.getLabelForElement(elements.get(elementName), new TagAtrributes(), firstRun);
+    return formBuilder.getLabelForElement(form.getElement(elementName), new TagAtrributes(), firstRun);
   }
 
   public String getLabelTag(String elementName, Map<String, String> map) {
-    return formBuilder.getLabelForElement(elements.get(elementName), new TagAtrributes(map),
+    return formBuilder.getLabelForElement(form.getElement(elementName), new TagAtrributes(map),
         firstRun);
   }
 
@@ -136,7 +132,7 @@ public class FormChecker {
     req = _req;
   }
 
-  public FormCheckerElement add(FormCheckerElement element) {
+  public void prepareElement(FormCheckerElement element) {
     element.setFormChecker(this);
 
     // check, if maxLen is set. If not, add default-max-len
@@ -151,20 +147,17 @@ public class FormChecker {
     if (!maxLenAvail) {
       element.getCriteria().add(Criteria.maxLength(defaultMaxLenElements));
     }
-
-    elements.put(element.getName(), element);
-    return element;
   }
 
   public void addForm(FormCheckerForm form) {
     for (FormCheckerElement element : form.getElements()) {
-      add(element);
+      prepareElement(element);
     }
     this.form = form;
   }
 
   public String getGenericForm() {
-    return formBuilder.getGenericForm(id, formAction, elements, isMultipart, firstRun, this);
+    return formBuilder.getGenericForm(id, formAction, form.elements, isMultipart, firstRun, this);
   }
 
   //TODO: is neeeded?
@@ -181,8 +174,7 @@ public class FormChecker {
 
 
     // process and validate each field
-    for (Map.Entry<String, FormCheckerElement> entry : elements.entrySet()) {
-      FormCheckerElement elem = entry.getValue();
+    for(FormCheckerElement elem : form.getElements()){
       elem.init(req, firstRun);
       if (!elem.isValid()) {
         isValid = false;
@@ -192,7 +184,7 @@ public class FormChecker {
     // validate the complete form
     if (form != null) {
       for (FormValidator formValidator : form.getValidators()) {
-        formValidator.validate(elements);
+        formValidator.validate(form);
       }
     }
     
@@ -206,8 +198,7 @@ public class FormChecker {
   // resort tab-indexes
   private void sortTabIndexes() {
     int tabIndex = 100;
-    for (Map.Entry<String, FormCheckerElement> entry : elements.entrySet()) {
-      FormCheckerElement elem = entry.getValue();
+    for(FormCheckerElement elem : form.getElements()){
       elem.setTabIndex(tabIndex);
       tabIndex = elem.getLastTabIndex();
       tabIndex++;

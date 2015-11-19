@@ -50,12 +50,10 @@ public class ExampleFormTest extends FormCheckerForm {
 
     add(PasswordInput
         .build("password")
-        .setRequired()
         .setDescription("Password"));
 
     add(LongTextInput
         .build("description")
-        .setRequired()
         .setDescription("Your Description"));
 
     LinkedHashMap<String, String> radioEntries = SampleMapGenerators.generateRadioMap();

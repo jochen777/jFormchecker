@@ -85,11 +85,11 @@ public class Test extends HttpServlet {
   private void processResult(FormChecker fc) {
     if (fc.isValid()) {
       ExampleBean bean = new ExampleBean();
-      Utils.fillBean(fc.getElements(), bean);
+      Utils.fillBean(fc.getForm().getElements(), bean);
       System.out.println("bean:" + bean);
-      System.out.println(((DateInput)fc.getElements().get("date")).getDateValue());
+      System.out.println(((DateInput)fc.getForm().getElement("date")).getDateValue());
       System.out.println("--------------");
-      System.out.println(Utils.getDebugOutput(fc.getElements()));
+      System.out.println(Utils.getDebugOutput(fc.getForm().getElementsAsMap()));
     }
   }
 

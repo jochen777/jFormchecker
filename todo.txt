@@ -43,7 +43,8 @@
 * html5 mode (OK)
 * add novalidate to form if wanted to disable html5 validation (OK)
 * fix missing space between attributes (maxlenght) (OK)
-* make addForm in Formchecker mandatory. Disable adding simple fields directly to fc
+* make addForm in Formchecker mandatory. Disable adding simple fields directly to fc (OK)
+* add possibility to add attributes to form-tag. (maybe using this for disabling html5 validation)
 * bootstrap style error-handling
 * PlaceholderMode implementieren
 * check, if FormCheckerElement can have less (public) methods

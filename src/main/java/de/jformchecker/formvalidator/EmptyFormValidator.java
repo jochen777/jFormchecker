@@ -1,15 +1,15 @@
 package de.jformchecker.formvalidator;
 
-import java.util.LinkedHashMap;
-
-import de.jformchecker.FormCheckerElement;
+import de.jformchecker.FormCheckerForm;
 import de.jformchecker.FormValidator;
 
 public class EmptyFormValidator implements FormValidator {
 
   @Override
-  public void validate(LinkedHashMap<String, FormCheckerElement> elements) {
-    // Do nothing here.
+  public void validate(FormCheckerForm form) {
+    // do nothing here!
+    
   }
+
 
 }

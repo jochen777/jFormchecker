@@ -1,8 +1,8 @@
 package de.jformchecker;
 
-import java.util.LinkedHashMap;
+import java.util.List;
 
 // Validates a complete Form
 public interface FormValidator {
-  public void validate(LinkedHashMap<String, FormCheckerElement> elements);
+  public void validate(FormCheckerForm form);
 }
