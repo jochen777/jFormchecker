@@ -23,6 +23,7 @@ public class FormChecker {
   boolean isMultipart = false;
   boolean isValid = true;
   FormCheckerForm form = null;
+
   boolean protectedAgainstCSRF = false; // TBD: Default no protection, because the normal case is
                                         // not logged in?!?
   String completeForm;
@@ -40,6 +41,9 @@ public class FormChecker {
     return isValid && !firstRun;
   }
 
+  public FormCheckerForm getForm() {
+    return form;
+  }
 
   public static FormChecker build(String _id, HttpServletRequest _req, FormCheckerForm form) {
     FormChecker fc = new FormChecker(_id, _req);

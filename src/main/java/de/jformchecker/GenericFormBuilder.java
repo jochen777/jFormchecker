@@ -24,48 +24,52 @@ public class GenericFormBuilder {
   final public String getGenericForm(String id, String formAction,
       Map<String, FormCheckerElement> elements, boolean isMultipart, boolean firstRun,
       FormChecker fc) {
-    StringBuilder form = new StringBuilder();
+    StringBuilder formHtml = new StringBuilder();
+    String novalidateAddition = "";
+    if (fc.getForm() != null && fc.getForm().html5Validation == false) {
+      novalidateAddition = " novalidate ";
+    }
     if (isMultipart) {
-      form.append("<form name=\"" + id + "\" id=\"form_" + id + "\" action=\"" + formAction
+      formHtml.append("<form name=\"" + id + "\" "+novalidateAddition+"id=\"form_" + id + "\" action=\"" + formAction
           + "\" method=\"GET\" enctype=\"multipart/form-data\">\n");
     } else {
-      form.append("<form name=\"" + id + "\" id=\"form_" + id + "\" "+
+      formHtml.append("<form name=\"" + id + "\" "+novalidateAddition+"id=\"form_" + id + "\" "+
           Utils.buildAttributes(getFormAttributes())+" action=\"" + formAction
           + "\" method=\"GET\" >\n");
     }
-    form.append(getSubmittedTag(id));
+    formHtml.append(getSubmittedTag(id));
     if (fc.protectedAgainstCSRF) {
-      form.append(fc.buildCSRFTokens());
+      formHtml.append(fc.buildCSRFTokens());
     }
     int lastTabIndex = 0;
     for (String key : elements.keySet()) {
       // label
       FormCheckerElement elem = elements.get(key);
       Wrapper elementWrapper = getWrapperForElem(elem);
-      form.append(elementWrapper.start);
-      form.append(getErrors(elem, firstRun));
+      formHtml.append(elementWrapper.start);
+      formHtml.append(getErrors(elem, firstRun));
       boolean displayLabel = !StringUtils.isEmpty(elem.getDescription()); 
       if (displayLabel) {
-        form.append(getLabelForElement(elem, getLabelAttributes(elem), firstRun)).append("\n");
+        formHtml.append(getLabelForElement(elem, getLabelAttributes(elem), firstRun)).append("\n");
       }
       // input tag
       Map<String, String> attribs = new LinkedHashMap<>();
       addAttributesToInputFields(attribs, elem);
       Wrapper inputWrapper = getWrapperForInput(elem);
-      form.append(inputWrapper.start);
-      form.append(elem.getInputTag(attribs));
+      formHtml.append(inputWrapper.start);
+      formHtml.append(elem.getInputTag(attribs));
       if (displayLabel) {
-        form.append("\n<br>"); // only append nl, if something was given
+        formHtml.append("\n<br>"); // only append nl, if something was given
                                // out
       }
-      form.append(inputWrapper.end);
-      form.append(elementWrapper.end);
+      formHtml.append(inputWrapper.end);
+      formHtml.append(elementWrapper.end);
       lastTabIndex = elem.getLastTabIndex();
     }
-    form.append(getSubmit(lastTabIndex + 1));
-    form.append("</form>\n");
+    formHtml.append(getSubmit(lastTabIndex + 1));
+    formHtml.append("</form>\n");
 
-    return form.toString();
+    return formHtml.toString();
   }
 
 

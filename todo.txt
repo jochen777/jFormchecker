@@ -40,9 +40,10 @@
 * combine buildMaxlen, buildTabIndex, buildAttributes to one method (OK)
 * label with attribute map (OK)
 * More TagAttributes everywhere (OK)
-* html5 mode
-* add novalidate to form if wanted to disable html5 validation 
+* html5 mode (OK)
+* add novalidate to form if wanted to disable html5 validation (OK)
 * fix missing space between attributes (maxlenght) (OK)
+* make addForm in Formchecker mandatory. Disable adding simple fields directly to fc
 * bootstrap style error-handling
 * PlaceholderMode implementieren
 * check, if FormCheckerElement can have less (public) methods

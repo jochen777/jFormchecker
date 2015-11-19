@@ -10,7 +10,8 @@ public abstract class FormCheckerForm {
 
   List<FormCheckerElement> elements = new ArrayList<>();
   List<FormValidator> validators = new ArrayList<>();
-
+  boolean html5Validation = true;
+  
   {
     init();
   }
@@ -18,7 +19,10 @@ public abstract class FormCheckerForm {
   // Should be overriden
   public abstract void init();
   
-
+  public void disableHtml5Validation() {
+    html5Validation = false;
+  }
+  
   public List<FormValidator> getValidators() {
     return validators;
   }
