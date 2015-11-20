@@ -5,23 +5,23 @@ import java.util.Map;
 import java.util.Set;
 
 // class that holds html tag-attributes
-public class TagAtrributes {
+public class TagAttributes {
   LinkedHashMap<String, String> attributes;
 
-  public TagAtrributes(Map<String, String> attribs) {
+  public TagAttributes(Map<String, String> attribs) {
     attributes = new LinkedHashMap<>(attribs);
   }
   
   
-  public TagAtrributes(LinkedHashMap<String, String> attribs) {
+  public TagAttributes(LinkedHashMap<String, String> attribs) {
     attributes = attribs;
   }
   
-  public TagAtrributes() {
+  public TagAttributes() {
     this(new LinkedHashMap<>());
   }
 
-  public TagAtrributes put(String key, String value) {
+  public TagAttributes put(String key, String value) {
     attributes.put(key, value);
     return this;
   }

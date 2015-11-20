@@ -6,8 +6,8 @@ import java.util.Map;
 public class BasicMaterialLightFormBuilder extends GenericFormBuilder{
 
   @Override
-  public TagAtrributes getFormAttributes() {
-    TagAtrributes attributes = new TagAtrributes();
+  public TagAttributes getFormAttributes() {
+    TagAttributes attributes = new TagAttributes();
     return attributes;
   }
 
@@ -17,8 +17,8 @@ public class BasicMaterialLightFormBuilder extends GenericFormBuilder{
   }
 
   @Override
-  public TagAtrributes getLabelAttributes(FormCheckerElement elem) {
-    TagAtrributes t = new TagAtrributes();
+  public TagAttributes getLabelAttributes(FormCheckerElement elem) {
+    TagAttributes t = new TagAttributes();
     t.addToAttribute("class", "mdl-textfield__label ");
     return t;
   }

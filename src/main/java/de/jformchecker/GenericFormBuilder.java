@@ -73,8 +73,8 @@ public class GenericFormBuilder {
   }
 
 
-  public TagAtrributes getLabelAttributes(FormCheckerElement elem) {
-    TagAtrributes attributes = new TagAtrributes();
+  public TagAttributes getLabelAttributes(FormCheckerElement elem) {
+    TagAttributes attributes = new TagAttributes();
     attributes.put("class", "col-sm-2 control-label");
     return attributes;
   }
@@ -85,8 +85,8 @@ public class GenericFormBuilder {
   }
 
 
-  public TagAtrributes getFormAttributes() {
-    TagAtrributes attributes = new TagAtrributes();
+  public TagAttributes getFormAttributes() {
+    TagAttributes attributes = new TagAttributes();
     attributes.put("class", "form-horizontal");
     return attributes;
   }
@@ -120,7 +120,7 @@ public class GenericFormBuilder {
     return "";
   }
 
-  public String getLabelForElement(FormCheckerElement e, TagAtrributes attribs,
+  public String getLabelForElement(FormCheckerElement e, TagAttributes attribs,
       boolean firstRun) {
 
     

@@ -46,7 +46,6 @@
 * make addForm in Formchecker mandatory. Disable adding simple fields directly to fc (OK)
 * add possibility to add attributes to form-tag. (maybe using this for disabling html5 validation)
 * bootstrap style error-handling
-* PlaceholderMode implementieren
 * check, if FormCheckerElement can have less (public) methods
 * different placeholder mode
 * generate from bean (with annotations for descriptions, validation...) / * check bean-validation

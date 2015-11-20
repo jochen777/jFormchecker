@@ -3,8 +3,8 @@ package de.jformchecker;
 public class BasicBootstrapFormBuilder extends GenericFormBuilder{
 
   @Override
-  public TagAtrributes getFormAttributes() {
-    TagAtrributes attributes = new TagAtrributes();
+  public TagAttributes getFormAttributes() {
+    TagAttributes attributes = new TagAttributes();
     return attributes;
   }
 
@@ -14,8 +14,8 @@ public class BasicBootstrapFormBuilder extends GenericFormBuilder{
   }
 
   @Override
-  public TagAtrributes getLabelAttributes(FormCheckerElement elem) {
-    return new TagAtrributes();
+  public TagAttributes getLabelAttributes(FormCheckerElement elem) {
+    return new TagAttributes();
   }
   
 }

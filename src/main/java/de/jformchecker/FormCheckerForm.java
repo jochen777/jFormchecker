@@ -12,6 +12,17 @@ public abstract class FormCheckerForm {
   List<FormValidator> validators = new ArrayList<>();
   private Map<String, FormCheckerElement> fastAccess = new LinkedHashMap<>();
   
+  private TagAttributes formTagAttributes = new TagAttributes();
+  
+  public TagAttributes getFormTagAttributes() {
+    return formTagAttributes;
+  }
+
+  public void setFormTagAttributes(Map<String, String> formTagAttributes) {
+    //this.formTagAttributes.;
+    // TODO.
+  }
+
   public Map<String, FormCheckerElement> getElementsAsMap() {
     return fastAccess;
   }

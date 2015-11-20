@@ -30,7 +30,7 @@ public class Utils {
     return attrStr.toString();
   }
 
-   public static String buildAttributes(TagAtrributes attributes) {
+   public static String buildAttributes(TagAttributes attributes) {
      StringBuilder attrStr = new StringBuilder();
      for (String attribute : attributes.keySet()) {
        attrStr.append(attribute).append("=\"").append(attributes.get(attribute)).append("\" ");

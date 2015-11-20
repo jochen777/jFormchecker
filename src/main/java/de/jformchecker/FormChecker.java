@@ -116,11 +116,11 @@ public class FormChecker {
   }
 
   public String getLabelTag(String elementName) {
-    return formBuilder.getLabelForElement(form.getElement(elementName), new TagAtrributes(), firstRun);
+    return formBuilder.getLabelForElement(form.getElement(elementName), new TagAttributes(), firstRun);
   }
 
   public String getLabelTag(String elementName, Map<String, String> map) {
-    return formBuilder.getLabelForElement(form.getElement(elementName), new TagAtrributes(map),
+    return formBuilder.getLabelForElement(form.getElement(elementName), new TagAttributes(map),
         firstRun);
   }
 
@@ -162,7 +162,7 @@ public class FormChecker {
 
   //TODO: is neeeded?
   public String getLabelForElement(FormCheckerElement e, Map<String, String> attribs) {
-    return this.formBuilder.getLabelForElement(e, new TagAtrributes(attribs), firstRun);
+    return this.formBuilder.getLabelForElement(e, new TagAttributes(attribs), firstRun);
   }
 
   public FormChecker run() {
