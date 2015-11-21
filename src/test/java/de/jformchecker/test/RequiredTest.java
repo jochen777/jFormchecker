@@ -13,21 +13,7 @@ public class RequiredTest {
   @Test
   public void testRequiredField() {
     FormChecker fc = RequestBuilders.buildFcWithEmptyRequest();
-    fc.addForm(new FormCheckerForm() {
-      @Override
-      public void init() {
-        add(TextInput.build("firstname")
-            .setRequired()
-            .setPreSetValue("Horst")
-            .setDescription("Your firstname")
-            );
-        add(TextInput.build("lastname")
-            .setRequired()
-            .setPreSetValue("Horst")
-            .setDescription("Your lastname")
-            );
-      }
-    });
+    fc.addForm(ExampleFormBuilder.getVerySimpleForm());
     fc.run();
     Assert.assertTrue("Form should contain a required attribute!", (fc.getCompleteForm().contains(" required ")));
   }

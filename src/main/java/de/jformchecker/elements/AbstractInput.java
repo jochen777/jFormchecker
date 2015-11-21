@@ -11,10 +11,13 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang3.StringEscapeUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import de.jformchecker.Criterion;
 import de.jformchecker.FormChecker;
 import de.jformchecker.FormCheckerElement;
+import de.jformchecker.GenericFormBuilder;
+import de.jformchecker.TagAttributes;
 import de.jformchecker.Utils;
 import de.jformchecker.Validator;
 import de.jformchecker.criteria.MaxLength;
@@ -37,6 +40,9 @@ public abstract class AbstractInput implements FormCheckerElement {
   String errorMessage = "";
   boolean valid = true;
   FormChecker parent;
+  String helpText;
+  
+  
 
   // builds attribs, elementId, TabIndex
   protected String buildAllAttributes(Map<String, String> attributes) {
@@ -45,6 +51,11 @@ public abstract class AbstractInput implements FormCheckerElement {
     allAttribs.append(getElementId());
     allAttribs.append(getTabIndexTag());
     allAttribs.append(buildRequiredAttribute());
+    // help-text
+    if (!StringUtils.isEmpty(helpText)){
+      allAttribs.append(Utils.buildAttributes(
+          new TagAttributes("aria-describedby", GenericFormBuilder.getHelpBlockId(this))));
+    }
     return allAttribs.toString();
   }
   
@@ -228,4 +239,12 @@ public abstract class AbstractInput implements FormCheckerElement {
     return criteria;
   }
 
+  public String getHelpText() {
+    return helpText;
+  }
+  
+  public AbstractInput setHelpText(String helpText) {
+    this.helpText = helpText;
+    return this;
+  }
 }

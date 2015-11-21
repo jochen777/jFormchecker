@@ -93,6 +93,7 @@ ${fc.elements.lasntame.inputTag}
 ## Features
 
 * If you don't specify a description, the label will be dismissed automatically
+* Specify a help-text to display an aria-compliance description. (With nice bootstrap style)
 
 ## Remember: Standard form handling WITHOUT jFormChecker
 

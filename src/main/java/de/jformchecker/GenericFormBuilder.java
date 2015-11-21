@@ -57,6 +57,11 @@ public class GenericFormBuilder {
       Wrapper inputWrapper = getWrapperForInput(elem);
       formHtml.append(inputWrapper.start);
       formHtml.append(elem.getInputTag(attribs));
+      // help tag
+      if (!StringUtils.isEmpty(elem.getHelpText())) {
+        formHtml.append(getHelpTag(elem.getHelpText(), elem));
+      }
+      
       if (displayLabel) {
         formHtml.append("\n<br>"); // only append nl, if something was given
                                // out
@@ -71,6 +76,17 @@ public class GenericFormBuilder {
     return formHtml.toString();
   }
 
+
+  protected String getHelpTag(String helpText, FormCheckerElement elem) {
+    return "<span id=\"" +GenericFormBuilder.getHelpBlockId(elem) + "\" class=\"help-block\">" +
+        helpText + 
+        "</span>";
+  }
+
+  public static String getHelpBlockId(FormCheckerElement elem) {
+    // RFE: Add FC-ID here, so we can have more than one form on one page.
+    return "helpBlock_" + elem.getName(); 
+  }
 
   private TagAttributes createFormTagAttributes(FormCheckerForm form) {
     TagAttributes atribs = new TagAttributes();

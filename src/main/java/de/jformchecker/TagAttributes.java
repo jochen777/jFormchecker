@@ -21,6 +21,11 @@ public class TagAttributes {
     this(new LinkedHashMap<>());
   }
 
+  public TagAttributes(String key, String value) {
+    this();
+    this.put(key, value);
+  }
+
   public TagAttributes put(String key, String value) {
     attributes.put(key, value);
     return this;

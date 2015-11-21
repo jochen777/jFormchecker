@@ -30,6 +30,7 @@ public class ExampleForm extends FormCheckerForm {
         .build("lastname")
         .setPlaceholerText("Mustermann")
         .setDescription("Your Lastname")
+        .setHelpText("This is an example Helptext for describing this lastname field")
         .setCriterias(Criteria.accept("Pan", "Mustermann"))
         );
 

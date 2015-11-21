@@ -82,4 +82,6 @@ public interface FormCheckerElement {
   public String getCompleteInput(); // RFE: Perhaps toString makes this even
                                     // more convenient?!
 
+  public String getHelpText();
+  
 }
