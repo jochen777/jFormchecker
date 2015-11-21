@@ -4,6 +4,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 import de.jformchecker.FormCheckerElement;
+import de.jformchecker.Utils;
 
 public class RadioInput extends AbstractInput implements FormCheckerElement {
 
@@ -31,7 +32,7 @@ public class RadioInput extends AbstractInput implements FormCheckerElement {
   }
 
   public String getInputTag(String curValue, Map<String, String> attributes) {
-    return "<input id=\"form_radio_" + curValue + "\" " + buildAttributes(attributes)+ 
+    return "<input id=\"form_radio_" + curValue + "\" " + Utils.buildAttributes(attributes)+ 
         getTabIndexTag() + " type=\"radio\" name=\"" + name + "\"  value=\"" + curValue + "\" "
         + getCheckedStatus(curValue) + "" + " " + " >\n";
   }

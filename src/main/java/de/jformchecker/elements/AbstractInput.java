@@ -47,7 +47,7 @@ public abstract class AbstractInput implements FormCheckerElement {
   // builds attribs, elementId, TabIndex
   protected String buildAllAttributes(Map<String, String> attributes) {
     StringBuilder allAttribs = new StringBuilder();
-    allAttribs.append(this.buildAttributes(attributes));
+    allAttribs.append(Utils.buildAttributes(attributes));
     allAttribs.append(getElementId());
     allAttribs.append(getTabIndexTag());
     allAttribs.append(buildRequiredAttribute());
@@ -57,11 +57,6 @@ public abstract class AbstractInput implements FormCheckerElement {
           new TagAttributes("aria-describedby", GenericFormBuilder.getHelpBlockId(this))));
     }
     return allAttribs.toString();
-  }
-  
-  // RFE: refactor inputs so they use Utils. directly
-  protected String buildAttributes(Map<String, String> attributes) {
-    return Utils.buildAttributes(attributes);
   }
   
   protected String buildRequiredAttribute() {
@@ -150,7 +145,8 @@ public abstract class AbstractInput implements FormCheckerElement {
     if (criteria != null) {
       for (Criterion criterion : criteria) {
         if (criterion instanceof MaxLength) {
-          return "maxlength=\""+((MaxLength)criterion).getMaxLength()+"\" ";
+          return Utils.buildSingleAttribute("maxlength", 
+              ""+((MaxLength)criterion).getMaxLength()); 
         }
       }
     }
@@ -214,7 +210,7 @@ public abstract class AbstractInput implements FormCheckerElement {
   }
 
   protected String getElementId() {
-    return " id=\"form_" + name + "\" ";
+    return Utils.buildSingleAttribute("id", "form_" + name); 
   }
 
   public int getTabIndex() {
@@ -223,11 +219,11 @@ public abstract class AbstractInput implements FormCheckerElement {
 
 
   public String getTabIndexTag() {
-    return "tabindex=\"" + getTabIndex() + "\" ";
+    return Utils.buildSingleAttribute("tabindex", ""+getTabIndex()); 
   }
 
   public String getTabIndexTagIncreaseBy(int addition) {
-    return "tabindex=\"" + (getTabIndex() + addition) + "\" ";
+    return Utils.buildSingleAttribute("tabindex", ""+(getTabIndex() + addition)); 
   }
 
   public AbstractInput setTabIndex(int tabIndex) {

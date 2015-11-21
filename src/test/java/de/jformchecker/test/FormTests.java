@@ -26,7 +26,7 @@ public class FormTests {
     ti.init(request, false);
     String inputTag = ti.getInputTag();
     assertEquals(
-        "<input  id=\"form_firstname\" tabindex=\"0\" type=\"text\" name=\"firstname\" value=\"Jochen Pier&lt;bold&gt;\">",
+        "<input id=\"form_firstname\" tabindex=\"0\" type=\"text\" name=\"firstname\" value=\"Jochen Pier&lt;bold&gt;\">",
         inputTag);
   }
 
@@ -39,7 +39,7 @@ public class FormTests {
     ti.init(request, true);
     String inputTag = ti.getInputTag();
     assertEquals(
-        "<input  id=\"form_firstname\" tabindex=\"0\" type=\"text\" name=\"firstname\" value=\"Jochen\">",
+        "<input id=\"form_firstname\" tabindex=\"0\" type=\"text\" name=\"firstname\" value=\"Jochen\">",
         inputTag);
   }
 

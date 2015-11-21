@@ -24,15 +24,21 @@ public class Utils {
    public static String buildAttributes(Map<String, String> attributes) {
     StringBuilder attrStr = new StringBuilder();
     for (String attribute : attributes.keySet()) {
-      if (StringUtils.isEmpty(attributes.get(attribute))) {
-        attrStr.append(attribute);
-      } else {
-        attrStr.append(attribute).append("=\"").append(attributes.get(attribute)).append("\"");
-      }
-      attrStr.append(" ");
+      attrStr.append(Utils.buildSingleAttribute(attribute, attributes.get(attribute)));
     }
     return attrStr.toString();
   }
+   
+   public static String buildSingleAttribute(String key, String value) {
+     StringBuilder attrStr = new StringBuilder();
+     if (StringUtils.isEmpty(value)) {
+       attrStr.append(key);
+     } else {
+       attrStr.append(key).append("=\"").append(value).append("\"");
+     }
+     attrStr.append(" ");
+     return attrStr.toString();
+   }
 
    public static String buildAttributes(TagAttributes attributes) {
      return Utils.buildAttributes(attributes.attributes);
