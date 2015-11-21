@@ -11,13 +11,16 @@ import de.jformchecker.FormChecker;
 import de.jformchecker.FormCheckerForm;
 import de.jformchecker.elements.RadioInput;
 import de.jformchecker.elements.SelectInput;
+import de.jformchecker.test.builders.ExampleFormBuilder;
+import de.jformchecker.test.builders.RequestBuilders;
+import de.jformchecker.test.builders.SampleMapBuilders;
 
 public class RadioTabIndexTest {
 
   @org.junit.Test
   public void test() {
     RadioInput radio = (RadioInput)RadioInput.build("radio")
-        .setPossibleValues(SampleMapGenerators.generateRadioMap())
+        .setPossibleValues(SampleMapBuilders.generateRadioMap())
         .setDescription("Choice")
         .setTabIndex(4);
     Assert.assertTrue("Expected tabindex=4", radio.getInputTag().contains("tabindex=\"4"));
@@ -30,9 +33,8 @@ public class RadioTabIndexTest {
     reqVals.put(FormChecker.SUBMIT_KEY, FormChecker.SUBMIT_VALUE_PREFIX + formId);
     HttpServletRequest request = RequestBuilders.buildExampleHttpRequest(reqVals);
 
-    ExampleFormTest form = new ExampleFormTest();
     FormChecker fc = new FormChecker(formId, request);
-    fc.addForm(form);
+    fc.addForm(ExampleFormBuilder.getComplexForm());
     fc.run();
     System.out.println(fc.getCompleteForm());
   }
@@ -43,12 +45,12 @@ public class RadioTabIndexTest {
 
       add(RadioInput
           .build("rdio")
-          .setPossibleValues(SampleMapGenerators.generateRadioMap())
+          .setPossibleValues(SampleMapBuilders.generateRadioMap())
           .setDescription("Your Choice"));
 
       add(SelectInput
           .build("select")
-          .setPossibleValues(SampleMapGenerators.generateSelectMap())
+          .setPossibleValues(SampleMapBuilders.generateSelectMap())
           .setDescription("Your Selection"));
 
     }

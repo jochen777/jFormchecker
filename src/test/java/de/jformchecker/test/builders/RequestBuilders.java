@@ -1,4 +1,4 @@
-package de.jformchecker.test;
+package de.jformchecker.test.builders;
 
 import java.util.Map;
 

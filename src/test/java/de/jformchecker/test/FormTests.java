@@ -14,6 +14,8 @@ import de.jformchecker.FormChecker;
 import de.jformchecker.FormCheckerForm;
 import de.jformchecker.criteria.Criteria;
 import de.jformchecker.elements.TextInput;
+import de.jformchecker.test.builders.ExampleFormBuilder;
+import de.jformchecker.test.builders.RequestBuilders;
 
 public class FormTests {
 
@@ -50,9 +52,8 @@ public class FormTests {
     reqVals.put(FormChecker.SUBMIT_KEY, FormChecker.SUBMIT_VALUE_PREFIX + formId);
     HttpServletRequest request = RequestBuilders.buildExampleHttpRequest(reqVals);
 
-    ExampleFormTest form = new ExampleFormTest();
     FormChecker fc = new FormChecker(formId, request);
-    fc.addForm(form);
+    fc.addForm(ExampleFormBuilder.getComplexForm());
     fc.run();
     assertEquals("Jochen2", fc.getValue("firstname"));
     Assert.assertTrue("FC should be not valid", !fc.isValid());
@@ -75,9 +76,8 @@ public class FormTests {
 
     HttpServletRequest request = RequestBuilders.buildExampleHttpRequest(reqVals);
 
-    ExampleFormTest form = new ExampleFormTest();
     FormChecker fc = new FormChecker(formId, request);
-    fc.addForm(form);
+    fc.addForm(ExampleFormBuilder.getComplexForm());
     fc.run();
     assertEquals(firstname, fc.getValue("firstname"));
     Assert.assertTrue("FC should be valid", fc.isValid());

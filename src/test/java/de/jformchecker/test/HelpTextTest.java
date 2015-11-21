@@ -4,6 +4,8 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import de.jformchecker.FormChecker;
+import de.jformchecker.test.builders.ExampleFormBuilder;
+import de.jformchecker.test.builders.RequestBuilders;
 
 public class HelpTextTest {
 

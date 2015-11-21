@@ -6,8 +6,9 @@ import org.junit.Test;
 import de.jformchecker.FormChecker;
 import de.jformchecker.FormCheckerForm;
 import de.jformchecker.elements.TextInput;
+import de.jformchecker.test.builders.RequestBuilders;
 
-public class DisableHtml5Validation {
+public class DisableHtml5ValidationTest {
 
   @Test
   public void testDisabledHtml5Validation() {

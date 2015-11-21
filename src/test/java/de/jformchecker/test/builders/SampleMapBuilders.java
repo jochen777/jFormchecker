@@ -1,8 +1,8 @@
-package de.jformchecker.test;
+package de.jformchecker.test.builders;
 
 import java.util.LinkedHashMap;
 
-public class SampleMapGenerators {
+public class SampleMapBuilders {
   public static LinkedHashMap<String, String> generateSelectMap() {
     LinkedHashMap<String, String> selectEntries = new LinkedHashMap<>();
     selectEntries.put("green", "Green");
