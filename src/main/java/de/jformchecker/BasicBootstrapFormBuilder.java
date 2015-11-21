@@ -13,9 +13,11 @@ public class BasicBootstrapFormBuilder extends GenericFormBuilder{
     return new Wrapper("", "");
   }
 
-  @Override
   public TagAttributes getLabelAttributes(FormCheckerElement elem) {
-    return new TagAttributes();
+    TagAttributes attributes = new TagAttributes();
+    attributes.put("class", "control-label");
+    return attributes;
+
   }
   
 }

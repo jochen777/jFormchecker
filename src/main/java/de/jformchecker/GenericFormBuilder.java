@@ -14,14 +14,24 @@ import org.apache.commons.lang3.StringUtils;
  */
 public class GenericFormBuilder {
 
-  String errStyle = "error";
-  String okStyle = "";
   String requiredChars = " *";
   String addToLabel = ": ";
   String labelStyle = "";
   String submitLabel = "OK";
   String submitClass = "";
 
+  String divSuccessClass = "has-success";
+  String divErrorClass = "has-error";
+
+  public void setDivSuccessClass(String divSuccessClass) {
+    this.divSuccessClass = divSuccessClass;
+  }
+
+  public void setDivErrorClass(String divErrorClass) {
+    this.divErrorClass = divErrorClass;
+  }
+
+  
   final public String getGenericForm(String id, String formAction,
       List< FormCheckerElement> elements, boolean isMultipart, boolean firstRun,
       FormChecker fc) {
@@ -44,7 +54,7 @@ public class GenericFormBuilder {
     int lastTabIndex = 0;
     for(FormCheckerElement elem : elements){
       // label
-      Wrapper elementWrapper = getWrapperForElem(elem);
+      Wrapper elementWrapper = getWrapperForElem(elem, firstRun);
       formHtml.append(elementWrapper.start);
       formHtml.append(getErrors(elem, firstRun));
       boolean displayLabel = !StringUtils.isEmpty(elem.getDescription()); 
@@ -123,8 +133,19 @@ public class GenericFormBuilder {
 
 
   // returns the HTML code that should be given out, before and after an input-element is written
-  public Wrapper getWrapperForElem(FormCheckerElement elem) {
-    return new Wrapper("<div class=\"form-group\">", "</div>");
+  public Wrapper getWrapperForElem(FormCheckerElement elem, boolean firstRun) {
+    String state = "";
+    if (!firstRun) {
+      if (!elem.isValid()) {
+        state = " " + divErrorClass;
+      } else {
+        state = " " + divSuccessClass;
+      }
+      
+    }
+    
+
+    return new Wrapper("<div class=\"form-group"+ state +"\">", "</div>");
   }
 
 
@@ -149,13 +170,6 @@ public class GenericFormBuilder {
   public String getLabelForElement(FormCheckerElement e, TagAttributes attribs,
       boolean firstRun) {
 
-    
-    String statusClassToAdd = errStyle;
-    if (firstRun || e.isValid()) {
-      statusClassToAdd = okStyle;
-    } 
-
-    attribs.addToAttribute("class", statusClassToAdd);
     
     return ("<label "+Utils.buildAttributes(attribs)+" for=\"form_" + e.getName() + "\""
         + " id=\"" + e.getName() + "_label\">" + e.getDescription() + addToLabel
