@@ -1,6 +1,5 @@
 package de.jformchecker;
 
-import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class BasicMaterialLightFormBuilder extends GenericFormBuilder{

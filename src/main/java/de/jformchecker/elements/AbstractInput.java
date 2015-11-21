@@ -17,7 +17,6 @@ import de.jformchecker.FormChecker;
 import de.jformchecker.FormCheckerElement;
 import de.jformchecker.Utils;
 import de.jformchecker.Validator;
-import de.jformchecker.config.HTML5Mode;
 import de.jformchecker.criteria.MaxLength;
 
 /**

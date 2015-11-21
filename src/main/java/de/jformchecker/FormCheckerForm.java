@@ -18,9 +18,8 @@ public abstract class FormCheckerForm {
     return formTagAttributes;
   }
 
-  public void setFormTagAttributes(Map<String, String> formTagAttributes) {
-    //this.formTagAttributes.;
-    // TODO.
+  public void setFormTagAttributes(LinkedHashMap<String, String> formTagAttributes) {
+    this.formTagAttributes = new TagAttributes(formTagAttributes);
   }
 
   public Map<String, FormCheckerElement> getElementsAsMap() {

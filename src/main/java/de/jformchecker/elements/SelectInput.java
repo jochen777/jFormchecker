@@ -3,10 +3,7 @@ package de.jformchecker.elements;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-
 import de.jformchecker.FormCheckerElement;
-import de.jformchecker.Validator;
 
 public class SelectInput extends AbstractInput implements FormCheckerElement {
 

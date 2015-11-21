@@ -42,4 +42,17 @@ public class TagAttributes {
     return attributes.keySet();
   }
 
+
+  public void add(TagAttributes formAttributes) {
+    for (String key : formAttributes.attributes.keySet()) {
+      this.addToAttribute(key, formAttributes.attributes.get(key));
+    }
+  }
+
+  public void add(LinkedHashMap<String, String> attribs) {
+    for (String key : attribs.keySet()) {
+      this.addToAttribute(key, attribs.get(key));
+    }
+  }
+
 }

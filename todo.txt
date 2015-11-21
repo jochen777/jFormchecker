@@ -44,9 +44,9 @@
 * add novalidate to form if wanted to disable html5 validation (OK)
 * fix missing space between attributes (maxlenght) (OK)
 * make addForm in Formchecker mandatory. Disable adding simple fields directly to fc (OK)
-* add possibility to add attributes to form-tag. (maybe using this for disabling html5 validation)
+* add possibility to add attributes to form-tag. (maybe using this for disabling html5 validation) (OK)
 * bootstrap style error-handling
-* check, if FormCheckerElement can have less (public) methods
+* check, if FormCheckerElement can have less (public) methods. Favor protected over private
 * different placeholder mode
 * generate from bean (with annotations for descriptions, validation...) / * check bean-validation
 * javascript validaton
@@ -56,6 +56,8 @@
 * multi-select (means: brand -> modell...)
 * groups of beans in form (example: product, adress) 
 * for security: Cut input after a max input field lenght - despite of maxlen!!
+* include a richtext editor
+* create possiblity to change order of label, error-text and input
 
 * generate standard-form with alternative rendering in template (for mobile)
 * more attributes: (http://www.w3schools.com/tags/tag_input.asp)

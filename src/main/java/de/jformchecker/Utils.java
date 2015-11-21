@@ -1,6 +1,5 @@
 package de.jformchecker;
 
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -25,17 +24,18 @@ public class Utils {
    public static String buildAttributes(Map<String, String> attributes) {
     StringBuilder attrStr = new StringBuilder();
     for (String attribute : attributes.keySet()) {
-      attrStr.append(attribute).append("=\"").append(attributes.get(attribute)).append("\" ");
+      if (StringUtils.isEmpty(attributes.get(attribute))) {
+        attrStr.append(attribute);
+      } else {
+        attrStr.append(attribute).append("=\"").append(attributes.get(attribute)).append("\"");
+      }
+      attrStr.append(" ");
     }
     return attrStr.toString();
   }
 
    public static String buildAttributes(TagAttributes attributes) {
-     StringBuilder attrStr = new StringBuilder();
-     for (String attribute : attributes.keySet()) {
-       attrStr.append(attribute).append("=\"").append(attributes.get(attribute)).append("\" ");
-     }
-     return attrStr.toString();
+     return Utils.buildAttributes(attributes.attributes);
    }
 
    

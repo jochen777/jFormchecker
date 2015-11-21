@@ -2,7 +2,6 @@ package de.jformchecker;
 
 import java.security.SecureRandom;
 import java.util.Base64;
-import java.util.LinkedHashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;

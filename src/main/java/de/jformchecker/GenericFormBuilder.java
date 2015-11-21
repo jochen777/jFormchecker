@@ -26,16 +26,15 @@ public class GenericFormBuilder {
       List< FormCheckerElement> elements, boolean isMultipart, boolean firstRun,
       FormChecker fc) {
     StringBuilder formHtml = new StringBuilder();
-    String novalidateAddition = "";
-    if (fc.getForm() != null && fc.getForm().html5Validation == false) {
-      novalidateAddition = " novalidate ";
-    }
+    
+    TagAttributes formTagAttributes = createFormTagAttributes(fc.getForm()); 
+    
     if (isMultipart) {
-      formHtml.append("<form name=\"" + id + "\" "+novalidateAddition+"id=\"form_" + id + "\" action=\"" + formAction
-          + "\" method=\"GET\" enctype=\"multipart/form-data\">\n");
+      formHtml.append("<form name=\"" + id + "\" id=\"form_" + id + "\" action=\"" + formAction
+          + "\" "+Utils.buildAttributes(formTagAttributes)+"  method=\"GET\" enctype=\"multipart/form-data\">\n");
     } else {
-      formHtml.append("<form name=\"" + id + "\" "+novalidateAddition+"id=\"form_" + id + "\" "+
-          Utils.buildAttributes(getFormAttributes())+" action=\"" + formAction
+      formHtml.append("<form name=\"" + id + "\" id=\"form_" + id + "\" "+
+          Utils.buildAttributes(formTagAttributes)+" action=\"" + formAction
           + "\" method=\"GET\" >\n");
     }
     formHtml.append(getSubmittedTag(id));
@@ -70,6 +69,17 @@ public class GenericFormBuilder {
     formHtml.append("</form>\n");
 
     return formHtml.toString();
+  }
+
+
+  private TagAttributes createFormTagAttributes(FormCheckerForm form) {
+    TagAttributes atribs = new TagAttributes();
+    atribs.add(getFormAttributes());
+    atribs.add(form.getFormTagAttributes());
+    if (!form.html5Validation) {
+      atribs.addToAttribute("novalidate", "");
+    }
+    return atribs;
   }
 
 

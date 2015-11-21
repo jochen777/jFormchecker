@@ -5,8 +5,6 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import de.jformchecker.config.HTML5Mode;
-
 /**
  * Interface for Input-Elements handled by formchecker
  * 

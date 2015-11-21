@@ -11,7 +11,6 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import de.jformchecker.FormChecker;
-import de.jformchecker.FormCheckerElement;
 import de.jformchecker.FormCheckerForm;
 import de.jformchecker.criteria.Criteria;
 import de.jformchecker.elements.TextInput;

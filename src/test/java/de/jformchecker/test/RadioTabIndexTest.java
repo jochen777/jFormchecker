@@ -1,9 +1,6 @@
 package de.jformchecker.test;
 
-import static org.junit.Assert.assertEquals;
-
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,10 +9,8 @@ import org.junit.Assert;
 
 import de.jformchecker.FormChecker;
 import de.jformchecker.FormCheckerForm;
-import de.jformchecker.criteria.Criteria;
 import de.jformchecker.elements.RadioInput;
 import de.jformchecker.elements.SelectInput;
-import de.jformchecker.elements.TextInput;
 
 public class RadioTabIndexTest {
 
@@ -37,7 +32,7 @@ public class RadioTabIndexTest {
 
     ExampleFormTest form = new ExampleFormTest();
     FormChecker fc = new FormChecker(formId, request);
-    fc.addForm(new Form());
+    fc.addForm(form);
     fc.run();
     System.out.println(fc.getCompleteForm());
   }
