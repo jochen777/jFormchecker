@@ -1,5 +1,6 @@
 package de.jformchecker;
 
+import de.jformchecker.criteria.MessageOnError;
 
 /**
  * A criterion that can evaluate to <code>true</code> or <code>false</code>.

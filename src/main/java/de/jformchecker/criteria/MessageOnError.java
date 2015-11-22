@@ -1,4 +1,4 @@
-package de.jformchecker;
+package de.jformchecker.criteria;
 
 /**
  * A description of an object's invalid state.

@@ -41,23 +41,14 @@ public abstract class GenericFormBuilder {
   public abstract String getErrors(FormCheckerElement e, boolean firstRun);
 
 
-  final public String getGenericForm(String id, String formAction,
+  final public String generateGenericForm(String id, String formAction,
       List<FormCheckerElement> elements, boolean isMultipart, boolean firstRun, FormChecker fc) {
     // RFE: Get rid of this fc. object here. better: give FormCheckerForm
     StringBuilder formHtml = new StringBuilder();
 
     TagAttributes formTagAttributes = createFormTagAttributes(fc.getForm());
 
-    if (isMultipart) {
-      formHtml.append("<form name=\"" + id + "\" id=\"form_" + id + "\" action=\"" + formAction
-          + "\" " + Utils.buildAttributes(formTagAttributes)
-          + "  method=\"GET\" enctype=\"multipart/form-data\">\n");
-    } else {
-      formHtml.append("<form name=\"" + id + "\" id=\"form_" + id + "\" "
-          + Utils.buildAttributes(formTagAttributes) + " action=\"" + formAction
-          + "\" method=\"GET\" >\n");
-    }
-    formHtml.append(getSubmittedTag(id));
+    formHtml.append(generateFormStartTag(id, formAction, isMultipart, formTagAttributes));
     if (fc.protectedAgainstCSRF) {
       formHtml.append(fc.buildCSRFTokens());
     }
@@ -91,9 +82,32 @@ public abstract class GenericFormBuilder {
       lastTabIndex = elem.getLastTabIndex();
     }
     formHtml.append(getSubmit(lastTabIndex + 1, fc.getForm().getSubmitLabel()));
-    formHtml.append("</form>\n");
+    formHtml.append(getEndFormTag());
 
     return formHtml.toString();
+  }
+
+
+  public String getEndFormTag() {
+    return "</form>\n";
+  }
+
+
+  // RFE: Better: Less Elements
+  public String generateFormStartTag(String id, String formAction, boolean isMultipart,
+       TagAttributes formTagAttributes) {
+    StringBuilder formStartTag = new StringBuilder();
+    if (isMultipart) {
+      formStartTag.append("<form name=\"" + id + "\" id=\"form_" + id + "\" action=\"" + formAction
+          + "\" " + Utils.buildAttributes(formTagAttributes)
+          + "  method=\"GET\" enctype=\"multipart/form-data\">\n");
+    } else {
+      formStartTag.append("<form name=\"" + id + "\" id=\"form_" + id + "\" "
+          + Utils.buildAttributes(formTagAttributes) + " action=\"" + formAction
+          + "\" method=\"GET\" >\n");
+    }
+    formStartTag.append(getSubmittedTag(id));
+    return formStartTag.toString();
   }
 
 

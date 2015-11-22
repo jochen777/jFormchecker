@@ -161,7 +161,7 @@ public class FormChecker {
   }
 
   public String getGenericForm() {
-    return formBuilder.getGenericForm(id, formAction, form.elements, isMultipart, firstRun, this);
+    return formBuilder.generateGenericForm(id, formAction, form.elements, isMultipart, firstRun, this);
   }
 
   //TODO: is neeeded?
