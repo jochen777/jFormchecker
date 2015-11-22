@@ -34,7 +34,7 @@ public class RadioTabIndexTest {
     FormChecker fc = new FormChecker(formId, request);
     fc.addForm(ExampleFormBuilder.getComplexForm());
     fc.run();
-    System.out.println(fc.getCompleteForm());
+    Assert.assertTrue("Form- should contain form-tag", fc.getCompleteForm().contains("<form"));
   }
 
 
