@@ -4,8 +4,6 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import de.jformchecker.FormChecker;
-import de.jformchecker.FormCheckerForm;
-import de.jformchecker.elements.TextInput;
 import de.jformchecker.test.builders.ExampleFormBuilder;
 import de.jformchecker.test.builders.RequestBuilders;
 

@@ -3,7 +3,6 @@ package de.jformchecker.themes;
 import java.util.Map;
 
 import de.jformchecker.FormCheckerElement;
-import de.jformchecker.GenericFormBuilder;
 import de.jformchecker.TagAttributes;
 import de.jformchecker.Wrapper;
 

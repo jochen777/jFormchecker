@@ -14,7 +14,6 @@ import javax.servlet.http.HttpServletResponse;
 import de.jformchecker.FormChecker;
 import de.jformchecker.Utils;
 import de.jformchecker.elements.DateInput;
-import de.jformchecker.themes.BasicBootstrapFormBuilder;
 import de.jformchecker.themes.TwoColumnBootstrapFormBuilder;
 import freemarker.template.Configuration;
 import freemarker.template.Template;

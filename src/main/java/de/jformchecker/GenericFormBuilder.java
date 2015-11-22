@@ -19,6 +19,28 @@ public abstract class GenericFormBuilder {
   String submitClass = "";
 
 
+  protected abstract String getHelpTag(String helpText, FormCheckerElement elem);
+
+
+  public abstract TagAttributes getLabelAttributes(FormCheckerElement elem);
+
+
+  public abstract Wrapper getWrapperForInput(FormCheckerElement elem);
+
+
+  public abstract TagAttributes getFormAttributes();
+
+
+  public abstract void addAttributesToInputFields(Map<String, String> attribs, FormCheckerElement elem);
+
+
+  // returns the HTML code that should be given out, before and after an input-element is written
+  public abstract Wrapper getWrapperForElem(FormCheckerElement elem, boolean firstRun);
+
+
+  public abstract String getErrors(FormCheckerElement e, boolean firstRun);
+
+
   final public String getGenericForm(String id, String formAction,
       List<FormCheckerElement> elements, boolean isMultipart, boolean firstRun, FormChecker fc) {
     // RFE: Get rid of this fc. object here. better: give FormCheckerForm
@@ -75,9 +97,6 @@ public abstract class GenericFormBuilder {
   }
 
 
-  protected abstract String getHelpTag(String helpText, FormCheckerElement elem);
-
-
   private TagAttributes createFormTagAttributes(FormCheckerForm form) {
     TagAttributes atribs = new TagAttributes();
     atribs.add(getFormAttributes());
@@ -89,21 +108,6 @@ public abstract class GenericFormBuilder {
   }
 
 
-  public abstract TagAttributes getLabelAttributes(FormCheckerElement elem);
-
-
-  public abstract Wrapper getWrapperForInput(FormCheckerElement elem);
-
-
-  public abstract TagAttributes getFormAttributes();
-
-  
-  public abstract void addAttributesToInputFields(Map<String, String> attribs, FormCheckerElement elem);
-
-
-  // returns the HTML code that should be given out, before and after an input-element is written
-  public abstract Wrapper getWrapperForElem(FormCheckerElement elem, boolean firstRun);
-
   public String getSubmit(int tabOrder, String submitLabel) {
     return "<input tabindex=\"" + tabOrder + "\" class=\"" + submitClass
         + "\" type=\"submit\" value=\"" + submitLabel + "\">\n";
@@ -113,9 +117,6 @@ public abstract class GenericFormBuilder {
     return this.getSubmit(0, submitLabel);
   }
 
-
-
-  public abstract String getErrors(FormCheckerElement e, boolean firstRun);
 
 
   public String getLabelForElement(FormCheckerElement e, TagAttributes attribs, boolean firstRun) {

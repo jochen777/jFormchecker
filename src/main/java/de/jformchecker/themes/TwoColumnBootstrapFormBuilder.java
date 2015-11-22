@@ -1,7 +1,6 @@
 package de.jformchecker.themes;
 
 import de.jformchecker.FormCheckerElement;
-import de.jformchecker.GenericFormBuilder;
 import de.jformchecker.TagAttributes;
 import de.jformchecker.Wrapper;
 

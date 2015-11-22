@@ -16,7 +16,6 @@ import org.apache.commons.lang3.StringUtils;
 import de.jformchecker.Criterion;
 import de.jformchecker.FormChecker;
 import de.jformchecker.FormCheckerElement;
-import de.jformchecker.GenericFormBuilder;
 import de.jformchecker.TagAttributes;
 import de.jformchecker.Utils;
 import de.jformchecker.Validator;
