@@ -16,6 +16,7 @@ import de.jformchecker.criteria.Criteria;
 import de.jformchecker.elements.TextInput;
 import de.jformchecker.test.builders.ExampleFormBuilder;
 import de.jformchecker.test.builders.RequestBuilders;
+import de.jformchecker.validator.DefaultValidator;
 
 public class FormTests {
 
@@ -23,7 +24,7 @@ public class FormTests {
   public void testXSS() {
     TextInput ti = buildExampleTextInput();
     HttpServletRequest request = RequestBuilders.buildExampleHttpRequest();
-    ti.init(request, false);
+    ti.init(request, false, new DefaultValidator());
     String inputTag = ti.getInputTag();
     assertEquals(
         "<input id=\"form_firstname\" tabindex=\"0\" type=\"text\" name=\"firstname\" value=\"Jochen Pier&lt;bold&gt;\">",
@@ -36,7 +37,7 @@ public class FormTests {
   public void testPrefillText() {
     TextInput ti = buildExampleTextInput();
     HttpServletRequest request = RequestBuilders.buildEmptyHttpRequest();
-    ti.init(request, true);
+    ti.init(request, true, new DefaultValidator());
     String inputTag = ti.getInputTag();
     assertEquals(
         "<input id=\"form_firstname\" tabindex=\"0\" type=\"text\" name=\"firstname\" value=\"Jochen\">",

@@ -48,10 +48,9 @@
 * bootstrap style help-handling (OK)
 * bootstrap style error-handling (OK)
 * Tests: Refactor to use ExampleFormBuilder. Move Builders to own package (OK)
-* Search for every "\ and replace it with the TagAttribute Builder
-* check, if FormCheckerElement can have less (public) methods. Favor protected over private
-* different placeholder mode
-* generate from bean (with annotations for descriptions, validation...) / * check bean-validation
+* Search for every "\ and replace it with the TagAttribute Builder (OK)
+* check, if FormCheckerElement can have less (public) methods. Favor protected over private (OK)
+* generate from bean (with annotations for descriptions, validation...) / * check bean-validation (OK)
 * javascript validaton
 * handle image - uploads
 * enable ajax handling

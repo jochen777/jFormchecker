@@ -18,8 +18,8 @@ import de.jformchecker.FormChecker;
 import de.jformchecker.FormCheckerElement;
 import de.jformchecker.TagAttributes;
 import de.jformchecker.Utils;
-import de.jformchecker.Validator;
 import de.jformchecker.criteria.MaxLength;
+import de.jformchecker.validator.Validator;
 
 /**
  * Parent Element for all Formchecker elements Common stuff like validation...
@@ -89,13 +89,12 @@ public abstract class AbstractInput implements FormCheckerElement {
   }
   
   @Override
-  public void init(HttpServletRequest request, boolean firstRun) {
+  public void init(HttpServletRequest request, boolean firstRun, Validator validator) {
     if (firstRun) {
       this.setValue(this.getPreSetValue());
     } else {
       this.setValue(request.getParameter(this.getName()));
-      Validator v = new Validator();
-      String errMsg = v.validate(this);
+      String errMsg = validator.validate(this);
       if (errMsg != null) {
         this.valid = false;
         this.setErrorMessage(errMsg);

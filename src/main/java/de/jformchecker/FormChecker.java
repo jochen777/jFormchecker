@@ -11,6 +11,8 @@ import org.apache.commons.lang3.StringEscapeUtils;
 import de.jformchecker.criteria.Criteria;
 import de.jformchecker.criteria.MaxLength;
 import de.jformchecker.themes.BasicFormBuilder;
+import de.jformchecker.validator.DefaultValidator;
+import de.jformchecker.validator.Validator;
 
 /**
  * FormChecker handles the initialisation, error- and submit status. This object should be stored to
@@ -22,6 +24,7 @@ public class FormChecker {
   boolean isMultipart = false;
   boolean isValid = true;
   FormCheckerForm form = null;
+  Validator validator = new DefaultValidator();
 
   boolean protectedAgainstCSRF = false; // TBD: Default no protection, because the normal case is
                                         // not logged in?!?
@@ -49,6 +52,10 @@ public class FormChecker {
   public FormChecker setProtectAgainstCSRF() {
     protectedAgainstCSRF = true;
     return this;
+  }
+
+  public void setValidator(Validator validator) {
+    this.validator = validator;
   }
 
   
@@ -141,7 +148,7 @@ public class FormChecker {
 
     // process and validate each field
     for(FormCheckerElement elem : form.getElements()){
-      elem.init(req, firstRun);
+      elem.init(req, firstRun, validator);
       if (!elem.isValid()) {
         isValid = false;
       }

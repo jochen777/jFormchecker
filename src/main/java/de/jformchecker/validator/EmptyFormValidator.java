@@ -1,4 +1,4 @@
-package de.jformchecker.formvalidator;
+package de.jformchecker.validator;
 
 import de.jformchecker.FormCheckerForm;
 import de.jformchecker.FormValidator;

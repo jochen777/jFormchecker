@@ -5,7 +5,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import de.jformchecker.FormCheckerElement;
-import de.jformchecker.Validator;
+import de.jformchecker.validator.Validator;
 
 public class CheckboxInput extends AbstractInput implements FormCheckerElement {
 
@@ -35,7 +35,7 @@ public class CheckboxInput extends AbstractInput implements FormCheckerElement {
   }
   
   @Override
-  public void init(HttpServletRequest request, boolean firstRun) {
+  public void init(HttpServletRequest request, boolean firstRun, Validator validator) {
     if (firstRun) {
       this.setValue(this.getPreSetValue());
     } else {
@@ -45,9 +45,7 @@ public class CheckboxInput extends AbstractInput implements FormCheckerElement {
       } else {
         this.value = "false";
       }
-      
-      Validator v = new Validator();
-      String errMsg = v.validate(this);
+      String errMsg = validator.validate(this);
       if (errMsg != null) {
         this.valid = false;
         this.setErrorMessage(errMsg);

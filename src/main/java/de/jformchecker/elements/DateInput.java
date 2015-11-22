@@ -14,7 +14,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import de.jformchecker.FormCheckerElement;
 import de.jformchecker.Utils;
-import de.jformchecker.Validator;
+import de.jformchecker.validator.Validator;
 
 public class DateInput extends AbstractInput implements FormCheckerElement {
 
@@ -80,7 +80,7 @@ public class DateInput extends AbstractInput implements FormCheckerElement {
   }
 
   @Override
-  public void init(HttpServletRequest request, boolean firstRun) {
+  public void init(HttpServletRequest request, boolean firstRun, Validator validator) {
     if (firstRun) {
       this.setValue(this.getPreSetValue());
     } else {
@@ -101,8 +101,7 @@ public class DateInput extends AbstractInput implements FormCheckerElement {
           formater.setLenient(false);
           internalDate = formater.parse(dateVal);
           this.valid = true;
-          Validator v = new Validator();
-          String errMsg = v.validate(this);
+          String errMsg = validator.validate(this);
           if (errMsg != null) {
             this.valid = false;
             this.setErrorMessage(errMsg);

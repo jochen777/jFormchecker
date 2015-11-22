@@ -5,6 +5,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import de.jformchecker.FormCheckerElement;
+import de.jformchecker.validator.Validator;
 
 public class SimpleLabel extends AbstractInput implements FormCheckerElement {
 
@@ -26,6 +27,6 @@ public class SimpleLabel extends AbstractInput implements FormCheckerElement {
   }
 
   @Override
-  public void init(HttpServletRequest request, boolean firstRun) {}
+  public void init(HttpServletRequest request, boolean firstRun, Validator validator) {}
 
 }
