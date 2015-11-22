@@ -12,39 +12,27 @@ import org.apache.commons.lang3.StringUtils;
  * @author jochen
  *
  */
-public class GenericFormBuilder {
+public abstract class GenericFormBuilder {
 
   String requiredChars = " *";
   String addToLabel = ": ";
-  String labelStyle = "";
-  String submitLabel = "OK";
   String submitClass = "";
 
-  String divSuccessClass = "has-success";
-  String divErrorClass = "has-error";
 
-  public void setDivSuccessClass(String divSuccessClass) {
-    this.divSuccessClass = divSuccessClass;
-  }
-
-  public void setDivErrorClass(String divErrorClass) {
-    this.divErrorClass = divErrorClass;
-  }
-
-  
   final public String getGenericForm(String id, String formAction,
-      List< FormCheckerElement> elements, boolean isMultipart, boolean firstRun,
-      FormChecker fc) {
+      List<FormCheckerElement> elements, boolean isMultipart, boolean firstRun, FormChecker fc) {
+    // RFE: Get rid of this fc. object here. better: give FormCheckerForm
     StringBuilder formHtml = new StringBuilder();
-    
-    TagAttributes formTagAttributes = createFormTagAttributes(fc.getForm()); 
-    
+
+    TagAttributes formTagAttributes = createFormTagAttributes(fc.getForm());
+
     if (isMultipart) {
       formHtml.append("<form name=\"" + id + "\" id=\"form_" + id + "\" action=\"" + formAction
-          + "\" "+Utils.buildAttributes(formTagAttributes)+"  method=\"GET\" enctype=\"multipart/form-data\">\n");
+          + "\" " + Utils.buildAttributes(formTagAttributes)
+          + "  method=\"GET\" enctype=\"multipart/form-data\">\n");
     } else {
-      formHtml.append("<form name=\"" + id + "\" id=\"form_" + id + "\" "+
-          Utils.buildAttributes(formTagAttributes)+" action=\"" + formAction
+      formHtml.append("<form name=\"" + id + "\" id=\"form_" + id + "\" "
+          + Utils.buildAttributes(formTagAttributes) + " action=\"" + formAction
           + "\" method=\"GET\" >\n");
     }
     formHtml.append(getSubmittedTag(id));
@@ -52,12 +40,12 @@ public class GenericFormBuilder {
       formHtml.append(fc.buildCSRFTokens());
     }
     int lastTabIndex = 0;
-    for(FormCheckerElement elem : elements){
+    for (FormCheckerElement elem : elements) {
       // label
       Wrapper elementWrapper = getWrapperForElem(elem, firstRun);
       formHtml.append(elementWrapper.start);
       formHtml.append(getErrors(elem, firstRun));
-      boolean displayLabel = !StringUtils.isEmpty(elem.getDescription()); 
+      boolean displayLabel = !StringUtils.isEmpty(elem.getDescription());
       if (displayLabel) {
         formHtml.append(getLabelForElement(elem, getLabelAttributes(elem), firstRun)).append("\n");
       }
@@ -71,32 +59,24 @@ public class GenericFormBuilder {
       if (!StringUtils.isEmpty(elem.getHelpText())) {
         formHtml.append(getHelpTag(elem.getHelpText(), elem));
       }
-      
+
       if (displayLabel) {
         formHtml.append("\n<br>"); // only append nl, if something was given
-                               // out
+        // out
       }
       formHtml.append(inputWrapper.end);
       formHtml.append(elementWrapper.end);
       lastTabIndex = elem.getLastTabIndex();
     }
-    formHtml.append(getSubmit(lastTabIndex + 1));
+    formHtml.append(getSubmit(lastTabIndex + 1, fc.getForm().getSubmitLabel()));
     formHtml.append("</form>\n");
 
     return formHtml.toString();
   }
 
 
-  protected String getHelpTag(String helpText, FormCheckerElement elem) {
-    return "<span id=\"" +GenericFormBuilder.getHelpBlockId(elem) + "\" class=\"help-block\">" +
-        helpText + 
-        "</span>";
-  }
+  protected abstract String getHelpTag(String helpText, FormCheckerElement elem);
 
-  public static String getHelpBlockId(FormCheckerElement elem) {
-    // RFE: Add FC-ID here, so we can have more than one form on one page.
-    return "helpBlock_" + elem.getName(); 
-  }
 
   private TagAttributes createFormTagAttributes(FormCheckerForm form) {
     TagAttributes atribs = new TagAttributes();
@@ -109,71 +89,39 @@ public class GenericFormBuilder {
   }
 
 
-  public TagAttributes getLabelAttributes(FormCheckerElement elem) {
-    TagAttributes attributes = new TagAttributes();
-    attributes.put("class", "col-sm-2 control-label");
-    return attributes;
-  }
+  public abstract TagAttributes getLabelAttributes(FormCheckerElement elem);
 
 
-  public Wrapper getWrapperForInput(FormCheckerElement elem) {
-    return new Wrapper("<div class=\"col-sm-10\">", "</div>");
-  }
+  public abstract Wrapper getWrapperForInput(FormCheckerElement elem);
 
 
-  public TagAttributes getFormAttributes() {
-    TagAttributes attributes = new TagAttributes();
-    attributes.put("class", "form-horizontal");
-    return attributes;
-  }
+  public abstract TagAttributes getFormAttributes();
 
-  public void addAttributesToInputFields(Map<String, String> attribs, FormCheckerElement elem) {
-    attribs.put("class", "form-control");
-  }
+  
+  public abstract void addAttributesToInputFields(Map<String, String> attribs, FormCheckerElement elem);
 
 
   // returns the HTML code that should be given out, before and after an input-element is written
-  public Wrapper getWrapperForElem(FormCheckerElement elem, boolean firstRun) {
-    String state = "";
-    if (!firstRun) {
-      if (!elem.isValid()) {
-        state = " " + divErrorClass;
-      } else {
-        state = " " + divSuccessClass;
-      }
-      
-    }
-    
+  public abstract Wrapper getWrapperForElem(FormCheckerElement elem, boolean firstRun);
 
-    return new Wrapper("<div class=\"form-group"+ state +"\">", "</div>");
-  }
-
-
-  public String getSubmit(int tabOrder) {
+  public String getSubmit(int tabOrder, String submitLabel) {
     return "<input tabindex=\"" + tabOrder + "\" class=\"" + submitClass
         + "\" type=\"submit\" value=\"" + submitLabel + "\">\n";
   }
 
-  public String getSubmit() {
-    return this.getSubmit(0);
+  public String getSubmit(String submitLabel) {
+    return this.getSubmit(0, submitLabel);
   }
 
 
 
-  public String getErrors(FormCheckerElement e, boolean firstRun) {
-    if (!firstRun && !e.isValid()) {
-      return ("Problem: " + e.getErrorMessage() + "!!<br>");
-    }
-    return "";
-  }
+  public abstract String getErrors(FormCheckerElement e, boolean firstRun);
 
-  public String getLabelForElement(FormCheckerElement e, TagAttributes attribs,
-      boolean firstRun) {
 
-    
-    return ("<label "+Utils.buildAttributes(attribs)+" for=\"form_" + e.getName() + "\""
+  public String getLabelForElement(FormCheckerElement e, TagAttributes attribs, boolean firstRun) {
+    return ("<label " + Utils.buildAttributes(attribs) + " for=\"form_" + e.getName() + "\""
         + " id=\"" + e.getName() + "_label\">" + e.getDescription() + addToLabel
-       + (e.isRequired() ? requiredChars : "") + "</label>");
+        + (e.isRequired() ? requiredChars : "") + "</label>");
   }
 
   public String getSubmittedTag(String id) {

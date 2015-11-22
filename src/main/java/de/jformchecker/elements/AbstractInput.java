@@ -54,7 +54,7 @@ public abstract class AbstractInput implements FormCheckerElement {
     // help-text
     if (!StringUtils.isEmpty(helpText)){
       allAttribs.append(Utils.buildAttributes(
-          new TagAttributes("aria-describedby", GenericFormBuilder.getHelpBlockId(this))));
+          new TagAttributes("aria-describedby", FormChecker.getHelpBlockId(this))));
     }
     return allAttribs.toString();
   }
@@ -111,10 +111,11 @@ public abstract class AbstractInput implements FormCheckerElement {
 
   @Override
   public String getLabel() {
-    Map<String, String> map = new LinkedHashMap<>(); // TODO! - use atrribues
+    Map<String, String> map = new LinkedHashMap<>(); 
     return parent.getLabelForElement(this, map);
   }
 
+  // TODO: Remove this!!
   @Override
   public String getLabelParam(String style, String classes) {
     Map<String, String> map = new LinkedHashMap<>(); // TODO! - use atrribues and put style and

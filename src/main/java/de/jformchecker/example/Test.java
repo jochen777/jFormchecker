@@ -11,10 +11,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import de.jformchecker.BasicBootstrapFormBuilder;
 import de.jformchecker.FormChecker;
 import de.jformchecker.Utils;
 import de.jformchecker.elements.DateInput;
+import de.jformchecker.themes.BasicBootstrapFormBuilder;
+import de.jformchecker.themes.TwoColumnBootstrapFormBuilder;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
@@ -54,7 +55,7 @@ public class Test extends HttpServlet {
      */
     FormChecker fc =
         FormChecker.build("id", request, new ExampleForm()).setProtectAgainstCSRF()
-        .setFormBuilder(new BasicBootstrapFormBuilder())
+        .setFormBuilder(new TwoColumnBootstrapFormBuilder())
         .run();
 
     processResult(fc);

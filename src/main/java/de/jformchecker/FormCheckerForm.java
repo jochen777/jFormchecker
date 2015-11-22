@@ -11,7 +11,16 @@ public abstract class FormCheckerForm {
   List<FormCheckerElement> elements = new ArrayList<>();
   List<FormValidator> validators = new ArrayList<>();
   private Map<String, FormCheckerElement> fastAccess = new LinkedHashMap<>();
+  String submitLabel = "OK";
   
+  public String getSubmitLabel() {
+    return submitLabel;
+  }
+
+  public void setSubmitLabel(String submitLabel) {
+    this.submitLabel = submitLabel;
+  }
+
   private TagAttributes formTagAttributes = new TagAttributes();
   
   public TagAttributes getFormTagAttributes() {

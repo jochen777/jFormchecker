@@ -21,6 +21,10 @@ public class Utils {
     }
   }
   
+  static String getTest() {
+    return "hello";
+  }
+  
    public static String buildAttributes(Map<String, String> attributes) {
     StringBuilder attrStr = new StringBuilder();
     for (String attribute : attributes.keySet()) {

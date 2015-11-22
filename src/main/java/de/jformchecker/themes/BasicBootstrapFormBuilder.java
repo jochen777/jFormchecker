@@ -1,6 +1,11 @@
-package de.jformchecker;
+package de.jformchecker.themes;
 
-public class BasicBootstrapFormBuilder extends GenericFormBuilder{
+import de.jformchecker.FormCheckerElement;
+import de.jformchecker.GenericFormBuilder;
+import de.jformchecker.TagAttributes;
+import de.jformchecker.Wrapper;
+
+public class BasicBootstrapFormBuilder extends BasicFormBuilder{
 
   @Override
   public TagAttributes getFormAttributes() {

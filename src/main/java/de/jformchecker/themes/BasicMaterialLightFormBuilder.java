@@ -1,8 +1,13 @@
-package de.jformchecker;
+package de.jformchecker.themes;
 
 import java.util.Map;
 
-public class BasicMaterialLightFormBuilder extends GenericFormBuilder{
+import de.jformchecker.FormCheckerElement;
+import de.jformchecker.GenericFormBuilder;
+import de.jformchecker.TagAttributes;
+import de.jformchecker.Wrapper;
+
+public class BasicMaterialLightFormBuilder extends BasicFormBuilder{
 
   @Override
   public TagAttributes getFormAttributes() {

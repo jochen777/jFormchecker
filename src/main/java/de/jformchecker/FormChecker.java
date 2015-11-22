@@ -10,6 +10,7 @@ import org.apache.commons.lang3.StringEscapeUtils;
 
 import de.jformchecker.criteria.Criteria;
 import de.jformchecker.criteria.MaxLength;
+import de.jformchecker.themes.BasicFormBuilder;
 
 /**
  * FormChecker handles the initialisation, error- and submit status. This object should be stored to
@@ -91,7 +92,7 @@ public class FormChecker {
     return Base64.getEncoder().encodeToString(bytes);
   }
 
-  GenericFormBuilder formBuilder = new GenericFormBuilder();
+  GenericFormBuilder formBuilder = new BasicFormBuilder();
 
   public GenericFormBuilder getFormBuilder() {
     return formBuilder;
@@ -104,6 +105,10 @@ public class FormChecker {
 
   // where the form is submitted to
   private String formAction = "#";
+
+  public static String getHelpBlockId(FormCheckerElement elem) {
+    return "helpBlock_" + elem.getName();
+  }
 
 
   public String getValue(String elementName) {
