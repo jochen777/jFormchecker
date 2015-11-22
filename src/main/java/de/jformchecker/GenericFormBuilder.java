@@ -4,7 +4,11 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.commons.lang3.StringUtils;
+
+import de.jformchecker.security.CSRFBuilder;
 
 /**
  * Builds: a generic form the label-elements
@@ -42,7 +46,7 @@ public abstract class GenericFormBuilder {
 
 
   final public String generateGenericForm(String id, String formAction,
-      List<FormCheckerElement> elements, boolean isMultipart, boolean firstRun, FormChecker fc) {
+      List<FormCheckerElement> elements, boolean isMultipart, boolean firstRun, FormChecker fc, HttpServletRequest req) {
     // RFE: Get rid of this fc. object here. better: give FormCheckerForm
     StringBuilder formHtml = new StringBuilder();
 
@@ -50,7 +54,8 @@ public abstract class GenericFormBuilder {
 
     formHtml.append(generateFormStartTag(id, formAction, isMultipart, formTagAttributes));
     if (fc.protectedAgainstCSRF) {
-      formHtml.append(fc.buildCSRFTokens());
+      CSRFBuilder csrfBuilder = new CSRFBuilder();
+      formHtml.append(csrfBuilder.buildCSRFTokens(req, firstRun));
     }
     int lastTabIndex = 0;
     for (FormCheckerElement elem : elements) {

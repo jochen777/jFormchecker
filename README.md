@@ -70,7 +70,7 @@ Example template output:
 ...
 <h1>The form</h1>
 
-${fc.genericForm}
+${fc.completeForm}
 
 <p>Lorem ipsum</p>
 ...

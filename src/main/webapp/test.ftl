@@ -34,7 +34,7 @@
 <div style="width:500px; margin-left:50px">
 <h1>Hello World</h1>
 <p>Lorem ipsum...</p>
-${fc.genericForm}
+${fc.completeForm}
 
 </div>
 </body>

@@ -27,11 +27,31 @@ public class FormChecker {
                                         // not logged in?!?
   String completeForm;
   int defaultMaxLenElements = 1000; // override this for each element, if you want longer vals!
-  private final SecureRandom random = new SecureRandom();
 
+  GenericFormBuilder formBuilder = new BasicFormBuilder();
+  String id;
+  private String formAction = "#";
   public static final String SUBMIT_KEY = "submitted";
   public static final String SUBMIT_VALUE_PREFIX = "FORMCHECKER_";
 
+  public FormChecker(String _id, HttpServletRequest _req) {
+    id = _id;
+    req = _req;
+  }
+  
+  public static FormChecker build(String _id, HttpServletRequest _req, FormCheckerForm form) {
+    FormChecker fc = new FormChecker(_id, _req);
+    fc.addForm(form);
+    return fc;
+  }
+
+
+  public FormChecker setProtectAgainstCSRF() {
+    protectedAgainstCSRF = true;
+    return this;
+  }
+
+  
   public boolean isValid() {
     return isValid;
   }
@@ -44,55 +64,6 @@ public class FormChecker {
     return form;
   }
 
-  public static FormChecker build(String _id, HttpServletRequest _req, FormCheckerForm form) {
-    FormChecker fc = new FormChecker(_id, _req);
-    fc.addForm(form);
-    return fc;
-  }
-
-  public FormChecker setProtectAgainstCSRF() {
-    protectedAgainstCSRF = true;
-    return this;
-  }
-
-
-  // TODO: place this in separate class.
-  String buildCSRFTokens() {
-    // is firstrun - then generate a complete new token
-    StringBuilder tags = new StringBuilder();
-    String name = "";
-    String xsrfVal = "";
-
-    String tokenName = "tokenname";
-    String tokenVal = "tokenVal";
-
-    if (!firstRun) {
-      name = req.getParameter(tokenName);
-      xsrfVal = req.getParameter(tokenVal);
-      if (xsrfVal == null || !xsrfVal.equals(req.getSession().getAttribute(name))) {
-        throw new RuntimeException("Security Problem!");
-      }
-
-    }
-    name = "token_" + Math.random();
-    xsrfVal = getRandomValue();
-    req.getSession().setAttribute(name, xsrfVal);
-
-
-    tags.append("<input type=\"hidden\" name=\"" + tokenName + "\" value=\""
-        + StringEscapeUtils.escapeHtml4(name) + "\">");
-    tags.append("<input type=\"hidden\" name=\"" + tokenVal + "\" value=\""
-        + StringEscapeUtils.escapeHtml4(xsrfVal) + "\">\n");
-    return tags.toString();
-  }
-
-  String getRandomValue() {
-    final byte[] bytes = new byte[32];
-    random.nextBytes(bytes);
-    return Base64.getEncoder().encodeToString(bytes);
-  }
-
-  GenericFormBuilder formBuilder = new BasicFormBuilder();
 
   public GenericFormBuilder getFormBuilder() {
     return formBuilder;
@@ -102,9 +73,6 @@ public class FormChecker {
     this.formBuilder = formBuilder;
     return this;
   }
-
-  // where the form is submitted to
-  private String formAction = "#";
 
   public static String getHelpBlockId(FormCheckerElement elem) {
     return "helpBlock_" + elem.getName();
@@ -129,14 +97,8 @@ public class FormChecker {
   }
 
 
-  String id;
 
-  public FormChecker(String _id, HttpServletRequest _req) {
-    id = _id;
-    req = _req;
-  }
-
-  public void prepareElement(FormCheckerElement element) {
+  private void prepareElement(FormCheckerElement element) {
     element.setFormChecker(this);
 
     // check, if maxLen is set. If not, add default-max-len
@@ -160,8 +122,8 @@ public class FormChecker {
     this.form = form;
   }
 
-  public String getGenericForm() {
-    return formBuilder.generateGenericForm(id, formAction, form.elements, isMultipart, firstRun, this);
+  private String getGenericForm() {
+    return formBuilder.generateGenericForm(id, formAction, form.elements, isMultipart, firstRun, this, req);
   }
 
   //TODO: is neeeded?
