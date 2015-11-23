@@ -61,6 +61,7 @@
 * include a richtext editor
 * create possiblity to change order of label, error-text and input
 * abstract http-request, so it can work with ANY framework
+* Support enums for validation
 
 * generate standard-form with alternative rendering in template (for mobile)
 * more attributes: (http://www.w3schools.com/tags/tag_input.asp)

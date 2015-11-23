@@ -34,6 +34,7 @@ public class FormChecker {
   GenericFormBuilder formBuilder = new BasicFormBuilder();
   String id;
   private String formAction = "#";
+
   public static final String SUBMIT_KEY = "submitted";
   public static final String SUBMIT_VALUE_PREFIX = "FORMCHECKER_";
 
@@ -103,6 +104,9 @@ public class FormChecker {
         firstRun);
   }
 
+  public void setFormAction(String formAction) {
+    this.formAction = formAction;
+  }
 
 
   private void prepareElement(FormCheckerElement element) {

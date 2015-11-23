@@ -62,7 +62,6 @@ public abstract class BaseController extends HttpServlet {
       ExampleBean bean = new ExampleBean();
       Utils.fillBean(fc.getForm().getElements(), bean);
       System.out.println("bean:" + bean);
-      System.out.println(((DateInput)fc.getForm().getElement("date")).getDateValue());
       System.out.println("--------------");
       System.out.println(Utils.getDebugOutput(fc.getForm().getElementsAsMap()));
     }
