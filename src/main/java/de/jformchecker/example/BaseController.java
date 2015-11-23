@@ -6,7 +6,6 @@ import java.util.Map;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,26 +14,18 @@ import de.jformchecker.FormChecker;
 import de.jformchecker.Utils;
 import de.jformchecker.elements.DateInput;
 import de.jformchecker.themes.TwoColumnBootstrapFormBuilder;
+import freemarker.core.ParseException;
 import freemarker.template.Configuration;
+import freemarker.template.MalformedTemplateNameException;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import freemarker.template.TemplateExceptionHandler;
+import freemarker.template.TemplateNotFoundException;
 
-/**
- * Servlet implementation class Test
- */
-@WebServlet("/Test")
-public class Test extends HttpServlet {
+public abstract class BaseController extends HttpServlet {
   private static final long serialVersionUID = 1L;
 
   Configuration cfg;
-
-  /**
-   * @see HttpServlet#HttpServlet()
-   */
-  public Test() {
-    super();
-  }
 
   private void init(ServletContext context) {
     cfg = new Configuration(Configuration.VERSION_2_3_22);
@@ -44,44 +35,29 @@ public class Test extends HttpServlet {
     cfg.setTemplateUpdateDelayMilliseconds(4);
   }
 
-  protected void doGet(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-
-    initRequest(request, response);
-
-    /****************************************
-     * prepare jFormchecker
-     */
-    FormChecker fc =
-        FormChecker.build("id", request, new ExampleForm()).setProtectAgainstCSRF()
-        .setFormBuilder(new TwoColumnBootstrapFormBuilder())
-        .run();
-
-    processResult(fc);
-
-
-
-    /* Merge data-model with template */
+  protected abstract void doGet(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException;
+  
+  /* Merge data-model with template */
+  public final void putFcInTemplate(HttpServletResponse response, FormChecker fc, String templateName)
+      throws TemplateNotFoundException, MalformedTemplateNameException, ParseException,
+      IOException {
     try {
     
       Map<String, Object> root = new HashMap<>();
 
-      /****************************************
-       * put jFormChecker in the map for the template processing
-       */
       root.put("fc", fc);
-      Template temp = cfg.getTemplate("test.ftl");
+      Template temp = cfg.getTemplate(templateName);
       temp.process(root, response.getWriter());
 
     } catch (TemplateException e1) {
       e1.printStackTrace();
     }
-
   }
   
   
 
-  private void processResult(FormChecker fc) {
+  protected void processResult(FormChecker fc) {
     if (fc.isValid()) {
       ExampleBean bean = new ExampleBean();
       Utils.fillBean(fc.getForm().getElements(), bean);
@@ -92,7 +68,7 @@ public class Test extends HttpServlet {
     }
   }
 
-  private void initRequest(HttpServletRequest request, HttpServletResponse response) {
+  protected void initRequest(HttpServletRequest request, HttpServletResponse response) {
     response.setContentType("text/html; charset=UTF-8");
     response.setCharacterEncoding("UTF-8");
 
