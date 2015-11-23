@@ -9,9 +9,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import de.jformchecker.FormChecker;
+import de.jformchecker.Utils;
 
 @WebServlet("/ajax_receive")
-public class ControllerAjaxReceive extends BaseController{
+public class ControllerAjaxReceive extends BaseController {
   private static final long serialVersionUID = 1L;
 
 
@@ -27,20 +28,12 @@ public class ControllerAjaxReceive extends BaseController{
       throws ServletException, IOException {
     initRequest(request, response);
 
-    FormChecker fc =
-        FormChecker.build("id", request, new ExampleFormShort());
+    FormChecker fc = FormChecker.build("id", request, new ExampleForm());
     fc.run();
-    if (fc.isValidAndNotFirstRun()) {        
-      response.setStatus(HttpServletResponse.SC_OK);
-      response.getWriter().write("{ \"message\": \""+"OK"+"\" }");
-      response.getWriter().flush();
-      response.getWriter().close();
-    } else {
-      response.setStatus(HttpServletResponse.SC_OK);
-      response.getWriter().write("{ \"message\": \""+"NOK"+"\" }");
-      response.getWriter().flush();
-      response.getWriter().close();
-    }
+    response.setStatus(HttpServletResponse.SC_OK);
+    response.getWriter().write(Utils.getJsonOutput(fc));
+    response.getWriter().flush();
+    response.getWriter().close();
   }
 
 }

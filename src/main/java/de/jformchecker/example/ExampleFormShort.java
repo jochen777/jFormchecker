@@ -20,10 +20,11 @@ public class ExampleFormShort extends FormCheckerForm {
         .setPlaceholerText("Mustermann")
         .setDescription("Your Lastname")
         .setHelpText("This is an example Helptext for describing this lastname field")
+        .setPreSetValue("p")    // this will fail
         .setCriterias(Criteria.accept("Pan", "Mustermann"))
         );
 
-   
+   disableHtml5Validation();
 
   }
 }

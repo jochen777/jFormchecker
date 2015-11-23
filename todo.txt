@@ -51,25 +51,28 @@
 * Search for every "\ and replace it with the TagAttribute Builder (OK)
 * check, if FormCheckerElement can have less (public) methods. Favor protected over private (OK)
 * generate from bean (with annotations for descriptions, validation...) / * check bean-validation (OK)
-* javascript validaton
+* javascript validaton (OK)
+* enable ajax handling (OK)
 * handle image - uploads
-* enable ajax handling
+* create possiblity to change order of label, error-text and input
+* for security: Cut input after a max input field lenght - despite of maxlen!!
+
+---> Release 1.0
+
 * support complex-inputs?? (adress-field that contains several own-fields?)
 * multi-select (means: brand -> modell...)
 * groups of beans in form (example: product, adress) 
-* for security: Cut input after a max input field lenght - despite of maxlen!!
 * include a richtext editor
-* create possiblity to change order of label, error-text and input
 * abstract http-request, so it can work with ANY framework
 * Support enums for validation
 
 * generate standard-form with alternative rendering in template (for mobile)
 * more attributes: (http://www.w3schools.com/tags/tag_input.asp)
 * TBD: Do not pass complete request object but only atrributes and session?
-* Perhaps form-Class mandatory? So no own handling of the form-elements within the FormChecker class
+* Perhaps form-Class mandatory? So no own handling of the form-elements within the FormChecker class (OK)
 * influence standard-form in template
 * translates for error-msg and texts
-* introduce framework modes (bootstrap/ionic/material...)
+* introduce framework modes (bootstrap/ionic/material...) (OK)
 * consider use of owasp encoder (https://www.owasp.org/index.php/OWASP_Java_Encoder_Project#tab=Use_the_Java_Encoder_Project)
 
 

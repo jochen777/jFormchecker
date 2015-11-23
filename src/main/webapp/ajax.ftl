@@ -29,43 +29,44 @@
  		 <script> 
  		// post-submit callback 
          function processJson(data)  { 
-             // for normal html responses, the first argument to the success callback 
-             // is the XMLHttpRequest object's responseText property 
+        	 highlightErrors(data.data);
+        	 setOkFields(data.okdata);
           
-             // if the ajaxForm method was passed an Options Object with the dataType 
-             // property set to 'xml' then the first argument to the success callback 
-             // is the XMLHttpRequest object's responseXML property 
-          
-             // if the ajaxForm method was passed an Options Object with the dataType 
-             // property set to 'json' then the first argument to the success callback 
-             // is the json data object returned by the server 
-          
-             alert('status: ' + data.message); 
+             if (data.status == "success") {
+             	alert('ok');
+             } 
+             console.log(data);
          } 
  		 
+ 		function highlightErrors(data) {
+ 			for (var elemName in data) {
+ 				var elemDiv = $('#form_'+elemName).parent().parent();
+ 				resetCSSField(elemDiv);
+ 				elemDiv.addClass( "has-error");
+ 			}
+ 		}
+ 		function setOkFields(data) {
+ 			for (var elemName in data) {
+ 				var elemDiv = $('#form_'+elemName).parent().parent();
+ 				resetCSSField(elemDiv);
+ 				elemDiv.addClass( "has-success");
+ 			}
+ 		}
+ 		function resetCSSField(field) {
+ 			field.removeClass("has-error");
+ 			field.removeClass("has-success");
+ 		}
+ 		
         // wait for the DOM to be loaded 
         $(document).ready(function() { 
         	
         	var options = { 
-        	        //target:        '#output1',   // target element(s) to be updated with server response 
         	        success:       processJson,  // post-submit callback 
         	 
-        	        // other available options: 
         	        url:       'ajax_receive',         // override for form's 'action' attribute 
-        	        //type:      type        // 'get' or 'post', override for form's 'method' attribute 
-        	        //dataType:  null        // 'xml', 'script', or 'json' (expected server response type) 
-        	        //clearForm: true        // clear all form fields after successful submit 
-        	        //resetForm: true        // reset the form after successful submit 
-        	 
-        	        // $.ajax options can be used here too, for example: 
-        	        //timeout:   3000 
-        	        
-        	        	dataType: 'json'
-        	        
-        	        
+        	        dataType: 'json'
         	    }; 
         	
-            // bind 'myForm' and provide a simple callback function 
             $('#form_id').ajaxForm(options); 
             
        

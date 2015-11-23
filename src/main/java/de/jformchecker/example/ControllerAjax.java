@@ -29,7 +29,7 @@ public class ControllerAjax extends BaseController{
     initRequest(request, response);
 
     FormChecker fc =
-        FormChecker.build("id", request, new ExampleFormShort())
+        FormChecker.build("id", request, new ExampleForm())
         .setFormBuilder(new TwoColumnBootstrapFormBuilder());
     fc.run();
         
