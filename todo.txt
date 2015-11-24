@@ -56,6 +56,7 @@
 * handle image - uploads
 * create possiblity to change order of label, error-text and input
 * for security: Cut input after a max input field lenght - despite of maxlen!!
+* check, why radio is not highlighted red/green
 
 ---> Release 1.0
 

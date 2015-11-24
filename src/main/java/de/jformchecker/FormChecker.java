@@ -21,7 +21,6 @@ import de.jformchecker.validator.Validator;
 public class FormChecker {
   HttpServletRequest req;
   boolean firstRun = true;
-  boolean isMultipart = false;
   boolean isValid = true;
   FormCheckerForm form = null;
   Validator validator = new DefaultValidator();
@@ -134,7 +133,7 @@ public class FormChecker {
   }
 
   private String getGenericForm() {
-    return formBuilder.generateGenericForm(id, formAction, form.elements, isMultipart, firstRun, this, req);
+    return formBuilder.generateGenericForm(id, formAction, form.elements, firstRun, this, req);
   }
 
   //TODO: is neeeded?

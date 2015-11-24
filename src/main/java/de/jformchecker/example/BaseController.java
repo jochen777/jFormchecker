@@ -35,9 +35,6 @@ public abstract class BaseController extends HttpServlet {
     cfg.setTemplateUpdateDelayMilliseconds(4);
   }
 
-  protected abstract void doGet(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException;
-  
   /* Merge data-model with template */
   public final void putFcInTemplate(HttpServletResponse response, FormChecker fc, String templateName)
       throws TemplateNotFoundException, MalformedTemplateNameException, ParseException,

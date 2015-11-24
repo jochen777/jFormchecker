@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang3.StringUtils;
 
+import de.jformchecker.elements.FileUploadInput;
 import de.jformchecker.security.CSRFBuilder;
 
 /**
@@ -46,13 +47,13 @@ public abstract class GenericFormBuilder {
 
 
   final public String generateGenericForm(String id, String formAction,
-      List<FormCheckerElement> elements, boolean isMultipart, boolean firstRun, FormChecker fc, HttpServletRequest req) {
+      List<FormCheckerElement> elements, boolean firstRun, FormChecker fc, HttpServletRequest req) {
     // RFE: Get rid of this fc. object here. better: give FormCheckerForm
     StringBuilder formHtml = new StringBuilder();
 
     TagAttributes formTagAttributes = createFormTagAttributes(fc.getForm());
 
-    formHtml.append(generateFormStartTag(id, formAction, isMultipart, formTagAttributes));
+    formHtml.append(generateFormStartTag(id, formAction, checkMultipart(elements), formTagAttributes));
     if (fc.protectedAgainstCSRF) {
       CSRFBuilder csrfBuilder = new CSRFBuilder();
       formHtml.append(csrfBuilder.buildCSRFTokens(req, firstRun));
@@ -93,6 +94,16 @@ public abstract class GenericFormBuilder {
   }
 
 
+  private boolean checkMultipart(List<FormCheckerElement> elements) {
+    for (FormCheckerElement elem : elements) {
+      if(elem instanceof FileUploadInput) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+
   public String getEndFormTag() {
     return "</form>\n";
   }
@@ -105,7 +116,7 @@ public abstract class GenericFormBuilder {
     if (isMultipart) {
       formStartTag.append("<form name=\"" + id + "\" id=\"form_" + id + "\" action=\"" + formAction
           + "\" " + Utils.buildAttributes(formTagAttributes)
-          + "  method=\"GET\" enctype=\"multipart/form-data\">\n");
+          + "  method=\"POST\" enctype=\"multipart/form-data\">\n");
     } else {
       formStartTag.append("<form name=\"" + id + "\" id=\"form_" + id + "\" "
           + Utils.buildAttributes(formTagAttributes) + " action=\"" + formAction
