@@ -1,7 +1,5 @@
 package de.jformchecker.example;
 
-import java.util.LinkedHashMap;
-
 import de.jformchecker.FormCheckerForm;
 import de.jformchecker.criteria.Criteria;
 import de.jformchecker.elements.FileUploadInput;
@@ -30,25 +28,12 @@ public class ExampleFormUpload extends FormCheckerForm {
 
     add(FileUploadInput
         .build("upload")
+        .setRequired()
         .setDescription("Your fileupload"));
     
     this.disableHtml5Validation();
 
   }
 
-  private LinkedHashMap<String, String> createSelectMap() {
-    LinkedHashMap<String, String> selectEntries = new LinkedHashMap<>();
-    selectEntries.put("green", "Green");
-    selectEntries.put("blue", "Blue");
-    selectEntries.put("yellow", "Yellow");
-    return selectEntries;
-  }
-
-  private LinkedHashMap<String, String> createRadioMap() {
-    LinkedHashMap<String, String> radioEntries = new LinkedHashMap<>();
-    radioEntries.put("one", "One $");
-    radioEntries.put("two", "Two $");
-    radioEntries.put("three", "Three $");
-    return radioEntries;
-  }
+ 
 }

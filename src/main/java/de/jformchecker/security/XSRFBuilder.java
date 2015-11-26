@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang3.StringEscapeUtils;
 
-public class CSRFBuilder {
+public class XSRFBuilder {
   
   private final SecureRandom random = new SecureRandom();
 
@@ -25,7 +25,7 @@ public class CSRFBuilder {
       name = req.getParameter(tokenName);
       xsrfVal = req.getParameter(tokenVal);
       if (xsrfVal == null || !xsrfVal.equals(req.getSession().getAttribute(name))) {
-        throw new RuntimeException("Security Problem!");
+        throw new XSRFException("Security Problem!"); 
       }
 
     }

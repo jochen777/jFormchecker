@@ -5,15 +5,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import de.jformchecker.FormChecker;
 import de.jformchecker.Utils;
-import de.jformchecker.elements.DateInput;
-import de.jformchecker.themes.TwoColumnBootstrapFormBuilder;
 import freemarker.core.ParseException;
 import freemarker.template.Configuration;
 import freemarker.template.MalformedTemplateNameException;

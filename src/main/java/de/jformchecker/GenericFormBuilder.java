@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.commons.lang3.StringUtils;
 
 import de.jformchecker.elements.FileUploadInput;
-import de.jformchecker.security.CSRFBuilder;
+import de.jformchecker.security.XSRFBuilder;
 
 /**
  * Builds: a generic form the label-elements
@@ -55,7 +55,7 @@ public abstract class GenericFormBuilder {
 
     formHtml.append(generateFormStartTag(id, formAction, checkMultipart(elements), formTagAttributes));
     if (fc.protectedAgainstCSRF) {
-      CSRFBuilder csrfBuilder = new CSRFBuilder();
+      XSRFBuilder csrfBuilder = new XSRFBuilder();
       formHtml.append(csrfBuilder.buildCSRFTokens(req, firstRun));
     }
     int lastTabIndex = 0;

@@ -7,7 +7,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
-import java.util.logging.Level;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -41,15 +40,12 @@ public class ControllerFileUpload extends BaseController {
       throws ServletException, IOException {
     initRequest(request, response);
 
-    FormChecker fc =
+    final FormChecker formChecker =
         FormChecker.build("id", request, new ExampleFormUpload())
         .setFormBuilder(new TwoColumnBootstrapFormBuilder())
         .run();
 
-
-
-
-    putFcInTemplate(response, fc, "test.ftl");
+    putFcInTemplate(response, formChecker, "test.ftl");
   }
   
   
@@ -82,7 +78,7 @@ public class ControllerFileUpload extends BaseController {
   response.setContentType("text/html;charset=UTF-8");
 
   // Create path components to save the file
-  final String path = "/tmp";   // specify your upload path.
+  final String path = "/Users/jpier/Development/sandbox/uploads";   // specify your upload path.
   final Part filePart = request.getPart("upload");
   final String fileName = getFileName(filePart);
 
@@ -125,8 +121,6 @@ public class ControllerFileUpload extends BaseController {
 }
 
 private String getFileName(final Part part) {
-  final String partHeader = part.getHeader("content-disposition");
-  System.err.println("Part Header = {0}" +partHeader);
   for (String content : part.getHeader("content-disposition").split(";")) {
       if (content.trim().startsWith("filename")) {
           return content.substring(

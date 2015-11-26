@@ -1,12 +1,8 @@
 package de.jformchecker;
 
-import java.security.SecureRandom;
-import java.util.Base64;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-
-import org.apache.commons.lang3.StringEscapeUtils;
 
 import de.jformchecker.criteria.Criteria;
 import de.jformchecker.criteria.MaxLength;
@@ -15,8 +11,8 @@ import de.jformchecker.validator.DefaultValidator;
 import de.jformchecker.validator.Validator;
 
 /**
- * FormChecker handles the initialisation, error- and submit status. This object should be stored to
- * be accessed from the template-system.
+ * FormChecker handles the initialisation, error- and submit status. 
+ * This object should be stored to be accessed from the template-system.
  */
 public class FormChecker {
   HttpServletRequest req;
