@@ -53,7 +53,7 @@
 * generate from bean (with annotations for descriptions, validation...) / * check bean-validation (OK)
 * javascript validaton (OK)
 * enable ajax handling (OK)
-* handle image - uploads
+* handle image - uploads (OK - but needs testing and maybe some utils to handle fileupload)
 * create possiblity to change order of label, error-text and input
 * for security: Cut input after a max input field lenght - despite of maxlen!!
 * check, why radio is not highlighted red/green
