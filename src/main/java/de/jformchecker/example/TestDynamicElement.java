@@ -1,6 +1,7 @@
 package de.jformchecker.example;
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -87,7 +88,12 @@ public class TestDynamicElement extends HttpServlet {
   private void processResult(FormChecker fc, HttpServletRequest request) {
     if (fc.isValidAndNotFirstRun()) {
       ExampleBean bean = new ExampleBean();
-      Utils.fillBean(fc.getForm().getElements(), bean);
+      try {
+        Utils.fillBean(fc.getForm().getElements(), bean);
+      } catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
+        // TODO Auto-generated catch block
+        e.printStackTrace();
+      }
       System.out.println("bean:" + bean);
       System.out.println(((DateInput)fc.getForm().getElement("date")).getDateValue());
       System.out.println("--------------");

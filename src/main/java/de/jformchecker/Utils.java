@@ -1,5 +1,6 @@
 package de.jformchecker;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 import java.util.Map;
 
@@ -7,16 +8,12 @@ import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.commons.lang3.StringUtils;
 
 public class Utils {
-  public static void fillBean(List<FormCheckerElement> elements, Object bean) {
+  public static void fillBean(List<FormCheckerElement> elements, Object bean) throws IllegalAccessException, InvocationTargetException, NoSuchMethodException {
     for (FormCheckerElement elem : elements) {
       String key = elem.getName();
       if (PropertyUtils.isWriteable(bean, key)) {
-        try {
           // TODO: Destinguish between Strings/Dates/Boolean...
           PropertyUtils.setSimpleProperty(bean, key, elem.getValue());
-        } catch (Exception e) {
-          System.err.println("problem with setting bean-property:" + key);
-        }
       }
     }
   }

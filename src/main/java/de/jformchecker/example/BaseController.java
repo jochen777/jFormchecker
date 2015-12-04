@@ -1,6 +1,7 @@
 package de.jformchecker.example;
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -54,7 +55,12 @@ public abstract class BaseController extends HttpServlet {
   protected void processResult(FormChecker fc) {
     if (fc.isValid()) {
       ExampleBean bean = new ExampleBean();
-      Utils.fillBean(fc.getForm().getElements(), bean);
+      try {
+        Utils.fillBean(fc.getForm().getElements(), bean);
+      } catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
+        // TODO Auto-generated catch block
+        e.printStackTrace();
+      }
       System.out.println("bean:" + bean);
       System.out.println("--------------");
       System.out.println(Utils.getDebugOutput(fc.getForm().getElementsAsMap()));
