@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import de.jformchecker.FormChecker;
-import de.jformchecker.themes.TwoColumnBootstrapFormBuilder;
 
 /**
  * Servlet implementation class Test
