@@ -60,31 +60,27 @@ public abstract class GenericFormBuilder {
     }
     int lastTabIndex = 0;
     for (FormCheckerElement elem : elements) {
+      InputElementStructure inputStruct = new InputElementStructure();
       // label
-      Wrapper elementWrapper = getWrapperForElem(elem, firstRun);
-      formHtml.append(elementWrapper.start);
-      formHtml.append(getErrors(elem, firstRun));
+      inputStruct.setErrors(getErrors(elem, firstRun));
       boolean displayLabel = !StringUtils.isEmpty(elem.getDescription());
       if (displayLabel) {
-        formHtml.append(getLabelForElement(elem, getLabelAttributes(elem), firstRun)).append("\n");
+        inputStruct.setLabel(getLabelForElement(elem, getLabelAttributes(elem), firstRun));
       }
       // input tag
       Map<String, String> attribs = new LinkedHashMap<>();
       addAttributesToInputFields(attribs, elem);
-      Wrapper inputWrapper = getWrapperForInput(elem);
-      formHtml.append(inputWrapper.start);
-      formHtml.append(elem.getInputTag(attribs));
+      inputStruct.setInput(elem.getInputTag(attribs));
       // help tag
       if (!StringUtils.isEmpty(elem.getHelpText())) {
-        formHtml.append(getHelpTag(elem.getHelpText(), elem));
+        inputStruct.setHelp(getHelpTag(elem.getHelpText(), elem));
       }
 
       if (displayLabel) {
-        formHtml.append("\n<br>"); // only append nl, if something was given
+        //formHtml.append("\n<br>"); // only append nl, if something was given
         // out
       }
-      formHtml.append(inputWrapper.end);
-      formHtml.append(elementWrapper.end);
+      formHtml.append(getCompleteRenderedInput(inputStruct, elem, firstRun));
       lastTabIndex = elem.getLastTabIndex();
     }
     formHtml.append(getSubmit(lastTabIndex + 1, fc.getForm().getSubmitLabel()));
@@ -93,6 +89,26 @@ public abstract class GenericFormBuilder {
     return formHtml.toString();
   }
 
+  // override this, if you want to have a different order of the elements.
+  public String getCompleteRenderedInput(InputElementStructure inputStruct, FormCheckerElement elem, boolean firstRun) {
+    StringBuilder elemHtml = new StringBuilder();
+    Wrapper elementWrapper = getWrapperForElem(elem, firstRun);
+    elemHtml.append(elementWrapper.start);
+    elemHtml.append(inputStruct.getErrors());
+    elemHtml.append(inputStruct.getLabel());
+    Wrapper inputWrapper = getWrapperForInput(elem);
+    elemHtml.append(inputWrapper.start);
+    
+    elemHtml.append(inputStruct.getInput());
+    elemHtml.append(inputStruct.getHelp());
+
+    elemHtml.append(inputWrapper.end);
+    elemHtml.append(elementWrapper.end);
+
+    return elemHtml.toString();
+    
+  }
+  
 
   private boolean checkMultipart(List<FormCheckerElement> elements) {
     for (FormCheckerElement elem : elements) {
