@@ -38,7 +38,7 @@ public class ControllerBootstrap extends BaseController {
      */
     FormChecker fc =
         FormChecker.build("id", request, new ExampleForm()).setProtectAgainstCSRF()
-        .setFormBuilder(new TwoColumnBootstrapFormBuilder())
+        //.setFormBuilder(new TwoColumnBootstrapFormBuilder())
         .run();
 
     processResult(fc);
