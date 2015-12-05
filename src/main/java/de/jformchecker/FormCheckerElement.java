@@ -78,8 +78,6 @@ public interface FormCheckerElement {
   // returns the complete label-html tag
   public String getLabel();
 
-  public String getLabelParam(String additionalTags, String classes);
-
   // returns the label-html and the input-html
   public String getCompleteInput(); // RFE: Perhaps toString makes this even
                                     // more convenient?!

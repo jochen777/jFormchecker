@@ -60,11 +60,13 @@
 
 ---> Release 1.0
 
-* abstract http-request, so it can work with ANY framework
 * test non trivial tag-output (with different tags)
 * translates for error-msg and texts
 * avoid system.err
 
+
+* favour internally request.getParameterMap() over request
+* use less dependencies. move example and tests into other repo. 
 * Provide Captcha
 * support complex-inputs?? (adress-field that contains several own-fields?)
 * multi-select (means: brand -> modell...)

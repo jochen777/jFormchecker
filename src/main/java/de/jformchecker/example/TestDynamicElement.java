@@ -91,7 +91,6 @@ public class TestDynamicElement extends HttpServlet {
       try {
         Utils.fillBean(fc.getForm().getElements(), bean);
       } catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
-        // TODO Auto-generated catch block
         e.printStackTrace();
       }
       System.out.println("bean:" + bean);

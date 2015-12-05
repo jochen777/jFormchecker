@@ -132,7 +132,6 @@ public class FormChecker {
     return formBuilder.generateGenericForm(id, formAction, form.elements, firstRun, this, req);
   }
 
-  //TODO: is neeeded?
   public String getLabelForElement(FormCheckerElement e, Map<String, String> attribs) {
     return this.formBuilder.getLabelForElement(e, new TagAttributes(attribs), firstRun);
   }

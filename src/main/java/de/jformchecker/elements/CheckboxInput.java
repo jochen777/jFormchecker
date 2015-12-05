@@ -39,7 +39,6 @@ public class CheckboxInput extends AbstractInput implements FormCheckerElement {
     if (firstRun) {
       this.setValue(this.getPreSetValue());
     } else {
-      // TODO: check this again!
       if (name.equals(request.getParameter(this.getName()))) {
         this.value = "true";
       } else {

@@ -12,7 +12,7 @@ public class Utils {
     for (FormCheckerElement elem : elements) {
       String key = elem.getName();
       if (PropertyUtils.isWriteable(bean, key)) {
-          // TODO: Destinguish between Strings/Dates/Boolean...
+          // RFE: Destinguish between Strings/Dates/Boolean...
           PropertyUtils.setSimpleProperty(bean, key, elem.getValue());
       }
     }

@@ -113,14 +113,6 @@ public abstract class AbstractInput implements FormCheckerElement {
     return parent.getLabelForElement(this, map);
   }
 
-  // TODO: Remove this!!
-  @Override
-  public String getLabelParam(String style, String classes) {
-    Map<String, String> map = new LinkedHashMap<>(); // TODO! - use atrribues and put style and
-                                                     // classes
-    return parent.getLabelForElement(this, map);
-  }
-
   @Override
   public String getPreSetValue() {
     return preSetValue;
