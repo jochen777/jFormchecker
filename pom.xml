@@ -1,12 +1,44 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>de.jformchecker</groupId>
+	<groupId>de.cyclon-softworx</groupId>
 	<artifactId>jformchecker</artifactId>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>jformchecker Maven Webapp</name>
-	<url>http://maven.apache.org</url>
+	<name>jformchecker</name>
+	<url>https://github.com/jochen777/jFormchecker</url>
+	<description>jFormchecker is a library to build HTML forms on top of MVC frameworks.</description>
+
+
+
+	<developers>
+		<developer>
+			<id>jp</id>
+			<name>Jochen Pier</name>
+			<email>jpier@me.com</email>
+			<url>https://www.cyclon-softworx.de</url>
+		</developer>
+	</developers>
+
+	<licenses>
+		<license>
+			<name>MIT</name>
+			<url>https://opensource.org/licenses/MIT</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+
+
+	<distributionManagement>
+		<snapshotRepository>
+			<id>ossrh</id>
+			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+		</snapshotRepository>
+		<repository>
+			<id>ossrh</id>
+			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
+		</repository>
+	</distributionManagement>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
