@@ -1,4 +1,5 @@
 #!/bin/bash
+echo "me here"
 cd `dirname $0`/.. 
 
 if [ -z "$SONATYPE_USERNAME" ]
