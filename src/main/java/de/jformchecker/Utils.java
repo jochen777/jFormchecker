@@ -44,8 +44,6 @@ public class Utils {
    
   /**
    * Return a nicely formated form of the form for debugging or other purposes
-   * @param fc-elements 
-   * @return
    */
   public static String getDebugOutput(Map<String, FormCheckerElement> elements) {
     int maxLen = 0;
