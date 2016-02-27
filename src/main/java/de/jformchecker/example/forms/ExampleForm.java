@@ -1,4 +1,4 @@
-package de.jformchecker.example;
+package de.jformchecker.example.forms;
 
 import java.util.LinkedHashMap;
 
@@ -14,6 +14,8 @@ import de.jformchecker.elements.PasswordInput;
 import de.jformchecker.elements.RadioInput;
 import de.jformchecker.elements.SelectInput;
 import de.jformchecker.elements.TextInput;
+import de.jformchecker.example.CustomValidation;
+import de.jformchecker.example.PasswordFormValidator;
 
 public class ExampleForm extends FormCheckerForm {
 

@@ -9,9 +9,9 @@
 	<url>https://github.com/jochen777/jFormchecker</url>
 	<description>jFormchecker is a library to build HTML forms on top of MVC frameworks.</description>
 
-<scm>
-    		<url>https://github.com/jochen777/jFormchecker.git</url>
-  	</scm>
+	<scm>
+		<url>https://github.com/jochen777/jFormchecker.git</url>
+	</scm>
 
 	<developers>
 		<developer>
@@ -31,7 +31,7 @@
 	</licenses>
 
 
-	
+
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -78,7 +78,11 @@
 			<version>1.9.2</version>
 		</dependency>
 
-
+		<dependency>
+			<groupId>javax.json</groupId>
+			<artifactId>javax.json-api</artifactId>
+			<version>1.0</version>
+		</dependency>
 
 	</dependencies>
 	<build>

@@ -16,6 +16,7 @@ import de.jformchecker.FormChecker;
 import de.jformchecker.Utils;
 import de.jformchecker.elements.DateInput;
 import de.jformchecker.elements.TextInput;
+import de.jformchecker.example.forms.ExampleForm;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;

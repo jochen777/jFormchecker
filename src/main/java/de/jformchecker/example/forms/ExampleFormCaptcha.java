@@ -1,10 +1,11 @@
-package de.jformchecker.example;
+package de.jformchecker.example.forms;
 
 import de.jformchecker.FormCheckerForm;
 import de.jformchecker.criteria.Criteria;
+import de.jformchecker.elements.RecaptchaInput;
 import de.jformchecker.elements.TextInput;
 
-public class ExampleFormShort extends FormCheckerForm {
+public class ExampleFormCaptcha extends FormCheckerForm {
 
   public void init() {
     add(TextInput
@@ -15,13 +16,11 @@ public class ExampleFormShort extends FormCheckerForm {
         .setCriterias(Criteria.accept("Peter", "Max"), Criteria.maxLength(10))
         );
 
-    add(TextInput
-        .build("lastname")
-        .setPlaceholerText("Mustermann")
-        .setDescription("Your Lastname")
-        .setHelpText("This is an example Helptext for describing this lastname field")
-        .setPreSetValue("p")    // this will fail
-        .setCriterias(Criteria.accept("Pan", "Mustermann"))
+    add(RecaptchaInput
+        .build("captcha")
+        .setSiteKey("xx")
+        .setSecret("xx")
+        .setDescription("Sicherheitsabfrage")
         );
 
    disableHtml5Validation();

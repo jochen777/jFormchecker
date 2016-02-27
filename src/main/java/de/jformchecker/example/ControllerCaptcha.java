@@ -9,32 +9,43 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import de.jformchecker.FormChecker;
-import de.jformchecker.Utils;
 import de.jformchecker.example.forms.ExampleForm;
+import de.jformchecker.example.forms.ExampleFormCaptcha;
 
-@WebServlet("/ajax_receive")
-public class ControllerAjaxReceive extends BaseController {
+/**
+ * Servlet implementation class Test
+ */
+@WebServlet("/Captcha")
+public class ControllerCaptcha extends BaseController {
   private static final long serialVersionUID = 1L;
 
 
   /**
    * @see HttpServlet#HttpServlet()
    */
-  public ControllerAjaxReceive() {
+  public ControllerCaptcha() {
     super();
   }
 
-  @Override
+  
+
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
+
     initRequest(request, response);
 
-    FormChecker fc = FormChecker.build("id", request, new ExampleForm());
-    fc.run();
-    response.setStatus(HttpServletResponse.SC_OK);
-    response.getWriter().write(Utils.getJsonOutput(fc));
-    response.getWriter().flush();
-    response.getWriter().close();
+    /****************************************
+     * prepare jFormchecker
+     */
+    FormChecker fc =
+        FormChecker.build("id", request, new ExampleFormCaptcha())
+        .run();
+
+    processResult(fc);
+
+    putFcInTemplate(response, fc, "test.ftl");
+
   }
 
+ 
 }

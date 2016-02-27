@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import de.jformchecker.FormChecker;
+import de.jformchecker.example.forms.ExampleForm;
 
 /**
  * Servlet implementation class Test

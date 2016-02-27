@@ -1,4 +1,4 @@
-package de.jformchecker.example;
+package de.jformchecker.example.forms;
 
 import de.jformchecker.FormCheckerForm;
 import de.jformchecker.criteria.Criteria;
