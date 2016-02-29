@@ -2,18 +2,15 @@ package de.jformchecker.elements;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
-import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.StringReader;
 import java.net.URL;
 import java.util.Map;
 
 import javax.net.ssl.HttpsURLConnection;
 import javax.servlet.http.HttpServletRequest;
 
-import javax.json.Json;
-import javax.json.JsonObject;
-import javax.json.JsonReader;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 import de.jformchecker.FormCheckerElement;
 import de.jformchecker.validator.Validator;
@@ -115,11 +112,11 @@ public class RecaptchaInput extends AbstractInput implements FormCheckerElement 
       System.out.println(response.toString());
        
       //parse JSON response and return 'success' value
-      JsonReader jsonReader = Json.createReader(new StringReader(response.toString()));
-      JsonObject jsonObject = jsonReader.readObject();
-      jsonReader.close();
+      JsonObject jsonObject = new JsonParser().parse(response.toString()).getAsJsonObject();
+
+      
        
-      return jsonObject.getBoolean("success");
+      return jsonObject.get("success").getAsBoolean();
       }catch(Exception e){
           e.printStackTrace();
           return false;
