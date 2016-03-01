@@ -7,6 +7,7 @@ import de.jformchecker.criteria.Criteria;
 import de.jformchecker.elements.ButtonInput;
 import de.jformchecker.elements.CheckboxInput;
 import de.jformchecker.elements.DateInput;
+import de.jformchecker.elements.DateInputCompound;
 import de.jformchecker.elements.HTMLSnippet;
 import de.jformchecker.elements.HiddenInput;
 import de.jformchecker.elements.LongTextInput;
@@ -64,6 +65,10 @@ public class ExampleForm extends FormCheckerForm {
         .setDescription("Birthday")
         );
 
+    add(DateInputCompound
+            .build("date2")
+            .setDescription("Mein Tag")
+            );
 
 
     add(PasswordInput

@@ -67,8 +67,9 @@
 
 * favour internally request.getParameterMap() over request
 * use less dependencies. move example and tests into other repo. 
-* Provide Captcha
+* Provide Captcha (OK)
 * support complex-inputs?? (adress-field that contains several own-fields?)
+* ... or nested fields
 * multi-select (means: brand -> modell...)
 * groups of beans in form (example: product, adress) 
 * include a richtext editor

@@ -23,9 +23,10 @@ import freemarker.template.TemplateNotFoundException;
 public abstract class BaseController extends HttpServlet {
   private static final long serialVersionUID = 1L;
 
+  // Freemarker konfiguration
   Configuration cfg;
 
-  private void init(ServletContext context) {
+  private void initFreemarkerConfig(ServletContext context) {
     cfg = new Configuration(Configuration.VERSION_2_3_22);
     cfg.setServletContextForTemplateLoading(context, "/");
     cfg.setDefaultEncoding("UTF-8");
@@ -71,7 +72,7 @@ public abstract class BaseController extends HttpServlet {
     response.setCharacterEncoding("UTF-8");
 
     if (cfg == null) {
-      init(request.getServletContext());
+      initFreemarkerConfig(request.getServletContext());
     }
   }
 }
