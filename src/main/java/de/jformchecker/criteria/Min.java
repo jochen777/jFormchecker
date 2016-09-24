@@ -1,27 +1,24 @@
 package de.jformchecker.criteria;
 
-import de.jformchecker.FormCheckerElement;
-
 /**
  * Checks that value is greater than or equal to the given {@link Comparable}.
  * 
  * Based on work of armandino (at) gmail.com
  */
-public final class Min extends AbstractCriterion {
+public final class Min extends AbstractNumberComparingCriterion {
   private int min;
 
   Min(int min) {
     this.min = min;
   }
 
-  protected boolean verify(FormCheckerElement value) {
-    int intVal = Integer.parseInt(value.getValue()); // RFE: provide a getInt Method in
-                                                     // FormecheckerElemn
-    return intVal < min;
-  }
-
-  protected String generateErrorMessage() {
-    return "The value must not be less than " + min;
+  @Override
+  public boolean validateNumberAndSetError(int input) {
+    boolean result = input > min;
+    if (!result) {
+      this.setErrMsg("The value must not be larger than " + min);
+    }
+    return result;
   }
 
 }
