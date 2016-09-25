@@ -115,6 +115,7 @@ ${fc.elements.lasntame.inputTag}
 ## Versions
 
 0.0.1 2016/02/16 Initial release
+
 0.0.2 2016/09/24 Fix bug in min/max criteria
 
 
