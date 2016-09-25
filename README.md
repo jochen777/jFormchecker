@@ -101,6 +101,23 @@ ${fc.elements.lasntame.inputTag}
 * Use a custom validator by injecting per "setValidator". This can be used to validate with bean-validation. (Did not add bean validation because this is a huge dependency)
 * easy ajax handling 
 
+## Maven Dependency
+```xml
+...
+<dependency>
+    <groupId>de.cyclon-softworx</groupId>
+    <artifactId>jformchecker</artifactId>
+    <version>0.0.2</version>
+</dependency>
+...
+```
+
+## Versions
+
+0.0.1 2016/02/16 Initial release
+0.0.2 2016/09/24 Fix bug in min/max criteria
+
+
 ## Remember: Standard form handling WITHOUT jFormChecker
 
 Without jFormChecker, html forms must be constructed manually in the template.
