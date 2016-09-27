@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import de.jformchecker.criteria.Criteria;
 import de.jformchecker.criteria.MaxLength;
+import de.jformchecker.message.MessageSource;
 import de.jformchecker.themes.BasicFormBuilder;
 import de.jformchecker.validator.DefaultValidator;
 import de.jformchecker.validator.Validator;
@@ -26,9 +27,14 @@ public class FormChecker {
   String completeForm;
   int defaultMaxLenElements = 1000; // override this for each element, if you want longer vals!
 
-  GenericFormBuilder formBuilder = new BasicFormBuilder();
+  FormCheckerConfig config;
+  
   String id;
   private String formAction = "#";
+
+  // holds temporaryly config-infos while construction-process of fc 
+  private GenericFormBuilder tempFormBuilder;
+  private MessageSource tempProperties;
 
   public static final String SUBMIT_KEY = "submitted";
   public static final String SUBMIT_VALUE_PREFIX = "FORMCHECKER_";
@@ -47,6 +53,11 @@ public class FormChecker {
 
   public FormChecker setProtectAgainstCSRF() {
     protectedAgainstCSRF = true;
+    return this;
+  }
+
+  public FormChecker setConfig(FormCheckerConfig config) {
+    this.config = config;
     return this;
   }
 
@@ -69,11 +80,16 @@ public class FormChecker {
 
 
   public GenericFormBuilder getFormBuilder() {
-    return formBuilder;
+    return config.getFormBuilder();
   }
 
   public FormChecker setFormBuilder(GenericFormBuilder formBuilder) {
-    this.formBuilder = formBuilder;
+    this.tempFormBuilder = formBuilder;
+    return this;
+  }
+
+  public FormChecker setProperties(MessageSource properties) {
+    this.tempProperties = properties;
     return this;
   }
 
@@ -87,15 +103,15 @@ public class FormChecker {
   }
 
   public String getSubmitTag() {
-    return formBuilder.getSubmittedTag(id);
+    return config.getFormBuilder().getSubmittedTag(id);
   }
 
   public String getLabelTag(String elementName) {
-    return formBuilder.getLabelForElement(form.getElement(elementName), new TagAttributes(), firstRun);
+    return config.getFormBuilder().getLabelForElement(form.getElement(elementName), new TagAttributes(), firstRun);
   }
 
   public String getLabelTag(String elementName, Map<String, String> map) {
-    return formBuilder.getLabelForElement(form.getElement(elementName), new TagAttributes(map),
+    return config.getFormBuilder().getLabelForElement(form.getElement(elementName), new TagAttributes(map),
         firstRun);
   }
 
@@ -129,15 +145,18 @@ public class FormChecker {
   }
 
   private String getGenericForm() {
-    return formBuilder.generateGenericForm(id, formAction, form.elements, firstRun, this, req);
+    return config.getFormBuilder().generateGenericForm(id, formAction, form.elements, firstRun, this, req);
   }
 
+  //TODO: is neeeded?
   public String getLabelForElement(FormCheckerElement e, Map<String, String> attribs) {
-    return this.formBuilder.getLabelForElement(e, new TagAttributes(attribs), firstRun);
+    return config.getFormBuilder().getLabelForElement(e, new TagAttributes(attribs), firstRun);
   }
 
   public FormChecker run() {
 
+    setupConfig();
+    
     sortTabIndexes();
 
     checkIfFirstRun();
@@ -166,6 +185,19 @@ public class FormChecker {
     return this;
   }
 
+  /**
+   * set up the config-object for formchecker 
+   * (handles absence of properties and formBuider)
+   */
+  private void setupConfig() {
+    if (config == null) {
+      if (tempFormBuilder == null) {
+        tempFormBuilder = new BasicFormBuilder();
+      }
+      config = new FormCheckerConfig(tempProperties, tempFormBuilder);
+    }
+  }
+
   // resort tab-indexes
   private void sortTabIndexes() {
     int tabIndex = 100;
@@ -184,5 +216,9 @@ public class FormChecker {
 
   public String getCompleteForm() {
     return completeForm;
+  }
+
+  public FormCheckerConfig getConfig() {
+    return config;
   }
 }

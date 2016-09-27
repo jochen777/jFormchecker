@@ -52,7 +52,7 @@ public class ExampleFormBuilder {
             .setPreSetValue("Jochen")
             .setCriterias(Criteria.accept("Jochen", "Max")));
 
-        add(TextInput.build("lasntame")
+        add(TextInput.build("lastname")
             .setDescription("Your Lastname")
             .setPreSetValue("pier")
             .setCriterias(Criteria.accept("Pan", "Mustermann")));

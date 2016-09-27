@@ -27,7 +27,12 @@ public class DefaultValidator implements Validator {
       errorMessage = val.errorMessage;
     } else {
       // blank input is valid if it's not required
-      isValid = !elem.isRequired();
+      if (elem.isRequired()) {
+    	  errorMessage = "required";
+    	  isValid = false;
+      } else {
+    	  isValid = true;
+      }
     }
 
     if (!isValid && errorMessage == null)
