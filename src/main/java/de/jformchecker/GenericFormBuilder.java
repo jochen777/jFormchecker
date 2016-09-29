@@ -61,6 +61,13 @@ public abstract class GenericFormBuilder {
     int lastTabIndex = 0;
     for (FormCheckerElement elem : elements) {
       InputElementStructure inputStruct = new InputElementStructure();
+      
+      String errorMsg = getErrors(elem, firstRun);
+      if (errorMsg != null) {
+      formHtml.append(formatError(fc.getConfig().getProperties().
+          getMessage(errorMsg)));
+      }
+      
       // label
       inputStruct.setErrors(getErrors(elem, firstRun));
       boolean displayLabel = !StringUtils.isEmpty(elem.getDescription());
@@ -89,6 +96,8 @@ public abstract class GenericFormBuilder {
     return formHtml.toString();
   }
 
+  public abstract String formatError(String error);
+  
   // override this, if you want to have a different order of the elements.
   public String getCompleteRenderedInput(InputElementStructure inputStruct, FormCheckerElement elem, boolean firstRun) {
     StringBuilder elemHtml = new StringBuilder();
