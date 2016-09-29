@@ -118,6 +118,8 @@ ${fc.elements.lasntame.inputTag}
 
 0.0.2 2016/09/24 Fix bug in min/max criteria
 
+0.0.3 2016/09/29 Major refactorings , error-Messages can be translated
+
 
 ## Remember: Standard form handling WITHOUT jFormChecker
 

@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import de.jformchecker.criteria.Criteria;
 import de.jformchecker.criteria.MaxLength;
 import de.jformchecker.message.MessageSource;
+import de.jformchecker.message.MinimalMessageSource;
 import de.jformchecker.themes.BasicFormBuilder;
 import de.jformchecker.validator.DefaultValidator;
 import de.jformchecker.validator.Validator;
@@ -189,6 +190,9 @@ public class FormChecker {
     if (config == null) {
       if (tempFormBuilder == null) {
         tempFormBuilder = new BasicFormBuilder();
+      }
+      if (tempProperties == null) {
+    	  tempProperties = new MinimalMessageSource();
       }
       config = new FormCheckerConfig(tempProperties, tempFormBuilder);
     }
