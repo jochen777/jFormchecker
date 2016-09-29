@@ -19,6 +19,7 @@ import de.jformchecker.FormCheckerElement;
 import de.jformchecker.TagAttributes;
 import de.jformchecker.Utils;
 import de.jformchecker.criteria.MaxLength;
+import de.jformchecker.criteria.ValidationResult;
 import de.jformchecker.validator.Validator;
 
 /**
@@ -36,8 +37,16 @@ public abstract class AbstractInput implements FormCheckerElement {
   private List<Criterion> criteria = new ArrayList<>();
   boolean required;
   private int tabIndex;
-  String errorMessage = "";
-  boolean valid = true;
+  ValidationResult validationResult;
+  public ValidationResult getValidationResult() {
+	return validationResult;
+}
+
+public void setValidationResult(ValidationResult validationResult) {
+	this.validationResult = validationResult;
+}
+
+boolean valid = true;
   FormChecker parent;
   String helpText;
   
@@ -94,10 +103,11 @@ public abstract class AbstractInput implements FormCheckerElement {
       this.setValue(this.getPreSetValue());
     } else {
       this.setValue(request.getParameter(this.getName()));
-      String errMsg = validator.validate(this);
-      if (errMsg != null) {
-        this.valid = false;
-        this.setErrorMessage(errMsg);
+      this.setValidationResult( validator.validate(this));
+      if (!this.validationResult.isValid()) {
+    	  this.valid = false;
+      } else {
+    	  this.valid = true;
       }
     }
   }
@@ -181,14 +191,7 @@ public abstract class AbstractInput implements FormCheckerElement {
     return valid;
   }
 
-  @Override
-  public String getErrorMessage() {
-    return errorMessage;
-  }
 
-  public void setErrorMessage(String errorMessage) {
-    this.errorMessage = errorMessage;
-  }
 
 
   public AbstractInput setCriterias(Criterion... criteria) {

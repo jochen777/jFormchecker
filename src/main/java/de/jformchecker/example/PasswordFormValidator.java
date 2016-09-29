@@ -5,6 +5,7 @@ import org.apache.commons.lang3.StringUtils;
 import de.jformchecker.FormCheckerElement;
 import de.jformchecker.FormCheckerForm;
 import de.jformchecker.FormValidator;
+import de.jformchecker.criteria.ValidationResult;
 
 public class PasswordFormValidator implements FormValidator {
 
@@ -15,10 +16,8 @@ public class PasswordFormValidator implements FormValidator {
     String pw1 = pwField1.getValue();
     String pw2 = pwField2.getValue();
     if (!StringUtils.equals(pw1, pw2)) {
-      pwField1.setErrorMessage("Wrong pw");
-      pwField1.setInvalid();
-      pwField2.setErrorMessage("Wrong pw");
-      pwField2.setInvalid();
+      pwField1.setValidationResult(ValidationResult.fail("Wrong pw"));
+      pwField2.setValidationResult(ValidationResult.fail("Wrong pw"));
     }
   }
 

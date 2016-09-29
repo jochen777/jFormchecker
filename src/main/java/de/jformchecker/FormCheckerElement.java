@@ -5,6 +5,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import de.jformchecker.criteria.ValidationResult;
 import de.jformchecker.validator.Validator;
 
 /**
@@ -57,11 +58,9 @@ public interface FormCheckerElement {
   // inits the value with the current http-reques
   public void init(HttpServletRequest request, boolean firstrun, Validator validator);
 
-  // if the element is not valid, return an error-message
-  public String getErrorMessage();
+  public ValidationResult getValidationResult();
 
-  // override the "normal" error messages in case you need something special
-  public void setErrorMessage(String errorMessage);
+  public void setValidationResult(ValidationResult validationResult);
 
   public String getInputTag();
 

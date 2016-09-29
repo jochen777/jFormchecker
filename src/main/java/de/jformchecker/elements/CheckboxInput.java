@@ -5,6 +5,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import de.jformchecker.FormCheckerElement;
+import de.jformchecker.criteria.ValidationResult;
 import de.jformchecker.validator.Validator;
 
 public class CheckboxInput extends AbstractInput implements FormCheckerElement {
@@ -44,10 +45,10 @@ public class CheckboxInput extends AbstractInput implements FormCheckerElement {
       } else {
         this.value = "false";
       }
-      String errMsg = validator.validate(this);
-      if (errMsg != null) {
+      ValidationResult vr = validator.validate(this);
+      if (!vr.isValid()) {
         this.valid = false;
-        this.setErrorMessage(errMsg);
+        this.setValidationResult(vr);
       }
     }
   }

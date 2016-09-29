@@ -20,7 +20,7 @@ public class DefaultValidator implements Validator {
 	 * FormCheckerElement)
 	 */
 	@Override
-	public String validate(FormCheckerElement elem) {
+	public ValidationResult validate(FormCheckerElement elem) {
 		boolean isValid = false;
 		String errorMessage = null;
 		String value = elem.getValue();
@@ -40,8 +40,7 @@ public class DefaultValidator implements Validator {
 
 		if (!isValid && errorMessage == null)
 			errorMessage = "Invalid or missing value";
-
-		return errorMessage;
+		return ValidationResult.of_(isValid, errorMessage);
 	}
 
 	private ErrorMessageAndValidation allCriteriaSatisfied(FormCheckerElement elem) {

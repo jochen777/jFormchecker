@@ -94,7 +94,7 @@ public class Utils {
       for(FormCheckerElement elem: fc.getForm().getElements()){
         if (!elem.isValid()) {
           json.append(commaAppend);
-          json.append("\"" + elem.getName() + "\":" + "\"" + elem.getErrorMessage() +"\"");
+          json.append("\"" + elem.getName() + "\":" + "\"" + elem.getValidationResult().getMessage() +"\"");
           commaAppend = ",";
         }
       }

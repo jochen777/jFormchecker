@@ -14,6 +14,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import de.jformchecker.FormCheckerElement;
 import de.jformchecker.Utils;
+import de.jformchecker.criteria.ValidationResult;
 import de.jformchecker.validator.Validator;
 
 public class DateInput extends AbstractInput implements FormCheckerElement {
@@ -101,14 +102,11 @@ public class DateInput extends AbstractInput implements FormCheckerElement {
           formater.setLenient(false);
           internalDate = formater.parse(dateVal);
           this.valid = true;
-          String errMsg = validator.validate(this);
-          if (errMsg != null) {
-            this.valid = false;
-            this.setErrorMessage(errMsg);
-          }
+          ValidationResult vr = validator.validate(this);
+          this.setValidationResult(vr);
         } catch (ParseException e) {
           this.valid = false;
-          this.setErrorMessage("Wrong Date format...");
+          this.setValidationResult(ValidationResult.fail("Wrong date format"));
   
         }
       }

@@ -13,6 +13,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 import de.jformchecker.FormCheckerElement;
+import de.jformchecker.criteria.ValidationResult;
 import de.jformchecker.validator.Validator;
 
 /**
@@ -68,8 +69,7 @@ public class RecaptchaInput extends AbstractInput implements FormCheckerElement 
       String userInput = request.getParameter("g-recaptcha-response");
 
       if (!verify(userInput, secret)){
-        this.valid = false;
-        this.setErrorMessage("Captcha not valid");
+    	  this.setValidationResult(ValidationResult.fail("Captcha not valid"));
       }
     }
   }
