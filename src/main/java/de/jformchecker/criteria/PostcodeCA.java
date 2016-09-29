@@ -13,10 +13,7 @@ public final class PostcodeCA extends Regex {
 
   PostcodeCA() {
     super(REGEX);
-  }
-
-  protected String generateErrorMessage() {
-    return "Please enter a valid postcode";
+    setErrorMsg("Please enter a valid postcode");
   }
 
 }

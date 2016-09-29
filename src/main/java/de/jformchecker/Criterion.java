@@ -1,19 +1,18 @@
 package de.jformchecker;
 
-import de.jformchecker.criteria.MessageOnError;
+import de.jformchecker.criteria.ValidationResult;
 
 /**
- * A criterion that can evaluate to <code>true</code> or <code>false</code>.
+ * A criterion that checks a formchecker element
  * 
- * @author armandino (at) gmail.com
  */
-public interface Criterion extends MessageOnError {
+public interface Criterion  {
   /**
    * Tests whether the specified value satisfies this criterion.
    * 
    * @param value to be tested against this criterion.
-   * @return <code>true</code> if the criterion is satisfied, <code>false</code> otherwise.
+   * @return a ValidationResult which holds true or false for validaton result and a potential errormsg
    */
-  public boolean isSatisfied(FormCheckerElement value);
+  public ValidationResult validate(FormCheckerElement value);
 
 }

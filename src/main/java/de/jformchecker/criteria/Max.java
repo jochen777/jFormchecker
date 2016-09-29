@@ -15,12 +15,12 @@ public final class Max extends AbstractNumberComparingCriterion {
   }
 
   @Override
-  public boolean validateNumberAndSetError(int input) {
-    boolean result = input < max;
-    if (!result) {
-      this.setErrMsg("The value must be smaller than " + max);
+  public ValidationResult validateNumberAndSetError(int input) {
+    boolean isValid = input < max;
+    if (!isValid) {
+      return ValidationResult.fail("The value must be smaller than ", max);
     }
-    return result;
+    return ValidationResult.ok();
   }
 
 

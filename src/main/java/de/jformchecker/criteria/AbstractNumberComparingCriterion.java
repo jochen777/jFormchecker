@@ -9,26 +9,16 @@ import de.jformchecker.FormCheckerElement;
  *
  */
 public abstract class AbstractNumberComparingCriterion extends AbstractCriterion {
-  private String errMsg; 
+	@Override
+	public ValidationResult validate(FormCheckerElement value) {
+		try {
+			int input = Integer.parseInt(value.getValue());
+			return validateNumberAndSetError(input);
+		} catch (NumberFormatException e) {
+			return ValidationResult.fail("Please enter a number");
+		}
+	}
 
-  protected boolean verify(FormCheckerElement value) {
-    try {
-      int input = Integer.parseInt(value.getValue());
-      return validateNumberAndSetError(input);
-    } catch (NumberFormatException e) {
-      errMsg = "Please enter a number";
-      return false;
-    }
-  }
-
-  public abstract boolean validateNumberAndSetError(int input);
-  
-  protected String generateErrorMessage() {
-    return errMsg;
-  }
-
-  public void setErrMsg(String errMsg) {
-    this.errMsg = errMsg;
-  }
+	public abstract ValidationResult validateNumberAndSetError(int input);
 
 }

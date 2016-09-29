@@ -8,18 +8,19 @@ import de.jformchecker.FormCheckerElement;
  * Based on work of armandino (at) gmail.com
  */
 public final class MinLength extends AbstractCriterion {
-  private int minLength;
+	private int minLength;
 
-  MinLength(int minLength) {
-    this.minLength = minLength;
-  }
+	MinLength(int minLength) {
+		this.minLength = minLength;
+	}
 
-  protected boolean verify(FormCheckerElement value) {
-    return value.getValue().length() >= minLength;
-  }
-
-  protected String generateErrorMessage() {
-    return "The value must not be less than " + minLength + " characters long";
-  }
+	@Override
+	public ValidationResult validate(FormCheckerElement value) {
+		boolean isValid = value.getValue().length() >= minLength;
+		if (!isValid) {
+			return ValidationResult.fail("The value must not be less than %d characters long", minLength);
+		}
+		return ValidationResult.ok();
+	}
 
 }

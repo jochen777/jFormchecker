@@ -61,10 +61,6 @@ public class FormChecker {
     return this;
   }
 
-  public void setValidator(Validator validator) {
-    this.validator = validator;
-  }
-
   
   public boolean isValid() {
     return isValid;

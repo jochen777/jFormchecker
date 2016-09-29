@@ -6,19 +6,19 @@ package de.jformchecker.criteria;
  * Based on work of armandino (at) gmail.com
  */
 public final class Min extends AbstractNumberComparingCriterion {
-  private int min;
+	private int min;
 
-  Min(int min) {
-    this.min = min;
-  }
+	Min(int min) {
+		this.min = min;
+	}
 
-  @Override
-  public boolean validateNumberAndSetError(int input) {
-    boolean result = input > min;
-    if (!result) {
-      this.setErrMsg("The value must not be larger than " + min);
-    }
-    return result;
-  }
+	@Override
+	public ValidationResult validateNumberAndSetError(int input) {
+		boolean isValid = input > min;
+		if (!isValid) {
+			return ValidationResult.fail("The value must be larger than ", min);
+		}
+		return ValidationResult.ok();
+	}
 
 }

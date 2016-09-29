@@ -8,23 +8,26 @@ import de.jformchecker.FormCheckerElement;
  * Based on work of armandino (at) gmail.com
  */
 public final class StartsWith extends AbstractCriterion {
-  private String[] prefixes;
+	private String[] prefixes;
 
-  StartsWith(String... prefixes) {
-    this.prefixes = prefixes;
-  }
+	StartsWith(String... prefixes) {
+		this.prefixes = prefixes;
+	}
 
-  protected boolean verify(FormCheckerElement value) {
-    for (String prefix : prefixes) {
-      if (value.getValue().startsWith(prefix))
-        return true;
-    }
 
-    return false;
-  }
 
-  protected String generateErrorMessage() {
-    return "Please enter a valid value";
-  }
+	@Override
+	public ValidationResult validate(FormCheckerElement value) {
+		boolean isValid = false;
+		for (String prefix : prefixes) {
+			if (value.getValue().startsWith(prefix))
+				isValid = true;
+		}
+
+		if (!isValid) {
+			return ValidationResult.fail("Please enter a value starting with %s", (Object []) prefixes);
+		}
+		return ValidationResult.ok();
+	}
 
 }

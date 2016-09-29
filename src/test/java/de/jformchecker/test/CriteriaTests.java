@@ -18,14 +18,14 @@ public class CriteriaTests {
 	public void testMax() {
 		Criterion c = Criteria.max(100);
 	    Assert.assertTrue("30 is smaller than 100. This should be true!", 
-	    		c.isSatisfied(buildSampleInput(30)));
+	    		c.validate(buildSampleInput(30)).isValid());
 	}
 
 	@Test
 	public void testMin() {
 		Criterion c = Criteria.min(100);
 	    Assert.assertTrue("110 is bigger than 100. This should be true!", 
-	    		c.isSatisfied(buildSampleInput(110)));
+	    		c.validate(buildSampleInput(110)).isValid());
 	}
 	
 	private TextInput buildSampleInput(int val) {

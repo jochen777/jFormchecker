@@ -8,22 +8,23 @@ import de.jformchecker.FormCheckerElement;
  * Based on work of armandino (at) gmail.com
  */
 public final class MaxLength extends AbstractCriterion {
-  private int maxLength;
+	private int maxLength;
 
-  MaxLength(int maxLength) {
-    this.maxLength = maxLength;
-  }
+	MaxLength(int maxLength) {
+		this.maxLength = maxLength;
+	}
 
-  public int getMaxLength() {
-    return maxLength;
-  }
+	public int getMaxLength() {
+		return maxLength;
+	}
 
-  protected boolean verify(FormCheckerElement value) {
-    return value.getValue().length() <= maxLength;
-  }
-
-  protected String generateErrorMessage() {
-    return "The value must not be greater than " + maxLength + " characters long";
-  }
+	@Override
+	public ValidationResult validate(FormCheckerElement value) {
+		boolean isValid = value.getValue().length() <= maxLength;
+		if (!isValid) {
+			return ValidationResult.fail("The value must not be greater than %d characters long", maxLength);
+		}
+		return ValidationResult.ok();
+	}
 
 }

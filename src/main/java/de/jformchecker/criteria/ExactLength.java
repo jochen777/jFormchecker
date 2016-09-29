@@ -8,18 +8,19 @@ import de.jformchecker.FormCheckerElement;
  * Based on work of armandino (at) gmail.com
  */
 public final class ExactLength extends AbstractCriterion {
-  private int length;
+	private int length;
 
-  ExactLength(int length) {
-    this.length = length;
-  }
+	ExactLength(int length) {
+		this.length = length;
+	}
 
-  protected boolean verify(FormCheckerElement value) {
-    return value.getValue().length() == length;
-  }
-
-  protected String generateErrorMessage() {
-    return "The value must be " + length + " characters long";
-  }
+	@Override
+	public ValidationResult validate(FormCheckerElement value) {
+		boolean isValid = value.getValue().length() == length;
+		if (!isValid) {
+			ValidationResult.fail("The value must be %d characters long", Integer.valueOf(length));
+		}
+		return ValidationResult.ok();
+	}
 
 }

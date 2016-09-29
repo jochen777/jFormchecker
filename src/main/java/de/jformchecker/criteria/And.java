@@ -11,7 +11,6 @@ import de.jformchecker.FormCheckerElement;
  */
 public final class And extends AbstractCriterion {
   private Criterion[] criteria;
-  private Criterion failedCriterion;
 
   And(Criterion... criteria) {
     if (criteria.length < 2)
@@ -20,19 +19,19 @@ public final class And extends AbstractCriterion {
     this.criteria = criteria;
   }
 
-  protected boolean verify(FormCheckerElement value) {
+
+
+@Override
+public ValidationResult validate(FormCheckerElement value) {
+	  Criterion failedCriterion;
     for (Criterion criterion : criteria) {
-      if (!criterion.isSatisfied(value)) {
-        failedCriterion = criterion;
-        return false;
+    	ValidationResult vr = criterion.validate(value);
+    	if (!vr.isValid) {
+    		return vr;
+    	}
       }
-    }
-
-    return true;
-  }
-
-  protected String generateErrorMessage() {
-    return failedCriterion.getOnError();
-  }
+    // everything ok
+    return ValidationResult.ok();
+}
 
 }

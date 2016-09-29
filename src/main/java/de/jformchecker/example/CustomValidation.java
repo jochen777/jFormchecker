@@ -2,19 +2,17 @@ package de.jformchecker.example;
 
 import de.jformchecker.FormCheckerElement;
 import de.jformchecker.criteria.AbstractCriterion;
+import de.jformchecker.criteria.ValidationResult;
 
 public class CustomValidation extends AbstractCriterion {
 
-  @Override
-  protected boolean verify(FormCheckerElement value) {
-    if (value.getValue().equals("Jochen"))
-      return true;
-    return false;
-  }
-
-  @Override
-  protected String generateErrorMessage() {
-    return "Always enter 'Jochen'!";
-  }
+	@Override
+	public ValidationResult validate(FormCheckerElement value) {
+		boolean isValid = value.getValue().equals("Jochen");
+		if (!isValid) {
+			return ValidationResult.fail("Always enter 'Jochen'!");
+		}
+		return ValidationResult.ok();
+	}
 
 }

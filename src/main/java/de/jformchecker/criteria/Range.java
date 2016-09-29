@@ -8,23 +8,26 @@ import de.jformchecker.FormCheckerElement;
  * Based on work of armandino (at) gmail.com
  */
 public final class Range extends AbstractCriterion {
-  private int min;
-  private int max;
+	private int min;
+	private int max;
 
-  Range(int min, int max) {
-    this.min = min;
-    this.max = max;
-  }
+	Range(int min, int max) {
+		this.min = min;
+		this.max = max;
+	}
 
-  protected boolean verify(FormCheckerElement value) {
-    int intVal = Integer.parseInt(value.getValue());
-    return intVal > max && intVal < min;
-  }
-
-  protected String generateErrorMessage() {
-    StringBuilder sb = new StringBuilder();
-    return sb.append("The value must be between ").append(min).append(" and ").append(max)
-        .toString();
-  }
+	@Override
+	public ValidationResult validate(FormCheckerElement value) {
+		try {
+			int intVal = Integer.parseInt(value.getValue());
+			boolean isValid = intVal > max && intVal < min;
+			if (!isValid) {
+				return ValidationResult.fail("The value must be between %d and %d", min, max);
+			}
+			return ValidationResult.ok();
+		} catch (NumberFormatException e) {
+			return ValidationResult.fail("Please enter a number");
+		}
+	}
 
 }

@@ -4,25 +4,34 @@ import java.util.regex.Pattern;
 
 import de.jformchecker.FormCheckerElement;
 
-
 /**
  * Checks if a string matches a regular expression.
  * 
  * Based on work of armandino (at) gmail.com
  */
 public class Regex extends AbstractCriterion {
-  private Pattern pattern;
+	private Pattern pattern;
+	private String errorMsg="The value must match the required format";
 
-  Regex(String pattern) {
-    this.pattern = Pattern.compile(pattern);
-  }
+	public void setErrorMsg(String errorMsg) {
+		this.errorMsg = errorMsg;
+	}
 
-  protected boolean verify(FormCheckerElement value) {
-    return pattern.matcher(value.getValue()).find();
-  }
 
-  protected String generateErrorMessage() {
-    return "The value must match the required format";
-  }
+
+	Regex(String pattern) {
+		this.pattern = Pattern.compile(pattern);
+	}
+
+	
+	
+	@Override
+	public ValidationResult validate(FormCheckerElement value) {
+		boolean isValid = pattern.matcher(value.getValue()).find();
+		if (!isValid) {
+			ValidationResult.fail( errorMsg);
+		}
+		return ValidationResult.ok();
+	}
 
 }

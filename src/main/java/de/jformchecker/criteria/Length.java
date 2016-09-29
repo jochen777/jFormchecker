@@ -16,12 +16,15 @@ public final class Length extends AbstractCriterion {
     this.max = max;
   }
 
-  protected boolean verify(FormCheckerElement value) {
-    return value.getValue().length() <= max && value.getValue().length() >= min;
-  }
+	@Override
+	public ValidationResult validate(FormCheckerElement value) {
+		boolean isValid = value.getValue().length() <= max && value.getValue().length() >= min;
+		if (!isValid) {
+			return ValidationResult.fail("The value must be between %d and %d characters long", Integer.valueOf(min), Integer.valueOf(max));	
+		}
+		return ValidationResult.ok();
+		
+	}
 
-  protected String generateErrorMessage() {
-    return "The value must be between " + min + " and " + max + " characters long";
-  }
 
 }
