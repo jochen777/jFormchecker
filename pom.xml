@@ -4,7 +4,7 @@
 	<groupId>de.cyclon-softworx</groupId>
 	<artifactId>jformchecker</artifactId>
 	<packaging>war</packaging>
-	<version>0.0.2</version>
+	<version>0.0.3</version>
 	<name>jformchecker</name>
 	<url>https://github.com/jochen777/jFormchecker</url>
 	<description>jFormchecker is a library to build HTML forms on top of MVC frameworks.</description>
