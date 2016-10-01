@@ -9,7 +9,7 @@ import de.jformchecker.FormCheckerElement;
  * 
  * Based on work of armandino (at) gmail.com
  */
-public final class And extends AbstractCriterion {
+public final class And implements Criterion{
   private Criterion[] criteria;
 
   And(Criterion... criteria) {

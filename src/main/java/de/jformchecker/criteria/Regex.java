@@ -2,6 +2,7 @@ package de.jformchecker.criteria;
 
 import java.util.regex.Pattern;
 
+import de.jformchecker.Criterion;
 import de.jformchecker.FormCheckerElement;
 
 /**
@@ -9,7 +10,7 @@ import de.jformchecker.FormCheckerElement;
  * 
  * Based on work of armandino (at) gmail.com
  */
-public class Regex extends AbstractCriterion {
+public class Regex implements Criterion {
 	private Pattern pattern;
 	private String errorMsg="The value must match the required format";
 

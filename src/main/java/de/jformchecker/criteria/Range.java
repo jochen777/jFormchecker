@@ -1,5 +1,6 @@
 package de.jformchecker.criteria;
 
+import de.jformchecker.Criterion;
 import de.jformchecker.FormCheckerElement;
 
 /**
@@ -7,7 +8,7 @@ import de.jformchecker.FormCheckerElement;
  * 
  * Based on work of armandino (at) gmail.com
  */
-public final class Range extends AbstractCriterion {
+public final class Range implements Criterion {
 	private int min;
 	private int max;
 

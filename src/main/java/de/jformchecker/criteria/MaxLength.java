@@ -1,5 +1,6 @@
 package de.jformchecker.criteria;
 
+import de.jformchecker.Criterion;
 import de.jformchecker.FormCheckerElement;
 
 /**
@@ -7,7 +8,7 @@ import de.jformchecker.FormCheckerElement;
  * 
  * Based on work of armandino (at) gmail.com
  */
-public final class MaxLength extends AbstractCriterion {
+public final class MaxLength implements Criterion {
 	private int maxLength;
 
 	MaxLength(int maxLength) {

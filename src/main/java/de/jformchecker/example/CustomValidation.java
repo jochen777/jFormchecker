@@ -1,10 +1,10 @@
 package de.jformchecker.example;
 
+import de.jformchecker.Criterion;
 import de.jformchecker.FormCheckerElement;
-import de.jformchecker.criteria.AbstractCriterion;
 import de.jformchecker.criteria.ValidationResult;
 
-public class CustomValidation extends AbstractCriterion {
+public class CustomValidation implements Criterion {
 
 	@Override
 	public ValidationResult validate(FormCheckerElement value) {

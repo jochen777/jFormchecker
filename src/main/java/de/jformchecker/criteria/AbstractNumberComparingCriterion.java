@@ -1,5 +1,6 @@
 package de.jformchecker.criteria;
 
+import de.jformchecker.Criterion;
 import de.jformchecker.FormCheckerElement;
 
 /**
@@ -8,7 +9,7 @@ import de.jformchecker.FormCheckerElement;
  * @author jpier
  *
  */
-public abstract class AbstractNumberComparingCriterion extends AbstractCriterion {
+public abstract class AbstractNumberComparingCriterion implements Criterion {
 	@Override
 	public ValidationResult validate(FormCheckerElement value) {
 		try {

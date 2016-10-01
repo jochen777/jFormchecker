@@ -8,7 +8,7 @@ import de.jformchecker.FormCheckerElement;
  * 
  * Based on work of armandino (at) gmail.com
  */
-public final class Or extends AbstractCriterion {
+public final class Or implements Criterion {
 	private Criterion[] criteria;
 
 	Or(Criterion... criteria) {
