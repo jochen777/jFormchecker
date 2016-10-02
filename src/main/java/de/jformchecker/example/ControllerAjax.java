@@ -13,33 +13,28 @@ import de.jformchecker.example.forms.ExampleForm;
 import de.jformchecker.themes.TwoColumnBootstrapFormBuilder;
 
 @WebServlet("/ajax")
-public class ControllerAjax extends BaseController{
-  private static final long serialVersionUID = 1L;
+public class ControllerAjax extends BaseController {
+	private static final long serialVersionUID = 1L;
 
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public ControllerAjax() {
+		super();
+	}
 
-  /**
-   * @see HttpServlet#HttpServlet()
-   */
-  public ControllerAjax() {
-    super();
-  }
+	@Override
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		initRequest(request, response);
 
-  @Override
-  protected void doGet(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    initRequest(request, response);
+		FormChecker fc = FormChecker.build("id", request, new ExampleForm())
+				.setFormBuilder(new TwoColumnBootstrapFormBuilder());
+		fc.run();
 
-    FormChecker fc =
-        FormChecker.build("id", request, new ExampleForm())
-        .setFormBuilder(new TwoColumnBootstrapFormBuilder());
-    fc.run();
-        
+		processResult(fc);
 
-    processResult(fc);
-
-
-
-    putFcInTemplate(response, fc, "ajax.ftl");    
-  }
+		putFcInTemplate(response, fc, "ajax.ftl");
+	}
 
 }

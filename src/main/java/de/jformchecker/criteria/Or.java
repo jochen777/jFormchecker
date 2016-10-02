@@ -18,7 +18,6 @@ public final class Or implements Criterion {
 		this.criteria = criteria;
 	}
 
-
 	@Override
 	public ValidationResult validate(FormCheckerElement value) {
 		ValidationResult failedResult = null;

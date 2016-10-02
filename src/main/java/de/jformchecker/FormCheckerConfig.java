@@ -3,29 +3,30 @@ package de.jformchecker;
 import de.jformchecker.message.MessageSource;
 
 /**
- * "global" configuration object for Formchecker use.
- * Typically this is done just once in a project.
+ * "global" configuration object for Formchecker use. Typically this is done
+ * just once in a project.
+ * 
  * @author jpier
  *
  */
 public class FormCheckerConfig {
-  // Translation-Sources
-  MessageSource properties;
-  
-  public FormCheckerConfig(MessageSource properties, GenericFormBuilder formBuilder) {
-    super();
-    this.properties = properties;
-    this.formBuilder = formBuilder;
-  }
+	// Translation-Sources
+	MessageSource properties;
 
-  GenericFormBuilder formBuilder;
+	public FormCheckerConfig(MessageSource properties, GenericFormBuilder formBuilder) {
+		super();
+		this.properties = properties;
+		this.formBuilder = formBuilder;
+	}
 
-  public MessageSource getProperties() {
-    return properties;
-  }
+	GenericFormBuilder formBuilder;
 
-  public GenericFormBuilder getFormBuilder() {
-    return formBuilder;
-  }
+	public MessageSource getProperties() {
+		return properties;
+	}
+
+	public GenericFormBuilder getFormBuilder() {
+		return formBuilder;
+	}
 
 }

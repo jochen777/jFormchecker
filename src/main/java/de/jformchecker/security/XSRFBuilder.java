@@ -8,42 +8,40 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.commons.lang3.StringEscapeUtils;
 
 public class XSRFBuilder {
-  
-  private final SecureRandom random = new SecureRandom();
 
-  
-  public String buildCSRFTokens(HttpServletRequest req, boolean firstRun) {
-    // is firstrun - then generate a complete new token
-    StringBuilder tags = new StringBuilder();
-    String name = "";
-    String xsrfVal = "";
+	private final SecureRandom random = new SecureRandom();
 
-    String tokenName = "tokenname";
-    String tokenVal = "tokenVal";
+	public String buildCSRFTokens(HttpServletRequest req, boolean firstRun) {
+		// is firstrun - then generate a complete new token
+		StringBuilder tags = new StringBuilder();
+		String name = "";
+		String xsrfVal = "";
 
-    if (!firstRun) {
-      name = req.getParameter(tokenName);
-      xsrfVal = req.getParameter(tokenVal);
-      if (xsrfVal == null || !xsrfVal.equals(req.getSession().getAttribute(name))) {
-        throw new XSRFException("Security Problem!"); 
-      }
+		String tokenName = "tokenname";
+		String tokenVal = "tokenVal";
 
-    }
-    name = "token_" + Math.random();
-    xsrfVal = getRandomValue();
-    req.getSession().setAttribute(name, xsrfVal);
+		if (!firstRun) {
+			name = req.getParameter(tokenName);
+			xsrfVal = req.getParameter(tokenVal);
+			if (xsrfVal == null || !xsrfVal.equals(req.getSession().getAttribute(name))) {
+				throw new XSRFException("Security Problem!");
+			}
 
+		}
+		name = "token_" + Math.random();
+		xsrfVal = getRandomValue();
+		req.getSession().setAttribute(name, xsrfVal);
 
-    tags.append("<input type=\"hidden\" name=\"" + tokenName + "\" value=\""
-        + StringEscapeUtils.escapeHtml4(name) + "\">");
-    tags.append("<input type=\"hidden\" name=\"" + tokenVal + "\" value=\""
-        + StringEscapeUtils.escapeHtml4(xsrfVal) + "\">\n");
-    return tags.toString();
-  }
+		tags.append("<input type=\"hidden\" name=\"" + tokenName + "\" value=\"" + StringEscapeUtils.escapeHtml4(name)
+				+ "\">");
+		tags.append("<input type=\"hidden\" name=\"" + tokenVal + "\" value=\"" + StringEscapeUtils.escapeHtml4(xsrfVal)
+				+ "\">\n");
+		return tags.toString();
+	}
 
-  private String getRandomValue() {
-    final byte[] bytes = new byte[32];
-    random.nextBytes(bytes);
-    return Base64.getEncoder().encodeToString(bytes);
-  }
+	private String getRandomValue() {
+		final byte[] bytes = new byte[32];
+		random.nextBytes(bytes);
+		return Base64.getEncoder().encodeToString(bytes);
+	}
 }

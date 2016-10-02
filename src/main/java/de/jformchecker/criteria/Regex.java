@@ -12,25 +12,21 @@ import de.jformchecker.FormCheckerElement;
  */
 public class Regex implements Criterion {
 	private Pattern pattern;
-	private String errorMsg="The value must match the required format";
+	private String errorMsg = "The value must match the required format";
 
 	public void setErrorMsg(String errorMsg) {
 		this.errorMsg = errorMsg;
 	}
 
-
-
 	Regex(String pattern) {
 		this.pattern = Pattern.compile(pattern);
 	}
 
-	
-	
 	@Override
 	public ValidationResult validate(FormCheckerElement value) {
 		boolean isValid = pattern.matcher(value.getValue()).find();
 		if (!isValid) {
-			ValidationResult.fail( errorMsg);
+			ValidationResult.fail(errorMsg);
 		}
 		return ValidationResult.ok();
 	}

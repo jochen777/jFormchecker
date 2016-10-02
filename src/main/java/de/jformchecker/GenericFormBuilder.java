@@ -57,7 +57,9 @@ public abstract class GenericFormBuilder {
 
 			String errorMsg = getErrors(elem, firstRun);
 			if (errorMsg != null) {
-				formHtml.append(formatError(fc.getConfig().getProperties().getMessage(errorMsg)));	// TODO: Hier translates
+				formHtml.append(formatError(fc.getConfig().getProperties().getMessage(errorMsg))); // TODO:
+																									// Hier
+																									// translates
 			}
 
 			// label
@@ -83,10 +85,16 @@ public abstract class GenericFormBuilder {
 			formHtml.append(getCompleteRenderedInput(inputStruct, elem, firstRun));
 			lastTabIndex = elem.getLastTabIndex();
 		}
-		formHtml.append(getSubmit(lastTabIndex + 1, fc.getForm().getSubmitLabel()));
+		Wrapper submitWrapper = getWrapperForSumit();
+		formHtml.append(submitWrapper.start).append(getSubmit(lastTabIndex + 1, fc.getForm().getSubmitLabel()))
+				.append(submitWrapper.end);
 		formHtml.append(getEndFormTag());
 
 		return formHtml.toString();
+	}
+
+	public Wrapper getWrapperForSumit() {
+		return new Wrapper("", "");
 	}
 
 	public abstract String formatError(String error);
@@ -101,7 +109,7 @@ public abstract class GenericFormBuilder {
 
 		Wrapper labelWrapper = getWrapperForLabel(elem);
 		elemHtml.append(labelWrapper.start).append(inputStruct.getLabel()).append(labelWrapper.end);
-		
+
 		Wrapper inputWrapper = getWrapperForInput(elem);
 		elemHtml.append(inputWrapper.start);
 

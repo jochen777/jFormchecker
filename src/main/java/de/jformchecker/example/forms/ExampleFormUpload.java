@@ -8,32 +8,16 @@ import de.jformchecker.elements.TextInput;
 
 public class ExampleFormUpload extends FormCheckerForm {
 
-  public void init() {
-    add(TextInput
-        .build("firstname")
-        .setDescription("Your Firstname")
-        .setPreSetValue("Peter")
-        .setRequired()
-        .setCriterias(Criteria.accept("Peter", "Max"), Criteria.maxLength(10))
-        );
+	public void init() {
+		add(TextInput.build("firstname").setDescription("Your Firstname").setPreSetValue("Peter").setRequired()
+				.setCriterias(Criteria.accept("Peter", "Max"), Criteria.maxLength(10)));
 
+		add(PasswordInput.build("password1").setRequired().setDescription("Password"));
 
+		add(FileUploadInput.build("upload").setRequired().setDescription("Your fileupload"));
 
+		this.disableHtml5Validation();
 
-    add(PasswordInput
-        .build("password1")
-        .setRequired()
-        .setDescription("Password")
-        );
+	}
 
-    add(FileUploadInput
-        .build("upload")
-        .setRequired()
-        .setDescription("Your fileupload"));
-    
-    this.disableHtml5Validation();
-
-  }
-
- 
 }

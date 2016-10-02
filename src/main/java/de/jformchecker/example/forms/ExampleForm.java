@@ -20,117 +20,62 @@ import de.jformchecker.example.PasswordFormValidator;
 
 public class ExampleForm extends FormCheckerForm {
 
-  public void init() {
-    add(TextInput
-        .build("firstname")
-        .setDescription("Your Firstname")
-        .setPreSetValue("Peter")
-        .setRequired()
-        .setCriterias(Criteria.accept("Peter", "Max"), Criteria.maxLength(10))
-        );
+	public void init() {
+		add(TextInput.build("firstname").setDescription("Your Firstname").setPreSetValue("Peter").setRequired()
+				.setCriterias(Criteria.accept("Peter", "Max"), Criteria.maxLength(10)));
 
-    add(TextInput
-        .build("lastname")
-        .setPlaceholerText("Mustermann")
-        .setDescription("Your Lastname")
-        .setHelpText("This is an example Helptext for describing this lastname field")
-        .setCriterias(Criteria.accept("Pan", "Mustermann"))
-        );
+		add(TextInput.build("lastname").setPlaceholerText("Mustermann").setDescription("Your Lastname")
+				.setHelpText("This is an example Helptext for describing this lastname field")
+				.setCriterias(Criteria.accept("Pan", "Mustermann")));
 
-    add(TextInput
-        .build("middelname")
-        .setDescription("Your Middelname")
-        .setCriterias(new CustomValidation())
-        );
+		add(TextInput.build("middelname").setDescription("Your Middelname").setCriterias(new CustomValidation()));
 
-    add(HTMLSnippet
-        .build("headline")
-        .setHTML("<h1>Headline</h1>")
-        );
+		add(HTMLSnippet.build("headline").setHTML("<h1>Headline</h1>"));
 
-    add(HiddenInput
-        .build("hidden")
-        .setPreSetValue("something to remember")
-        );
+		add(HiddenInput.build("hidden").setPreSetValue("something to remember"));
 
-    add(ButtonInput
-        .build("btn")
-        .setButtonText("Add...")
-        .setPreSetValue("add")
-        );
+		add(ButtonInput.build("btn").setButtonText("Add...").setPreSetValue("add"));
 
-    
-    add(DateInput
-        .build("date")
-        .setDescription("Birthday")
-        );
+		add(DateInput.build("date").setDescription("Birthday"));
 
-    add(DateInputCompound
-            .build("date2")
-            .setDescription("Mein Tag")
-            );
+		add(DateInputCompound.build("date2").setDescription("Mein Tag"));
 
+		add(PasswordInput.build("password1").setRequired().setDescription("Password"));
 
-    add(PasswordInput
-        .build("password1")
-        .setRequired()
-        .setDescription("Password")
-        );
+		add(PasswordInput.build("password2").setRequired().setDescription("Repeat password"));
 
-    add(PasswordInput
-        .build("password2")
-        .setRequired()
-        .setDescription("Repeat password")
-        );
+		add(LongTextInput.build("description").setRequired().setDescription("Your Description"));
 
-    add(LongTextInput
-        .build("description")
-        .setRequired()
-        .setDescription("Your Description")
-        );
+		// RFE: simple map-builder
+		LinkedHashMap<String, String> radioEntries = createRadioMap();
 
-    // RFE: simple map-builder
-    LinkedHashMap<String, String> radioEntries = createRadioMap();
+		add(RadioInput.build("rdio").setPossibleValues(radioEntries).setDescription("Your Choice"));
 
+		LinkedHashMap<String, String> selectEntries = createSelectMap();
 
-    add(RadioInput
-        .build("rdio")
-        .setPossibleValues(radioEntries)
-        .setDescription("Your Choice")
-        );
+		add(SelectInput.build("select").setPossibleValues(selectEntries).setDescription("Your Selection"));
 
-    LinkedHashMap<String, String> selectEntries = createSelectMap();
+		add(CheckboxInput.build("check").setDescription("I order everything"));
 
-    add(SelectInput
-        .build("select")
-        .setPossibleValues(selectEntries)
-        .setDescription("Your Selection")
-        );
+		addFormValidator(new PasswordFormValidator());
 
-    add(CheckboxInput
-        .build("check")
-        .setDescription("I order everything")
-        );
-    
-    addFormValidator(new PasswordFormValidator());
-    
-    this.disableHtml5Validation();
+		this.disableHtml5Validation();
 
-  }
+	}
 
-  private LinkedHashMap<String, String> createSelectMap() {
-    LinkedHashMap<String, String> selectEntries = new LinkedHashMap<>();
-    selectEntries.put("green", "Green");
-    selectEntries.put("blue", "Blue");
-    selectEntries.put("yellow", "Yellow");
-    return selectEntries;
-  }
+	private LinkedHashMap<String, String> createSelectMap() {
+		LinkedHashMap<String, String> selectEntries = new LinkedHashMap<>();
+		selectEntries.put("green", "Green");
+		selectEntries.put("blue", "Blue");
+		selectEntries.put("yellow", "Yellow");
+		return selectEntries;
+	}
 
-  private LinkedHashMap<String, String> createRadioMap() {
-    LinkedHashMap<String, String> radioEntries = new LinkedHashMap<>();
-    radioEntries.put("one", "One $");
-    radioEntries.put("two", "Two $");
-    radioEntries.put("three", "Three $");
-    return radioEntries;
-  }
+	private LinkedHashMap<String, String> createRadioMap() {
+		LinkedHashMap<String, String> radioEntries = new LinkedHashMap<>();
+		radioEntries.put("one", "One $");
+		radioEntries.put("two", "Two $");
+		radioEntries.put("three", "Three $");
+		return radioEntries;
+	}
 }

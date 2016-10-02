@@ -59,7 +59,7 @@ public class BasicFormBuilder extends GenericFormBuilder {
 
 	public String getErrors(FormCheckerElement e, boolean firstRun) {
 		if (!firstRun && !e.isValid()) {
-			return (e.getValidationResult().getMessage() );
+			return (e.getValidationResult().getMessage());
 		}
 		return "";
 	}
@@ -72,7 +72,5 @@ public class BasicFormBuilder extends GenericFormBuilder {
 			return "";
 		}
 	}
-	
-
 
 }

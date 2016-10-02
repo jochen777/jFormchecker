@@ -237,9 +237,9 @@ public abstract class AbstractInput implements FormCheckerElement {
 		this.helpText = helpText;
 		return this;
 	}
-	
-	 public FormCheckerElement setSize(int size) {
-		 this.size = size;
-		 return this;
-	 }
+
+	public FormCheckerElement setSize(int size) {
+		this.size = size;
+		return this;
+	}
 }

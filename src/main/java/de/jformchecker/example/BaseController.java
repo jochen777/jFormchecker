@@ -21,58 +21,55 @@ import freemarker.template.TemplateExceptionHandler;
 import freemarker.template.TemplateNotFoundException;
 
 public abstract class BaseController extends HttpServlet {
-  private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-  // Freemarker konfiguration
-  Configuration cfg;
+	// Freemarker konfiguration
+	Configuration cfg;
 
-  private void initFreemarkerConfig(ServletContext context) {
-    cfg = new Configuration(Configuration.VERSION_2_3_22);
-    cfg.setServletContextForTemplateLoading(context, "/");
-    cfg.setDefaultEncoding("UTF-8");
-    cfg.setTemplateExceptionHandler(TemplateExceptionHandler.RETHROW_HANDLER);
-    cfg.setTemplateUpdateDelayMilliseconds(4);
-  }
+	private void initFreemarkerConfig(ServletContext context) {
+		cfg = new Configuration(Configuration.VERSION_2_3_22);
+		cfg.setServletContextForTemplateLoading(context, "/");
+		cfg.setDefaultEncoding("UTF-8");
+		cfg.setTemplateExceptionHandler(TemplateExceptionHandler.RETHROW_HANDLER);
+		cfg.setTemplateUpdateDelayMilliseconds(4);
+	}
 
-  /* Merge data-model with template */
-  public final void putFcInTemplate(HttpServletResponse response, FormChecker fc, String templateName)
-      throws TemplateNotFoundException, MalformedTemplateNameException, ParseException,
-      IOException {
-    try {
-    
-      Map<String, Object> root = new HashMap<>();
+	/* Merge data-model with template */
+	public final void putFcInTemplate(HttpServletResponse response, FormChecker fc, String templateName)
+			throws TemplateNotFoundException, MalformedTemplateNameException, ParseException, IOException {
+		try {
 
-      root.put("fc", fc);
-      Template temp = cfg.getTemplate(templateName);
-      temp.process(root, response.getWriter());
+			Map<String, Object> root = new HashMap<>();
 
-    } catch (TemplateException e1) {
-      e1.printStackTrace();
-    }
-  }
-  
-  
+			root.put("fc", fc);
+			Template temp = cfg.getTemplate(templateName);
+			temp.process(root, response.getWriter());
 
-  protected void processResult(FormChecker fc) {
-    if (fc.isValid()) {
-      ExampleBean bean = new ExampleBean();
-      try {
-        Utils.fillBean(fc.getForm().getElements(), bean);
-      } catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
-        e.printStackTrace();
-      }
-      System.out.println("bean:" + bean);
-      System.out.println("--------------");
-      System.out.println(Utils.getDebugOutput(fc.getForm().getElementsAsMap()));
-    }
-  }
+		} catch (TemplateException e1) {
+			e1.printStackTrace();
+		}
+	}
 
-  protected void initRequest(HttpServletRequest request, HttpServletResponse response) {
-    response.setContentType("text/html; charset=UTF-8");
-    response.setCharacterEncoding("UTF-8");
+	protected void processResult(FormChecker fc) {
+		if (fc.isValid()) {
+			ExampleBean bean = new ExampleBean();
+			try {
+				Utils.fillBean(fc.getForm().getElements(), bean);
+			} catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
+				e.printStackTrace();
+			}
+			System.out.println("bean:" + bean);
+			System.out.println("--------------");
+			System.out.println(Utils.getDebugOutput(fc.getForm().getElementsAsMap()));
+		}
+	}
 
-    if (cfg == null) {
-      initFreemarkerConfig(request.getServletContext());
-    }
-  }
+	protected void initRequest(HttpServletRequest request, HttpServletResponse response) {
+		response.setContentType("text/html; charset=UTF-8");
+		response.setCharacterEncoding("UTF-8");
+
+		if (cfg == null) {
+			initFreemarkerConfig(request.getServletContext());
+		}
+	}
 }

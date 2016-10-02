@@ -17,35 +17,29 @@ import de.jformchecker.example.forms.ExampleFormCaptcha;
  */
 @WebServlet("/Captcha")
 public class ControllerCaptcha extends BaseController {
-  private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public ControllerCaptcha() {
+		super();
+	}
 
-  /**
-   * @see HttpServlet#HttpServlet()
-   */
-  public ControllerCaptcha() {
-    super();
-  }
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
-  
+		initRequest(request, response);
 
-  protected void doGet(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
+		/****************************************
+		 * prepare jFormchecker
+		 */
+		FormChecker fc = FormChecker.build("id", request, new ExampleFormCaptcha()).run();
 
-    initRequest(request, response);
+		processResult(fc);
 
-    /****************************************
-     * prepare jFormchecker
-     */
-    FormChecker fc =
-        FormChecker.build("id", request, new ExampleFormCaptcha())
-        .run();
+		putFcInTemplate(response, fc, "test.ftl");
 
-    processResult(fc);
+	}
 
-    putFcInTemplate(response, fc, "test.ftl");
-
-  }
-
- 
 }

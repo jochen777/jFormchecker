@@ -15,11 +15,9 @@ public class Accept implements Criterion {
 		this.acceptableValues = values;
 	}
 
-
 	protected boolean areEqual(String v1, String v2) {
 		return v1.equals(v2);
 	}
-
 
 	@Override
 	public ValidationResult validate(FormCheckerElement value) {
@@ -28,7 +26,7 @@ public class Accept implements Criterion {
 			if (areEqual(v, value.getValue()))
 				isValid = true;
 		}
-		if (!isValid){
+		if (!isValid) {
 			return ValidationResult.fail("Please enter one of the allowed values %s", (Object[]) acceptableValues);
 		}
 		return ValidationResult.ok();

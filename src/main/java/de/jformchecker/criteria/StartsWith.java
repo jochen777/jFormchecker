@@ -15,8 +15,6 @@ public final class StartsWith implements Criterion {
 		this.prefixes = prefixes;
 	}
 
-
-
 	@Override
 	public ValidationResult validate(FormCheckerElement value) {
 		boolean isValid = false;
@@ -26,7 +24,7 @@ public final class StartsWith implements Criterion {
 		}
 
 		if (!isValid) {
-			return ValidationResult.fail("Please enter a value starting with %s", (Object []) prefixes);
+			return ValidationResult.fail("Please enter a value starting with %s", (Object[]) prefixes);
 		}
 		return ValidationResult.ok();
 	}

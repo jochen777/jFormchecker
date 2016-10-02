@@ -9,23 +9,23 @@ import de.jformchecker.FormCheckerElement;
  * Based on work of armandino (at) gmail.com
  */
 public final class Length implements Criterion {
-  private int min;
-  private int max;
+	private int min;
+	private int max;
 
-  Length(int min, int max) {
-    this.min = min;
-    this.max = max;
-  }
+	Length(int min, int max) {
+		this.min = min;
+		this.max = max;
+	}
 
 	@Override
 	public ValidationResult validate(FormCheckerElement value) {
 		boolean isValid = value.getValue().length() <= max && value.getValue().length() >= min;
 		if (!isValid) {
-			return ValidationResult.fail("The value must be between %d and %d characters long", Integer.valueOf(min), Integer.valueOf(max));	
+			return ValidationResult.fail("The value must be between %d and %d characters long", Integer.valueOf(min),
+					Integer.valueOf(max));
 		}
 		return ValidationResult.ok();
-		
-	}
 
+	}
 
 }

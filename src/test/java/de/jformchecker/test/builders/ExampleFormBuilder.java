@@ -15,84 +15,61 @@ import de.jformchecker.elements.TextInput;
 import de.jformchecker.example.CustomValidation;
 
 public class ExampleFormBuilder {
-  public static FormCheckerForm getVerySimpleForm() {
-    return new FormCheckerForm() {
-      @Override
-      public void init() {
-        add(TextInput.build("firstname")
-            .setRequired()
-            .setPreSetValue("Horst")
-            .setHelpText("My Helptext")
-            .setDescription("Your firstname"));
-      }
-    };
-  }
+	public static FormCheckerForm getVerySimpleForm() {
+		return new FormCheckerForm() {
+			@Override
+			public void init() {
+				add(TextInput.build("firstname").setRequired().setPreSetValue("Horst").setHelpText("My Helptext")
+						.setDescription("Your firstname"));
+			}
+		};
+	}
 
-  public static FormCheckerForm getVerySimpleFormWithoutHelp() {
-    return new FormCheckerForm() {
-      @Override
-      public void init() {
-        add(TextInput.build("firstname")
-            .setRequired()
-            .setPreSetValue("Horst")
-            .setDescription("Your firstname"));
-      }
-    };
-  }
+	public static FormCheckerForm getVerySimpleFormWithoutHelp() {
+		return new FormCheckerForm() {
+			@Override
+			public void init() {
+				add(TextInput.build("firstname").setRequired().setPreSetValue("Horst")
+						.setDescription("Your firstname"));
+			}
+		};
+	}
 
+	public static FormCheckerForm getComplexForm() {
+		return new FormCheckerForm() {
 
-  public static FormCheckerForm getComplexForm() {
-    return new FormCheckerForm() {
+			@Override
+			public void init() {
 
-      @Override
-      public void init() {
+				add(TextInput.build("firstname").setDescription("Your Firstname").setPreSetValue("Jochen")
+						.setCriterias(Criteria.accept("Jochen", "Max")));
 
-        add(TextInput.build("firstname")
-            .setDescription("Your Firstname")
-            .setPreSetValue("Jochen")
-            .setCriterias(Criteria.accept("Jochen", "Max")));
+				add(TextInput.build("lastname").setDescription("Your Lastname").setPreSetValue("pier")
+						.setCriterias(Criteria.accept("Pan", "Mustermann")));
 
-        add(TextInput.build("lastname")
-            .setDescription("Your Lastname")
-            .setPreSetValue("pier")
-            .setCriterias(Criteria.accept("Pan", "Mustermann")));
+				add(TextInput.build("middelname").setDescription("Your Middelname")
+						.setCriterias(new CustomValidation()));
 
-        add(TextInput.build("middelname")
-            .setDescription("Your Middelname")
-            .setCriterias(new CustomValidation()));
+				add(HiddenInput.build("hidden").setPreSetValue("something to remember"));
 
+				add(DateInput.build("date").setDescription("Birthday"));
 
-        add(HiddenInput.build("hidden")
-            .setPreSetValue("something to remember"));
+				add(PasswordInput.build("password").setDescription("Password"));
 
-        add(DateInput.build("date")
-            .setDescription("Birthday"));
+				add(LongTextInput.build("description").setDescription("Your Description"));
 
+				LinkedHashMap<String, String> radioEntries = SampleMapBuilders.generateRadioMap();
 
+				add(RadioInput.build("rdio").setPossibleValues(radioEntries).setDescription("Your Choice"));
 
-        add(PasswordInput.build("password")
-            .setDescription("Password"));
+				LinkedHashMap<String, String> selectEntries = SampleMapBuilders.generateSelectMap();
 
-        add(LongTextInput.build("description")
-            .setDescription("Your Description"));
+				add(SelectInput.build("select").setPossibleValues(selectEntries).setDescription("Your Selection"));
 
-        LinkedHashMap<String, String> radioEntries = SampleMapBuilders.generateRadioMap();
+				add(CheckboxInput.build("check").setDescription("I order everything"));
 
-        add(RadioInput.build("rdio")
-            .setPossibleValues(radioEntries)
-            .setDescription("Your Choice"));
+			}
 
-        LinkedHashMap<String, String> selectEntries = SampleMapBuilders.generateSelectMap();
-
-        add(SelectInput.build("select")
-            .setPossibleValues(selectEntries)
-            .setDescription("Your Selection"));
-
-        add(CheckboxInput.build("check")
-            .setDescription("I order everything"));
-
-      }
-
-    };
-  }
+		};
+	}
 }

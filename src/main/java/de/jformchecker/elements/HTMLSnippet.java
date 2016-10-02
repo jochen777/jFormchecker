@@ -9,31 +9,31 @@ import de.jformchecker.validator.Validator;
 
 public class HTMLSnippet extends AbstractInput implements FormCheckerElement {
 
-  String html;
-  
-  public static HTMLSnippet build(String name) {
-    HTMLSnippet i = new HTMLSnippet();
-    i.name = name;
-    return i;
-  }
-  
-  public HTMLSnippet setHTML(String html) {
-    this.html = html;
-    return this;
-  }
-  
-  @Override
-  public String getValue() {
-    return "";
-  }
+	String html;
 
+	public static HTMLSnippet build(String name) {
+		HTMLSnippet i = new HTMLSnippet();
+		i.name = name;
+		return i;
+	}
 
-  @Override
-  public String getInputTag(Map<String, String> attributes) {
-    return html;
-  }
+	public HTMLSnippet setHTML(String html) {
+		this.html = html;
+		return this;
+	}
 
-  @Override
-  public void init(HttpServletRequest request, boolean firstRun, Validator validator) {}
+	@Override
+	public String getValue() {
+		return "";
+	}
+
+	@Override
+	public String getInputTag(Map<String, String> attributes) {
+		return html;
+	}
+
+	@Override
+	public void init(HttpServletRequest request, boolean firstRun, Validator validator) {
+	}
 
 }

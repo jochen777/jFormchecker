@@ -7,23 +7,13 @@ import de.jformchecker.elements.TextInput;
 
 public class ExampleFormCaptcha extends FormCheckerForm {
 
-  public void init() {
-    add(TextInput
-        .build("firstname")
-        .setDescription("Your Firstname")
-        .setPreSetValue("Peter")
-        .setRequired()
-        .setCriterias(Criteria.accept("Peter", "Max"), Criteria.maxLength(10))
-        );
+	public void init() {
+		add(TextInput.build("firstname").setDescription("Your Firstname").setPreSetValue("Peter").setRequired()
+				.setCriterias(Criteria.accept("Peter", "Max"), Criteria.maxLength(10)));
 
-    add(RecaptchaInput
-        .build("captcha")
-        .setSiteKey("xx")
-        .setSecret("xx")
-        .setDescription("Sicherheitsabfrage")
-        );
+		add(RecaptchaInput.build("captcha").setSiteKey("xx").setSecret("xx").setDescription("Sicherheitsabfrage"));
 
-   disableHtml5Validation();
+		disableHtml5Validation();
 
-  }
+	}
 }

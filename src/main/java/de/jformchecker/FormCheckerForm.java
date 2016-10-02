@@ -8,68 +8,68 @@ import java.util.Map;
 // holds a collection of form-Elements that can be rendered by formchecker
 public abstract class FormCheckerForm {
 
-  List<FormCheckerElement> elements = new ArrayList<>();
-  List<FormValidator> validators = new ArrayList<>();
-  private Map<String, FormCheckerElement> fastAccess = new LinkedHashMap<>();
-  String submitLabel = "OK";
-  
-  public String getSubmitLabel() {
-    return submitLabel;
-  }
+	List<FormCheckerElement> elements = new ArrayList<>();
+	List<FormValidator> validators = new ArrayList<>();
+	private Map<String, FormCheckerElement> fastAccess = new LinkedHashMap<>();
+	String submitLabel = "OK";
 
-  public void setSubmitLabel(String submitLabel) {
-    this.submitLabel = submitLabel;
-  }
+	public String getSubmitLabel() {
+		return submitLabel;
+	}
 
-  private TagAttributes formTagAttributes = new TagAttributes();
-  
-  public TagAttributes getFormTagAttributes() {
-    return formTagAttributes;
-  }
+	public void setSubmitLabel(String submitLabel) {
+		this.submitLabel = submitLabel;
+	}
 
-  public void setFormTagAttributes(LinkedHashMap<String, String> formTagAttributes) {
-    this.formTagAttributes = new TagAttributes(formTagAttributes);
-  }
+	private TagAttributes formTagAttributes = new TagAttributes();
 
-  public Map<String, FormCheckerElement> getElementsAsMap() {
-    return fastAccess;
-  }
+	public TagAttributes getFormTagAttributes() {
+		return formTagAttributes;
+	}
 
-  boolean html5Validation = true;
-  
-  {
-    init();
-  }
+	public void setFormTagAttributes(LinkedHashMap<String, String> formTagAttributes) {
+		this.formTagAttributes = new TagAttributes(formTagAttributes);
+	}
 
-  // Should be overriden
-  public abstract void init();
-  
-  public void disableHtml5Validation() {
-    html5Validation = false;
-  }
-  
-  public List<FormValidator> getValidators() {
-    return validators;
-  }
+	public Map<String, FormCheckerElement> getElementsAsMap() {
+		return fastAccess;
+	}
 
-  public FormCheckerForm add(FormCheckerElement elem) {
-    // RFE: Exception, if elem is added twice!
-    elements.add(elem);
-    fastAccess.put(elem.getName(), elem);
-    return this;
-  }
+	boolean html5Validation = true;
 
-  public List<FormCheckerElement> getElements() {
-    return elements;
-  }
+	{
+		init();
+	}
 
-  public FormCheckerForm addFormValidator(FormValidator formValidator) {
-    validators.add(formValidator);
-    return this;
-  }
+	// Should be overriden
+	public abstract void init();
 
-  public FormCheckerElement getElement(String name) {
-    return fastAccess.get(name);
-  }
-  
+	public void disableHtml5Validation() {
+		html5Validation = false;
+	}
+
+	public List<FormValidator> getValidators() {
+		return validators;
+	}
+
+	public FormCheckerForm add(FormCheckerElement elem) {
+		// RFE: Exception, if elem is added twice!
+		elements.add(elem);
+		fastAccess.put(elem.getName(), elem);
+		return this;
+	}
+
+	public List<FormCheckerElement> getElements() {
+		return elements;
+	}
+
+	public FormCheckerForm addFormValidator(FormValidator formValidator) {
+		validators.add(formValidator);
+		return this;
+	}
+
+	public FormCheckerElement getElement(String name) {
+		return fastAccess.get(name);
+	}
+
 }

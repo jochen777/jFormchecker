@@ -6,11 +6,11 @@ package de.jformchecker.criteria;
  * Based on work of armandino (at) gmail.com
  */
 public final class Email extends Regex {
-  private static final String REGEX = "\\p{Alnum}+@\\p{Alnum}+(\\.[A-Za-z]+)*";
+	private static final String REGEX = "\\p{Alnum}+@\\p{Alnum}+(\\.[A-Za-z]+)*";
 
-  Email() {
-    super(REGEX);
-    setErrorMsg("Please enter a valid email address");
-  }
+	Email() {
+		super(REGEX);
+		setErrorMsg("Please enter a valid email address");
+	}
 
 }

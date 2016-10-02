@@ -20,8 +20,8 @@ import de.jformchecker.validator.Validator;
  * Captcha for distinugishing between human and robots.
  * 
  * 
- * Based on the recaptcha by google.
- * see: https://developers.google.com/recaptcha/intro
+ * Based on the recaptcha by google. see:
+ * https://developers.google.com/recaptcha/intro
  * 
  * @author jochen
  *
@@ -30,97 +30,88 @@ public class RecaptchaInput extends AbstractInput implements FormCheckerElement 
 
 	// Site specific key. Obtain that from google. Will be shown in html
 	String siteKey = null;
-	// Secret string. This will be send by https to google along with the userinput
+	// Secret string. This will be send by https to google along with the
+	// userinput
 	String secret = null;
-	
-	
-  public static RecaptchaInput build(String name) {
-    RecaptchaInput ci = new RecaptchaInput();
-    ci.name = name;
-    return ci;
-  }
-  
-  public RecaptchaInput setSiteKey(String siteKey) {
-	  this.siteKey = siteKey;
-	  return this;
-  }
 
-  public RecaptchaInput setSecret(String secret) {
-	  this.secret = secret;
-	  return this;
-  }
+	public static RecaptchaInput build(String name) {
+		RecaptchaInput ci = new RecaptchaInput();
+		ci.name = name;
+		return ci;
+	}
 
-  
-  @Override
-  public String getInputTag(Map<String, String> attributes) {
-	  // TODO: style, format, tabindex
-	  // JS Include should be placed in head. But for convenience, this works as well.
-    return "<script src=\"https://www.google.com/recaptcha/api.js\">"
-    		+ "</script><div class=\"g-recaptcha\" "
-    		+ "data-sitekey=\""+ siteKey+ "\"></div>";
-  }
+	public RecaptchaInput setSiteKey(String siteKey) {
+		this.siteKey = siteKey;
+		return this;
+	}
 
+	public RecaptchaInput setSecret(String secret) {
+		this.secret = secret;
+		return this;
+	}
 
-  
-  
-  @Override
-  public void init(HttpServletRequest request, boolean firstRun, Validator validator) {
-    if (!firstRun) {
-      String userInput = request.getParameter("g-recaptcha-response");
+	@Override
+	public String getInputTag(Map<String, String> attributes) {
+		// TODO: style, format, tabindex
+		// JS Include should be placed in head. But for convenience, this works
+		// as well.
+		return "<script src=\"https://www.google.com/recaptcha/api.js\">" + "</script><div class=\"g-recaptcha\" "
+				+ "data-sitekey=\"" + siteKey + "\"></div>";
+	}
 
-      if (!verify(userInput, secret)){
-    	  this.setValidationResult(ValidationResult.fail("Captcha not valid"));
-      }
-    }
-  }
-  
-  
-  public boolean verify(String gRecaptchaResponse, String secret) {
-      if (gRecaptchaResponse == null || "".equals(gRecaptchaResponse)) {
-          return false;
-      }
-       
-      try{
-      URL obj = new URL("https://www.google.com/recaptcha/api/siteverify");
-      HttpsURLConnection con = (HttpsURLConnection) obj.openConnection();
+	@Override
+	public void init(HttpServletRequest request, boolean firstRun, Validator validator) {
+		if (!firstRun) {
+			String userInput = request.getParameter("g-recaptcha-response");
 
-      con.setRequestMethod("POST");
+			if (!verify(userInput, secret)) {
+				this.setValidationResult(ValidationResult.fail("Captcha not valid"));
+			}
+		}
+	}
 
-      String postParams = "secret=" + secret + "&response="
-              + gRecaptchaResponse;
+	public boolean verify(String gRecaptchaResponse, String secret) {
+		if (gRecaptchaResponse == null || "".equals(gRecaptchaResponse)) {
+			return false;
+		}
 
-      // Send post request
-      con.setDoOutput(true);
-      DataOutputStream wr = new DataOutputStream(con.getOutputStream());
-      wr.writeBytes(postParams);
-      wr.flush();
-      wr.close();
+		try {
+			URL obj = new URL("https://www.google.com/recaptcha/api/siteverify");
+			HttpsURLConnection con = (HttpsURLConnection) obj.openConnection();
 
-      int responseCode = con.getResponseCode();
-      System.err.println("Responsecode: " + responseCode);
-      BufferedReader in = new BufferedReader(new InputStreamReader(
-              con.getInputStream()));
-      String inputLine;
-      StringBuffer response = new StringBuffer();
+			con.setRequestMethod("POST");
 
-      while ((inputLine = in.readLine()) != null) {
-          response.append(inputLine);
-      }
-      in.close();
+			String postParams = "secret=" + secret + "&response=" + gRecaptchaResponse;
 
-      // print result
-      System.out.println(response.toString());
-       
-      //parse JSON response and return 'success' value
-      JsonObject jsonObject = new JsonParser().parse(response.toString()).getAsJsonObject();
+			// Send post request
+			con.setDoOutput(true);
+			DataOutputStream wr = new DataOutputStream(con.getOutputStream());
+			wr.writeBytes(postParams);
+			wr.flush();
+			wr.close();
 
-      
-       
-      return jsonObject.get("success").getAsBoolean();
-      }catch(Exception e){
-          e.printStackTrace();
-          return false;
-      }
-  }
+			int responseCode = con.getResponseCode();
+			System.err.println("Responsecode: " + responseCode);
+			BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+			String inputLine;
+			StringBuffer response = new StringBuffer();
+
+			while ((inputLine = in.readLine()) != null) {
+				response.append(inputLine);
+			}
+			in.close();
+
+			// print result
+			System.out.println(response.toString());
+
+			// parse JSON response and return 'success' value
+			JsonObject jsonObject = new JsonParser().parse(response.toString()).getAsJsonObject();
+
+			return jsonObject.get("success").getAsBoolean();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
 
 }

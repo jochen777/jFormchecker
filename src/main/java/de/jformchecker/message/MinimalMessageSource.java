@@ -1,6 +1,6 @@
 package de.jformchecker.message;
 
-public class MinimalMessageSource implements MessageSource{
+public class MinimalMessageSource implements MessageSource {
 
 	@Override
 	public String getMessage(String key) {

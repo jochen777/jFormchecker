@@ -27,92 +27,87 @@ import freemarker.template.TemplateExceptionHandler;
  */
 @WebServlet("/TestAdd")
 public class TestDynamicElement extends HttpServlet {
-  private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-  Configuration cfg;
+	Configuration cfg;
 
-  /**
-   * @see HttpServlet#HttpServlet()
-   */
-  public TestDynamicElement() {
-    super();
-  }
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public TestDynamicElement() {
+		super();
+	}
 
-  private void init(ServletContext context) {
-    cfg = new Configuration(Configuration.VERSION_2_3_22);
-    cfg.setServletContextForTemplateLoading(context, "/");
-    cfg.setDefaultEncoding("UTF-8");
-    cfg.setTemplateExceptionHandler(TemplateExceptionHandler.RETHROW_HANDLER);
-    cfg.setTemplateUpdateDelayMilliseconds(4);
-  }
+	private void init(ServletContext context) {
+		cfg = new Configuration(Configuration.VERSION_2_3_22);
+		cfg.setServletContextForTemplateLoading(context, "/");
+		cfg.setDefaultEncoding("UTF-8");
+		cfg.setTemplateExceptionHandler(TemplateExceptionHandler.RETHROW_HANDLER);
+		cfg.setTemplateUpdateDelayMilliseconds(4);
+	}
 
-  protected void doGet(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
-    initRequest(request, response);
+		initRequest(request, response);
 
-    /****************************************
-     * prepare jFormchecker
-     */
-    ExampleForm form = new ExampleForm();
-    if (request.getSession().getAttribute("add") != null) {
-      form.add(TextInput.build("text").setDescription("Additional"));
-    }
-    
-    FormChecker fc =
-        FormChecker.build("id", request, form).setProtectAgainstCSRF().run();
+		/****************************************
+		 * prepare jFormchecker
+		 */
+		ExampleForm form = new ExampleForm();
+		if (request.getSession().getAttribute("add") != null) {
+			form.add(TextInput.build("text").setDescription("Additional"));
+		}
 
-    processResult(fc, request);
+		FormChecker fc = FormChecker.build("id", request, form).setProtectAgainstCSRF().run();
 
+		processResult(fc, request);
 
+		/* Merge data-model with template */
+		try {
 
-    /* Merge data-model with template */
-    try {
-    
-      Map<String, Object> root = new HashMap<>();
+			Map<String, Object> root = new HashMap<>();
 
-      /****************************************
-       * put jFormChecker in the map for the template processing
-       */
-      root.put("fc", fc);
-      Template temp = cfg.getTemplate("test.ftl");
-      temp.process(root, response.getWriter());
+			/****************************************
+			 * put jFormChecker in the map for the template processing
+			 */
+			root.put("fc", fc);
+			Template temp = cfg.getTemplate("test.ftl");
+			temp.process(root, response.getWriter());
 
-    } catch (TemplateException e1) {
-      e1.printStackTrace();
-    }
+		} catch (TemplateException e1) {
+			e1.printStackTrace();
+		}
 
-  }
-  
-  
+	}
 
-  private void processResult(FormChecker fc, HttpServletRequest request) {
-    if (fc.isValidAndNotFirstRun()) {
-      ExampleBean bean = new ExampleBean();
-      try {
-        Utils.fillBean(fc.getForm().getElements(), bean);
-      } catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
-        e.printStackTrace();
-      }
-      System.out.println("bean:" + bean);
-      System.out.println(((DateInput)fc.getForm().getElement("date")).getDateValue());
-      System.out.println("--------------");
-      System.out.println(Utils.getDebugOutput(fc.getForm().getElementsAsMap()));
-      
-      // add button
-      if ("add".equals(fc.getValue("btn"))) {
-        System.out.println("add this!!!");  
-        request.getSession().setAttribute("add", "add");
-      }
-    }
-  }
+	private void processResult(FormChecker fc, HttpServletRequest request) {
+		if (fc.isValidAndNotFirstRun()) {
+			ExampleBean bean = new ExampleBean();
+			try {
+				Utils.fillBean(fc.getForm().getElements(), bean);
+			} catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
+				e.printStackTrace();
+			}
+			System.out.println("bean:" + bean);
+			System.out.println(((DateInput) fc.getForm().getElement("date")).getDateValue());
+			System.out.println("--------------");
+			System.out.println(Utils.getDebugOutput(fc.getForm().getElementsAsMap()));
 
-  private void initRequest(HttpServletRequest request, HttpServletResponse response) {
-    response.setContentType("text/html; charset=UTF-8");
-    response.setCharacterEncoding("UTF-8");
+			// add button
+			if ("add".equals(fc.getValue("btn"))) {
+				System.out.println("add this!!!");
+				request.getSession().setAttribute("add", "add");
+			}
+		}
+	}
 
-    if (cfg == null) {
-      init(request.getServletContext());
-    }
-  }
+	private void initRequest(HttpServletRequest request, HttpServletResponse response) {
+		response.setContentType("text/html; charset=UTF-8");
+		response.setCharacterEncoding("UTF-8");
+
+		if (cfg == null) {
+			init(request.getServletContext());
+		}
+	}
 }

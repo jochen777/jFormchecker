@@ -35,14 +35,14 @@ public class ValidationResult {
 	public static ValidationResult of_(boolean isValid, String message, Object... errorVals) {
 		return new ValidationResult(isValid, message, errorVals);
 	}
-	
+
 	public static ValidationResult fail(String message, Object... errorVals) {
 		return new ValidationResult(false, message, errorVals);
 	}
 
-	
 	public static ValidationResult ok() {
-		// RFE: Could return always the same object! will reduce memory footprint!
+		// RFE: Could return always the same object! will reduce memory
+		// footprint!
 		return new ValidationResult(true, "", null);
 	}
 

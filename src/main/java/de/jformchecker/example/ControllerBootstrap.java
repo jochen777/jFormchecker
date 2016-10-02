@@ -20,39 +20,32 @@ import de.jformchecker.themes.TwoColumnBootstrapFormBuilder;
  */
 @WebServlet("/Test")
 public class ControllerBootstrap extends BaseController {
-  private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public ControllerBootstrap() {
+		super();
+	}
 
-  /**
-   * @see HttpServlet#HttpServlet()
-   */
-  public ControllerBootstrap() {
-    super();
-  }
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
-  
+		initRequest(request, response);
 
-  protected void doGet(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
+		/****************************************
+		 * prepare jFormchecker
+		 */
+		ResourceBundleMessageSource properties = new ResourceBundleMessageSource(
+				ResourceBundle.getBundle("formchecker"));
+		FormCheckerConfig config = new FormCheckerConfig(properties, new TwoColumnBootstrapFormBuilder());
 
-    initRequest(request, response);
+		FormChecker fc = FormChecker.build("id", request, new ExampleForm()).setProtectAgainstCSRF().setConfig(config)
+				.run();
 
-    /****************************************
-     * prepare jFormchecker
-     */
-    ResourceBundleMessageSource properties = new ResourceBundleMessageSource(ResourceBundle.getBundle("formchecker"));
-    FormCheckerConfig config = new FormCheckerConfig(properties, new TwoColumnBootstrapFormBuilder());
-    
-    FormChecker fc =
-        FormChecker.build("id", request, new ExampleForm()).setProtectAgainstCSRF()
-        .setConfig(config)
-        .run();
+		putFcInTemplate(response, fc, "test.ftl");
 
+	}
 
-
-    putFcInTemplate(response, fc, "test.ftl");
-
-  }
-
- 
 }
