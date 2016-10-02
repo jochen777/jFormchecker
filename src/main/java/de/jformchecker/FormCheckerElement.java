@@ -83,4 +83,7 @@ public interface FormCheckerElement {
 
   public String getHelpText();
   
+  // sets the size attribute
+  public FormCheckerElement setSize(int size);
+  
 }

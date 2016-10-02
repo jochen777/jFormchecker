@@ -1,6 +1,5 @@
 package de.jformchecker.elements;
 
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -30,211 +29,217 @@ import de.jformchecker.validator.Validator;
  */
 public abstract class AbstractInput implements FormCheckerElement {
 
-  protected String name;
-  protected String value;
-  protected String desc;
-  protected String preSetValue = "";
-  private List<Criterion> criteria = new ArrayList<>();
-  boolean required;
-  private int tabIndex;
-  ValidationResult validationResult;
-  public ValidationResult getValidationResult() {
-	return validationResult;
-}
+	protected String name;
+	protected String value;
+	protected String desc;
+	protected String preSetValue = "";
+	protected int size = -1;
+	private List<Criterion> criteria = new ArrayList<>();
+	boolean required;
+	private int tabIndex;
+	ValidationResult validationResult;
 
-public void setValidationResult(ValidationResult validationResult) {
-	this.validationResult = validationResult;
-}
+	public ValidationResult getValidationResult() {
+		return validationResult;
+	}
 
-boolean valid = true;
-  FormChecker parent;
-  String helpText;
-  
-  
+	public void setValidationResult(ValidationResult validationResult) {
+		this.validationResult = validationResult;
+	}
 
-  // builds attribs, elementId, TabIndex
-  protected String buildAllAttributes(Map<String, String> attributes) {
-    StringBuilder allAttribs = new StringBuilder();
-    allAttribs.append(Utils.buildAttributes(attributes));
-    allAttribs.append(getElementId());
-    allAttribs.append(getTabIndexTag());
-    allAttribs.append(buildRequiredAttribute());
-    // help-text
-    if (!StringUtils.isEmpty(helpText)){
-      allAttribs.append(Utils.buildAttributes(
-          new TagAttributes("aria-describedby", FormChecker.getHelpBlockId(this))));
-    }
-    return allAttribs.toString();
-  }
-  
-  protected String buildRequiredAttribute() {
-    if (required){
-      return "required ";
-    } else {
-      return "";
-    }
-  }
+	boolean valid = true;
+	FormChecker parent;
+	String helpText;
 
-  public String getInputTag() {
-    return getInputTag(new HashMap<>());
-  }
+	// builds attribs, elementId, TabIndex
+	protected String buildAllAttributes(Map<String, String> attributes) {
+		StringBuilder allAttribs = new StringBuilder();
+		allAttribs.append(Utils.buildAttributes(attributes));
+		allAttribs.append(getElementId());
+		allAttribs.append(getTabIndexTag());
+		allAttribs.append(buildRequiredAttribute());
+		allAttribs.append(buildSizeAttribute());
+		// help-text
+		if (!StringUtils.isEmpty(helpText)) {
+			allAttribs.append(
+					Utils.buildAttributes(new TagAttributes("aria-describedby", FormChecker.getHelpBlockId(this))));
+		}
+		return allAttribs.toString();
+	}
 
-  // return highest tabindex of this element
-  public int getLastTabIndex() {
-    return tabIndex;
-  }
+	private Object buildSizeAttribute() {
+		if (size != -1) {
+			return Utils.buildSingleAttribute("size", Integer.toString(size));
+		}
+		return "";
+	}
 
-  @Override
-  public void setFormChecker(FormChecker fc) {
-    parent = fc;
-  }
+	protected String buildRequiredAttribute() {
+		if (required) {
+			return "required ";
+		} else {
+			return "";
+		}
+	}
 
-  public String getValueHtmlEncoded() {
-    return StringEscapeUtils.escapeHtml4(value);
-  }
+	public String getInputTag() {
+		return getInputTag(new HashMap<>());
+	}
 
-  public void setInvalid(){
-    valid = false;
-  }
-  
-  @Override
-  public void init(HttpServletRequest request, boolean firstRun, Validator validator) {
-    if (firstRun) {
-      this.setValue(this.getPreSetValue());
-    } else {
-      this.setValue(request.getParameter(this.getName()));
-      this.setValidationResult( validator.validate(this));
-      if (!this.validationResult.isValid()) {
-    	  this.valid = false;
-      } else {
-    	  this.valid = true;
-      }
-    }
-  }
+	// return highest tabindex of this element
+	public int getLastTabIndex() {
+		return tabIndex;
+	}
 
-  public AbstractInput setRequired() {
-    this.required = true;
-    return this;
-  }
+	@Override
+	public void setFormChecker(FormChecker fc) {
+		parent = fc;
+	}
 
-  @Override
-  public String getLabel() {
-    Map<String, String> map = new LinkedHashMap<>(); 
-    return parent.getLabelForElement(this, map);
-  }
+	public String getValueHtmlEncoded() {
+		return StringEscapeUtils.escapeHtml4(value);
+	}
 
-  @Override
-  public String getPreSetValue() {
-    return preSetValue;
-  }
+	public void setInvalid() {
+		valid = false;
+	}
 
-  @Override
-  public AbstractInput setPreSetValue(String preSetValue) {
-    this.preSetValue = preSetValue;
-    this.value = preSetValue;
-    return this;
-  }
+	@Override
+	public void init(HttpServletRequest request, boolean firstRun, Validator validator) {
+		if (firstRun) {
+			this.setValue(this.getPreSetValue());
+		} else {
+			this.setValue(request.getParameter(this.getName()));
+			this.setValidationResult(validator.validate(this));
+			if (!this.validationResult.isValid()) {
+				this.valid = false;
+			} else {
+				this.valid = true;
+			}
+		}
+	}
 
-  @Override
-  public String getCompleteInput() {
-    return getLabel() + getInputTag();
-  }
+	public AbstractInput setRequired() {
+		this.required = true;
+		return this;
+	}
 
-  // builds the maxlen attribute
-  public String buildMaxLen() {
-    List<Criterion> criteria = this.getCriteria();
-    if (criteria != null) {
-      for (Criterion criterion : criteria) {
-        if (criterion instanceof MaxLength) {
-          return Utils.buildSingleAttribute("maxlength", 
-              ""+((MaxLength)criterion).getMaxLength()); 
-        }
-      }
-    }
-    return "";
-  }
+	@Override
+	public String getLabel() {
+		Map<String, String> map = new LinkedHashMap<>();
+		return parent.getLabelForElement(this, map);
+	}
 
-  @Override
-  public String getName() {
-    return name;
-  }
+	@Override
+	public String getPreSetValue() {
+		return preSetValue;
+	}
 
-  @Override
-  public String getValue() {
-    return value;
-  }
+	@Override
+	public AbstractInput setPreSetValue(String preSetValue) {
+		this.preSetValue = preSetValue;
+		this.value = preSetValue;
+		return this;
+	}
 
-  public void setValue(String value) {
-    this.value = value;
-  }
+	@Override
+	public String getCompleteInput() {
+		return getLabel() + getInputTag();
+	}
 
+	// builds the maxlen attribute
+	public String buildMaxLen() {
+		List<Criterion> criteria = this.getCriteria();
+		if (criteria != null) {
+			for (Criterion criterion : criteria) {
+				if (criterion instanceof MaxLength) {
+					return Utils.buildSingleAttribute("maxlength", "" + ((MaxLength) criterion).getMaxLength());
+				}
+			}
+		}
+		return "";
+	}
 
-  @Override
-  public AbstractInput setDescription(String desc) {
-    this.desc = desc;
-    return this;
-  }
+	@Override
+	public String getName() {
+		return name;
+	}
 
-  @Override
-  public void changeDescription(String desc) {
-    this.desc = desc;
-  }
+	@Override
+	public String getValue() {
+		return value;
+	}
 
+	public void setValue(String value) {
+		this.value = value;
+	}
 
-  @Override
-  public String getDescription() {
-    return desc;
-  }
+	@Override
+	public AbstractInput setDescription(String desc) {
+		this.desc = desc;
+		return this;
+	}
 
-  @Override
-  public boolean isValid() {
-    return valid;
-  }
+	@Override
+	public void changeDescription(String desc) {
+		this.desc = desc;
+	}
 
+	@Override
+	public String getDescription() {
+		return desc;
+	}
 
+	@Override
+	public boolean isValid() {
+		return valid;
+	}
 
+	public AbstractInput setCriterias(Criterion... criteria) {
+		this.criteria.addAll(Arrays.asList(criteria));
+		return this;
+	}
 
-  public AbstractInput setCriterias(Criterion... criteria) {
-    this.criteria.addAll(Arrays.asList(criteria));
-    return this;
-  }
+	public boolean isRequired() {
+		return required;
+	}
 
-  public boolean isRequired() {
-    return required;
-  }
+	protected String getElementId() {
+		return Utils.buildSingleAttribute("id", "form_" + name);
+	}
 
-  protected String getElementId() {
-    return Utils.buildSingleAttribute("id", "form_" + name); 
-  }
+	public int getTabIndex() {
+		return tabIndex;
+	}
 
-  public int getTabIndex() {
-    return tabIndex;
-  }
+	public String getTabIndexTag() {
+		return Utils.buildSingleAttribute("tabindex", "" + getTabIndex());
+	}
 
+	public String getTabIndexTagIncreaseBy(int addition) {
+		return Utils.buildSingleAttribute("tabindex", "" + (getTabIndex() + addition));
+	}
 
-  public String getTabIndexTag() {
-    return Utils.buildSingleAttribute("tabindex", ""+getTabIndex()); 
-  }
+	public AbstractInput setTabIndex(int tabIndex) {
+		this.tabIndex = tabIndex;
+		return this;
+	}
 
-  public String getTabIndexTagIncreaseBy(int addition) {
-    return Utils.buildSingleAttribute("tabindex", ""+(getTabIndex() + addition)); 
-  }
+	public List<Criterion> getCriteria() {
+		return criteria;
+	}
 
-  public AbstractInput setTabIndex(int tabIndex) {
-    this.tabIndex = tabIndex;
-    return this;
-  }
+	public String getHelpText() {
+		return helpText;
+	}
 
-  public List<Criterion> getCriteria() {
-    return criteria;
-  }
-
-  public String getHelpText() {
-    return helpText;
-  }
-  
-  public AbstractInput setHelpText(String helpText) {
-    this.helpText = helpText;
-    return this;
-  }
+	public AbstractInput setHelpText(String helpText) {
+		this.helpText = helpText;
+		return this;
+	}
+	
+	 public FormCheckerElement setSize(int size) {
+		 this.size = size;
+		 return this;
+	 }
 }
