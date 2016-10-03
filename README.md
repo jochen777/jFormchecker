@@ -122,6 +122,8 @@ ${fc.elements.lasntame.inputTag}
 
 0.0.3 2016/09/29 Major refactorings , error-Messages can be translated
 
+0.0.4 2016/10/03 More control over HTML rendering
+
 
 ## Remember: Standard form handling WITHOUT jFormChecker
 
