@@ -73,4 +73,9 @@ public class BasicFormBuilder extends GenericFormBuilder {
 		}
 	}
 
+	@Override
+	public Wrapper getWrapperForAllFormElements() {
+		return Wrapper.empty();
+	}
+
 }

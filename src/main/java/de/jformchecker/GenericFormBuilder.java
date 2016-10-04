@@ -28,6 +28,8 @@ public abstract class GenericFormBuilder {
 	public abstract TagAttributes getLabelAttributes(FormCheckerElement elem);
 
 	public abstract Wrapper getWrapperForInput(FormCheckerElement elem);
+	
+	public abstract Wrapper getWrapperForAllFormElements();
 
 	public abstract TagAttributes getFormAttributes();
 
@@ -52,6 +54,8 @@ public abstract class GenericFormBuilder {
 			formHtml.append(csrfBuilder.buildCSRFTokens(req, firstRun));
 		}
 		int lastTabIndex = 0;
+		Wrapper allFormElements = getWrapperForAllFormElements();
+		formHtml.append(allFormElements.start);
 		for (FormCheckerElement elem : elements) {
 			InputElementStructure inputStruct = new InputElementStructure();
 
@@ -88,6 +92,7 @@ public abstract class GenericFormBuilder {
 		Wrapper submitWrapper = getWrapperForSumit();
 		formHtml.append(submitWrapper.start).append(getSubmit(lastTabIndex + 1, fc.getForm().getSubmitLabel()))
 				.append(submitWrapper.end);
+		formHtml.append(allFormElements.end);
 		formHtml.append(getEndFormTag());
 
 		return formHtml.toString();

@@ -18,4 +18,8 @@ public class Wrapper {
 		return end;
 	}
 
+	public static Wrapper empty() {
+		return new Wrapper("", "");
+	}
+	
 }
