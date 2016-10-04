@@ -7,6 +7,7 @@ import de.jformchecker.FormCheckerElement;
 import de.jformchecker.GenericFormBuilder;
 import de.jformchecker.TagAttributes;
 import de.jformchecker.Wrapper;
+import de.jformchecker.criteria.ValidationResult;
 
 public class BasicFormBuilder extends GenericFormBuilder {
 
@@ -57,11 +58,12 @@ public class BasicFormBuilder extends GenericFormBuilder {
 		this.divErrorClass = divErrorClass;
 	}
 
-	public String getErrors(FormCheckerElement e, boolean firstRun) {
+	@Override
+	public ValidationResult getErrors(FormCheckerElement e, boolean firstRun) {
 		if (!firstRun && !e.isValid()) {
-			return (e.getValidationResult().getMessage());
+			return (e.getValidationResult());
 		}
-		return "";
+		return ValidationResult.ok();
 	}
 
 	@Override

@@ -109,7 +109,7 @@ ${fc.elements.lasntame.inputTag}
 <dependency>
     <groupId>de.cyclon-softworx</groupId>
     <artifactId>jformchecker</artifactId>
-    <version>0.0.4</version>
+    <version>0.0.5</version>
 </dependency>
 ...
 ```
@@ -123,6 +123,8 @@ ${fc.elements.lasntame.inputTag}
 0.0.3 2016/09/29 Major refactorings , error-Messages can be translated
 
 0.0.4 2016/10/03 More control over HTML rendering
+
+0.0.45 2016/10/04 Simplified Error-Handling, new wrapper for form-fields, working properties
 
 
 ## Remember: Standard form handling WITHOUT jFormChecker

@@ -23,11 +23,12 @@ public final class Range implements Criterion {
 			int intVal = Integer.parseInt(value.getValue());
 			boolean isValid = intVal > max && intVal < min;
 			if (!isValid) {
-				return ValidationResult.fail("The value must be between %d and %d", min, max);
+				// range=The value must be between %d and %d
+				return ValidationResult.fail("range", min, max);
 			}
 			return ValidationResult.ok();
 		} catch (NumberFormatException e) {
-			return ValidationResult.fail("Please enter a number");
+			return ValidationResult.fail("not_a_number");
 		}
 	}
 

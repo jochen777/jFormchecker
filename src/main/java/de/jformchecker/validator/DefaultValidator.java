@@ -12,7 +12,6 @@ import de.jformchecker.criteria.ValidationResult;
  */
 public class DefaultValidator implements Validator {
 
-	// RFE: Use optional!
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -21,50 +20,30 @@ public class DefaultValidator implements Validator {
 	 */
 	@Override
 	public ValidationResult validate(FormCheckerElement elem) {
-		boolean isValid = false;
-		String errorMessage = null;
 		String value = elem.getValue();
+		ValidationResult vr = ValidationResult.ok();
 		if (value != null && !"".equals(value)) {
-			ErrorMessageAndValidation val = allCriteriaSatisfied(elem);
-			isValid = val.satisfied;
-			errorMessage = val.errorMessage;
+			vr = allCriteriaSatisfied(elem);
 		} else {
 			// blank input is valid if it's not required
 			if (elem.isRequired()) {
-				errorMessage = "required";
-				isValid = false;
-			} else {
-				isValid = true;
-			}
+				vr = ValidationResult.fail("required", "");
+			} 
 		}
-
-		if (!isValid && errorMessage == null)
-			errorMessage = "Invalid or missing value";
-		return ValidationResult.of_(isValid, errorMessage);
+		return vr;
 	}
 
-	private ErrorMessageAndValidation allCriteriaSatisfied(FormCheckerElement elem) {
-		String parsedValue = elem.getValue();
-		ErrorMessageAndValidation msgAndValidation = new ErrorMessageAndValidation();
-		if (parsedValue == null) {
-			msgAndValidation.satisfied = false;
-			return msgAndValidation;
-		}
+	// RFE: Maybe return here an array? So we can have more than one error-message per field.
+	private ValidationResult allCriteriaSatisfied(FormCheckerElement elem) {
 		for (Criterion criterion : elem.getCriteria()) {
 			ValidationResult vr = criterion.validate(elem);
 			if (!vr.isValid()) {
-				msgAndValidation.errorMessage = vr.getMessage();
-				msgAndValidation.satisfied = false;
-				return msgAndValidation;
+				return vr;
 			}
 		}
 
-		return msgAndValidation;
+		return ValidationResult.ok();
 	}
 
-	private class ErrorMessageAndValidation {
-		String errorMessage = null;
-		boolean satisfied = true;
-	}
 
 }

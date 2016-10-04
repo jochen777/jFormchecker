@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang3.StringUtils;
 
+import de.jformchecker.criteria.ValidationResult;
 import de.jformchecker.elements.FileUploadInput;
 import de.jformchecker.security.XSRFBuilder;
 
@@ -39,7 +40,7 @@ public abstract class GenericFormBuilder {
 	// input-element is written
 	public abstract Wrapper getWrapperForElem(FormCheckerElement elem, boolean firstRun);
 
-	public abstract String getErrors(FormCheckerElement e, boolean firstRun);
+	public abstract ValidationResult getErrors(FormCheckerElement e, boolean firstRun);
 
 	final public String generateGenericForm(String id, String formAction, List<FormCheckerElement> elements,
 			boolean firstRun, FormChecker fc, HttpServletRequest req) {
@@ -59,15 +60,12 @@ public abstract class GenericFormBuilder {
 		for (FormCheckerElement elem : elements) {
 			InputElementStructure inputStruct = new InputElementStructure();
 
-			String errorMsg = getErrors(elem, firstRun);
-			if (errorMsg != null) {
-				formHtml.append(formatError(fc.getConfig().getProperties().getMessage(errorMsg))); // TODO:
-																									// Hier
-																									// translates
+			ValidationResult vr = getErrors(elem, firstRun);
+			if (!vr.isValid()) {
+				inputStruct.setErrors(formatError(fc.getConfig().getProperties().getMessage(vr)));
 			}
 
 			// label
-			inputStruct.setErrors(getErrors(elem, firstRun));
 			boolean displayLabel = !StringUtils.isEmpty(elem.getDescription());
 			if (displayLabel) {
 				inputStruct.setLabel(getLabelForElement(elem, getLabelAttributes(elem), firstRun));
