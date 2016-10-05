@@ -20,8 +20,7 @@ import de.jformchecker.security.XSRFBuilder;
  */
 public abstract class GenericFormBuilder {
 
-	String requiredChars = " *";
-	String addToLabel = ": ";
+
 	String submitClass = "";
 
 	protected abstract String getHelpTag(String helpText, FormCheckerElement elem);
@@ -42,6 +41,7 @@ public abstract class GenericFormBuilder {
 
 	public abstract ValidationResult getErrors(FormCheckerElement e, boolean firstRun);
 
+	
 	final public String generateGenericForm(String id, String formAction, List<FormCheckerElement> elements,
 			boolean firstRun, FormChecker fc, HttpServletRequest req) {
 		// RFE: Get rid of this fc. object here. better: give FormCheckerForm
@@ -184,13 +184,22 @@ public abstract class GenericFormBuilder {
 
 	public String getLabelForElement(FormCheckerElement e, TagAttributes attribs, boolean firstRun) {
 		return ("<label " + Utils.buildAttributes(attribs) + " for=\"form_" + e.getName() + "\"" + " id=\""
-				+ e.getName() + "_label\">" + e.getDescription() + addToLabel + (e.isRequired() ? requiredChars : "")
+				+ e.getName() + "_label\">" + e.getDescription() + getAddToLabel() + (e.isRequired() ? getRequiredChar() : "")
 				+ "</label>");
+	}
+
+	public String getAddToLabel() {
+		return ":";
+	}
+
+	public String getRequiredChar() {
+		return "*";
 	}
 
 	public String getSubmittedTag(String id) {
 		return "<input type=\"hidden\" name=\"" + FormChecker.SUBMIT_KEY + "\" value=\""
 				+ FormChecker.SUBMIT_VALUE_PREFIX + id + "\">\n";
 	}
+
 
 }
