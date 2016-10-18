@@ -7,12 +7,10 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-
-import org.apache.commons.lang3.StringUtils;
-
 import de.jformchecker.FormCheckerElement;
+import de.jformchecker.StringUtils;
 import de.jformchecker.criteria.ValidationResult;
+import de.jformchecker.request.Request;
 import de.jformchecker.validator.Validator;
 
 // DateInput Compound Element
@@ -72,7 +70,7 @@ public class DateInputCompound extends AbstractInput implements FormCheckerEleme
 	}
 
 	@Override
-	public void init(HttpServletRequest request, boolean firstRun, Validator validator) {
+	public void init(Request request, boolean firstRun, Validator validator) {
 		if (firstRun) {
 			this.setValue(this.getPreSetValue());
 		} else {

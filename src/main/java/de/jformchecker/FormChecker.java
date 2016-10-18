@@ -2,12 +2,11 @@ package de.jformchecker;
 
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-
 import de.jformchecker.criteria.Criteria;
 import de.jformchecker.criteria.MaxLength;
 import de.jformchecker.message.MessageSource;
 import de.jformchecker.message.MinimalMessageSource;
+import de.jformchecker.request.Request;
 import de.jformchecker.themes.BasicFormBuilder;
 import de.jformchecker.validator.DefaultValidator;
 import de.jformchecker.validator.Validator;
@@ -17,7 +16,7 @@ import de.jformchecker.validator.Validator;
  * should be stored to be accessed from the template-system.
  */
 public class FormChecker {
-	HttpServletRequest req;
+	Request req;
 	boolean firstRun = true;
 	boolean isValid = true;
 	FormCheckerForm form = null;
@@ -42,12 +41,12 @@ public class FormChecker {
 	public static final String SUBMIT_KEY = "submitted";
 	public static final String SUBMIT_VALUE_PREFIX = "FORMCHECKER_";
 
-	public FormChecker(String _id, HttpServletRequest _req) {
+	public FormChecker(String _id, Request request) {
 		id = _id;
-		req = _req;
+		req = request;
 	}
 
-	public static FormChecker build(String _id, HttpServletRequest _req, FormCheckerForm form) {
+	public static FormChecker build(String _id, Request _req, FormCheckerForm form) {
 		FormChecker fc = new FormChecker(_id, _req);
 		fc.addForm(form);
 		return fc;

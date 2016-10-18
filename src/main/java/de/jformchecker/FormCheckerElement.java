@@ -3,9 +3,8 @@ package de.jformchecker;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-
 import de.jformchecker.criteria.ValidationResult;
+import de.jformchecker.request.Request;
 import de.jformchecker.validator.Validator;
 
 /**
@@ -54,7 +53,7 @@ public interface FormCheckerElement {
 	public void setInvalid();
 
 	// inits the value with the current http-reques
-	public void init(HttpServletRequest request, boolean firstrun, Validator validator);
+	public void init(Request req, boolean firstrun, Validator validator);
 
 	public ValidationResult getValidationResult();
 

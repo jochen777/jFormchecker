@@ -4,12 +4,9 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-
-import org.apache.commons.lang3.StringUtils;
-
 import de.jformchecker.criteria.ValidationResult;
 import de.jformchecker.elements.FileUploadInput;
+import de.jformchecker.request.Request;
 import de.jformchecker.security.XSRFBuilder;
 
 /**
@@ -43,7 +40,7 @@ public abstract class GenericFormBuilder {
 
 	
 	final public String generateGenericForm(String id, String formAction, List<FormCheckerElement> elements,
-			boolean firstRun, FormChecker fc, HttpServletRequest req) {
+			boolean firstRun, FormChecker fc, Request req) {
 		// RFE: Get rid of this fc. object here. better: give FormCheckerForm
 		StringBuilder formHtml = new StringBuilder();
 
@@ -149,11 +146,11 @@ public abstract class GenericFormBuilder {
 		StringBuilder formStartTag = new StringBuilder();
 		if (isMultipart) {
 			formStartTag.append("<form name=\"" + id + "\" id=\"" + buildFormCSSId(id) + "\" action=\"" + formAction
-					+ "\" " + Utils.buildAttributes(formTagAttributes)
+					+ "\" " + AttributeUtils.buildAttributes(formTagAttributes)
 					+ "  method=\"POST\" enctype=\"multipart/form-data\">\n");
 		} else {
 			formStartTag.append("<form name=\"" + id + "\" id=\"" + buildFormCSSId(id) + "\" "
-					+ Utils.buildAttributes(formTagAttributes) + " action=\"" + formAction + "\" method=\"GET\" >\n");
+					+ AttributeUtils.buildAttributes(formTagAttributes) + " action=\"" + formAction + "\" method=\"POST\" >\n");
 		}
 		formStartTag.append(getSubmittedTag(id));
 		return formStartTag.toString();
@@ -183,7 +180,7 @@ public abstract class GenericFormBuilder {
 	}
 
 	public String getLabelForElement(FormCheckerElement e, TagAttributes attribs, boolean firstRun) {
-		return ("<label " + Utils.buildAttributes(attribs) + " for=\"form_" + e.getName() + "\"" + " id=\""
+		return ("<label " + AttributeUtils.buildAttributes(attribs) + " for=\"form_" + e.getName() + "\"" + " id=\""
 				+ e.getName() + "_label\">" + e.getDescription() + getAddToLabel() + (e.isRequired() ? getRequiredChar() : "")
 				+ "</label>");
 	}

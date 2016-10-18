@@ -4,7 +4,7 @@
 	<groupId>de.cyclon-softworx</groupId>
 	<artifactId>jformchecker</artifactId>
 	<packaging>jar</packaging>
-	<version>0.0.6</version>
+	<version>0.1.0</version>
 	<name>jformchecker</name>
 	<url>https://github.com/jochen777/jFormchecker</url>
 	<description>jFormchecker is a library to build HTML forms on top of MVC frameworks.</description>
@@ -55,43 +55,51 @@
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>4.12</version>
+			<scope>test</scope>
 		</dependency>
 
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>javax.servlet-api</artifactId>
-			<version>3.1.0</version>
-		</dependency>
+		<!-- <dependency> -->
+		<!-- <groupId>javax.servlet</groupId> -->
+		<!-- <artifactId>javax.servlet-api</artifactId> -->
+		<!-- <version>3.1.0</version> -->
+		<!-- </dependency> -->
+
+		<!-- <dependency> -->
+		<!-- <groupId>org.apache.commons</groupId> -->
+		<!-- <artifactId>commons-lang3</artifactId> -->
+		<!-- <version>3.4</version> -->
+		<!-- </dependency> -->
 
 		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-lang3</artifactId>
-			<version>3.4</version>
+			<groupId>com.coverity.security</groupId>
+			<artifactId>coverity-escapers</artifactId>
+			<version>1.1.1</version>
 		</dependency>
+		<!-- <dependency> -->
+		<!-- <groupId>org.springframework</groupId> -->
+		<!-- <artifactId>spring-test</artifactId> -->
+		<!-- <version>4.2.2.RELEASE</version> -->
+		<!-- </dependency> -->
 
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-test</artifactId>
-			<version>4.2.2.RELEASE</version>
-		</dependency>
+		<!-- <dependency> -->
+		<!-- <groupId>org.freemarker</groupId> -->
+		<!-- <artifactId>freemarker</artifactId> -->
+		<!-- <version>2.3.23</version> -->
+		<!-- </dependency> -->
 
-		<dependency>
-			<groupId>org.freemarker</groupId>
-			<artifactId>freemarker</artifactId>
-			<version>2.3.23</version>
-		</dependency>
+		<!-- <dependency> -->
+		<!-- <groupId>commons-beanutils</groupId> -->
+		<!-- <artifactId>commons-beanutils</artifactId> -->
+		<!-- <version>1.9.2</version> -->
+		<!-- </dependency> -->
 
-		<dependency>
-			<groupId>commons-beanutils</groupId>
-			<artifactId>commons-beanutils</artifactId>
-			<version>1.9.2</version>
-		</dependency>
 
-		<dependency>
-			<groupId>com.google.code.gson</groupId>
-			<artifactId>gson</artifactId>
-			<version>2.6.2</version>
-		</dependency>
+		<!-- <dependency> -->
+		<!-- <groupId>com.google.code.gson</groupId> -->
+		<!-- <artifactId>gson</artifactId> -->
+		<!-- <version>2.6.2</version> -->
+		<!-- </dependency> -->
+
 
 
 	</dependencies>

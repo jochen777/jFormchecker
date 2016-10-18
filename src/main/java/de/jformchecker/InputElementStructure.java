@@ -1,6 +1,5 @@
 package de.jformchecker;
 
-import org.apache.commons.lang3.StringUtils;
 
 public class InputElementStructure {
 	String errors;

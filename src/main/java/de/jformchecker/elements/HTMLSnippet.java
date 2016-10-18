@@ -2,9 +2,8 @@ package de.jformchecker.elements;
 
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-
 import de.jformchecker.FormCheckerElement;
+import de.jformchecker.request.Request;
 import de.jformchecker.validator.Validator;
 
 public class HTMLSnippet extends AbstractInput implements FormCheckerElement {
@@ -33,7 +32,7 @@ public class HTMLSnippet extends AbstractInput implements FormCheckerElement {
 	}
 
 	@Override
-	public void init(HttpServletRequest request, boolean firstRun, Validator validator) {
+	public void init(Request request, boolean firstRun, Validator validator) {
 	}
 
 }

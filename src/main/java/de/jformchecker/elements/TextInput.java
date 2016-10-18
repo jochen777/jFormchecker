@@ -2,10 +2,10 @@ package de.jformchecker.elements;
 
 import java.util.Map;
 
-import org.apache.commons.lang3.StringEscapeUtils;
-import org.apache.commons.lang3.StringUtils;
+import com.coverity.security.Escape;
 
 import de.jformchecker.FormCheckerElement;
+import de.jformchecker.StringUtils;
 
 public class TextInput extends AbstractInput implements FormCheckerElement {
 
@@ -31,7 +31,7 @@ public class TextInput extends AbstractInput implements FormCheckerElement {
 
 	private String getPlaceholder() {
 		return StringUtils.isEmpty(placeholderText) ? ""
-				: " placeholder=\"" + StringEscapeUtils.escapeHtml4(placeholderText) + "\"";
+				: " placeholder=\"" + Escape.htmlText(placeholderText) + "\"";
 	}
 
 }

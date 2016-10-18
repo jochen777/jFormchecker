@@ -2,24 +2,22 @@ package de.jformchecker.test.builders;
 
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-
-import org.springframework.mock.web.MockHttpServletRequest;
-
 import de.jformchecker.FormChecker;
+import de.jformchecker.request.Request;
+import de.jformchecker.request.SampleRequest;
 
 public class RequestBuilders {
 
 	public static final String FC_ID = "id44";
 
-	public static HttpServletRequest buildExampleHttpRequest() {
-		MockHttpServletRequest request = new MockHttpServletRequest();
+	public static Request buildExampleHttpRequest() {
+		SampleRequest request = new SampleRequest();
 		request.setParameter("firstname", "Jochen Pier<bold>");
 		return request;
 	}
 
-	public static HttpServletRequest buildExampleHttpRequest(Map<String, String> reqVals) {
-		MockHttpServletRequest request = new MockHttpServletRequest();
+	public static Request buildExampleHttpRequest(Map<String, String> reqVals) {
+		SampleRequest request = new SampleRequest();
 
 		for (String key : reqVals.keySet()) {
 			request.setParameter(key, reqVals.get(key));
@@ -27,8 +25,8 @@ public class RequestBuilders {
 		return request;
 	}
 
-	public static HttpServletRequest buildEmptyHttpRequest() {
-		MockHttpServletRequest request = new MockHttpServletRequest();
+	public static Request buildEmptyHttpRequest() {
+		SampleRequest request = new SampleRequest();
 		return request;
 	}
 

@@ -60,9 +60,13 @@
 
 ---> Release 1.0
 
+* translates for error-msg and texts (OK)
+* divide in core, integraiton, spring-examples (OK)
+
+
 * test non trivial tag-output (with different tags)
-* translates for error-msg and texts
 * avoid system.err
+* provide example with theming with templates (pebble and freemarker)
 
 
 * favour internally request.getParameterMap() over request

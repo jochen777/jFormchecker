@@ -12,7 +12,6 @@ import de.jformchecker.elements.PasswordInput;
 import de.jformchecker.elements.RadioInput;
 import de.jformchecker.elements.SelectInput;
 import de.jformchecker.elements.TextInput;
-import de.jformchecker.example.CustomValidation;
 
 public class ExampleFormBuilder {
 	public static FormCheckerForm getVerySimpleForm() {

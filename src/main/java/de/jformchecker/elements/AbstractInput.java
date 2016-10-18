@@ -7,18 +7,17 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
+import com.coverity.security.Escape;
 
-import org.apache.commons.lang3.StringEscapeUtils;
-import org.apache.commons.lang3.StringUtils;
-
+import de.jformchecker.AttributeUtils;
 import de.jformchecker.Criterion;
 import de.jformchecker.FormChecker;
 import de.jformchecker.FormCheckerElement;
+import de.jformchecker.StringUtils;
 import de.jformchecker.TagAttributes;
-import de.jformchecker.Utils;
 import de.jformchecker.criteria.MaxLength;
 import de.jformchecker.criteria.ValidationResult;
+import de.jformchecker.request.Request;
 import de.jformchecker.validator.Validator;
 
 /**
@@ -54,7 +53,7 @@ public abstract class AbstractInput implements FormCheckerElement {
 	// builds attribs, elementId, TabIndex
 	protected String buildAllAttributes(Map<String, String> attributes) {
 		StringBuilder allAttribs = new StringBuilder();
-		allAttribs.append(Utils.buildAttributes(attributes));
+		allAttribs.append(AttributeUtils.buildAttributes(attributes));
 		allAttribs.append(getElementId());
 		allAttribs.append(getTabIndexTag());
 		allAttribs.append(buildRequiredAttribute());
@@ -62,14 +61,14 @@ public abstract class AbstractInput implements FormCheckerElement {
 		// help-text
 		if (!StringUtils.isEmpty(helpText)) {
 			allAttribs.append(
-					Utils.buildAttributes(new TagAttributes("aria-describedby", FormChecker.getHelpBlockId(this))));
+					AttributeUtils.buildAttributes(new TagAttributes("aria-describedby", FormChecker.getHelpBlockId(this))));
 		}
 		return allAttribs.toString();
 	}
 
 	private Object buildSizeAttribute() {
 		if (size != -1) {
-			return Utils.buildSingleAttribute("size", Integer.toString(size));
+			return AttributeUtils.buildSingleAttribute("size", Integer.toString(size));
 		}
 		return "";
 	}
@@ -97,7 +96,7 @@ public abstract class AbstractInput implements FormCheckerElement {
 	}
 
 	public String getValueHtmlEncoded() {
-		return StringEscapeUtils.escapeHtml4(value);
+		return Escape.html(value);
 	}
 
 	public void setInvalid() {
@@ -105,7 +104,7 @@ public abstract class AbstractInput implements FormCheckerElement {
 	}
 
 	@Override
-	public void init(HttpServletRequest request, boolean firstRun, Validator validator) {
+	public void init(Request request, boolean firstRun, Validator validator) {
 		if (firstRun) {
 			this.setValue(this.getPreSetValue());
 		} else {
@@ -153,7 +152,7 @@ public abstract class AbstractInput implements FormCheckerElement {
 		if (criteria != null) {
 			for (Criterion criterion : criteria) {
 				if (criterion instanceof MaxLength) {
-					return Utils.buildSingleAttribute("maxlength", "" + ((MaxLength) criterion).getMaxLength());
+					return AttributeUtils.buildSingleAttribute("maxlength", "" + ((MaxLength) criterion).getMaxLength());
 				}
 			}
 		}
@@ -205,7 +204,7 @@ public abstract class AbstractInput implements FormCheckerElement {
 	}
 
 	protected String getElementId() {
-		return Utils.buildSingleAttribute("id", "form_" + name);
+		return AttributeUtils.buildSingleAttribute("id", "form_" + name);
 	}
 
 	public int getTabIndex() {
@@ -213,11 +212,11 @@ public abstract class AbstractInput implements FormCheckerElement {
 	}
 
 	public String getTabIndexTag() {
-		return Utils.buildSingleAttribute("tabindex", "" + getTabIndex());
+		return AttributeUtils.buildSingleAttribute("tabindex", "" + getTabIndex());
 	}
 
 	public String getTabIndexTagIncreaseBy(int addition) {
-		return Utils.buildSingleAttribute("tabindex", "" + (getTabIndex() + addition));
+		return AttributeUtils.buildSingleAttribute("tabindex", "" + (getTabIndex() + addition));
 	}
 
 	public AbstractInput setTabIndex(int tabIndex) {

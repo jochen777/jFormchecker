@@ -3,12 +3,11 @@ package de.jformchecker.test;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.junit.Assert;
 
 import de.jformchecker.FormChecker;
 import de.jformchecker.elements.RadioInput;
+import de.jformchecker.request.Request;
 import de.jformchecker.test.builders.ExampleFormBuilder;
 import de.jformchecker.test.builders.RequestBuilders;
 import de.jformchecker.test.builders.SampleMapBuilders;
@@ -28,7 +27,7 @@ public class RadioTabIndexTest {
 		String formId = "h";
 		reqVals.put("firstname", "Jochen2");
 		reqVals.put(FormChecker.SUBMIT_KEY, FormChecker.SUBMIT_VALUE_PREFIX + formId);
-		HttpServletRequest request = RequestBuilders.buildExampleHttpRequest(reqVals);
+		Request request = RequestBuilders.buildExampleHttpRequest(reqVals);
 
 		FormChecker fc = new FormChecker(formId, request);
 		fc.addForm(ExampleFormBuilder.getComplexForm());

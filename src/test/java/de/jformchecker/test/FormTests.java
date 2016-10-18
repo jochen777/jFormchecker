@@ -5,8 +5,6 @@ import static org.junit.Assert.assertEquals;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -14,6 +12,7 @@ import de.jformchecker.FormChecker;
 import de.jformchecker.FormCheckerForm;
 import de.jformchecker.criteria.Criteria;
 import de.jformchecker.elements.TextInput;
+import de.jformchecker.request.Request;
 import de.jformchecker.test.builders.ExampleFormBuilder;
 import de.jformchecker.test.builders.RequestBuilders;
 import de.jformchecker.validator.DefaultValidator;
@@ -23,18 +22,18 @@ public class FormTests {
 	@Test
 	public void testXSS() {
 		TextInput ti = buildExampleTextInput();
-		HttpServletRequest request = RequestBuilders.buildExampleHttpRequest();
+		Request request = RequestBuilders.buildExampleHttpRequest();
 		ti.init(request, false, new DefaultValidator());
 		String inputTag = ti.getInputTag();
 		assertEquals(
-				"<input id=\"form_firstname\" tabindex=\"0\" type=\"text\" name=\"firstname\" value=\"Jochen Pier&lt;bold&gt;\">",
+				"<input id=\"form_firstname\" tabindex=\"0\" type=\"text\" name=\"firstname\" value=\"Jochen&#x20;Pier&lt;bold&gt;\">",
 				inputTag);
 	}
 
 	@Test
 	public void testPrefillText() {
 		TextInput ti = buildExampleTextInput();
-		HttpServletRequest request = RequestBuilders.buildEmptyHttpRequest();
+		Request request = RequestBuilders.buildEmptyHttpRequest();
 		ti.init(request, true, new DefaultValidator());
 		String inputTag = ti.getInputTag();
 		assertEquals("<input id=\"form_firstname\" tabindex=\"0\" type=\"text\" name=\"firstname\" value=\"Jochen\">",
@@ -47,7 +46,7 @@ public class FormTests {
 		String formId = "h";
 		reqVals.put("firstname", "Jochen2");
 		reqVals.put(FormChecker.SUBMIT_KEY, FormChecker.SUBMIT_VALUE_PREFIX + formId);
-		HttpServletRequest request = RequestBuilders.buildExampleHttpRequest(reqVals);
+		Request request = RequestBuilders.buildExampleHttpRequest(reqVals);
 
 		FormChecker fc = new FormChecker(formId, request);
 		fc.addForm(ExampleFormBuilder.getComplexForm());
@@ -69,7 +68,7 @@ public class FormTests {
 
 		reqVals.put(FormChecker.SUBMIT_KEY, FormChecker.SUBMIT_VALUE_PREFIX + formId);
 
-		HttpServletRequest request = RequestBuilders.buildExampleHttpRequest(reqVals);
+		Request request = RequestBuilders.buildExampleHttpRequest(reqVals);
 
 		FormChecker fc = new FormChecker(formId, request);
 		fc.addForm(ExampleFormBuilder.getComplexForm());

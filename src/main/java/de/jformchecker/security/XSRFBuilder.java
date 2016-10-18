@@ -3,15 +3,15 @@ package de.jformchecker.security;
 import java.security.SecureRandom;
 import java.util.Base64;
 
-import javax.servlet.http.HttpServletRequest;
+import com.coverity.security.Escape;
 
-import org.apache.commons.lang3.StringEscapeUtils;
+import de.jformchecker.request.Request;
 
 public class XSRFBuilder {
 
 	private final SecureRandom random = new SecureRandom();
 
-	public String buildCSRFTokens(HttpServletRequest req, boolean firstRun) {
+	public String buildCSRFTokens(Request req, boolean firstRun) {
 		// is firstrun - then generate a complete new token
 		StringBuilder tags = new StringBuilder();
 		String name = "";
@@ -32,9 +32,9 @@ public class XSRFBuilder {
 		xsrfVal = getRandomValue();
 		req.getSession().setAttribute(name, xsrfVal);
 
-		tags.append("<input type=\"hidden\" name=\"" + tokenName + "\" value=\"" + StringEscapeUtils.escapeHtml4(name)
+		tags.append("<input type=\"hidden\" name=\"" + tokenName + "\" value=\"" + Escape.htmlText(name)
 				+ "\">");
-		tags.append("<input type=\"hidden\" name=\"" + tokenVal + "\" value=\"" + StringEscapeUtils.escapeHtml4(xsrfVal)
+		tags.append("<input type=\"hidden\" name=\"" + tokenVal + "\" value=\"" + Escape.htmlText(xsrfVal)
 				+ "\">\n");
 		return tags.toString();
 	}

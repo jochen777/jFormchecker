@@ -7,14 +7,13 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
+import com.coverity.security.Escape;
 
-import org.apache.commons.lang3.StringEscapeUtils;
-import org.apache.commons.lang3.StringUtils;
-
+import de.jformchecker.AttributeUtils;
 import de.jformchecker.FormCheckerElement;
-import de.jformchecker.Utils;
+import de.jformchecker.StringUtils;
 import de.jformchecker.criteria.ValidationResult;
+import de.jformchecker.request.Request;
 import de.jformchecker.validator.Validator;
 
 public class DateInput extends AbstractInput implements FormCheckerElement {
@@ -56,27 +55,27 @@ public class DateInput extends AbstractInput implements FormCheckerElement {
 		String inputField = "wrong field desc!";
 		switch (field) {
 		case DAY:
-			inputField = "<input type=\"text\" " + Utils.buildAttributes(attributes) + getTabIndexTag() + " id=\""
+			inputField = "<input type=\"text\" " + AttributeUtils.buildAttributes(attributes) + getTabIndexTag() + " id=\""
 					+ name + "_day\" name=\"" + name + "_day\" size=\"2\" value=\""
-					+ (StringEscapeUtils.escapeHtml4(dayVal)) + "\" maxlength=\"2\" placeholder=\"day\">";
+					+ (Escape.htmlText(dayVal)) + "\" maxlength=\"2\" placeholder=\"day\">";
 
 			break;
 		case MONTH:
-			inputField = "<input " + getElementId() + Utils.buildAttributes(attributes) + getTabIndexTagIncreaseBy(1)
+			inputField = "<input " + getElementId() + AttributeUtils.buildAttributes(attributes) + getTabIndexTagIncreaseBy(1)
 					+ " type=\"text\" id=\"" + name + "_month\" size=\"2\" name=\"" + name + "_month\"  value=\""
-					+ (StringEscapeUtils.escapeHtml4(monthVal)) + "\" maxlength=\"2\" placeholder=\"month\">";
+					+ (Escape.htmlText(monthVal)) + "\" maxlength=\"2\" placeholder=\"month\">";
 			break;
 		case YEAR:
-			inputField = "<input type=\"text\" " + Utils.buildAttributes(attributes) + getTabIndexTagIncreaseBy(2)
+			inputField = "<input type=\"text\" " + AttributeUtils.buildAttributes(attributes) + getTabIndexTagIncreaseBy(2)
 					+ " id=\"" + name + "_year\" name=\"" + name + "_year\" size=\"4\" value=\""
-					+ (StringEscapeUtils.escapeHtml4(yearVal)) + "\" maxlength=\"4\" placeholder=\"year\">";
+					+ (Escape.htmlText(yearVal)) + "\" maxlength=\"4\" placeholder=\"year\">";
 			break;
 		}
 		return inputField;
 	}
 
 	@Override
-	public void init(HttpServletRequest request, boolean firstRun, Validator validator) {
+	public void init(Request request, boolean firstRun, Validator validator) {
 		if (firstRun) {
 			this.setValue(this.getPreSetValue());
 		} else {
