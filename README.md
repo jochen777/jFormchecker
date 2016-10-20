@@ -23,8 +23,13 @@ The form-handling support in current java MVC frameworks is very basic. jFormChe
 * prebuild ajax handling
 * Avoiding a lot of boilerplate code
 * Translateable error-messages.
+* Minimal dependencies!
 
 jFormChecker is for java what Symfony-Forms is for PHP or Rose::HTML for Perl.
+
+See this project for integration into servlet-based frameworks:
+
+https://github.com/jochen777/jformchecker-integration
 
 
 
@@ -128,6 +133,7 @@ ${fc.elements.lasntame.inputTag}
 
 0.0.6 2016/10/05 Control over required mark and label composition
 
+0.1.0 2016/10/20 Moved integration stuff to different project. Now with minimal dependencies. Took the test-suite to get really fast.
 
 ## Remember: Standard form handling WITHOUT jFormChecker
 
