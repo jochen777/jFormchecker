@@ -24,7 +24,7 @@ public final class StartsWith implements Criterion {
 		}
 
 		if (!isValid) {
-			return ValidationResult.fail("Please enter a value starting with %s", (Object[]) prefixes);
+			return ValidationResult.fail("starts_with", (Object[]) prefixes);
 		}
 		return ValidationResult.ok();
 	}

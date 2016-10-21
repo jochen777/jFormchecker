@@ -13,7 +13,7 @@ public final class ZipCode extends Regex {
 	}
 
 	protected String generateErrorMessage() {
-		return "Please enter a valid ZIP code";
+		return "zip";
 	}
 
 }

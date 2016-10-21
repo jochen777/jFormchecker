@@ -16,7 +16,7 @@ public abstract class AbstractNumberComparingCriterion implements Criterion {
 			int input = Integer.parseInt(value.getValue());
 			return validateNumberAndSetError(input);
 		} catch (NumberFormatException e) {
-			return ValidationResult.fail("Please enter a number");
+			return ValidationResult.fail("not_a_number");
 		}
 	}
 

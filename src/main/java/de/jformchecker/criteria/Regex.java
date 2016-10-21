@@ -12,7 +12,7 @@ import de.jformchecker.FormCheckerElement;
  */
 public class Regex implements Criterion {
 	private Pattern pattern;
-	private String errorMsg = "The value must match the required format";
+	private String errorMsg = "regexp";
 
 	public void setErrorMsg(String errorMsg) {
 		this.errorMsg = errorMsg;

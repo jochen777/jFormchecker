@@ -10,7 +10,7 @@ public final class Email extends Regex {
 
 	Email() {
 		super(REGEX);
-		setErrorMsg("Please enter a valid email address");
+		setErrorMsg("valid_email");
 	}
 
 }

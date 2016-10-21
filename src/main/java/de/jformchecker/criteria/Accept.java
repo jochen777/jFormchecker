@@ -27,7 +27,7 @@ public class Accept implements Criterion {
 				isValid = true;
 		}
 		if (!isValid) {
-			return ValidationResult.fail("Please enter one of the allowed values %s", (Object[]) acceptableValues);
+			return ValidationResult.fail("allowed_values", (Object[]) acceptableValues);
 		}
 		return ValidationResult.ok();
 	}

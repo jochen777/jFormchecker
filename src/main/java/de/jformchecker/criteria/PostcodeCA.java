@@ -12,7 +12,7 @@ public final class PostcodeCA extends Regex {
 
 	PostcodeCA() {
 		super(REGEX);
-		setErrorMsg("Please enter a valid postcode");
+		setErrorMsg("postalcode");
 	}
 
 }

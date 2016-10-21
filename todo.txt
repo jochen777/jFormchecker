@@ -63,7 +63,9 @@
 * translates for error-msg and texts (OK)
 * divide in core, integraiton, spring-examples (OK)
 
-
+* provide basic translation.properties
+* Simple Facade in spring-integration
+* better xsrf support throw OWASP Lib (https://www.owasp.org/index.php/Category:OWASP_CSRFGuard_Project)
 * test non trivial tag-output (with different tags)
 * avoid system.err
 * provide example with theming with templates (pebble and freemarker)

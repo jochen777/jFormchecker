@@ -16,7 +16,7 @@ public final class Min extends AbstractNumberComparingCriterion {
 	public ValidationResult validateNumberAndSetError(int input) {
 		boolean isValid = input > min;
 		if (!isValid) {
-			return ValidationResult.fail("The value must be larger than ", min);
+			return ValidationResult.fail("min", min);
 		}
 		return ValidationResult.ok();
 	}
