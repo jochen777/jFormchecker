@@ -57,23 +57,27 @@
 * create possiblity to change order of label, error-text and input (OK)
 * check, why radio is not highlighted red/green (OK)
 * introduce framework modes (bootstrap/ionic/material...) (OK)
+* Provide Captcha (OK)
 
----> Release 1.0
+---> Release 0.0.1
 
 * translates for error-msg and texts (OK)
 * divide in core, integraiton, spring-examples (OK)
+* favour internally request.getParameterMap() over request (OK)
+* use less dependencies. move example and tests into other repo. (OK)
+---> Release 0.1.0
 
-* provide basic translation.properties
-* Simple Facade in spring-integration
+* provide basic translation.properties (OK)
+* Simple Facade in jformchecker-integration
 * better xsrf support throw OWASP Lib (https://www.owasp.org/index.php/Category:OWASP_CSRFGuard_Project)
 * test non trivial tag-output (with different tags)
 * avoid system.err
 * provide example with theming with templates (pebble and freemarker)
+* read params from bean instaed of servlet-request
+* Integrate with bean-validation.
+* Create form from bean, introduce custom annotations
 
 
-* favour internally request.getParameterMap() over request
-* use less dependencies. move example and tests into other repo. 
-* Provide Captcha (OK)
 * support complex-inputs?? (adress-field that contains several own-fields?)
 * ... or nested fields
 * multi-select (means: brand -> modell...)
@@ -84,7 +88,6 @@
 
 * generate standard-form with alternative rendering in template (for mobile)
 * more attributes: (http://www.w3schools.com/tags/tag_input.asp)
-* TBD: Do not pass complete request object but only atrributes and session?
 * Perhaps form-Class mandatory? So no own handling of the form-elements within the FormChecker class (OK)
 * influence standard-form in template
 
