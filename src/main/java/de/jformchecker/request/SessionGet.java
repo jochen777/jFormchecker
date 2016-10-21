@@ -5,7 +5,7 @@ package de.jformchecker.request;
  * @author jochen
  *
  */
-public interface Session {
+@FunctionalInterface
+public interface SessionGet {
 	public Object getAttribute(String name);
-	public void setAttribute(String name, Object o);
 }

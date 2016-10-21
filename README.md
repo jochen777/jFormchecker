@@ -135,6 +135,8 @@ ${fc.elements.lasntame.inputTag}
 
 0.1.0 2016/10/20 Moved integration stuff to different project. Now with minimal dependencies. Took the test-suite to get really fast.
 
+0.1.1 x/x/x Simplified interfaces to request and session. This allows lambda style adapters for your framework
+
 ## Remember: Standard form handling WITHOUT jFormChecker
 
 Without jFormChecker, html forms must be constructed manually in the template.

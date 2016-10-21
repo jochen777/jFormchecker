@@ -5,8 +5,7 @@ package de.jformchecker.request;
  * @author jochen
  *
  */
+@FunctionalInterface
 public interface Request {
 	public String getParameter(String name);
-	
-	public Session getSession();
 }

@@ -7,6 +7,8 @@ import de.jformchecker.criteria.MaxLength;
 import de.jformchecker.message.MessageSource;
 import de.jformchecker.message.MinimalMessageSource;
 import de.jformchecker.request.Request;
+import de.jformchecker.request.SessionGet;
+import de.jformchecker.request.SessionSet;
 import de.jformchecker.themes.BasicFormBuilder;
 import de.jformchecker.validator.DefaultValidator;
 import de.jformchecker.validator.Validator;
@@ -17,6 +19,8 @@ import de.jformchecker.validator.Validator;
  */
 public class FormChecker {
 	Request req;
+	SessionSet sessionSet;
+	SessionGet sessionGet;
 	boolean firstRun = true;
 	boolean isValid = true;
 	FormCheckerForm form = null;
@@ -52,8 +56,10 @@ public class FormChecker {
 		return fc;
 	}
 
-	public FormChecker setProtectAgainstCSRF() {
+	public FormChecker setProtectAgainstCSRF(SessionGet sessionGet, SessionSet sessionSet) {
 		protectedAgainstCSRF = true;
+		this.sessionSet = sessionSet;
+		this.sessionGet = sessionGet;
 		return this;
 	}
 

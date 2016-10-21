@@ -49,7 +49,7 @@ public abstract class GenericFormBuilder {
 		formHtml.append(generateFormStartTag(id, formAction, checkMultipart(elements), formTagAttributes));
 		if (fc.protectedAgainstCSRF) {
 			XSRFBuilder csrfBuilder = new XSRFBuilder();
-			formHtml.append(csrfBuilder.buildCSRFTokens(req, firstRun));
+			formHtml.append(csrfBuilder.buildCSRFTokens(req, firstRun, fc.sessionGet, fc.sessionSet));
 		}
 		int lastTabIndex = 0;
 		Wrapper allFormElements = getWrapperForAllFormElements();

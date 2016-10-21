@@ -11,7 +11,6 @@ import java.util.Map;
 public class SampleRequest implements Request{
 
 	Map<String, String> attributes = new HashMap<>();
-	Session session = new SampleSession();
 	
 	@Override
 	public String getParameter(String key) {
@@ -22,9 +21,5 @@ public class SampleRequest implements Request{
 		attributes.put(key, value);
 	}
 
-	@Override
-	public Session getSession() {
-		return session;
-	}
 	
 }

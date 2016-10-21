@@ -9,6 +9,7 @@ import de.jformchecker.criteria.ValidationResult;
  * @author jpier
  *
  */
+@FunctionalInterface
 public interface MessageSource {
 
 	public String getMessage(String key);
