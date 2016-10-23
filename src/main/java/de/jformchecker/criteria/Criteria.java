@@ -35,6 +35,10 @@ public class Criteria {
 	public static Criterion max(int max) {
 		return new Max(max);
 	}
+	
+	public static Criterion number() {
+		return new Number();
+	}
 
 	public static Criterion range(int min, int max) {
 		return new Range(min, max);

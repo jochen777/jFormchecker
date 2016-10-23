@@ -38,6 +38,8 @@ public abstract class AbstractInput implements FormCheckerElement {
 	private int tabIndex;
 	ValidationResult validationResult;
 
+	
+	
 	public ValidationResult getValidationResult() {
 		return validationResult;
 	}
@@ -66,6 +68,10 @@ public abstract class AbstractInput implements FormCheckerElement {
 		return allAttribs.toString();
 	}
 
+	public void addCriteria(Criterion c) {
+		criteria.add(c);
+	}
+	
 	private Object buildSizeAttribute() {
 		if (size != -1) {
 			return AttributeUtils.buildSingleAttribute("size", Integer.toString(size));
