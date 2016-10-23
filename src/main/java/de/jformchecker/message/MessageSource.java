@@ -15,7 +15,14 @@ public interface MessageSource {
 	public String getMessage(String key);
 
 	public default String getMessage(ValidationResult vr) {
-		return(String.format(this.getMessage(vr.getMessage()), vr.getErrorVals()));
+		if (vr.getMessage() != null) {
+			return(String.format(this.getMessage(
+					vr.getMessage()
+					), vr.getErrorVals()));
+			
+		} else {
+			return vr.getTranslatedMessage();
+		}
 	}
 
 }

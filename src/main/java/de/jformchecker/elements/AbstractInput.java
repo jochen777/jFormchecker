@@ -46,6 +46,7 @@ public abstract class AbstractInput implements FormCheckerElement {
 
 	public void setValidationResult(ValidationResult validationResult) {
 		this.validationResult = validationResult;
+		valid = validationResult.isValid();
 	}
 
 	boolean valid = true;
@@ -116,11 +117,6 @@ public abstract class AbstractInput implements FormCheckerElement {
 		} else {
 			this.setValue(request.getParameter(this.getName()));
 			this.setValidationResult(validator.validate(this));
-			if (!this.validationResult.isValid()) {
-				this.valid = false;
-			} else {
-				this.valid = true;
-			}
 		}
 	}
 

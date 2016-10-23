@@ -23,27 +23,38 @@ public class ValidationResult {
 	}
 
 	String message;
+	String translatedMessage;
 	Object[] errorVals;
 
-	public ValidationResult(boolean isValid, String message, Object[] errorVals) {
+	public ValidationResult(boolean isValid, String message, Object[] errorVals, String translatedMessage) {
 		this.isValid = isValid;
 		this.message = message;
 		this.errorVals = errorVals;
+		this.translatedMessage = translatedMessage;
 	}
 
 	// factory methods
 	public static ValidationResult of_(boolean isValid, String message, Object... errorVals) {
-		return new ValidationResult(isValid, message, errorVals);
+		return new ValidationResult(isValid, message, errorVals, null);
 	}
 
 	public static ValidationResult fail(String message, Object... errorVals) {
-		return new ValidationResult(false, message, errorVals);
+		return new ValidationResult(false, message, errorVals, null);
 	}
 
+	public static ValidationResult failWithTranlated(String message, Object... errorVals) {
+		return new ValidationResult(false, null, errorVals, message);
+	}
+
+	
 	public static ValidationResult ok() {
 		// RFE: Could return always the same object! will reduce memory
 		// footprint!
-		return new ValidationResult(true, "", null);
+		return new ValidationResult(true, "", null, null);
+	}
+
+	public String getTranslatedMessage() {
+		return translatedMessage;
 	}
 
 }
