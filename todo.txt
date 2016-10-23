@@ -69,7 +69,8 @@
 
 * provide basic translation.properties (OK)
 * Simple Facade in jformchecker-integration (OK)
-* Introduce NumberInputElement
+* Introduce NumberInputElement (OK)
+* Move Date to Java8 LocalDate
 
 * better xsrf support throw OWASP Lib (https://www.owasp.org/index.php/Category:OWASP_CSRFGuard_Project)
 * test non trivial tag-output (with different tags)

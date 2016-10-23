@@ -50,4 +50,10 @@ public class NumberInput extends AbstractInput implements FormCheckerElement {
 		return Integer.parseInt(this.getValue());
 	}
 
+	
+	public FormCheckerElement presetIntValue(int intVal) {
+		this.setPreSetValue(Integer.toString(intVal));
+		return this;
+	}
+
 }
