@@ -4,7 +4,7 @@ import java.util.Map;
 
 import de.jformchecker.FormCheckerElement;
 
-public class ButtonInput extends AbstractInput implements FormCheckerElement {
+public class ButtonInput extends AbstractInput<ButtonInput> implements FormCheckerElement {
 
 	String buttonText = "";
 

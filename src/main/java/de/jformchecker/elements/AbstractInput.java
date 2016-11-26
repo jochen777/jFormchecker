@@ -26,7 +26,7 @@ import de.jformchecker.validator.Validator;
  * @author jochen
  *
  */
-public abstract class AbstractInput implements FormCheckerElement {
+public abstract class AbstractInput <T extends FormCheckerElement> implements FormCheckerElement {
 
 	protected String name;
 	protected String value;
@@ -120,9 +120,9 @@ public abstract class AbstractInput implements FormCheckerElement {
 		}
 	}
 
-	public AbstractInput setRequired() {
+	public T setRequired() {
 		this.required = true;
-		return this;
+		return (T) this;
 	}
 
 	@Override
@@ -137,10 +137,10 @@ public abstract class AbstractInput implements FormCheckerElement {
 	}
 
 	@Override
-	public AbstractInput setPreSetValue(String preSetValue) {
+	public T setPreSetValue(String preSetValue) {
 		this.preSetValue = preSetValue;
 		this.value = preSetValue;
-		return this;
+		return (T) this;
 	}
 
 	@Override
@@ -176,9 +176,9 @@ public abstract class AbstractInput implements FormCheckerElement {
 	}
 
 	@Override
-	public AbstractInput setDescription(String desc) {
+	public T setDescription(String desc) {
 		this.desc = desc;
-		return this;
+		return (T) this;
 	}
 
 	@Override
@@ -196,9 +196,9 @@ public abstract class AbstractInput implements FormCheckerElement {
 		return valid;
 	}
 
-	public AbstractInput setCriterias(Criterion... criteria) {
+	public T setCriterias(Criterion... criteria) {
 		this.criteria.addAll(Arrays.asList(criteria));
-		return this;
+		return (T) this;
 	}
 
 	public boolean isRequired() {
@@ -221,9 +221,9 @@ public abstract class AbstractInput implements FormCheckerElement {
 		return AttributeUtils.buildSingleAttribute("tabindex", "" + (getTabIndex() + addition));
 	}
 
-	public AbstractInput setTabIndex(int tabIndex) {
+	public T setTabIndex(int tabIndex) {
 		this.tabIndex = tabIndex;
-		return this;
+		return (T) this;
 	}
 
 	public List<Criterion> getCriteria() {
@@ -234,13 +234,13 @@ public abstract class AbstractInput implements FormCheckerElement {
 		return helpText;
 	}
 
-	public AbstractInput setHelpText(String helpText) {
+	public T setHelpText(String helpText) {
 		this.helpText = helpText;
-		return this;
+		return (T) this;
 	}
 
-	public FormCheckerElement setSize(int size) {
+	public T setSize(int size) {
 		this.size = size;
-		return this;
+		return (T) this;
 	}
 }

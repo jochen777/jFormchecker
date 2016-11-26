@@ -16,7 +16,7 @@ import de.jformchecker.criteria.ValidationResult;
 import de.jformchecker.request.Request;
 import de.jformchecker.validator.Validator;
 
-public class DateInput extends AbstractInput implements FormCheckerElement {
+public class DateInput extends AbstractInput<DateInput> implements FormCheckerElement {
 
 	public static DateInput build(String name) {
 		DateInput i = new DateInput();

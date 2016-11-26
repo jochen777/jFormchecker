@@ -6,7 +6,7 @@ import de.jformchecker.FormCheckerElement;
 import de.jformchecker.request.Request;
 import de.jformchecker.validator.Validator;
 
-public class HTMLSnippet extends AbstractInput implements FormCheckerElement {
+public class HTMLSnippet extends AbstractInput<HTMLSnippet> implements FormCheckerElement {
 
 	String html;
 

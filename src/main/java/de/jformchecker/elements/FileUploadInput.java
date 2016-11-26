@@ -4,7 +4,7 @@ import java.util.Map;
 
 import de.jformchecker.FormCheckerElement;
 
-public class FileUploadInput extends AbstractInput implements FormCheckerElement {
+public class FileUploadInput extends AbstractInput<FileUploadInput> implements FormCheckerElement {
 
 	public static FileUploadInput build(String name) {
 		FileUploadInput i = new FileUploadInput();

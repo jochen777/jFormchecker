@@ -6,7 +6,7 @@ import java.util.Map;
 import de.jformchecker.FormCheckerElement;
 import de.jformchecker.AttributeUtils;
 
-public class RadioInput extends AbstractInput implements FormCheckerElement {
+public class RadioInput extends AbstractInput<RadioInput> implements FormCheckerElement {
 
 	LinkedHashMap<String, String> possibleNames = new LinkedHashMap<>(); // Linked
 																			// Hashmap

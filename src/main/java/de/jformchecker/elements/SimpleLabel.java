@@ -6,7 +6,7 @@ import de.jformchecker.FormCheckerElement;
 import de.jformchecker.request.Request;
 import de.jformchecker.validator.Validator;
 
-public class SimpleLabel extends AbstractInput implements FormCheckerElement {
+public class SimpleLabel extends AbstractInput<SimpleLabel> implements FormCheckerElement {
 
 	public static SimpleLabel build(String name) {
 		SimpleLabel i = new SimpleLabel();

@@ -7,7 +7,7 @@ import com.coverity.security.Escape;
 import de.jformchecker.FormCheckerElement;
 import de.jformchecker.StringUtils;
 
-public class TextInput extends AbstractInput implements FormCheckerElement {
+public class TextInput extends AbstractInput<TextInput> implements FormCheckerElement {
 
 	private String placeholderText = "";
 

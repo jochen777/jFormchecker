@@ -15,7 +15,7 @@ import de.jformchecker.validator.Validator;
 
 // DateInput Compound Element
 // Good example for elements that consists of several sub-elements
-public class DateInputCompound extends AbstractInput implements FormCheckerElement {
+public class DateInputCompound extends AbstractInput<DateInputCompound> implements FormCheckerElement {
 
 	TextInput day;
 	TextInput month;

@@ -5,7 +5,7 @@ import java.util.Map;
 
 import de.jformchecker.FormCheckerElement;
 
-public class SelectInput extends AbstractInput implements FormCheckerElement {
+public class SelectInput extends AbstractInput<SelectInput> implements FormCheckerElement {
 
 	LinkedHashMap<String, String> possibleNames = new LinkedHashMap<>(); // Linked
 																			// Hashmap

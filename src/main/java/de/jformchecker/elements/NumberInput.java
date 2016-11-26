@@ -14,7 +14,7 @@ import de.jformchecker.criteria.Number;
  * @author jochen
  *
  */
-public class NumberInput extends AbstractInput implements FormCheckerElement {
+public class NumberInput extends AbstractInput<NumberInput> implements FormCheckerElement {
 
 	private String placeholderText = "";
 

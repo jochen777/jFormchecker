@@ -31,16 +31,17 @@ public interface FormCheckerElement {
 	public String getPreSetValue();
 
 	// set an initial value to the element, before the user edited it.
-	public FormCheckerElement setPreSetValue(String value);
+	public <T extends FormCheckerElement> T setPreSetValue(String value);
 
-	public FormCheckerElement setTabIndex(int tabIndex);
+	public <T extends FormCheckerElement> T setTabIndex(int tabIndex);
 
 	public int getTabIndex();
 
 	public int getLastTabIndex();
 
 	// set the test in the label (builder pattern)
-	public FormCheckerElement setDescription(String desc);
+	
+	public <T extends FormCheckerElement> T setDescription(String desc);
 
 	// as "setDescription" but does not return anything (no builder pattern)
 	public void changeDescription(String desc);
@@ -65,7 +66,7 @@ public interface FormCheckerElement {
 
 	public boolean isRequired();
 
-	public FormCheckerElement setRequired();
+	public <T extends FormCheckerElement> T setRequired();
 
 	public List<Criterion> getCriteria();
 
@@ -81,6 +82,6 @@ public interface FormCheckerElement {
 	public String getHelpText();
 
 	// sets the size attribute
-	public FormCheckerElement setSize(int size);
+	public <T extends FormCheckerElement> T setSize(int size);
 
 }

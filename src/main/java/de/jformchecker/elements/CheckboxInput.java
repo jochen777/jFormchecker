@@ -7,7 +7,7 @@ import de.jformchecker.criteria.ValidationResult;
 import de.jformchecker.request.Request;
 import de.jformchecker.validator.Validator;
 
-public class CheckboxInput extends AbstractInput implements FormCheckerElement {
+public class CheckboxInput extends AbstractInput<CheckboxInput> implements FormCheckerElement {
 
 	public static CheckboxInput build(String name) {
 		CheckboxInput ci = new CheckboxInput();
