@@ -73,14 +73,14 @@
 * read params from bean instaed of servlet-request (OK)
 * avoid system.err (OK)
 
-* Use Generics for FormElements (   public <T extends Annotation> T getAnnotation(Class<T> annotationClass) )
+* Use Generics for FormElements (   public <T extends Annotation> T getAnnotation(Class<T> annotationClass) ) (OK)
 
+* provide example with theming with templates (pebble and freemarker)
 
-* Move Date to Java8 LocalDate
 
 * better xsrf support throw OWASP Lib (https://www.owasp.org/index.php/Category:OWASP_CSRFGuard_Project)
 * test non trivial tag-output (with different tags)
-* provide example with theming with templates (pebble and freemarker)
+* Move Date to Java8 LocalDate
 
 
 * support complex-inputs?? (adress-field that contains several own-fields?)

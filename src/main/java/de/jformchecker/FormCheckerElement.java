@@ -19,6 +19,10 @@ public interface FormCheckerElement {
 
 	// get internal name of this input-element
 	public String getName();
+	
+	// set internal name
+	public void setName(String name);
+
 
 	// get the value that the user entered
 	public String getValue();

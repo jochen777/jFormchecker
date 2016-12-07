@@ -114,7 +114,7 @@ ${fc.elements.lasntame.inputTag}
 <dependency>
     <groupId>de.cyclon-softworx</groupId>
     <artifactId>jformchecker</artifactId>
-    <version>0.0.6</version>
+    <version>0.1.1</version>
 </dependency>
 ...
 ```

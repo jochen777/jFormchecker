@@ -243,4 +243,8 @@ public abstract class AbstractInput <T extends FormCheckerElement> implements Fo
 		this.size = size;
 		return (T) this;
 	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
 }
