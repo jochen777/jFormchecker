@@ -114,7 +114,7 @@ ${fc.elements.lasntame.inputTag}
 <dependency>
     <groupId>de.cyclon-softworx</groupId>
     <artifactId>jformchecker</artifactId>
-    <version>0.1.1</version>
+    <version>0.1.2</version>
 </dependency>
 ...
 ```
@@ -138,6 +138,8 @@ ${fc.elements.lasntame.inputTag}
 0.1.1 2016/10/23 Simplified interfaces to request and session. This allows lambda style adapters for your framework. Add NumberInput and Number - Criterion, validationResult can hold an already translated message
 
 0.1.2 2016/12/07 Builders now typesafe by using Generics
+
+0.1.2 2016/12/11 Translated error-messages with higher prio than message-keys; message-key with jformchecker namespace
 
 
 ## Remember: Standard form handling WITHOUT jFormChecker
