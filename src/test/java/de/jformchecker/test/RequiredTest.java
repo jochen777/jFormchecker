@@ -15,7 +15,7 @@ public class RequiredTest {
 		FormChecker fc = RequestBuilders.buildFcWithEmptyRequest();
 		fc.addForm(ExampleFormBuilder.getVerySimpleForm());
 		fc.run();
-		Assert.assertTrue("Form should contain a required attribute!", (fc.getCompleteForm().contains(" required ")));
+		Assert.assertTrue("Form should contain a required attribute!", (fc.getCompleteForm().contains("required ")));
 	}
 
 }
