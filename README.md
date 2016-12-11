@@ -1,5 +1,5 @@
 # jFormChecker
-The pragmatic, compact, fast library to build HTML Forms in MVC-Framworks. 
+The pragmatic, compact, and fast library to build HTML Forms in MVC-Framworks. 
 
 
 [![Build Status](https://travis-ci.org/jochen777/jFormchecker.svg?branch=master)](https://travis-ci.org/jochen777/jFormchecker)
@@ -136,6 +136,9 @@ ${fc.elements.lasntame.inputTag}
 0.1.0 2016/10/20 Moved integration stuff to different project. Now with minimal dependencies. Took the test-suite to get really fast.
 
 0.1.1 2016/10/23 Simplified interfaces to request and session. This allows lambda style adapters for your framework. Add NumberInput and Number - Criterion, validationResult can hold an already translated message
+
+0.1.2 2016/12/07 Builders now typesafe by using Generics
+
 
 ## Remember: Standard form handling WITHOUT jFormChecker
 

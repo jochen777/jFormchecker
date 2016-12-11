@@ -23,7 +23,7 @@ public final class MaxLength implements Criterion {
 	public ValidationResult validate(FormCheckerElement value) {
 		boolean isValid = value.getValue().length() <= maxLength;
 		if (!isValid) {
-			return ValidationResult.fail("max_len", maxLength);
+			return ValidationResult.fail("jformchecker.max_len", maxLength);
 		}
 		return ValidationResult.ok();
 	}

@@ -99,7 +99,7 @@ public class DateInput extends AbstractInput<DateInput> implements FormCheckerEl
 					this.setValidationResult(vr);
 				} catch (ParseException e) {
 					this.valid = false;
-					this.setValidationResult(ValidationResult.fail("Wrong date format"));
+					this.setValidationResult(ValidationResult.fail("jformchecker.wrong_date_format"));
 
 				}
 			}

@@ -24,7 +24,7 @@ public final class StartsWith implements Criterion {
 		}
 
 		if (!isValid) {
-			return ValidationResult.fail("starts_with", (Object[]) prefixes);
+			return ValidationResult.fail("jformchecker.starts_with", (Object[]) prefixes);
 		}
 		return ValidationResult.ok();
 	}

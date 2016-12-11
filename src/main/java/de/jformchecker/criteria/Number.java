@@ -19,7 +19,7 @@ public final class Number implements Criterion {
 			Integer.parseInt(value.getValue());
 			return ValidationResult.ok();
 		} catch (NumberFormatException e) {
-			return ValidationResult.fail("not_a_number");
+			return ValidationResult.fail("jformchecker.not_a_number");
 		}
 	}
 

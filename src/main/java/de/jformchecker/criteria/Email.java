@@ -10,7 +10,7 @@ public final class Email extends Regex {
 
 	Email() {
 		super(REGEX);
-		setErrorMsg("valid_email");
+		setErrorMsg("jformchecker.valid_email");
 	}
 
 }

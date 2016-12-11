@@ -12,7 +12,7 @@ import de.jformchecker.FormCheckerElement;
  */
 public class Regex implements Criterion {
 	private Pattern pattern;
-	private String errorMsg = "regexp";
+	private String errorMsg = "jformchecker.regexp";
 
 	public void setErrorMsg(String errorMsg) {
 		this.errorMsg = errorMsg;

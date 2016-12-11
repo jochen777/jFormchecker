@@ -42,7 +42,7 @@ public class ValidationResult {
 		return new ValidationResult(false, message, errorVals, null);
 	}
 
-	public static ValidationResult failWithTranlated(String message, Object... errorVals) {
+	public static ValidationResult failWithTranslated(String message, Object... errorVals) {
 		return new ValidationResult(false, null, errorVals, message);
 	}
 

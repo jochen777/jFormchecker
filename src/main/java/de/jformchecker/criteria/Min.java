@@ -16,7 +16,7 @@ public final class Min extends AbstractNumberComparingCriterion {
 	public ValidationResult validateNumberAndSetError(int input) {
 		boolean isValid = input > min;
 		if (!isValid) {
-			return ValidationResult.fail("min", min);
+			return ValidationResult.fail("jformchecker.min", min);
 		}
 		return ValidationResult.ok();
 	}

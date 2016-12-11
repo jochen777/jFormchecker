@@ -27,7 +27,7 @@ public class DefaultValidator implements Validator {
 		} else {
 			// blank input is valid if it's not required
 			if (elem.isRequired()) {
-				vr = ValidationResult.fail("required", "");
+				vr = ValidationResult.fail("jformchecker.required", "");
 			} 
 		}
 		return vr;
