@@ -15,13 +15,17 @@ public interface MessageSource {
 	public String getMessage(String key);
 
 	public default String getMessage(ValidationResult vr) {
+		// give translated messages higher prio than message-keys
+		if (vr.getTranslatedMessage() != null) {
+			return vr.getTranslatedMessage();
+		} else 
 		if (vr.getMessage() != null) {
 			return(String.format(this.getMessage(
 					vr.getMessage()
 					), vr.getErrorVals()));
 			
 		} else {
-			return vr.getTranslatedMessage();
+			throw new IllegalArgumentException("ValidationResult has neither message-key nor translated text");
 		}
 	}
 

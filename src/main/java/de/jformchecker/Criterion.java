@@ -6,6 +6,7 @@ import de.jformchecker.criteria.ValidationResult;
  * A criterion that checks a formchecker element
  * 
  */
+@FunctionalInterface
 public interface Criterion {
 	/**
 	 * Tests whether the specified value satisfies this criterion.
