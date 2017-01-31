@@ -141,6 +141,8 @@ ${fc.elements.lasntame.inputTag}
 
 0.1.2 2016/12/11 Translated error-messages with higher prio than message-keys; message-key with jformchecker namespace
 
+0.1.2.2017/01/31 Convenient methods for select and radio. New Select-Date Input. Bugfix for Validates.
+
 
 ## Remember: Standard form handling WITHOUT jFormChecker
 

@@ -16,6 +16,12 @@ import de.jformchecker.criteria.ValidationResult;
 import de.jformchecker.request.Request;
 import de.jformchecker.validator.Validator;
 
+/**
+ * Don't use this one any more. Use DateInputCompound or DateInputSelectCompound
+ * @author jochen
+ *
+ */
+@Deprecated
 public class DateInput extends AbstractInput<DateInput> implements FormCheckerElement {
 
 	public static DateInput build(String name) {
