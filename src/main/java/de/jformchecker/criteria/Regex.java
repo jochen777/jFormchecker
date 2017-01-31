@@ -26,7 +26,7 @@ public class Regex implements Criterion {
 	public ValidationResult validate(FormCheckerElement value) {
 		boolean isValid = pattern.matcher(value.getValue()).find();
 		if (!isValid) {
-			ValidationResult.fail(errorMsg);
+			return ValidationResult.fail(errorMsg);
 		}
 		return ValidationResult.ok();
 	}
