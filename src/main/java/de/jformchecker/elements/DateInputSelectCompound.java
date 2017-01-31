@@ -5,9 +5,11 @@ import java.time.LocalDate;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import de.jformchecker.FormChecker;
 import de.jformchecker.FormCheckerElement;
 import de.jformchecker.StringUtils;
 import de.jformchecker.criteria.ValidationResult;
+import de.jformchecker.message.MessageSource;
 import de.jformchecker.request.Request;
 import de.jformchecker.validator.Validator;
 
@@ -20,15 +22,6 @@ public class DateInputSelectCompound extends AbstractInput<DateInputSelectCompou
 
 	public static DateInputSelectCompound build(String name) {
 		DateInputSelectCompound i = new DateInputSelectCompound();
-		
-		i.day = SelectInput.build("day_" + name);
-		i.day.setPossibleValues(buildDays());
-		
-		i.month = SelectInput.build("month_" + name);
-		i.month.setPossibleValues(buildMonths());
-		
-		i.year = SelectInput.build("year_" + name);
-		i.year.setPossibleValues(buildYears());
 		
 		i.name = name;
 		return i;
@@ -73,6 +66,16 @@ public class DateInputSelectCompound extends AbstractInput<DateInputSelectCompou
 
 	@Override
 	public void init(Request request, boolean firstRun, Validator validator) {
+		day = SelectInput.build("day_" + name);
+		MessageSource translates = parent.getConfig().getProperties();
+		day.setPossibleValues(buildDays(translates.getMessage("formchecker.jformchecker.select.day")));
+		
+		month = SelectInput.build("month_" + name);
+		month.setPossibleValues(buildMonths(translates.getMessage("formchecker.jformchecker.select.month")));
+		
+		year = SelectInput.build("year_" + name);
+		year.setPossibleValues(buildYears(translates.getMessage("formchecker.jformchecker.select.year")));
+
 		if (firstRun) {
 			this.setValue(this.getPreSetValue());
 		} else {
@@ -104,17 +107,16 @@ public class DateInputSelectCompound extends AbstractInput<DateInputSelectCompou
 		}
 	}
 
-	// TODO: Make this translateable
-	private static LinkedHashMap<String, String> buildDays() { 
-		return buildMap(1, 31, "Tag");
+	private  LinkedHashMap<String, String> buildDays(String dayDesc) { 
+		return buildMap(1, 31, dayDesc);
 	}
 
-	private static LinkedHashMap<String, String> buildMonths() { 
-		return buildMap(1, 12, "Monat");
+	private  LinkedHashMap<String, String> buildMonths(String monthDesc) { 
+		return buildMap(1, 12, monthDesc);
 	}
 
-	private static LinkedHashMap<String, String> buildYears() { 
-		return buildMap(2000, 2018, "Jahr");
+	private  LinkedHashMap<String, String> buildYears(String yearDesc) { 
+		return buildMap(2000, 2018, yearDesc);
 	}
 
 	
