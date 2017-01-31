@@ -1,10 +1,11 @@
 # jFormChecker
 The pragmatic, compact, and fast library to build HTML Forms in MVC-Framworks. 
 
+[See documentation](doc/start.md)
 
 [![Build Status](https://travis-ci.org/jochen777/jFormchecker.svg?branch=master)](https://travis-ci.org/jochen777/jFormchecker)
 
-## Warning: Currently alpha software!
+## Warning: Currently beta software!
 
 The form-handling support in current java MVC frameworks is very basic. jFormChecker tries to fill this gap by providing these features:
 
