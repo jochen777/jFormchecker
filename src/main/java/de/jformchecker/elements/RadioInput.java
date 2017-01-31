@@ -21,6 +21,27 @@ public class RadioInput extends AbstractInput<RadioInput> implements FormChecker
 		return i;
 	}
 
+	// convenience method
+	public static RadioInput build(String name, LinkedHashMap<String, String> possibleNames) {
+		RadioInput si = RadioInput.build(name);
+		si.setPossibleValues(possibleNames);
+		return si;
+	}
+
+	// convenience method
+	public static RadioInput build(String name, String keys[], String values[]) {
+		RadioInput si = RadioInput.build(name);
+		if (keys.length != values.length) {
+			throw new IllegalArgumentException("Key / Values with unequal lenght");
+		}
+		LinkedHashMap<String, String> possibleNames = new LinkedHashMap<>();
+		for (int i = 0; i < keys.length; i++) {
+			possibleNames.put(keys[i], values[i]);
+		}
+		si.setPossibleValues(possibleNames);
+		return si;
+	}
+
 	public String getInputTag(Map<String, String> attributes) {
 		StringBuffer inputTag = new StringBuffer();
 		for (String key : possibleNames.keySet()) {
@@ -37,9 +58,9 @@ public class RadioInput extends AbstractInput<RadioInput> implements FormChecker
 	}
 
 	public String getInputTag(String curValue, Map<String, String> attributes) {
-		return "<input id=\"form_radio_" + curValue + "\" " + AttributeUtils.buildAttributes(attributes) + getTabIndexTag()
-				+ " type=\"radio\" name=\"" + name + "\"  value=\"" + curValue + "\" " + getCheckedStatus(curValue) + ""
-				+ " " + " >\n";
+		return "<input id=\"form_radio_" + curValue + "\" " + AttributeUtils.buildAttributes(attributes)
+				+ getTabIndexTag() + " type=\"radio\" name=\"" + name + "\"  value=\"" + curValue + "\" "
+				+ getCheckedStatus(curValue) + "" + " " + " >\n";
 	}
 
 	private String getCheckedStatus(String _name) {

@@ -14,15 +14,23 @@ import de.jformchecker.request.Request;
 import de.jformchecker.validator.Validator;
 
 // DateInput Compound Element offering the date-inputs as select-boxes
+// TODO: allow individual order (for internationalisation)
 public class DateInputSelectCompound extends AbstractInput<DateInputSelectCompound> implements FormCheckerElement {
 
 	SelectInput day;
 	SelectInput month;
 	SelectInput year;
 
-	public static DateInputSelectCompound build(String name) {
+	static String months [] = {"january", "february", "march", "april", "may", "june", "july"
+			, "august", "september", "october", "november", "december"};
+	
+	int yearStart;
+	int yearEnd;
+	
+	public static DateInputSelectCompound build(String name, int yearStart, int yearEnd) {
 		DateInputSelectCompound i = new DateInputSelectCompound();
-		
+		i.yearStart = yearStart;
+		i.yearEnd = yearEnd;
 		i.name = name;
 		return i;
 	}
@@ -71,7 +79,7 @@ public class DateInputSelectCompound extends AbstractInput<DateInputSelectCompou
 		day.setPossibleValues(buildDays(translates.getMessage("formchecker.jformchecker.select.day")));
 		
 		month = SelectInput.build("month_" + name);
-		month.setPossibleValues(buildMonths(translates.getMessage("formchecker.jformchecker.select.month")));
+		month.setPossibleValues(buildMonths(translates.getMessage("formchecker.jformchecker.select.month"), translates));
 		
 		year = SelectInput.build("year_" + name);
 		year.setPossibleValues(buildYears(translates.getMessage("formchecker.jformchecker.select.year")));
@@ -79,7 +87,6 @@ public class DateInputSelectCompound extends AbstractInput<DateInputSelectCompou
 		if (firstRun) {
 			this.setValue(this.getPreSetValue());
 		} else {
-			// TODO: set validators (
 			day.init(request, firstRun, validator);
 			month.init(request, firstRun, validator);
 			year.init(request, firstRun, validator);
@@ -111,12 +118,16 @@ public class DateInputSelectCompound extends AbstractInput<DateInputSelectCompou
 		return buildMap(1, 31, dayDesc);
 	}
 
-	private  LinkedHashMap<String, String> buildMonths(String monthDesc) { 
-		return buildMap(1, 12, monthDesc);
+	private  LinkedHashMap<String, String> buildMonths(String monthDesc, MessageSource translates) { 
+		LinkedHashMap<String, String> monthMap = buildMap(1, 12, monthDesc);
+		for (int i=1; i<=12; i++) {
+			monthMap.put(Integer.toString(i), translates.getMessage("formchecker.jformchecker.select."+ months[i-1]));
+		}
+		return monthMap;
 	}
 
 	private  LinkedHashMap<String, String> buildYears(String yearDesc) { 
-		return buildMap(2000, 2018, yearDesc);
+		return buildMap(this.yearStart, this.yearEnd, yearDesc);
 	}
 
 	
