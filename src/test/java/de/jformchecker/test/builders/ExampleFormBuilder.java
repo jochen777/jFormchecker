@@ -34,6 +34,17 @@ public class ExampleFormBuilder {
 		};
 	}
 
+	public static FormCheckerForm getFormWith1RequiredCheckbox(String checkboxname) {
+		return new FormCheckerForm() {
+			@Override
+			public void init() {
+				add(CheckboxInput.build(checkboxname).setRequired()
+						.setDescription("Please check"));
+			}
+		};
+	}
+
+	
 	public static FormCheckerForm getComplexForm() {
 		return new FormCheckerForm() {
 

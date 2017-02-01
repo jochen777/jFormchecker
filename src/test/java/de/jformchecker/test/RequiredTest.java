@@ -18,4 +18,13 @@ public class RequiredTest {
 		Assert.assertTrue("Form should contain a required attribute!", (fc.getCompleteForm().contains("required ")));
 	}
 
+	@Test
+	public void testRequiredCheckBoxField() {
+		FormChecker fc = RequestBuilders.buildFcFirstrunRequest();
+		String checkBoxName = "check";
+		fc.addForm(ExampleFormBuilder.getFormWith1RequiredCheckbox(checkBoxName));
+		fc.run();
+		Assert.assertTrue("Checkbox-Element should be false, because it is required", (!fc.getForm().getElement(checkBoxName).isValid()));
+	}
+
 }

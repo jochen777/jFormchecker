@@ -38,7 +38,7 @@ public class CheckboxInput extends AbstractInput<CheckboxInput> implements FormC
 			if (name.equals(request.getParameter(this.getName()))) {
 				this.value = "true";
 			} else {
-				this.value = "false";
+				this.value = null;
 			}
 			ValidationResult vr = validator.validate(this);
 			if (!vr.isValid()) {

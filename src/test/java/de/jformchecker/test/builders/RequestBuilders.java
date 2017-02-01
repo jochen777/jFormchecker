@@ -30,6 +30,17 @@ public class RequestBuilders {
 		return request;
 	}
 
+	public static Request buildFirstRunEmptyHttpRequest() {
+		SampleRequest request = new SampleRequest();
+		request.setParameter(FormChecker.SUBMIT_KEY, FormChecker.SUBMIT_VALUE_PREFIX + RequestBuilders.FC_ID);
+		return request;
+	}
+
+	public static FormChecker buildFcFirstrunRequest() {
+		return new FormChecker(RequestBuilders.FC_ID, RequestBuilders.buildFirstRunEmptyHttpRequest());
+	}
+
+	
 	public static FormChecker buildFcWithEmptyRequest() {
 		return new FormChecker(RequestBuilders.FC_ID, RequestBuilders.buildEmptyHttpRequest());
 	}
