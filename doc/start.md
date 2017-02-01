@@ -22,5 +22,9 @@ The Formbuilder renders the form to html.
 
 The template just makes a call to the formbuilder which returns the html for the form.
 
+
+![Overview](overview.png "Overview jFormchecker")
+
+
 ## The WebForm
 
