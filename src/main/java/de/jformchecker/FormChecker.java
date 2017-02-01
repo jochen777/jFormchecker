@@ -169,10 +169,8 @@ public class FormChecker {
 		}
 
 		// validate the complete form
-		if (form != null) {
-			for (FormValidator formValidator : form.getValidators()) {
-				formValidator.validate(form);
-			}
+		for (FormValidator formValidator : form.getValidators()) {
+			formValidator.validate(form);
 		}
 
 		// build complete Form here!
