@@ -47,4 +47,4 @@
 
 # 0.1.4
 
-2017/02/01 
+2017/02/01 Add more documentation. Fix checkbox - required bug. Add getLegacyDate for DateInput
