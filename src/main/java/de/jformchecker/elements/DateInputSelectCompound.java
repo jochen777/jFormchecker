@@ -2,10 +2,11 @@ package de.jformchecker.elements;
 
 import java.time.DateTimeException;
 import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import de.jformchecker.FormChecker;
 import de.jformchecker.FormCheckerElement;
 import de.jformchecker.StringUtils;
 import de.jformchecker.criteria.ValidationResult;
@@ -152,5 +153,14 @@ public class DateInputSelectCompound extends AbstractInput<DateInputSelectCompou
 	public LocalDate getDateValue() {
 		return internalDate;
 	}
+	
+	/**
+	 * Get internal Date as Date (Please avoid this, because LocalDate is far better.)
+	 * @return
+	 */
+	public Date getLegacyDateValue() {
+		return Date.from(internalDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
+	}
+
 
 }
