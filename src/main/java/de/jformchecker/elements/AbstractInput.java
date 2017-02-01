@@ -82,7 +82,7 @@ public abstract class AbstractInput <T extends FormCheckerElement> implements Fo
 
 	protected String buildRequiredAttribute() {
 		if (required) {
-			return "jformchecker.required ";
+			return " required ";
 		} else {
 			return "";
 		}
