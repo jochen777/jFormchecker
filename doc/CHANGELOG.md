@@ -11,6 +11,7 @@
 ### 0.1.2 
 
 2016/12/07 Builders now typesafe by using Generics
+
 2016/12/11 Translated error-messages with higher prio than message-keys; message-key with jformchecker namespace
 
 ### 0.1.1 

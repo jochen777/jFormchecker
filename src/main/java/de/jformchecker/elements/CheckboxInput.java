@@ -35,6 +35,7 @@ public class CheckboxInput extends AbstractInput<CheckboxInput> implements FormC
 		if (firstRun) {
 			this.setValue(this.getPreSetValue());
 		} else {
+			// RFE: This is fishy. Make the validation more elegant
 			if (name.equals(request.getParameter(this.getName()))) {
 				this.value = "true";
 			} else {
@@ -45,6 +46,10 @@ public class CheckboxInput extends AbstractInput<CheckboxInput> implements FormC
 				this.valid = false;
 				this.setValidationResult(vr);
 			}
+			if (this.value == null) {
+				this.value = "false";
+			}
+				
 		}
 	}
 
