@@ -71,6 +71,10 @@ public class Criteria {
 	public static Criterion emailAddress() {
 		return email;
 	}
+	
+	public static Criterion strongPassword(int minLength) {
+		return new StrongPassword(minLength);
+	}
 
 	public static Criterion zipcode() {
 		return zipCode;

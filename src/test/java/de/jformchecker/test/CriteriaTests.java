@@ -27,8 +27,20 @@ public class CriteriaTests {
 		Assert.assertTrue("110 is bigger than 100. This should be true!", c.validate(buildSampleInput(110)).isValid());
 	}
 
+	@Test
+	public void testStrongPassword() {
+		Criterion c = Criteria.strongPassword(15);
+		Assert.assertTrue("This password should be strong enough", 
+				c.validate(buildSampleInput("abcAd4bcas!fegdt")).isValid());
+	}
+
+	
 	private TextInput buildSampleInput(int val) {
 		return (TextInput) TextInput.build("age").setDescription("Age").setPreSetValue(Integer.toString(val));
 
+	}
+	
+	private TextInput buildSampleInput(String val) {
+		return (TextInput) TextInput.build("age").setDescription("Age").setPreSetValue(val);
 	}
 }
