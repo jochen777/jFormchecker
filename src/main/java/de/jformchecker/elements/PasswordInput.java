@@ -4,7 +4,7 @@ import java.util.Map;
 
 import de.jformchecker.FormCheckerElement;
 
-public class PasswordInput extends AbstractInput<PasswordInput> implements FormCheckerElement {
+public class PasswordInput extends TextInput implements FormCheckerElement {
 
 	public static PasswordInput build(String name) {
 		PasswordInput i = new PasswordInput();

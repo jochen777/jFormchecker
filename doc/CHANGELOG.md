@@ -1,5 +1,10 @@
 # jFormChecker changelog
 
+### 0.1.5
+
+2017/02/02 Add StrongPassword Validator. PasswordInput inherited from TextInput
+
+
 ### 0.1.4
 
 2017/02/01 Add more documentation. Fix checkbox - required bug. Add getLegacyDate for DateInput. Fix required attribute in input fields
