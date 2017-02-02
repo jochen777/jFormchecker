@@ -3,9 +3,11 @@ The pragmatic, compact, and fast library to build HTML Forms in MVC-Framworks.
 
 [See documentation](doc/start.md)
 
+[See changelog](doc/CHANGELOG.md)
+
 [![Build Status](https://travis-ci.org/jochen777/jFormchecker.svg?branch=master)](https://travis-ci.org/jochen777/jFormchecker)
 
-## Warning: Currently beta software!
+## Overview
 
 The form-handling support in current java MVC frameworks is very basic. jFormChecker tries to fill this gap by providing these features:
 
@@ -115,7 +117,7 @@ ${fc.elements.lasntame.inputTag}
 <dependency>
     <groupId>de.cyclon-softworx</groupId>
     <artifactId>jformchecker</artifactId>
-    <version>0.1.3</version>
+    <version>0.1.4</version>
 </dependency>
 ...
 ```
