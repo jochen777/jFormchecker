@@ -24,6 +24,11 @@ public class RequestBuilders {
 		}
 		return request;
 	}
+	public static Request buildRequestwithFirstRun(String key, String val) {
+		SampleRequest r = (SampleRequest)buildFirstRunEmptyHttpRequest();
+		r.setParameter(key, val);
+		return r;
+	}
 
 	public static Request buildEmptyHttpRequest() {
 		SampleRequest request = new SampleRequest();
