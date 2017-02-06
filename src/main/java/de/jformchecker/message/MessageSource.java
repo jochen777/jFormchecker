@@ -14,13 +14,24 @@ public interface MessageSource {
 
 	public String getMessage(String key);
 
+	public default String getSafeMessage(String key) {
+		try {
+			String msg = this.getMessage(key);
+			return msg;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "??" + key + "??";
+		}
+	}
+
+	
 	public default String getMessage(ValidationResult vr) {
 		// give translated messages higher prio than message-keys
 		if (vr.getTranslatedMessage() != null) {
 			return vr.getTranslatedMessage();
 		} else 
 		if (vr.getMessage() != null) {
-			return(String.format(this.getMessage(
+			return(String.format(this.getSafeMessage(
 					vr.getMessage()
 					), vr.getErrorVals()));
 			

@@ -77,13 +77,13 @@ public class DateInputSelectCompound extends AbstractInput<DateInputSelectCompou
 	public void init(Request request, boolean firstRun, Validator validator) {
 		day = SelectInput.build("day_" + name);
 		MessageSource translates = parent.getConfig().getProperties();
-		day.setPossibleValues(buildDays(translates.getMessage("formchecker.jformchecker.select.day")));
+		day.setPossibleValues(buildDays(translates.getSafeMessage("formchecker.jformchecker.select.day")));
 		
 		month = SelectInput.build("month_" + name);
-		month.setPossibleValues(buildMonths(translates.getMessage("formchecker.jformchecker.select.month"), translates));
+		month.setPossibleValues(buildMonths(translates.getSafeMessage("formchecker.jformchecker.select.month"), translates));
 		
 		year = SelectInput.build("year_" + name);
-		year.setPossibleValues(buildYears(translates.getMessage("formchecker.jformchecker.select.year")));
+		year.setPossibleValues(buildYears(translates.getSafeMessage("formchecker.jformchecker.select.year")));
 
 		if (firstRun) {
 			this.setValue(this.getPreSetValue());
@@ -122,7 +122,7 @@ public class DateInputSelectCompound extends AbstractInput<DateInputSelectCompou
 	private  LinkedHashMap<String, String> buildMonths(String monthDesc, MessageSource translates) { 
 		LinkedHashMap<String, String> monthMap = buildMap(1, 12, monthDesc);
 		for (int i=1; i<=12; i++) {
-			monthMap.put(Integer.toString(i), translates.getMessage("formchecker.jformchecker.select."+ months[i-1]));
+			monthMap.put(Integer.toString(i), translates.getSafeMessage("formchecker.jformchecker.select."+ months[i-1]));
 		}
 		return monthMap;
 	}
