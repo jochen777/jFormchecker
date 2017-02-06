@@ -137,9 +137,6 @@ public class FormChecker {
 	}
 
 	public void addForm(FormCheckerForm form) {
-		for (FormCheckerElement element : form.getElements()) {
-			prepareElement(element);
-		}
 		this.form = form;
 	}
 
@@ -160,6 +157,8 @@ public class FormChecker {
 
 		checkIfFirstRun();
 
+		initForm();
+		
 		// process and validate each field
 		for (FormCheckerElement elem : form.getElements()) {
 			elem.init(req, firstRun, validator);
@@ -176,6 +175,17 @@ public class FormChecker {
 		// build complete Form here!
 		completeForm = this.getGenericForm();
 		return this;
+	}
+
+	private void initForm() {
+		// init form
+		form.setMessageSource(this.getConfig().getProperties());
+		form.init();
+
+		for (FormCheckerElement element : form.getElements()) {
+			prepareElement(element);
+		}
+		
 	}
 
 	/**

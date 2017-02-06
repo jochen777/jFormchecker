@@ -10,6 +10,7 @@ import java.util.Map;
 import de.jformchecker.FormCheckerElement;
 import de.jformchecker.StringUtils;
 import de.jformchecker.criteria.ValidationResult;
+import de.jformchecker.message.CommonSelects;
 import de.jformchecker.message.MessageSource;
 import de.jformchecker.request.Request;
 import de.jformchecker.validator.Validator;
@@ -75,15 +76,15 @@ public class DateInputSelectCompound extends AbstractInput<DateInputSelectCompou
 
 	@Override
 	public void init(Request request, boolean firstRun, Validator validator) {
+		CommonSelects commonSelects = new CommonSelects(parent.getConfig().getProperties());
 		day = SelectInput.build("day_" + name);
-		MessageSource translates = parent.getConfig().getProperties();
-		day.setPossibleValues(buildDays(translates.getSafeMessage("formchecker.jformchecker.select.day")));
+		day.setPossibleValues(commonSelects.buildDays());
 		
 		month = SelectInput.build("month_" + name);
-		month.setPossibleValues(buildMonths(translates.getSafeMessage("formchecker.jformchecker.select.month"), translates));
+		month.setPossibleValues(commonSelects.buildMonths());
 		
 		year = SelectInput.build("year_" + name);
-		year.setPossibleValues(buildYears(translates.getSafeMessage("formchecker.jformchecker.select.year")));
+		year.setPossibleValues(commonSelects.getYears(this.yearStart, this.yearEnd));
 
 		if (firstRun) {
 			this.setValue(this.getPreSetValue());
@@ -115,31 +116,7 @@ public class DateInputSelectCompound extends AbstractInput<DateInputSelectCompou
 		}
 	}
 
-	private  LinkedHashMap<String, String> buildDays(String dayDesc) { 
-		return buildMap(1, 31, dayDesc);
-	}
 
-	private  LinkedHashMap<String, String> buildMonths(String monthDesc, MessageSource translates) { 
-		LinkedHashMap<String, String> monthMap = buildMap(1, 12, monthDesc);
-		for (int i=1; i<=12; i++) {
-			monthMap.put(Integer.toString(i), translates.getSafeMessage("formchecker.jformchecker.select."+ months[i-1]));
-		}
-		return monthMap;
-	}
-
-	private  LinkedHashMap<String, String> buildYears(String yearDesc) { 
-		return buildMap(this.yearStart, this.yearEnd, yearDesc);
-	}
-
-	
-	private static LinkedHashMap<String, String> buildMap(int start, int end, String first) {
-		LinkedHashMap<String, String> dayMap = new LinkedHashMap<>();
-		dayMap.put("", first);
-		for (int i = start; i <= end; i++) {
-			dayMap.put(Integer.toString(i), Integer.toString(i));
-		}
-		return dayMap;
-	}
 
 	@Override
 	public int getLastTabIndex() {

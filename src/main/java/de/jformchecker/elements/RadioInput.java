@@ -14,7 +14,7 @@ public class RadioInput extends AbstractInput<RadioInput> implements FormChecker
 																			// maintain
 																			// sort
 																			// order
-
+	
 	public static RadioInput build(String name) {
 		RadioInput i = new RadioInput();
 		i.name = name;

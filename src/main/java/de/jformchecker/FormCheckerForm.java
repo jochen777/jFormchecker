@@ -5,6 +5,8 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import de.jformchecker.message.MessageSource;
+
 // holds a collection of form-Elements that can be rendered by formchecker
 public abstract class FormCheckerForm {
 
@@ -12,10 +14,12 @@ public abstract class FormCheckerForm {
 	List<FormValidator> validators = new ArrayList<>();
 	private Map<String, FormCheckerElement> fastAccess = new LinkedHashMap<>();
 	String submitLabel = "OK";
+	private MessageSource messageSource;
 
 	public String getSubmitLabel() {
 		return submitLabel;
 	}
+	
 
 	public void setSubmitLabel(String submitLabel) {
 		this.submitLabel = submitLabel;
@@ -38,7 +42,7 @@ public abstract class FormCheckerForm {
 	boolean html5Validation = true;
 
 	{
-		init();
+		//init();
 	}
 
 	// Should be overriden
@@ -70,6 +74,16 @@ public abstract class FormCheckerForm {
 
 	public FormCheckerElement getElement(String name) {
 		return fastAccess.get(name);
+	}
+
+
+	public MessageSource getMessageSource() {
+		return messageSource;
+	}
+
+
+	public void setMessageSource(MessageSource messageSource) {
+		this.messageSource = messageSource;
 	}
 
 }
