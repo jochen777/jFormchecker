@@ -52,7 +52,7 @@ Example Form-Definiton:
 
 public class ExampleForm extends FormCheckerForm {
 
-  public ExampleForm() {
+  public void init() {
      add(TextInput.build("firstname").
      	setDescription("Your Firstname").
      	setCriterias(Criteria.accept("John")));
