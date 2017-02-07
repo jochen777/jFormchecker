@@ -106,12 +106,14 @@ The FormBuilder (GenericFormBuilder or your own subclasses) renders the form-ele
 
 For example the FormBuilder renders the <form ...> </form> tags, the structure of an input element (help-text above or under a form-element, a special css-class ...).
 
-It's a good idea to generate a capable FormBuilder for your site that garantees the consistency of forms on your site. You can have even multiple FormBuilder, for example one for the desktop-version and one for the mobile version.
+It's a good idea to generate a tailored FormBuilder for your site. You can have even multiple FormBuilder, for example one for the desktop-version and one for the mobile version.
 
 There are some prebuild Formbuilders which you can use without coding them yourself:
 
 "BasicBoostrapFormBuilder" -> for usage in Boostrap layouts
+
 "TwoColumnBoostrapFormBuilder" -> for Bootstrap layouts too, but in a two column layout
+
 "BasicMaterialLightFormBuilder" -> For MaterialLight (https://getmdl.io/components/index.html#textfields-section)
 
 If you don't specify a FormBuilder, the BasicFormBuilder is used.
