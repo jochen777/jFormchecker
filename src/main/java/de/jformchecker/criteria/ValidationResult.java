@@ -9,6 +9,9 @@ package de.jformchecker.criteria;
 public class ValidationResult {
 
 	boolean isValid = false;
+	
+	// caching:
+	private static ValidationResult okResult =  new ValidationResult(true, "", null, null);
 
 	public boolean isValid() {
 		return isValid;
@@ -50,7 +53,7 @@ public class ValidationResult {
 	public static ValidationResult ok() {
 		// RFE: Could return always the same object! will reduce memory
 		// footprint!
-		return new ValidationResult(true, "", null, null);
+		return okResult;
 	}
 
 	public String getTranslatedMessage() {
