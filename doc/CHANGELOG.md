@@ -2,8 +2,7 @@
 
 ### 0.1.5
 
-2017/02/02 Add StrongPassword Validator. PasswordInput inherited from TextInput. Access to messages more safe. Convenience Selects (Month, year, day, gender)
-
+2017/02/02 Add StrongPassword validator. PasswordInput inherited from TextInput. Access to messages more safe. Convenience Selects (Month, year, day, gender), more consistent api on date-select, more documentation
 
 ### 0.1.4
 
