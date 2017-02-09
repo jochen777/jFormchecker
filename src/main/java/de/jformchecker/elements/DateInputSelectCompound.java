@@ -46,7 +46,17 @@ public class DateInputSelectCompound extends AbstractInput<DateInputSelectCompou
 
 	}
 
+	// please use setPresetValue
+	@Deprecated
 	public DateInputSelectCompound presetValue(LocalDate t) {
+		internalDate = t;
+		day.setPreSetValue(Integer.toString(t.getDayOfMonth()));
+		month.setPreSetValue(Integer.toString(t.getMonthValue()));
+		year.setPreSetValue(Integer.toString(t.getYear()));
+		return this;
+	}
+	
+	public DateInputSelectCompound setPresetValue(LocalDate t) {
 		internalDate = t;
 		day.setPreSetValue(Integer.toString(t.getDayOfMonth()));
 		month.setPreSetValue(Integer.toString(t.getMonthValue()));
