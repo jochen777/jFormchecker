@@ -4,14 +4,12 @@ import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
-import java.util.LinkedHashMap;
 import java.util.Map;
 
 import de.jformchecker.FormCheckerElement;
 import de.jformchecker.StringUtils;
 import de.jformchecker.criteria.ValidationResult;
 import de.jformchecker.message.CommonSelects;
-import de.jformchecker.message.MessageSource;
 import de.jformchecker.request.Request;
 import de.jformchecker.validator.Validator;
 
@@ -37,6 +35,12 @@ public class DateInputSelectCompound extends AbstractInput<DateInputSelectCompou
 		return i;
 	}
 
+	public static DateInputSelectCompound build(String name, YearRange yearRange) {
+		return DateInputSelectCompound.build(name, yearRange.start, yearRange.end);
+	}
+
+
+	
 	LocalDate internalDate = null;
 
 	@Override
@@ -150,4 +154,66 @@ public class DateInputSelectCompound extends AbstractInput<DateInputSelectCompou
 	}
 
 
+	/**
+	 * a range of years - that can be shown in the year-dropdown
+	 * Use the static convenience methods
+	 * 
+	 * @author jochen
+	 *
+	 */
+	public static class YearRange {
+		int start;
+		int end;
+		
+		
+		/**
+		 * A range of year. 
+		 * @param start The smaller value!
+		 * @param end The bigger value!
+		 */
+		public YearRange(int start, int end) {
+			this.start = start;
+			this.end = end;
+		}
+		
+		/**
+		 * year around now. 
+		 * Example: AroundNow(2) will return for the currentYear=2017 -> 2015,2016,2017,2018,2019
+		 * @param offset
+		 * @return
+		 */
+		public static YearRange aroundNow(int offset) {
+			return new YearRange(LocalDate.now().getYear()-offset, LocalDate.now().getYear()+offset);
+		}
+		
+		/**
+		 * Years in the past from today
+		 * 
+		 * @param numberOfYears
+		 * @return
+		 */
+		public static YearRange past(int numberOfYears) {
+			return new YearRange(LocalDate.now().getYear()-numberOfYears, LocalDate.now().getYear());
+		}
+
+		/**
+		 * Years from now in the future.
+		 * @param numberOfYears
+		 * @return
+		 */
+		public static YearRange future(int numberOfYears) {
+			return new YearRange(LocalDate.now().getYear(), 
+					LocalDate.now().getYear()+numberOfYears);
+		}
+
+		/**
+		 * typical Birthday - : 110years in the past - today
+		 * @return
+		 */
+		public static YearRange birthday() {
+			return new YearRange(LocalDate.now().getYear()-110, LocalDate.now().getYear());
+		}
+
+	}
+	
 }
