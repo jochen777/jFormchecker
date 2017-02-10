@@ -197,6 +197,17 @@ public class DateInputSelectCompound extends AbstractInput<DateInputSelectCompou
 		}
 
 		/**
+		 * Just the current year
+		 * 
+		 * @param numberOfYears
+		 * @return
+		 */
+		public static YearRange currentYear() {
+			return new YearRange(LocalDate.now().getYear(), LocalDate.now().getYear());
+		}
+
+		
+		/**
 		 * Years from now in the future.
 		 * @param numberOfYears
 		 * @return

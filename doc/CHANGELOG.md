@@ -1,5 +1,9 @@
 # jFormChecker changelog
 
+### 0.1.6
+
+2017/xx/xx Convenience methods for YearRange in DateSelect. Caching of "OK" Validation-result.
+
 ### 0.1.5
 
 2017/02/02 Add StrongPassword validator. PasswordInput inherited from TextInput. Access to messages more safe. Convenience Selects (Month, year, day, gender), more consistent api on date-select, more documentation
