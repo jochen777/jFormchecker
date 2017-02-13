@@ -114,7 +114,7 @@ There are some prebuild Formbuilders which you can use without coding them yours
 
 "TwoColumnBoostrapFormBuilder" -> for Bootstrap layouts too, but in a two column layout
 
-"BasicMaterialLightFormBuilder" -> For MaterialLight (https://getmdl.io/components/index.html#textfields-section)
+"BasicMaterialLightFormBuilder" -> for MaterialLight (https://getmdl.io/components/index.html#textfields-section)
 
 If you don't specify a FormBuilder, the BasicFormBuilder is used.
 
