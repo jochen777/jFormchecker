@@ -29,8 +29,8 @@ public class RadioTabIndexTest {
 		reqVals.put(FormChecker.SUBMIT_KEY, FormChecker.SUBMIT_VALUE_PREFIX + formId);
 		Request request = RequestBuilders.buildExampleHttpRequest(reqVals);
 
-		FormChecker fc = new FormChecker(formId, request);
-		fc.addForm(ExampleFormBuilder.getComplexForm());
+		FormChecker fc = FormChecker.build(request, ExampleFormBuilder.getComplexForm(formId));
+
 		fc.run();
 		Assert.assertTrue("Form- should contain form-tag", fc.getCompleteForm().contains("<form"));
 	}

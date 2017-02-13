@@ -45,8 +45,15 @@ public class ExampleFormBuilder {
 	}
 
 	
-	public static FormCheckerForm getComplexForm() {
+	public static FormCheckerForm getComplexForm(String formId) {
+		
+		
 		return new FormCheckerForm() {
+
+			@Override
+			public String getId() {
+				return formId;
+			}
 
 			@Override
 			public void init() {

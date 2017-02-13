@@ -48,8 +48,7 @@ public class FormTests {
 		reqVals.put(FormChecker.SUBMIT_KEY, FormChecker.SUBMIT_VALUE_PREFIX + formId);
 		Request request = RequestBuilders.buildExampleHttpRequest(reqVals);
 
-		FormChecker fc = new FormChecker(formId, request);
-		fc.addForm(ExampleFormBuilder.getComplexForm());
+		FormChecker fc = FormChecker.build(request, ExampleFormBuilder.getComplexForm(formId));
 		fc.run();
 		assertEquals("Jochen2", fc.getValue("firstname"));
 		Assert.assertTrue("FC should be not valid", !fc.isValid());
@@ -70,8 +69,7 @@ public class FormTests {
 
 		Request request = RequestBuilders.buildExampleHttpRequest(reqVals);
 
-		FormChecker fc = new FormChecker(formId, request);
-		fc.addForm(ExampleFormBuilder.getComplexForm());
+		FormChecker fc = FormChecker.build(request, ExampleFormBuilder.getComplexForm(formId));
 		fc.run();
 		assertEquals(firstname, fc.getValue("firstname"));
 		Assert.assertTrue("FC should be valid", fc.isValid());

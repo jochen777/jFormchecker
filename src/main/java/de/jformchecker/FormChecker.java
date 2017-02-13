@@ -19,23 +19,21 @@ import de.jformchecker.validator.Validator;
  */
 public class FormChecker {
 	Request req;
-	SessionSet sessionSet;
-	SessionGet sessionGet;
 	boolean firstRun = true;
 	boolean isValid = true;
 	FormCheckerForm form = null;
 	Validator validator = new DefaultValidator();
 
-	boolean protectedAgainstCSRF = false; // TBD: Default no protection, because
-											// the normal case is
-											// not logged in?!?
+	@Deprecated
+	String id;
+
+
 	String completeForm;
 	int defaultMaxLenElements = 1000; // override this for each element, if you
 										// want longer vals!
 
 	FormCheckerConfig config;
 
-	String id;
 	private String formAction = "#";
 
 	// holds temporaryly config-infos while construction-process of fc
@@ -45,21 +43,51 @@ public class FormChecker {
 	public static final String SUBMIT_KEY = "submitted";
 	public static final String SUBMIT_VALUE_PREFIX = "FORMCHECKER_";
 
+	/**
+	 * Deprecated: Put id into the FormcheckerForm and use build(request, form) or
+	 * Formchecker(request)
+	 * 
+	 * @param _id
+	 * @param request
+	 */
+	@Deprecated
 	public FormChecker(String _id, Request request) {
 		id = _id;
 		req = request;
 	}
 
+	public FormChecker(Request request) {
+		req = request;
+	}
+
+	/**
+	 * Deprecated: Use build(Request _req, FormCheckerForm form) and put id into the FormCheckerForm
+	 * @param _id
+	 * @param _req
+	 * @param form
+	 * @return
+	 */
+	@Deprecated
 	public static FormChecker build(String _id, Request _req, FormCheckerForm form) {
 		FormChecker fc = new FormChecker(_id, _req);
+		fc.id = _id;
+		fc.addForm(form);
+		return fc;
+	}
+
+	public static FormChecker build(Request _req, FormCheckerForm form) {
+		FormChecker fc = new FormChecker(_req);
 		fc.addForm(form);
 		return fc;
 	}
 
 	public FormChecker setProtectAgainstCSRF(SessionGet sessionGet, SessionSet sessionSet) {
-		protectedAgainstCSRF = true;
-		this.sessionSet = sessionSet;
-		this.sessionGet = sessionGet;
+		if (form == null) {
+			throw new IllegalArgumentException("Set the FormcheckerForm BEFORE calling setAgainstCSRF");
+		}
+		form.setProtectedAgainstCSRF(true);
+		form.setSessionGet(sessionGet);
+		form.setSessionSet(sessionSet);
 		return this;
 	}
 
@@ -103,7 +131,7 @@ public class FormChecker {
 	}
 
 	public String getSubmitTag() {
-		return config.getFormBuilder().getSubmittedTag(id);
+		return config.getFormBuilder().getSubmittedTag(form.getId());
 	}
 
 	public String getLabelTag(String elementName) {
@@ -138,10 +166,13 @@ public class FormChecker {
 
 	public void addForm(FormCheckerForm form) {
 		this.form = form;
+		if (id != null) {	// Internal id overrides id from form
+			form.setId(id);
+		}
 	}
 
 	private String getGenericForm() {
-		return config.getFormBuilder().generateGenericForm(id, formAction, form.elements, firstRun, this, req);
+		return config.getFormBuilder().generateGenericForm(formAction, form.elements, firstRun, form, req, config);
 	}
 
 	// TODO: is neeeded?
@@ -158,7 +189,7 @@ public class FormChecker {
 		checkIfFirstRun();
 
 		initForm();
-		
+
 		// process and validate each field
 		for (FormCheckerElement elem : form.getElements()) {
 			elem.init(req, firstRun, validator);
@@ -172,8 +203,6 @@ public class FormChecker {
 			formValidator.validate(form);
 		}
 
-		// build complete Form here!
-		completeForm = this.getGenericForm();
 		return this;
 	}
 
@@ -185,7 +214,7 @@ public class FormChecker {
 		for (FormCheckerElement element : form.getElements()) {
 			prepareElement(element);
 		}
-		
+
 	}
 
 	/**
@@ -215,13 +244,13 @@ public class FormChecker {
 	}
 
 	private void checkIfFirstRun() {
-		if ((FormChecker.SUBMIT_VALUE_PREFIX + id).equals(req.getParameter(FormChecker.SUBMIT_KEY))) {
+		if ((FormChecker.SUBMIT_VALUE_PREFIX + form.getId()).equals(req.getParameter(FormChecker.SUBMIT_KEY))) {
 			firstRun = false;
 		}
 	}
 
 	public String getCompleteForm() {
-		return completeForm;
+		return this.getGenericForm();
 	}
 
 	public FormCheckerConfig getConfig() {

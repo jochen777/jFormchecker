@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Map;
 
 import de.jformchecker.message.MessageSource;
+import de.jformchecker.request.SessionGet;
+import de.jformchecker.request.SessionSet;
 
 // holds a collection of form-Elements that can be rendered by formchecker
 public abstract class FormCheckerForm {
@@ -15,6 +17,14 @@ public abstract class FormCheckerForm {
 	private Map<String, FormCheckerElement> fastAccess = new LinkedHashMap<>();
 	String submitLabel = "OK";
 	private MessageSource messageSource;
+	
+	boolean protectedAgainstCSRF = false;
+	SessionSet sessionSet;
+	SessionGet sessionGet;
+	
+	String id="id";	// default
+
+
 
 	public String getSubmitLabel() {
 		return submitLabel;
@@ -84,6 +94,46 @@ public abstract class FormCheckerForm {
 
 	public void setMessageSource(MessageSource messageSource) {
 		this.messageSource = messageSource;
+	}
+
+
+	public boolean isProtectedAgainstCSRF() {
+		return protectedAgainstCSRF;
+	}
+
+
+	public void setProtectedAgainstCSRF(boolean protectedAgainstCSRF) {
+		this.protectedAgainstCSRF = protectedAgainstCSRF;
+	}
+
+
+	public SessionGet getSessionGet() {
+		return sessionGet;
+	}
+
+
+	public void setSessionGet(SessionGet sessionGet) {
+		this.sessionGet = sessionGet;
+	}
+
+
+	public SessionSet getSessionSet() {
+		return sessionSet;
+	}
+
+
+	public void setSessionSet(SessionSet sessionSet) {
+		this.sessionSet = sessionSet;
+	}
+
+
+	public String getId() {
+		return id;
+	}
+
+
+	public void setId(String id) {
+		this.id = id;
 	}
 
 }

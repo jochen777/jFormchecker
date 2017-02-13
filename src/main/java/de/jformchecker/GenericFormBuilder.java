@@ -39,17 +39,18 @@ public abstract class GenericFormBuilder {
 	public abstract ValidationResult getErrors(FormCheckerElement e, boolean firstRun);
 
 	
-	final public String generateGenericForm(String id, String formAction, List<FormCheckerElement> elements,
-			boolean firstRun, FormChecker fc, Request req) {
+	
+	final public String generateGenericForm(String formAction, List<FormCheckerElement> elements,
+			boolean firstRun, FormCheckerForm form, Request req, FormCheckerConfig config) {
 		// RFE: Get rid of this fc. object here. better: give FormCheckerForm
 		StringBuilder formHtml = new StringBuilder();
 
-		TagAttributes formTagAttributes = createFormTagAttributes(fc.getForm());
+		TagAttributes formTagAttributes = createFormTagAttributes(form);
 
-		formHtml.append(generateFormStartTag(id, formAction, checkMultipart(elements), formTagAttributes));
-		if (fc.protectedAgainstCSRF) {
+		formHtml.append(generateFormStartTag(form.getId(), formAction, checkMultipart(elements), formTagAttributes));
+		if (form.isProtectedAgainstCSRF()) {
 			XSRFBuilder csrfBuilder = new XSRFBuilder();
-			formHtml.append(csrfBuilder.buildCSRFTokens(req, firstRun, fc.sessionGet, fc.sessionSet));
+			formHtml.append(csrfBuilder.buildCSRFTokens(req, firstRun, form.sessionGet, form.sessionSet));
 		}
 		int lastTabIndex = 0;
 		Wrapper allFormElements = getWrapperForAllFormElements();
@@ -59,7 +60,7 @@ public abstract class GenericFormBuilder {
 
 			ValidationResult vr = getErrors(elem, firstRun);
 			if (!vr.isValid()) {
-				inputStruct.setErrors(formatError(fc.getConfig().getProperties().getMessage(vr)));
+				inputStruct.setErrors(formatError(config.getProperties().getMessage(vr)));
 			}
 
 			// label
@@ -85,7 +86,7 @@ public abstract class GenericFormBuilder {
 			lastTabIndex = elem.getLastTabIndex();
 		}
 		Wrapper submitWrapper = getWrapperForSumit();
-		formHtml.append(submitWrapper.start).append(getSubmit(lastTabIndex + 1, fc.getForm().getSubmitLabel()))
+		formHtml.append(submitWrapper.start).append(getSubmit(lastTabIndex + 1, form.getSubmitLabel()))
 				.append(submitWrapper.end);
 		formHtml.append(allFormElements.end);
 		formHtml.append(getEndFormTag());
