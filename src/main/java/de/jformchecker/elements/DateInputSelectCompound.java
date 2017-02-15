@@ -156,6 +156,9 @@ public class DateInputSelectCompound extends AbstractInput<DateInputSelectCompou
 	 * @return
 	 */
 	public Date getLegacyDateValue() {
+		if (internalDate == null) {
+			return null;
+		}
 		return Date.from(internalDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
 	}
 

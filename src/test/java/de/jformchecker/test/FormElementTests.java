@@ -40,7 +40,7 @@ public class FormElementTests {
 	
 	
 	@Test
-	public void testDateSelect() {
+	public void testDateSelectValidDate() {
 		DateInputSelectCompound dateInputSelectCompound = DateInputSelectCompound.build("test", 2000, 2010);
 		FormCheckerForm form = ExampleFormBuilder.getFormWithElements(RequestBuilders.FC_ID,  
 				Arrays.asList(dateInputSelectCompound));
@@ -51,10 +51,20 @@ public class FormElementTests {
 		Request request = RequestBuilders.buildExampleHttpRequestWithFirstRun(reqVals);
 		FormChecker fc = FormChecker.build(request, form);
 		fc.run();
-//		dateInputSelectCompound.setFormChecker(fc);
-//		dateInputSelectCompound.init(RequestBuilders.buildExampleHttpRequest(reqVals), false, new DefaultValidator());
 		assertTrue("date should be valid", dateInputSelectCompound.isValid());
 		assertEquals(LocalDate.of(2005, 10, 15), dateInputSelectCompound.getDateValue());
+	}
+
+	@Test
+	public void testDateSelectGetLegacyDateNPE() {
+		DateInputSelectCompound dateInputSelectCompound = DateInputSelectCompound.build("test", 2000, 2010);
+		FormCheckerForm form = ExampleFormBuilder.getFormWithElements(RequestBuilders.FC_ID,  
+				Arrays.asList(dateInputSelectCompound));
+		Request request = RequestBuilders.buildFirstRunEmptyHttpRequest();
+		FormChecker fc = FormChecker.build(request, form);
+		fc.run();
+		assertEquals(null, dateInputSelectCompound.getLegacyDateValue());
+		
 	}
 
 }
