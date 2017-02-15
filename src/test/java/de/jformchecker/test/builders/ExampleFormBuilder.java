@@ -1,7 +1,9 @@
 package de.jformchecker.test.builders;
 
 import java.util.LinkedHashMap;
+import java.util.List;
 
+import de.jformchecker.FormCheckerElement;
 import de.jformchecker.FormCheckerForm;
 import de.jformchecker.criteria.Criteria;
 import de.jformchecker.elements.CheckboxInput;
@@ -44,6 +46,21 @@ public class ExampleFormBuilder {
 		};
 	}
 
+	public static FormCheckerForm getFormWithElements(String formId, List<FormCheckerElement> elements) {
+		FormCheckerForm form = new FormCheckerForm() {
+			
+			@Override
+			public String getId() {
+				return formId;
+			}
+
+			@Override
+			public void init() {
+				elements.forEach((elem) -> add(elem));
+			}
+		};
+		return form;
+	}	
 	
 	public static FormCheckerForm getComplexForm(String formId) {
 		

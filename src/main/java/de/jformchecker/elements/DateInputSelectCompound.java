@@ -98,6 +98,12 @@ public class DateInputSelectCompound extends AbstractInput<DateInputSelectCompou
 		month.setPossibleValues(commonSelects.buildMonths());
 		
 		year = SelectInput.build("year_" + name);
+		// iterate from large to small for years
+		if (yearStart < yearEnd) {
+			int temp = yearStart;
+			yearStart = yearEnd;
+			yearEnd = temp;
+		}
 		year.setPossibleValues(commonSelects.getYears(this.yearStart, this.yearEnd));
 
 		if (firstRun) {

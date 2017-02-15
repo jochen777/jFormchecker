@@ -36,7 +36,7 @@ public class CommonSelects {
 	}
 
 	public LinkedHashMap<String, String> getYears(int startYear, int endYear) { 
-		return buildMap(startYear, endYear, "jformchecker.select.year");
+		return builReverseMap(startYear, endYear, "jformchecker.select.year");
 	}
 
 	
@@ -56,5 +56,14 @@ public class CommonSelects {
 		}
 		return dayMap;
 	}
-	
+
+	private LinkedHashMap<String, String> builReverseMap(int start, int end, String first) {
+		LinkedHashMap<String, String> map = new LinkedHashMap<>();
+		map.put("", messageSource.getSafeMessage(first));
+		for (int i = start; i >= end; i--) {
+			map.put(Integer.toString(i), Integer.toString(i));
+		}
+		return map;
+	}
+
 }

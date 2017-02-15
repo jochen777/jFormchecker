@@ -2,7 +2,7 @@
 
 ### 0.1.6
 
-2017/xx/xx Convenience methods for YearRange in DateSelect. Caching of "OK" Validation-result.
+2017/xx/xx Convenience methods for YearRange in DateSelect. Caching of "OK" Validation-result. Reverse order for years in date-select.
 
 ### 0.1.5
 
