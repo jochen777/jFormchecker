@@ -28,8 +28,10 @@ public class FormChecker {
 	String id;
 
 
-	int defaultMaxLenElements = 1000; // override this for each element, if you
-										// want longer vals!
+	/** Maximal lenght of input vars to avoid too long requests  
+	 * If you want to get longer element-vals, override it for each element!
+	 */
+	int defaultMaxLenElements = 1000;
 
 	FormCheckerConfig config;
 
@@ -121,6 +123,7 @@ public class FormChecker {
 		return this;
 	}
 
+	// move to ViewFacade
 	public static String getHelpBlockId(FormCheckerElement elem) {
 		return "helpBlock_" + elem.getName();
 	}
@@ -129,14 +132,17 @@ public class FormChecker {
 		return form.getElement(elementName).getValue();
 	}
 
+	// move to ViewFacade
 	public String getSubmitTag() {
 		return config.getFormBuilder().getSubmittedTag(form.getId());
 	}
 
+	// move to ViewFacade
 	public String getLabelTag(String elementName) {
 		return config.getFormBuilder().getLabelForElement(form.getElement(elementName), new TagAttributes(), firstRun);
 	}
 
+	// move to ViewFacade
 	public String getLabelTag(String elementName, Map<String, String> map) {
 		return config.getFormBuilder().getLabelForElement(form.getElement(elementName), new TagAttributes(map),
 				firstRun);
@@ -171,10 +177,10 @@ public class FormChecker {
 	}
 
 	private String getGenericForm() {
-		return config.getFormBuilder().generateGenericForm(formAction, form.elements, firstRun, form, req, config);
+		return config.getFormBuilder().generateGenericForm(formAction, firstRun, form, req, config);
 	}
 
-	// TODO: is neeeded?
+	// move to ViewFacade
 	public String getLabelForElement(FormCheckerElement e, Map<String, String> attribs) {
 		return config.getFormBuilder().getLabelForElement(e, new TagAttributes(attribs), firstRun);
 	}
@@ -248,6 +254,7 @@ public class FormChecker {
 		}
 	}
 
+	// move to ViewFacade
 	public String getCompleteForm() {
 		return this.getGenericForm();
 	}
