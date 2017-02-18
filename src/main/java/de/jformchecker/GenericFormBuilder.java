@@ -40,13 +40,14 @@ public abstract class GenericFormBuilder {
 
 	
 	
-	final public String generateGenericForm(String formAction, List<FormCheckerElement> elements,
+	final public String generateGenericForm(String formAction, 
 			boolean firstRun, FormCheckerForm form, Request req, FormCheckerConfig config) {
 		// RFE: Get rid of this fc. object here. better: give FormCheckerForm
 		StringBuilder formHtml = new StringBuilder();
 
 		TagAttributes formTagAttributes = createFormTagAttributes(form);
-
+		List<FormCheckerElement> elements = form.getElements();
+		
 		formHtml.append(generateFormStartTag(form.getId(), formAction, checkMultipart(elements), formTagAttributes));
 		if (form.isProtectedAgainstCSRF()) {
 			XSRFBuilder csrfBuilder = new XSRFBuilder();
