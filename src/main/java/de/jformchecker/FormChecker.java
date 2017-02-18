@@ -28,7 +28,6 @@ public class FormChecker {
 	String id;
 
 
-	String completeForm;
 	int defaultMaxLenElements = 1000; // override this for each element, if you
 										// want longer vals!
 
