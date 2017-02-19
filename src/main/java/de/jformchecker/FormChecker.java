@@ -141,18 +141,27 @@ public class FormChecker {
 
 	@Deprecated
 	public String getSubmitTag() {
-		return config.getFormBuilder().getSubmittedTag(form.getId());
+		return this.getView().getSubmitTag();
 	}
 
-	// move to ViewFacade
+	/**
+	 * use fc.getView().getLabelTag(elementName) instead
+	 * @param elementName
+	 * @return
+	 */
+	@Deprecated
 	public String getLabelTag(String elementName) {
-		return config.getFormBuilder().getLabelForElement(form.getElement(elementName), new TagAttributes(), firstRun);
+		return this.getView().getLabelTag(elementName);
 	}
 
-	// move to ViewFacade
+	/**
+	 * use fc.getView().getLabelTag(elementName, map); instead
+	 * @param elementName
+	 * @return
+	 */
+	@Deprecated
 	public String getLabelTag(String elementName, Map<String, String> map) {
-		return config.getFormBuilder().getLabelForElement(form.getElement(elementName), new TagAttributes(map),
-				firstRun);
+		return this.getView().getLabelTag(elementName, map);
 	}
 	
 	/**
@@ -160,7 +169,7 @@ public class FormChecker {
 	 * @return
 	 */
 	public View getView() {
-		return new View(form, this.getFormBuilder());
+		return new View(form, this.getFormBuilder(), this.firstRun);
 	}
 
 	public void setFormAction(String formAction) {
