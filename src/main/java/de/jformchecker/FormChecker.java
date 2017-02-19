@@ -35,7 +35,7 @@ public class FormChecker {
 
 	FormCheckerConfig config;
 
-	private String formAction = "#";
+	String formAction = "#";
 
 	// holds temporaryly config-infos while construction-process of fc
 	private GenericFormBuilder tempFormBuilder;
@@ -145,13 +145,13 @@ public class FormChecker {
 	}
 
 	/**
-	 * use fc.getView().getLabelTag(elementName) instead
+	 * use fc.getView().getLabelHtml(elementName) instead
 	 * @param elementName
 	 * @return
 	 */
 	@Deprecated
 	public String getLabelTag(String elementName) {
-		return this.getView().getLabelTag(elementName);
+		return this.getView().getLabelHtml(elementName);
 	}
 
 	/**
@@ -161,7 +161,7 @@ public class FormChecker {
 	 */
 	@Deprecated
 	public String getLabelTag(String elementName, Map<String, String> map) {
-		return this.getView().getLabelTag(elementName, map);
+		return this.getView().getLabelHtml(elementName, map);
 	}
 	
 	/**
@@ -169,7 +169,7 @@ public class FormChecker {
 	 * @return
 	 */
 	public View getView() {
-		return new View(form, this.getFormBuilder(), this.firstRun);
+		return new View(form, this.getFormBuilder(), this);
 	}
 
 	public void setFormAction(String formAction) {
@@ -219,24 +219,29 @@ public class FormChecker {
 
 		initForm();
 
-		// process and validate each field
+		processAndValidateElements();
+
+		validateCompleteForm();
+
+		return this;
+	}
+
+	private void validateCompleteForm() {
+		for (FormValidator formValidator : form.getValidators()) {
+			formValidator.validate(form);
+		}
+	}
+
+	private void processAndValidateElements() {
 		for (FormCheckerElement elem : form.getElements()) {
 			elem.init(req, firstRun, validator);
 			if (!elem.isValid()) {
 				isValid = false;
 			}
 		}
-
-		// validate the complete form
-		for (FormValidator formValidator : form.getValidators()) {
-			formValidator.validate(form);
-		}
-
-		return this;
 	}
 
 	private void initForm() {
-		// init form
 		form.setMessageSource(this.getConfig().getProperties());
 		form.init();
 

@@ -10,37 +10,35 @@ import java.util.Map;
 public class View {
 	FormCheckerForm form;
 	GenericFormBuilder formBuilder;
-	boolean firstRun;
+	FormChecker fc;
 	
-	public View(FormCheckerForm form, GenericFormBuilder formBuilder, boolean firstRun) {
+	// RFE: try to avoid passing fc
+	public View(FormCheckerForm form, GenericFormBuilder formBuilder, FormChecker fc) {
 		this.form = form;
 		this.formBuilder = formBuilder;
-		this.firstRun = firstRun;
+		this.fc = fc;
 	}
 
-	public String getInput(String name) {
+	public String getInputHtml(String name) {
 		return form.getElement(name).getInputTag();
 	}
 
-	public String getLabel(String name) {
-		return form.getElement(name).getLabel();
+	public String getLabelHtml(String elementName) {
+		return formBuilder.getLabelForElement(form.getElement(elementName), new TagAttributes(), fc.firstRun);
 	}
 	
-	public String getLabelTag(String elementName) {
-		return formBuilder.getLabelForElement(form.getElement(elementName), new TagAttributes(), firstRun);
-	}
-	
-	public String getLabelTag(String elementName, Map<String, String> map) {
+	public String getLabelHtml(String elementName, Map<String, String> map) {
 		return formBuilder.getLabelForElement(form.getElement(elementName), new TagAttributes(map),
-				firstRun);
+				fc.firstRun);
 	}
 
 	public String getFormStart() {
-		return "";//formBuilder.generateFormStartTag(, formAction, isMultipart, formTagAttributes)
+		//return formBuilder.generateFormStartTag(form.getId(), fc.formAction, fc.is);
+		return "";
 	}
 	
 	public String getGenericForm() {
-		return null;
+		return formBuilder.generateGenericForm(fc.formAction, fc.firstRun, form, fc.req, fc.config);
 	}
 	
 	// move to ViewFacade
