@@ -64,7 +64,8 @@ public abstract class AbstractInput <T extends FormCheckerElement> implements Fo
 		// help-text
 		if (!StringUtils.isEmpty(helpText)) {
 			allAttribs.append(
-					AttributeUtils.buildAttributes(new TagAttributes("aria-describedby", FormChecker.getHelpBlockId(this))));
+					AttributeUtils.buildAttributes(new TagAttributes("aria-describedby", 
+							parent.getConfig().getFormBuilder().getHelpBlockId(this))));
 		}
 		return allAttribs.toString();
 	}

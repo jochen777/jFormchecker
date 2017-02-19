@@ -123,7 +123,14 @@ public class FormChecker {
 		return this;
 	}
 
-	// move to ViewFacade
+	/**
+	 *  moved to FormBuilder. please use:
+	 *  formchecker.getConfig().getFormBuilder().getHelpBlockId(elem)...
+	 *  
+	 * @param elem
+	 * @return
+	 */
+	@Deprecated
 	public static String getHelpBlockId(FormCheckerElement elem) {
 		return "helpBlock_" + elem.getName();
 	}
@@ -132,7 +139,7 @@ public class FormChecker {
 		return form.getElement(elementName).getValue();
 	}
 
-	// move to ViewFacade
+	@Deprecated
 	public String getSubmitTag() {
 		return config.getFormBuilder().getSubmittedTag(form.getId());
 	}
@@ -146,6 +153,14 @@ public class FormChecker {
 	public String getLabelTag(String elementName, Map<String, String> map) {
 		return config.getFormBuilder().getLabelForElement(form.getElement(elementName), new TagAttributes(map),
 				firstRun);
+	}
+	
+	/**
+	 * Get the view for displaying html in the template
+	 * @return
+	 */
+	public View getView() {
+		return new View(form, this.getFormBuilder());
 	}
 
 	public void setFormAction(String formAction) {

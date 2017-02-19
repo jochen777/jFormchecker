@@ -13,13 +13,15 @@ public class FormCheckerConfig {
 	// Translation-Sources
 	MessageSource properties;
 
+	// FormBuilder that renders the form to html
+	GenericFormBuilder formBuilder;
+
 	public FormCheckerConfig(MessageSource properties, GenericFormBuilder formBuilder) {
 		super();
 		this.properties = properties;
 		this.formBuilder = formBuilder;
 	}
 
-	GenericFormBuilder formBuilder;
 
 	public MessageSource getProperties() {
 		return properties;

@@ -95,6 +95,10 @@ public abstract class GenericFormBuilder {
 		return formHtml.toString();
 	}
 
+	public String getHelpBlockId(FormCheckerElement elem) {
+		return "helpBlock_" + elem.getName();
+	}
+	
 	public Wrapper getWrapperForSumit() {
 		return new Wrapper("", "");
 	}

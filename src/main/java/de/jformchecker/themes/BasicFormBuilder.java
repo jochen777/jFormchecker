@@ -2,7 +2,6 @@ package de.jformchecker.themes;
 
 import java.util.Map;
 
-import de.jformchecker.FormChecker;
 import de.jformchecker.FormCheckerElement;
 import de.jformchecker.GenericFormBuilder;
 import de.jformchecker.TagAttributes;
@@ -15,7 +14,7 @@ public class BasicFormBuilder extends GenericFormBuilder {
 	String divErrorClass = "has-error";
 
 	protected String getHelpTag(String helpText, FormCheckerElement elem) {
-		return "<span id=\"" + FormChecker.getHelpBlockId(elem) + "\" class=\"help-block\">" + helpText + "</span>";
+		return "<span id=\"" + this.getHelpBlockId(elem) + "\" class=\"help-block\">" + helpText + "</span>";
 	}
 
 	public TagAttributes getLabelAttributes(FormCheckerElement elem) {
