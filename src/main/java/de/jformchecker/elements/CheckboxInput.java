@@ -54,7 +54,7 @@ public class CheckboxInput extends AbstractInput<CheckboxInput> implements FormC
 	}
 
 	public boolean getBoolValue() {
-		if ("true".equals(this.valid)) {
+		if ("true".equals(this.value)) {
 			return true;
 		} else {
 			return false;

@@ -13,6 +13,7 @@ import org.junit.Test;
 import de.jformchecker.FormChecker;
 import de.jformchecker.FormCheckerForm;
 import de.jformchecker.criteria.Criteria;
+import de.jformchecker.elements.CheckboxInput;
 import de.jformchecker.elements.DateInputSelectCompound;
 import de.jformchecker.elements.TextInput;
 import de.jformchecker.request.Request;
@@ -67,4 +68,18 @@ public class FormElementTests {
 		
 	}
 
+	@Test
+	public void testCheckBox() {
+		CheckboxInput checkBoxInput = CheckboxInput.build("test");
+		FormCheckerForm form = ExampleFormBuilder.getFormWithElements(RequestBuilders.FC_ID,  
+				Arrays.asList(checkBoxInput));
+		Map<String, String> reqVals = new HashMap<>();
+		reqVals.put("test", "test");
+		Request request = RequestBuilders.buildExampleHttpRequestWithFirstRun(reqVals);
+		FormChecker fc = FormChecker.build(request, form);
+		fc.run();
+		assertEquals(true, checkBoxInput.getBoolValue());
+		
+	}
+	
 }
