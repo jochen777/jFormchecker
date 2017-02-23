@@ -2,7 +2,7 @@
 
 ### 0.1.6
 
-2017/xx/xx Convenience methods for YearRange in DateSelect. Caching of "OK" Validation-result. Reverse order for years in date-select. Fix legacyDate get method on DateSelect. fix Checkbox Issue. 
+2017/xx/xx Convenience methods for YearRange in DateSelect. Caching of "OK" Validation-result. Reverse order for years in date-select. Fix legacyDate get method on DateSelect. fix Checkbox Issue. Improve Email-Check.
 
 ### 0.1.5
 

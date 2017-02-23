@@ -5,12 +5,14 @@ package de.jformchecker.criteria;
  * 
  * Based on work of armandino (at) gmail.com
  */
-public final class Email extends Regex {
-	private static final String REGEX = "\\p{Alnum}+@\\p{Alnum}+(\\.[A-Za-z]+)*";
+public final class Email extends CaseInsensitiveRegex {
+	private static final String REGEX = "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$";
 
 	Email() {
 		super(REGEX);
 		setErrorMsg("jformchecker.valid_email");
 	}
 
+	
+	
 }

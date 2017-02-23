@@ -33,6 +33,18 @@ public class CriteriaTests {
 		Assert.assertTrue("This password should be strong enough", 
 				c.validate(buildSampleInput("abcAd4bcas!fegdt")).isValid());
 	}
+	
+	@Test
+	public void testEmail() {
+		Criterion c = Criteria.emailAddress();
+		String goodEmail = "test@test.de";
+		Assert.assertTrue("This Email should be valid: " + goodEmail, 
+				c.validate(buildSampleInput(goodEmail)).isValid());
+		String badEmail = "asdf@asdfkd@l.de";
+		Assert.assertTrue("This Email should be not valid: " + badEmail, 
+				!(c.validate(buildSampleInput(badEmail)).isValid()));
+
+	}
 
 	
 	private TextInput buildSampleInput(int val) {
