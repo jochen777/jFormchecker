@@ -20,7 +20,6 @@ public final class And implements Criterion {
 
 	@Override
 	public ValidationResult validate(FormCheckerElement value) {
-		Criterion failedCriterion;
 		for (Criterion criterion : criteria) {
 			ValidationResult vr = criterion.validate(value);
 			if (!vr.isValid) {

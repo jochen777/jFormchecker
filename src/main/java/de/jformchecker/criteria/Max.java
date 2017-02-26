@@ -1,7 +1,5 @@
 package de.jformchecker.criteria;
 
-import de.jformchecker.FormCheckerElement;
-
 /**
  * Checks that the value is less than or equal to the given {@link Comparable}.
  * 
