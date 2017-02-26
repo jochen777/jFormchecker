@@ -49,10 +49,7 @@ public abstract class GenericFormBuilder {
 		List<FormCheckerElement> elements = form.getElements();
 		
 		formHtml.append(generateFormStartTag(form.getId(), formAction, checkMultipart(elements), formTagAttributes));
-		if (form.isProtectedAgainstCSRF()) {
-			XSRFBuilder csrfBuilder = new XSRFBuilder();
-			formHtml.append(csrfBuilder.buildCSRFTokens(req, firstRun, form.sessionGet, form.sessionSet));
-		}
+		formHtml.append(generateCSRF(req, firstRun, form));
 		int lastTabIndex = 0;
 		Wrapper allFormElements = getWrapperForAllFormElements();
 		formHtml.append(allFormElements.start);
@@ -95,6 +92,14 @@ public abstract class GenericFormBuilder {
 		return formHtml.toString();
 	}
 
+	String generateCSRF(Request req, boolean firstRun, FormCheckerForm form) {
+		if (form.isProtectedAgainstCSRF()) {
+			XSRFBuilder csrfBuilder = new XSRFBuilder();
+			return csrfBuilder.buildCSRFTokens(req, firstRun, form.sessionGet, form.sessionSet);
+		}
+		return "";
+	}
+
 	public String getHelpBlockId(FormCheckerElement elem) {
 		return "helpBlock_" + elem.getName();
 	}
@@ -133,7 +138,7 @@ public abstract class GenericFormBuilder {
 		return new Wrapper("", "");
 	}
 
-	private boolean checkMultipart(List<FormCheckerElement> elements) {
+	public boolean checkMultipart(List<FormCheckerElement> elements) {
 		for (FormCheckerElement elem : elements) {
 			if (elem instanceof FileUploadInput) {
 				return true;
@@ -141,6 +146,8 @@ public abstract class GenericFormBuilder {
 		}
 		return false;
 	}
+	
+	
 
 	public String getEndFormTag() {
 		return "</form>\n";
@@ -166,7 +173,7 @@ public abstract class GenericFormBuilder {
 		return "form_" + id;
 	}
 
-	private TagAttributes createFormTagAttributes(FormCheckerForm form) {
+	TagAttributes createFormTagAttributes(FormCheckerForm form) {
 		TagAttributes atribs = new TagAttributes();
 		atribs.add(getFormAttributes());
 		atribs.add(form.getFormTagAttributes());

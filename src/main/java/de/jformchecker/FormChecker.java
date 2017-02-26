@@ -141,7 +141,7 @@ public class FormChecker {
 
 	@Deprecated
 	public String getSubmitTag() {
-		return this.getView().getSubmitTag();
+		return this.getView().getSubmit();
 	}
 
 	/**
@@ -151,7 +151,7 @@ public class FormChecker {
 	 */
 	@Deprecated
 	public String getLabelTag(String elementName) {
-		return this.getView().getLabelHtml(elementName);
+		return this.getView().getLabel(elementName);
 	}
 
 	/**
@@ -161,7 +161,7 @@ public class FormChecker {
 	 */
 	@Deprecated
 	public String getLabelTag(String elementName, Map<String, String> map) {
-		return this.getView().getLabelHtml(elementName, map);
+		return this.getView().getLabel(elementName, map);
 	}
 	
 	/**

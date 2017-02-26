@@ -19,31 +19,42 @@ public class View {
 		this.fc = fc;
 	}
 
-	public String getInputHtml(String name) {
+	public String getInput(String name) {
 		return form.getElement(name).getInputTag();
 	}
 
-	public String getLabelHtml(String elementName) {
+	public String getLabel(String elementName) {
 		return formBuilder.getLabelForElement(form.getElement(elementName), new TagAttributes(), fc.firstRun);
 	}
-	
-	public String getLabelHtml(String elementName, Map<String, String> map) {
+
+	public String getLabel(String elementName, Map<String, String> map) {
 		return formBuilder.getLabelForElement(form.getElement(elementName), new TagAttributes(map),
 				fc.firstRun);
 	}
 
-	public String getFormStart() {
-		//return formBuilder.generateFormStartTag(form.getId(), fc.formAction, fc.is);
-		return "";
+	public String getStart() {
+		StringBuilder formStart = new StringBuilder(formBuilder.generateFormStartTag(form.getId(), fc.formAction, formBuilder.checkMultipart(form.getElements()),
+				formBuilder.createFormTagAttributes(form)));
+		formStart.append(formBuilder.generateCSRF(fc.req, fc.firstRun, form));
+		return formStart.toString();
 	}
 	
-	public String getGenericForm() {
+	public String getEnd() {
+		return formBuilder.getEndFormTag();
+	}
+	
+	public String getForm() {
 		return formBuilder.generateGenericForm(fc.formAction, fc.firstRun, form, fc.req, fc.config);
 	}
 	
-	// move to ViewFacade
-	public String getSubmitTag() {
-		return formBuilder.getSubmittedTag(form.getId());
+	public String getSubmit(String label) {
+		String t =  formBuilder.getSubmit(label);
+		return t;
+	}
+
+	public String getSubmit() {
+		String t =  formBuilder.getSubmit(form.getSubmitLabel());
+		return t;
 	}
 
 
