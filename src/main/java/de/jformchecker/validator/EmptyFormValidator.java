@@ -6,9 +6,8 @@ import de.jformchecker.FormValidator;
 public class EmptyFormValidator implements FormValidator {
 
 	@Override
-	public void validate(FormCheckerForm form) {
-		// do nothing here!
-
+	public boolean validate(FormCheckerForm form) {
+		return true;
 	}
 
 }

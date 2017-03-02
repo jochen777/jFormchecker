@@ -200,6 +200,7 @@ public class FormChecker {
 		}
 	}
 
+	
 	private String getGenericForm() {
 		return config.getFormBuilder().generateGenericForm(formAction, firstRun, form, req, config);
 	}
@@ -228,7 +229,10 @@ public class FormChecker {
 
 	private void validateCompleteForm() {
 		for (FormValidator formValidator : form.getValidators()) {
-			formValidator.validate(form);
+			if (formValidator.validate(form) == false) {
+				isValid = false;
+				// continue loop here, because other FormValidators can set manually errors on vields
+			}
 		}
 	}
 

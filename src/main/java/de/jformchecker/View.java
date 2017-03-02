@@ -13,15 +13,24 @@ public class View {
 	FormChecker fc;
 	
 	// RFE: try to avoid passing fc
-	public View(FormCheckerForm form, GenericFormBuilder formBuilder, FormChecker fc) {
+	View(FormCheckerForm form, GenericFormBuilder formBuilder, FormChecker fc) {
 		this.form = form;
 		this.formBuilder = formBuilder;
 		this.fc = fc;
 	}
 
+	public String getElement(String name) {
+		// RFE: Use the FormBuilder Method getCompleteRenderedInput for this. It's more complete
+		StringBuilder element = new StringBuilder(this.getLabel(name));
+		element.append(this.getInput(name));
+		return element.toString();
+	}
+	
 	public String getInput(String name) {
 		return form.getElement(name).getInputTag();
 	}
+	
+	
 
 	public String getLabel(String elementName) {
 		return formBuilder.getLabelForElement(form.getElement(elementName), new TagAttributes(), fc.firstRun);

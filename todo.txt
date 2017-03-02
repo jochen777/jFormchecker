@@ -75,6 +75,9 @@
 
 * Use Generics for FormElements (   public <T extends Annotation> T getAnnotation(Class<T> annotationClass) ) (OK)
 
+* Create View Object, that holds everything, that is needed in templates.
+* If a wrong name is used in the template, provide a good error-message
+
 * provide example with theming with templates (pebble and freemarker)
 
 

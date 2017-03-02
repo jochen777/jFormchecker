@@ -49,6 +49,9 @@ public class ValidationResult {
 		return new ValidationResult(false, null, errorVals, message);
 	}
 
+	public static ValidationResult failWithTranslated(String message) {
+		return new ValidationResult(false, null, new Object[0], message);
+	}
 	
 	public static ValidationResult ok() {
 		// RFE: Could return always the same object! will reduce memory
