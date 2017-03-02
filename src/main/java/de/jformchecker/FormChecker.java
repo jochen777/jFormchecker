@@ -216,9 +216,9 @@ public class FormChecker {
 
 		sortTabIndexes();
 
-		checkIfFirstRun();
-
 		initForm();
+
+		checkIfFirstRun();
 
 		processAndValidateElements();
 
