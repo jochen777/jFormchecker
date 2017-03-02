@@ -2,7 +2,7 @@
 
 ### 0.1.6
 
-2017/xx/xx Convenience methods for YearRange in DateSelect. Caching of "OK" Validation-result. Reverse order for years in date-select. Fix legacyDate get method on DateSelect. fix Checkbox Issue. Improve Email-Check. Bugfix on FormValidators (must return boolean now). New ValidationResult.failWithTranslated(str) convenience Method. Fix on setting a different Form-ID. 
+2017/xx/xx Convenience methods for YearRange in DateSelect. Caching of "OK" Validation-result. Reverse order for years in date-select. Fix legacyDate get method on DateSelect. fix Checkbox Issue. Improve Email-Check. Bugfix on FormValidators (must return boolean now). New ValidationResult.failWithTranslated(str) convenience Method. Fix on setting a different Form-ID. New View Component to allow individual form-output in template.
 
 ### 0.1.5
 
