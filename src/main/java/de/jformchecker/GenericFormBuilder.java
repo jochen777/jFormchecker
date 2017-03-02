@@ -55,7 +55,7 @@ public abstract class GenericFormBuilder {
 		formHtml.append(allFormElements.start);
 		for (FormCheckerElement elem : elements) {
 			InputElementStructure inputStruct = new InputElementStructure();
-
+			// errors
 			ValidationResult vr = getErrors(elem, firstRun);
 			if (!vr.isValid()) {
 				inputStruct.setErrors(formatError(config.getProperties().getMessage(vr)));
@@ -75,11 +75,6 @@ public abstract class GenericFormBuilder {
 				inputStruct.setHelp(getHelpTag(elem.getHelpText(), elem));
 			}
 
-			if (displayLabel) {
-				// formHtml.append("\n<br>"); // only append nl, if something
-				// was given
-				// out
-			}
 			formHtml.append(getCompleteRenderedInput(inputStruct, elem, firstRun));
 			lastTabIndex = elem.getLastTabIndex();
 		}
