@@ -1,5 +1,7 @@
 package de.jformchecker;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import de.jformchecker.criteria.ValidationResult;
@@ -35,11 +37,19 @@ public class View {
 		element.append(this.getHelp(name));
 		return element.toString();
 	}
+	
+	public List<String> getElementNames() {
+		List<String> elementNames = new ArrayList<>();
+		form.elements.forEach((elem) -> elementNames.add(elem.getName()));
+		return elementNames;
+	}
 
 	public String getInput(String name) {
 		return form.getElement(name).getInputTag();
 	}
 
+
+	
 	public boolean isError(String name) {
 		return !formBuilder.getErrors(form.getElement(name), fc.firstRun).isValid();
 	}
