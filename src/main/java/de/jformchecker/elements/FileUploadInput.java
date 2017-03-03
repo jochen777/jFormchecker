@@ -18,5 +18,11 @@ public class FileUploadInput extends AbstractInput<FileUploadInput> implements F
 				"<input " + buildAllAttributes(attributes) + buildMaxLen() + "type=\"file\" name=\"%s\" value=\"%s\">",
 				name, (value == null ? "" : getValueHtmlEncoded()));
 	}
+	
+	@Override
+	public String getType() {
+		return "upload";
+	}
+
 
 }

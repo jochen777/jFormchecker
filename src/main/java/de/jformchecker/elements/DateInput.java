@@ -124,5 +124,11 @@ public class DateInput extends AbstractInput<DateInput> implements FormCheckerEl
 	public Date getDateValue() {
 		return internalDate;
 	}
+	
+	@Override
+	public String getType() {
+		return "date";
+	}
+
 
 }

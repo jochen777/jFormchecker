@@ -236,4 +236,10 @@ public class DateInputSelectCompound extends AbstractInput<DateInputSelectCompou
 
 	}
 	
+	@Override
+	public String getType() {
+		return "date_select";
+	}
+
+	
 }

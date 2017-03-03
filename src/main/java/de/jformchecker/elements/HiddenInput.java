@@ -18,5 +18,11 @@ public class HiddenInput extends AbstractInput<HiddenInput> implements FormCheck
 		return "<input " + AttributeUtils.buildAttributes(attributes) + buildMaxLen() + " type=\"hidden\"  name=\"" + name
 				+ "\"  id=\"" + name + "\" value=\"" + (value == null ? "" : getValueHtmlEncoded()) + "\">";
 	}
+	
+	@Override
+	public String getType() {
+		return "hidden";
+	}
+
 
 }

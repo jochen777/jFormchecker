@@ -19,5 +19,11 @@ public class PasswordInput extends TextInput implements FormCheckerElement {
 						+ " type=\"password\" name=\"%s\" value=\"%s\">",
 				name, (value == null ? "" : getValueHtmlEncoded()));
 	}
+	
+	@Override
+	public String getType() {
+		return "password";
+	}
+
 
 }

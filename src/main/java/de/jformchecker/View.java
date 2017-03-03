@@ -48,6 +48,9 @@ public class View {
 		return form.getElement(name).getInputTag();
 	}
 
+	public String getType(String name) {
+		return form.getElement(name).getType();
+	}
 
 	
 	public boolean isError(String name) {

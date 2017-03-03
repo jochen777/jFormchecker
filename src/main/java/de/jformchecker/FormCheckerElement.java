@@ -88,4 +88,6 @@ public interface FormCheckerElement {
 	// sets the size attribute
 	public <T extends FormCheckerElement> T setSize(int size);
 
+	public String getType();
+
 }

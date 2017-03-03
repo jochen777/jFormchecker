@@ -17,5 +17,11 @@ public class LongTextInput extends TextInput implements FormCheckerElement {
 		return "<textarea " + buildAllAttributes(attributes) + buildMaxLen() + " name=\"" + name + "\" id=\"" + name
 				+ "\" " + ">" + (value == null ? "" : getValueHtmlEncoded()) + "</textarea>";
 	}
+	
+	@Override
+	public String getType() {
+		return "longtext";
+	}
+
 
 }

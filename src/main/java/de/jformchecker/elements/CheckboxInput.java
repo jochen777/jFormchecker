@@ -60,4 +60,10 @@ public class CheckboxInput extends AbstractInput<CheckboxInput> implements FormC
 			return false;
 		}
 	}
+	
+	@Override
+	public String getType() {
+		return "checkbox";
+	}
+
 }

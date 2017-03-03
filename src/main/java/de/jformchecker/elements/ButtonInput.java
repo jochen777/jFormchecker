@@ -25,4 +25,9 @@ public class ButtonInput extends AbstractInput<ButtonInput> implements FormCheck
 				+ ">" + buttonText + "</button><br/>\n";
 	}
 
+	@Override
+	public String getType() {
+		return "button";
+	}
+
 }

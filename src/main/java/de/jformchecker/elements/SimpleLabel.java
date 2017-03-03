@@ -28,5 +28,11 @@ public class SimpleLabel extends AbstractInput<SimpleLabel> implements FormCheck
 	@Override
 	public void init(Request request, boolean firstRun, Validator validator) {
 	}
+	
+	@Override
+	public String getType() {
+		return "label";
+	}
+
 
 }

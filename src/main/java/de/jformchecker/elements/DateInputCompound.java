@@ -118,5 +118,11 @@ public class DateInputCompound extends AbstractInput<DateInputCompound> implemen
 	public Date getDateValue() {
 		return internalDate;
 	}
+	
+	@Override
+	public String getType() {
+		return "date_text";
+	}
+
 
 }

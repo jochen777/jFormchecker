@@ -55,5 +55,11 @@ public class NumberInput extends AbstractInput<NumberInput> implements FormCheck
 		this.setPreSetValue(Integer.toString(intVal));
 		return this;
 	}
+	
+	@Override
+	public String getType() {
+		return "number";
+	}
+
 
 }

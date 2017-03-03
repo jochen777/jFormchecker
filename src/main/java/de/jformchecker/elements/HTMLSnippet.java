@@ -34,5 +34,11 @@ public class HTMLSnippet extends AbstractInput<HTMLSnippet> implements FormCheck
 	@Override
 	public void init(Request request, boolean firstRun, Validator validator) {
 	}
+	
+	@Override
+	public String getType() {
+		return "html";
+	}
+
 
 }

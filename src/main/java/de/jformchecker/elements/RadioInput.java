@@ -87,5 +87,11 @@ public class RadioInput extends AbstractInput<RadioInput> implements FormChecker
 			this.value = value;
 		}
 	}
+	
+	@Override
+	public String getType() {
+		return "radio";
+	}
+
 
 }

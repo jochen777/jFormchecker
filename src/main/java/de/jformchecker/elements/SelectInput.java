@@ -66,5 +66,11 @@ public class SelectInput extends AbstractInput<SelectInput> implements FormCheck
 			this.value = value;
 		}
 	}
+	
+	@Override
+	public String getType() {
+		return "select";
+	}
+
 
 }

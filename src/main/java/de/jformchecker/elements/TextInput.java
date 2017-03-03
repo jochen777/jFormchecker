@@ -33,5 +33,11 @@ public class TextInput extends AbstractInput<TextInput> implements FormCheckerEl
 		return StringUtils.isEmpty(placeholderText) ? ""
 				: " placeholder=\"" + Escape.htmlText(placeholderText) + "\"";
 	}
+	
+	@Override
+	public String getType() {
+		return "text";
+	}
+
 
 }
