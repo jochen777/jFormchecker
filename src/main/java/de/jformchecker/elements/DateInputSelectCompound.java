@@ -187,7 +187,7 @@ public class DateInputSelectCompound extends AbstractInput<DateInputSelectCompou
 		
 		/**
 		 * year around now. 
-		 * Example: AroundNow(2) will return for the currentYear=2017 -> 2015,2016,2017,2018,2019
+		 * Example: AroundNow(2) will return for the currentYear=2017 : 2015,2016,2017,2018,2019
 		 * @param offset
 		 * @return
 		 */
@@ -205,10 +205,9 @@ public class DateInputSelectCompound extends AbstractInput<DateInputSelectCompou
 			return new YearRange(LocalDate.now().getYear()-numberOfYears, LocalDate.now().getYear());
 		}
 
+
 		/**
 		 * Just the current year
-		 * 
-		 * @param numberOfYears
 		 * @return
 		 */
 		public static YearRange currentYear() {
