@@ -54,28 +54,7 @@ public abstract class GenericFormBuilder {
 		Wrapper allFormElements = getWrapperForAllFormElements();
 		formHtml.append(allFormElements.start);
 		for (FormCheckerElement elem : elements) {
-			InputElementStructure inputStruct = new InputElementStructure();
-			// errors
-			ValidationResult vr = getErrors(elem, firstRun);
-			if (!vr.isValid()) {
-				inputStruct.setErrors(formatError(config.getProperties().getMessage(vr)));
-			}
-
-			// label
-			boolean displayLabel = !StringUtils.isEmpty(elem.getDescription());
-			if (displayLabel) {
-				inputStruct.setLabel(getLabelForElement(elem, getLabelAttributes(elem), firstRun));
-			}
-			// input tag
-			Map<String, String> attribs = new LinkedHashMap<>();
-			addAttributesToInputFields(attribs, elem);
-			inputStruct.setInput(elem.getInputTag(attribs));
-			// help tag
-			if (!StringUtils.isEmpty(elem.getHelpText())) {
-				inputStruct.setHelp(getHelpTag(elem.getHelpText(), elem));
-			}
-
-			formHtml.append(getCompleteRenderedInput(inputStruct, elem, firstRun));
+			formHtml.append(generateHtmlForElement(firstRun, config, elem));
 			lastTabIndex = elem.getLastTabIndex();
 		}
 		Wrapper submitWrapper = getWrapperForSumit();
@@ -85,6 +64,31 @@ public abstract class GenericFormBuilder {
 		formHtml.append(getEndFormTag());
 
 		return formHtml.toString();
+	}
+
+	// builds the html for one element
+	String generateHtmlForElement(boolean firstRun, FormCheckerConfig config, FormCheckerElement elem) {
+		InputElementStructure inputStruct = new InputElementStructure();
+		// errors
+		ValidationResult vr = getErrors(elem, firstRun);
+		if (!vr.isValid()) {
+			inputStruct.setErrors(formatError(config.getProperties().getMessage(vr)));
+		}
+
+		// label
+		boolean displayLabel = !StringUtils.isEmpty(elem.getDescription());
+		if (displayLabel) {
+			inputStruct.setLabel(getLabelForElement(elem, getLabelAttributes(elem), firstRun));
+		}
+		// input tag
+		Map<String, String> attribs = new LinkedHashMap<>();
+		addAttributesToInputFields(attribs, elem);
+		inputStruct.setInput(elem.getInputTag(attribs));
+		// help tag
+		if (!StringUtils.isEmpty(elem.getHelpText())) {
+			inputStruct.setHelp(getHelpTag(elem.getHelpText(), elem));
+		}
+		return getCompleteRenderedInput(inputStruct, elem, firstRun);
 	}
 
 	String generateCSRF(Request req, boolean firstRun, FormCheckerForm form) {

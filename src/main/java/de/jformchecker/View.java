@@ -27,15 +27,7 @@ public class View {
 	// this method is useless in most cases. You want to build your
 	// input-element via a macro!
 	public String getElement(String name) {
-		// RFE: Use the FormBuilder Method getCompleteRenderedInput for this.
-		// It's more complete
-
-		StringBuilder element = new StringBuilder();
-		element.append(this.getError(name));
-		element.append(this.getLabel(name));
-		element.append(this.getInput(name));
-		element.append(this.getHelp(name));
-		return element.toString();
+		return formBuilder.generateHtmlForElement(fc.firstRun, fc.config, form.getElement(name));
 	}
 	
 	public List<String> getElementNames() {
@@ -48,6 +40,11 @@ public class View {
 		return form.getElement(name).getInputTag();
 	}
 
+	public String getInput(String name, Map<String, String> map) {
+		return form.getElement(name).getInputTag(map);
+	}
+	
+	
 	public String getType(String name) {
 		return form.getElement(name).getType();
 	}
