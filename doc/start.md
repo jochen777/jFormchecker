@@ -2,7 +2,7 @@
 
 Check out, how to use jFormchecker in your projects. 
 
-[See building individual html whithin the template](doc/individual_html.md)
+[See building individual html whithin the template](individual_html.md)
 
 ## Concept
 
