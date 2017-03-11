@@ -48,7 +48,7 @@ public class RadioInput extends AbstractInput<RadioInput> implements FormChecker
 			// leer - bedeutet: Radio - Button ist optional, also nicht als
 			// radio ausgeben!
 			if (!"".equals(possibleNames.get(key))) {
-				inputTag.append(this.getInputTag(key, attributes) + " <label for=\"form_radio_" + key + "\" class=\""
+				inputTag.append(this.getInputTag(key, attributes) + " <label for=\"form_radio_" + name + "_" + key + "\" class=\""
 						+ "" + "\" id=\"label_" + name + "_" + key + "\">" + possibleNames.get(key) + " </label>\n");
 			}
 			// do not increase tab-index:
@@ -58,7 +58,7 @@ public class RadioInput extends AbstractInput<RadioInput> implements FormChecker
 	}
 
 	public String getInputTag(String curValue, Map<String, String> attributes) {
-		return "<input id=\"form_radio_" + curValue + "\" " + AttributeUtils.buildAttributes(attributes)
+		return "<input id=\"form_radio_" + name + "_" + curValue + "\" " + AttributeUtils.buildAttributes(attributes)
 				+ getTabIndexTag() + " type=\"radio\" name=\"" + name + "\"  value=\"" + curValue + "\" "
 				+ getCheckedStatus(curValue) + "" + " " + " >\n";
 	}
