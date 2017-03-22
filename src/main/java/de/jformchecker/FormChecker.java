@@ -27,9 +27,9 @@ public class FormChecker {
 	@Deprecated
 	String id;
 
-
-	/** Maximal lenght of input vars to avoid too long requests  
-	 * If you want to get longer element-vals, override it for each element!
+	/**
+	 * Maximal lenght of input vars to avoid too long requests If you want to
+	 * get longer element-vals, override it for each element!
 	 */
 	int defaultMaxLenElements = 1000;
 
@@ -45,8 +45,8 @@ public class FormChecker {
 	public static final String SUBMIT_VALUE_PREFIX = "FORMCHECKER_";
 
 	/**
-	 * Deprecated: Put id into the FormcheckerForm and use build(request, form) or
-	 * Formchecker(request)
+	 * Deprecated: Put id into the FormcheckerForm and use build(request, form)
+	 * or Formchecker(request)
 	 * 
 	 * @param _id
 	 * @param request
@@ -62,7 +62,9 @@ public class FormChecker {
 	}
 
 	/**
-	 * Deprecated: Use build(Request _req, FormCheckerForm form) and put id into the FormCheckerForm
+	 * Deprecated: Use build(Request _req, FormCheckerForm form) and put id into
+	 * the FormCheckerForm
+	 * 
 	 * @param _id
 	 * @param _req
 	 * @param form
@@ -124,9 +126,9 @@ public class FormChecker {
 	}
 
 	/**
-	 *  moved to FormBuilder. please use:
-	 *  formchecker.getConfig().getFormBuilder().getHelpBlockId(elem)...
-	 *  
+	 * moved to FormBuilder. please use:
+	 * formchecker.getConfig().getFormBuilder().getHelpBlockId(elem)...
+	 * 
 	 * @param elem
 	 * @return
 	 */
@@ -146,6 +148,7 @@ public class FormChecker {
 
 	/**
 	 * use fc.getView().getLabelHtml(elementName) instead
+	 * 
 	 * @param elementName
 	 * @return
 	 */
@@ -156,6 +159,7 @@ public class FormChecker {
 
 	/**
 	 * use fc.getView().getLabelTag(elementName, map); instead
+	 * 
 	 * @param elementName
 	 * @return
 	 */
@@ -163,9 +167,10 @@ public class FormChecker {
 	public String getLabelTag(String elementName, Map<String, String> map) {
 		return this.getView().getLabel(elementName, map);
 	}
-	
+
 	/**
 	 * Get the view for displaying html in the template
+	 * 
 	 * @return
 	 */
 	public View getView() {
@@ -195,12 +200,11 @@ public class FormChecker {
 
 	public void addForm(FormCheckerForm form) {
 		this.form = form;
-		if (id != null) {	// Internal id overrides id from form
+		if (id != null) { // Internal id overrides id from form
 			form.setId(id);
 		}
 	}
 
-	
 	private String getGenericForm() {
 		return config.getFormBuilder().generateGenericForm(formAction, firstRun, form, req, config);
 	}
@@ -228,10 +232,13 @@ public class FormChecker {
 	}
 
 	private void validateCompleteForm() {
-		for (FormValidator formValidator : form.getValidators()) {
-			if (formValidator.validate(form) == false) {
-				isValid = false;
-				// continue loop here, because other FormValidators can set manually errors on vields
+		if (!firstRun) {
+			for (FormValidator formValidator : form.getValidators()) {
+				if (formValidator.validate(form) == false) {
+					isValid = false;
+					// continue loop here, because other FormValidators can set
+					// manually errors on vields
+				}
 			}
 		}
 	}

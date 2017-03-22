@@ -2,7 +2,7 @@
 
 ### 0.1.7
 
-2017/xx/xx Fix Radio-Label Id. 
+2017/03/22 Fix: Radio-Label Id. Fix: FormValidation not run, if firstrun.
 
 
 ### 0.1.6
