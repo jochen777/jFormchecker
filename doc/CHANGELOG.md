@@ -1,5 +1,10 @@
 # jFormChecker changelog
 
+### 0.1.8
+
+2017/xx/xx Allow setting form-method. Allow not delivering "tags" for non capable tag-engines like mustache.
+
+
 ### 0.1.7
 
 2017/03/22 Fix: Radio-Label Id. Fix: FormValidation not run, if firstrun.
