@@ -5,6 +5,10 @@ public class Wrapper {
 	public final String start;
 	public final String end;
 
+	public static Wrapper of(String start, String end) {
+		return new Wrapper(start, end);
+	}
+	
 	public Wrapper(String start, String end) {
 		this.start = start;
 		this.end = end;
