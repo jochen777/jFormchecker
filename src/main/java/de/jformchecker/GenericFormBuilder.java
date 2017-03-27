@@ -45,10 +45,9 @@ public abstract class GenericFormBuilder {
 		// RFE: Get rid of this fc. object here. better: give FormCheckerForm
 		StringBuilder formHtml = new StringBuilder();
 
-		TagAttributes formTagAttributes = createFormTagAttributes(form);
 		List<FormCheckerElement> elements = form.getElements();
 		
-		formHtml.append(generateFormStartTag(form.getId(), formAction, checkMultipart(elements), formTagAttributes));
+		formHtml.append(generateFormStartTag(form, formAction));
 		formHtml.append(generateCSRF(req, firstRun, form));
 		int lastTabIndex = 0;
 		Wrapper allFormElements = getWrapperForAllFormElements();
@@ -152,7 +151,7 @@ public abstract class GenericFormBuilder {
 		return "</form>\n";
 	}
 
-	// RFE: Better: Less Elements
+	@Deprecated
 	public String generateFormStartTag(String id, String formAction, boolean isMultipart,
 			TagAttributes formTagAttributes) {
 		StringBuilder formStartTag = new StringBuilder();
@@ -167,6 +166,26 @@ public abstract class GenericFormBuilder {
 		formStartTag.append(getSubmittedTag(id));
 		return formStartTag.toString();
 	}
+
+	public String generateFormStartTag(FormCheckerForm form, String formAction
+			) {
+		TagAttributes formTagAttributes = createFormTagAttributes(form);
+		boolean isMultipart = checkMultipart(form.getElements());
+		StringBuilder formStartTag = new StringBuilder();
+		String id = form.getId();
+		if (isMultipart) {
+			formStartTag.append("<form name=\"" + id + "\" id=\"" + buildFormCSSId(id) + "\" action=\"" + formAction
+					+ "\" " + AttributeUtils.buildAttributes(formTagAttributes)
+					+ "  method=\""+form.getMethod()+"\" enctype=\"multipart/form-data\">\n");
+		} else {
+			formStartTag.append("<form name=\"" + id + "\" id=\"" + buildFormCSSId(id) + "\" "
+					+ AttributeUtils.buildAttributes(formTagAttributes) + " action=\"" + formAction + "\" method=\""+form.getMethod()
+					+"\" >\n");
+		}
+		formStartTag.append(getSubmittedTag(id));
+		return formStartTag.toString();
+	}
+	
 
 	public String buildFormCSSId(String id) {
 		return "form_" + id;
