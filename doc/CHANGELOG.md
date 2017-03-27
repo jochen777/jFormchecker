@@ -2,12 +2,12 @@
 
 ### 0.1.8
 
-2017/xx/xx Allow setting form-method. Allow not delivering "tags" for non capable tag-engines like mustache.
+2017/xx/xx Allow setting form-method. Delivering "tags" for non capable tag-engines like mustache.
 
 
 ### 0.1.7
 
-2017/03/22 Fix: Radio-Label Id. Fix: FormValidation not run, if firstrun.
+2017/03/22 Fix: Radio-Label id. Fix: FormValidation not run, if firstrun.
 
 
 ### 0.1.6
