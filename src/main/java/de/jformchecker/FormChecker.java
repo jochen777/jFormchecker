@@ -174,9 +174,19 @@ public class FormChecker {
 	 * @return
 	 */
 	public View getView() {
-		return new View(form, this.getFormBuilder(), this);
+		return new View(form, this.getFormBuilder(), this, false);
 	}
 
+	/**
+	 * Get the view for displaying html in the template
+	 * 
+	 * @return
+	 */
+	public View getViewWithAccessObjects() {
+		return new View(form, this.getFormBuilder(), this, true);
+	}
+
+	
 	public void setFormAction(String formAction) {
 		this.formAction = formAction;
 	}
