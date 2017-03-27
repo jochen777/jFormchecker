@@ -24,6 +24,7 @@ public abstract class FormCheckerForm {
 	
 	String id="id";	// default
 
+	Method method = Method.POST;
 
 
 	public String getSubmitLabel() {
@@ -136,4 +137,17 @@ public abstract class FormCheckerForm {
 		this.id = id;
 	}
 
+	public enum Method {
+		POST, GET
+	}
+
+	public Method getMethod() {
+		return method;
+	}
+
+
+	public void setMethod(Method method) {
+		this.method = method;
+	}
+	
 }
