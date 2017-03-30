@@ -90,6 +90,6 @@ ${fc.form}
 
 [Documentation](start.md)
 
-[Read about the concepts](concepts.md)
+[Read about the concepts](concept.md)
 
 [Read the changelog](CHANGELOG.md)
