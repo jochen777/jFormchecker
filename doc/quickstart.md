@@ -51,16 +51,17 @@ Write a controller, that uses this form: (Here Spring MVC)
   @RequestMapping("/form")
   public String intro(HttpServletRequest request, Model model) {
     FormChecker fc = FormChecker.build(
-        (key) -> request.getParameter(key), 
-        new MyForm()
+        (key) -> request.getParameter(key), // pass the request-params via lambda 
+        new MyForm()  // the form that you wrote (see "Define a form")
       )
-     .run();
+     .run();  // let the form validation/prefillment and html rendering run
     
-    model.addAttribute("fc", fc.getView());
-    if (fc.isValidAndNotFirstRun()) {
-      System.out.println("Valid email from form:"  + fc.getValue("email"));
+    model.addAttribute("fc", fc.getView()); // add the formchecker object to the model
+    if (fc.isValidAndNotFirstRun()) {   // check if the form was submitted and is valid
+      System.out.println("Valid email from form:"  + fc.getValue("email"));   // if everything was okay, we can get the values from the form
     }
-    return "index";
+    
+    return "index"; // the template, that renders the form
   }
 
 ```
@@ -68,14 +69,16 @@ Write a controller, that uses this form: (Here Spring MVC)
 
 ## Template
 
-Output the form within your template.
+Output the form within your template. (index.html)
 
 
 ```html
 ...
 <h1>The form</h1>
 
+<!-- start the form -->
 ${fc.form}
+<!-- end form -->
 
 ...
 ```
