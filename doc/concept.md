@@ -5,7 +5,7 @@ Implement your webforms with these ingredients:
 * A form with form elements
 * A controller with a Formchecker instance
 * An indidividual FormBuilder Class
-* A Template with a formchecker-call
+* A template with a formchecker-call
 
 The FormCheckerForm-Class defines the form with the form-elements.
 There are a number of prebuild form-elements that should be enough to do the basic work.
@@ -48,9 +48,11 @@ public class MyForm extends FormCheckerForm {
 
 The Formelements represent the input-fields for your form.
 
-There is a large value of prebuild Formelements:
+There is a large number of prebuild Formelements:
 
 * Text
+
+* Textfield
 
 * Radio
 
@@ -101,7 +103,7 @@ The FormBuilder (GenericFormBuilder or your own subclasses) renders the form-ele
 
 For example the FormBuilder renders the <form ...> </form> tags, the structure of an input element (help-text above or under a form-element, a special css-class ...).
 
-It's a good idea to generate a tailored FormBuilder for your site. You can have even multiple FormBuilder, for example one for the desktop-version and one for the mobile version.
+It's a good idea to write a tailored FormBuilder for your site. You can have even multiple FormBuilder, for example one for the desktop-version and one for the mobile version.
 
 There are some prebuild Formbuilders which you can use without coding them yourself:
 

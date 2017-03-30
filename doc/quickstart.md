@@ -26,16 +26,18 @@ public class MyForm extends FormCheckerForm {
 
   @Override
   public void init() {
-  	// Textfield for firstname
-    add(TextInput.build("firstname").
-     	setDescription("Your Firstname"));
+    // Textfield for firstname
+    add(TextInput.build("firstname")
+      .setDescription("Your Firstname"));
 
-  	// Textfield with email validation and required
-	add(TextInput.build("email")
-			.setDescription("Email")
-			.setRequired()
-			.setCriterias(Criteria.emailAddress()));
-	}
+  // Textfield with email validation and required
+  add(TextInput.build("email")
+    .setDescription("Email")
+    .setRequired()
+    .setCriterias(Criteria.emailAddress()));
+    
+  // Add more FormElements here...
+  }
 }
 ```
 
@@ -46,20 +48,20 @@ Write a controller, that uses this form: (Here Spring MVC)
 
 ```Java
 
-	@RequestMapping("/")
-	public String intro(HttpServletRequest request, Model model) {
-		FormChecker fc = FormChecker.build(
-					(key) -> request.getParameter(key), 
-					new MyForm()
-				)
-				.run();
-		
-		model.addAttribute("fc", fc.getView());
-		if (fc.isValidAndNotFirstRun()) {
-			System.out.println("Valid email from form:"  + fc.getValue("email"));
-		}
-		return "index";
-	}
+  @RequestMapping("/form")
+  public String intro(HttpServletRequest request, Model model) {
+    FormChecker fc = FormChecker.build(
+        (key) -> request.getParameter(key), 
+        new MyForm()
+      )
+     .run();
+    
+    model.addAttribute("fc", fc.getView());
+    if (fc.isValidAndNotFirstRun()) {
+      System.out.println("Valid email from form:"  + fc.getValue("email"));
+    }
+    return "index";
+  }
 
 ```
 
