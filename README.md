@@ -1,7 +1,7 @@
 # jFormChecker
-The pragmatic, compact, and fast library to build HTML Forms in MVC-Framworks. 
+HTML Forms in Java made easy.  
 
-[See documentation](doc/start.md)
+[Quickstart](doc/quickstart.md)
 
 [See changelog](doc/CHANGELOG.md)
 
@@ -46,70 +46,8 @@ The concept is simple:
 
 3. use a simple tag in the output
 
-Example Form-Definiton:
-
-```Java
-
-public class ExampleForm extends FormCheckerForm {
-
-  public void init() {
-     add(TextInput.build("firstname").
-     	setDescription("Your Firstname").
-     	setCriterias(Criteria.accept("John")));
-
-    add(TextInput.build("lastname").
-    	setDescription("Your lastname:").
-    	setCriterias(Criteria.accept("Doe")));
-	}
-}
-```
-
-Controller code:
-
-```java
-
- 	FormChecker fc = FormChecker.
-        build("id", request, new ExampleForm()).
-        run();
-             
-    model.add("fc", fc);
-
-```
 
 
-Example template output:
-
-```html
-...
-<h1>The form</h1>
-
-${fc.completeForm}
-
-<p>Lorem ipsum</p>
-...
-```
-
-(yes it is that simple!)
-
-Alternativly you can output the elements manually if you need more control over your html:
-
-```html
-...
-<h1>The form</h1>
-<div class="lastnameedit">
-${fc.elements.lasntame.label}
-${fc.elements.lasntame.inputTag}
-</div>
-...
-```
-
-## Features
-
-* If you don't specify a description, the label will be dismissed automatically
-* Specify a help-text to display an aria-compliance description. (With nice bootstrap style)
-* Use a custom validator by injecting per "setValidator". This can be used to validate with bean-validation. (Did not add bean validation because this is a huge dependency)
-* easy ajax handling 
-* Specify a message source to translate error-messages. Adapter for ResourceBundle available.
 
 ## Maven Dependency
 ```xml
@@ -117,94 +55,11 @@ ${fc.elements.lasntame.inputTag}
 <dependency>
     <groupId>de.cyclon-softworx</groupId>
     <artifactId>jformchecker</artifactId>
-    <version>0.1.7</version>
+    <version>0.1.7</version> <!-- check on maven central for the latest version -->
 </dependency>
 ...
 ```
 
-
-
-## Remember: Standard form handling WITHOUT jFormChecker
-
-Without jFormChecker, html forms must be constructed manually in the template.
-
-Example-Definition of a form in spring-mvc:
-```java
-public class Adress {
-
-    @Size(min=2, max=30)
-    private String name;
-
-
-    public String getName() {
-        return this.name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-	...
-}
-
-```
-
-Example-Definition of a form in html (spring-forms)
-```html
-
-        <form:form class="form-horizontal" method="post" 
-                modelAttribute="userForm" action="${userActionUrl}">
-                <form:hidden path="id" />
-
-		<spring:bind path="name">
-		  <div class="form-group ${status.error ? 'has-error' : ''}">
-			<label class="col-sm-2 control-label" label-for="name">Name</label>
-			<div class="col-sm-10">
-				<form:input path="name" type="text" class="form-control" 
-                                id="name" placeholder="Name" />
-				<form:errors path="name" class="control-label" />
-			</div>
-		  </div>
-		</spring:bind>
-		
-		<spring:bind path="email">
-		  <div class="form-group ${status.error ? 'has-error' : ''}">
-			<label class="col-sm-2 control-label" label-for="email">Email</label>
-			<div class="col-sm-10">
-				<form:input path="email" class="form-control" 
-                                id="email" placeholder="Email" />
-				<form:errors path="email" class="control-label" />
-			</div>
-		  </div>
-		</spring:bind>
-		
-		<spring:bind path="country">
-		  <div class="form-group ${status.error ? 'has-error' : ''}">
-			<label class="col-sm-2 control-label" label-for="country">Country</label>
-			<div class="col-sm-5">
-				<form:select path="country" class="form-control">
-					<form:option value="NONE" label="--- Select ---" />
-					<form:options items="${countryList}" />
-				</form:select>
-				<form:errors path="country" class="control-label" />
-			</div>
-			<div class="col-sm-5"></div>
-		  </div>
-		</spring:bind>
-		
-		...
-		
-			<div class="form-group">
-		  <div class="col-sm-offset-2 col-sm-10">
-			     <button type="submit" class="btn-lg btn-primary pull-right">Add
-                             </button>
-		  </div>
-		</div>
-	</form:form>
-
-```
-
-As you can see, especially on the template side, you have to enter a lot of stuff for basic highlighting errors...
 
 ## Thanks
 
