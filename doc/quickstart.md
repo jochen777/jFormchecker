@@ -31,12 +31,12 @@ public class MyForm extends FormCheckerForm {
       .setDescription("Your Firstname"));
 
   // Textfield with email validation and required
-  add(TextInput.build("email")
-    .setDescription("Email")
-    .setRequired()
-    .setCriterias(Criteria.emailAddress()));
+    add(TextInput.build("email")
+      .setDescription("Email")
+      .setRequired()
+      .setCriterias(Criteria.emailAddress()));
     
-  // Add more FormElements here...
+    // Add more FormElements here...
   }
 }
 ```
