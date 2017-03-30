@@ -30,7 +30,7 @@ public class MyForm extends FormCheckerForm {
     add(TextInput.build("firstname")
       .setDescription("Your Firstname"));
 
-  // Textfield with email validation and required
+    // Textfield with email validation and required
     add(TextInput.build("email")
       .setDescription("Email")
       .setRequired()
