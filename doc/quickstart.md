@@ -28,7 +28,7 @@ public class MyForm extends FormCheckerForm {
   public void init() {
     // Textfield for firstname
     add(TextInput.build("firstname")
-      .setDescription("Your Firstname"));
+      .setDescription("Firstname"));
 
     // Textfield with email validation and required
     add(TextInput.build("email")
@@ -88,6 +88,8 @@ ${fc.form}
 
 ## Go on
 
-[Read about the concepts](start.md)
+[Documentation](start.md)
+
+[Read about the concepts](concepts.md)
 
 [Read the changelog](CHANGELOG.md)

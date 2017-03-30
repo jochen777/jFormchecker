@@ -3,6 +3,8 @@ HTML Forms in Java made easy.
 
 [Quickstart](doc/quickstart.md)
 
+[Documentation](doc/start.md)
+
 [See changelog](doc/CHANGELOG.md)
 
 [![Build Status](https://travis-ci.org/jochen777/jFormchecker.svg?branch=master)](https://travis-ci.org/jochen777/jFormchecker)
