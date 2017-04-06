@@ -94,7 +94,7 @@ Get full template, as build by the FormBuilder:
 
 ```html
 ...
-{{ fc.form | raw }}
+{{ fc.form | raw }} <!-- pebble syntax -->
 ...
 ```
 
@@ -210,3 +210,29 @@ Get the submit button
 ...
 ```
 
+
+### Non capable template engines (since 0.1.8)
+
+If you work with simpler template engines like mustache, you can't pass arguments to objects like in pebble.
+For this case, you can use the this syntax:
+Remember to pass formchecker differently to the model: 
+
+```java
+...
+
+ // in your controller
+ ModelAndView mv = new ModelAndView();
+ ...
+ mv.addObject("fc", fc.getViewWithAccessObjects());
+ ...
+ 
+...
+```
+
+```html
+...
+{{{ fc.input.firstname }}}
+{{{ fc.label.firstname }}}
+<!-- ... --> 
+...
+```

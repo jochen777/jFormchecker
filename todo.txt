@@ -77,6 +77,8 @@
 
 * Create View Object, that holds everything, that is needed in templates. (OK)
 ---> Release 0.1.6
+* test non trivial tag-output (with different tags) (OK)
+
 * Provide methods in view for ajax handling
 * If a wrong name is used in the template, provide a good error-message 
 
@@ -84,7 +86,6 @@
 
 
 * better xsrf support throw OWASP Lib (https://www.owasp.org/index.php/Category:OWASP_CSRFGuard_Project)
-* test non trivial tag-output (with different tags)
 * Move Date to Java8 LocalDate
 
 
