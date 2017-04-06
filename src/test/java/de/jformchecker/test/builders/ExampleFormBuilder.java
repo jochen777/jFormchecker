@@ -7,7 +7,6 @@ import de.jformchecker.FormCheckerElement;
 import de.jformchecker.FormCheckerForm;
 import de.jformchecker.criteria.Criteria;
 import de.jformchecker.elements.CheckboxInput;
-import de.jformchecker.elements.DateInput;
 import de.jformchecker.elements.HiddenInput;
 import de.jformchecker.elements.LongTextInput;
 import de.jformchecker.elements.PasswordInput;
@@ -85,8 +84,6 @@ public class ExampleFormBuilder {
 						.setCriterias(new CustomValidation()));
 
 				add(HiddenInput.build("hidden").setPreSetValue("something to remember"));
-
-				add(DateInput.build("date").setDescription("Birthday"));
 
 				add(PasswordInput.build("password").setDescription("Password"));
 

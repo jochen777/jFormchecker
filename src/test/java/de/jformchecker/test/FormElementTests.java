@@ -46,9 +46,9 @@ public class FormElementTests {
 		FormCheckerForm form = ExampleFormBuilder.getFormWithElements(RequestBuilders.FC_ID,  
 				Arrays.asList(dateInputSelectCompound));
 		Map<String, String> reqVals = new HashMap<>();
-		reqVals.put("day_test", "15");
-		reqVals.put("month_test", "10");
-		reqVals.put("year_test", "2005");
+		reqVals.put("day-test", "15");
+		reqVals.put("month-test", "10");
+		reqVals.put("year-test", "2005");
 		Request request = RequestBuilders.buildExampleHttpRequestWithFirstRun(reqVals);
 		FormChecker fc = FormChecker.build(request, form);
 		fc.run();

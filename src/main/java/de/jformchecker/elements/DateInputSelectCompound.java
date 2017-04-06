@@ -91,13 +91,13 @@ public class DateInputSelectCompound extends AbstractInput<DateInputSelectCompou
 	@Override
 	public void init(Request request, boolean firstRun, Validator validator) {
 		CommonSelects commonSelects = new CommonSelects(parent.getConfig().getProperties());
-		day = SelectInput.build("day_" + name);
+		day = SelectInput.build("day-" + name);
 		day.setPossibleValues(commonSelects.buildDays());
 		
-		month = SelectInput.build("month_" + name);
+		month = SelectInput.build("month-" + name);
 		month.setPossibleValues(commonSelects.buildMonths());
 		
-		year = SelectInput.build("year_" + name);
+		year = SelectInput.build("year-" + name);
 		// iterate from large to small for years
 		if (yearStart < yearEnd) {
 			int temp = yearStart;
@@ -237,7 +237,7 @@ public class DateInputSelectCompound extends AbstractInput<DateInputSelectCompou
 	
 	@Override
 	public String getType() {
-		return "date_select";
+		return "date-select";
 	}
 
 	

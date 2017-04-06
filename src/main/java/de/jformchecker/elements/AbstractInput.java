@@ -207,7 +207,7 @@ public abstract class AbstractInput <T extends FormCheckerElement> implements Fo
 	}
 
 	protected String getElementId() {
-		return AttributeUtils.buildSingleAttribute("id", "form_" + name);
+		return AttributeUtils.buildSingleAttribute("id", "form-" + name);
 	}
 
 	public int getTabIndex() {

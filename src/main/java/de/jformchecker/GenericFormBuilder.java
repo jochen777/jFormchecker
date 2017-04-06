@@ -99,7 +99,7 @@ public abstract class GenericFormBuilder {
 	}
 
 	public String getHelpBlockId(FormCheckerElement elem) {
-		return "helpBlock_" + elem.getName();
+		return "helpBlock-" + elem.getName();
 	}
 	
 	public Wrapper getWrapperForSumit() {
@@ -188,7 +188,7 @@ public abstract class GenericFormBuilder {
 	
 
 	public String buildFormCSSId(String id) {
-		return "form_" + id;
+		return "form-" + id;
 	}
 
 	TagAttributes createFormTagAttributes(FormCheckerForm form) {

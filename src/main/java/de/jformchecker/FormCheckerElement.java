@@ -28,6 +28,7 @@ public interface FormCheckerElement {
 	public String getValue();
 
 	// get the value that the user entered, but html-encoded
+	@Deprecated
 	public String getValueHtmlEncoded();
 
 	public void setValue(String value);

@@ -26,7 +26,7 @@ public class FormTests {
 		ti.init(request, false, new DefaultValidator());
 		String inputTag = ti.getInputTag();
 		assertEquals(
-				"<input id=\"form_firstname\" tabindex=\"0\" type=\"text\" name=\"firstname\" value=\"Jochen&#x20;Pier&lt;bold&gt;\">",
+				"<input id=\"form-firstname\" tabindex=\"0\" type=\"text\" name=\"firstname\" value=\"Jochen&#x20;Pier&lt;bold&gt;\">",
 				inputTag);
 	}
 
@@ -36,7 +36,7 @@ public class FormTests {
 		Request request = RequestBuilders.buildEmptyHttpRequest();
 		ti.init(request, true, new DefaultValidator());
 		String inputTag = ti.getInputTag();
-		assertEquals("<input id=\"form_firstname\" tabindex=\"0\" type=\"text\" name=\"firstname\" value=\"Jochen\">",
+		assertEquals("<input id=\"form-firstname\" tabindex=\"0\" type=\"text\" name=\"firstname\" value=\"Jochen\">",
 				inputTag);
 	}
 

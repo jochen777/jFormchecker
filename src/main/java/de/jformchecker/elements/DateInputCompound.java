@@ -23,9 +23,9 @@ public class DateInputCompound extends AbstractInput<DateInputCompound> implemen
 
 	public static DateInputCompound build(String name) {
 		DateInputCompound i = new DateInputCompound();
-		i.day = TextInput.build("day_" + name);
-		i.month = TextInput.build("month_" + name);
-		i.year = TextInput.build("year_" + name);
+		i.day = TextInput.build("day-" + name);
+		i.month = TextInput.build("month-" + name);
+		i.year = TextInput.build("year-" + name);
 		i.name = name;
 		return i;
 	}
@@ -121,7 +121,7 @@ public class DateInputCompound extends AbstractInput<DateInputCompound> implemen
 	
 	@Override
 	public String getType() {
-		return "date_text";
+		return "date-text";
 	}
 
 
