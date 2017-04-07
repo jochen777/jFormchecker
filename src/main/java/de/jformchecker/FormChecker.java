@@ -111,7 +111,8 @@ public class FormChecker {
 		return form;
 	}
 
-	public GenericFormBuilder getFormBuilder() {
+	
+	private GenericFormBuilder getFormBuilder() {
 		return config.getFormBuilder();
 	}
 
@@ -174,7 +175,7 @@ public class FormChecker {
 	 * @return
 	 */
 	public View getView() {
-		return new View(form, this.getFormBuilder(), this, false);
+		return new View(form, this.getFormBuilder(), this);
 	}
 
 	/**
@@ -182,8 +183,9 @@ public class FormChecker {
 	 * 
 	 * @return
 	 */
+	@Deprecated
 	public View getViewWithAccessObjects() {
-		return new View(form, this.getFormBuilder(), this, true);
+		return new View(form, this.getFormBuilder(), this).generateAccessObjects();
 	}
 
 	

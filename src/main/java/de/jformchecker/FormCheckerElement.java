@@ -58,7 +58,7 @@ public interface FormCheckerElement {
 
 	public void setInvalid();
 
-	// inits the value with the current http-reques
+	// inits the value with the current http-request
 	public void init(Request req, boolean firstrun, Validator validator);
 
 	public ValidationResult getValidationResult();

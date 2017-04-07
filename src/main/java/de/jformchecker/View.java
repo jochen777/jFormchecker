@@ -27,21 +27,18 @@ public class View {
 	// TODO: Error-msgs
 	
 	// RFE: try to avoid passing fc
-	View(FormCheckerForm form, GenericFormBuilder formBuilder, FormChecker fc, boolean buildAccessObjects) {
+	View(FormCheckerForm form, GenericFormBuilder formBuilder, FormChecker fc) {
 		this.form = form;
 		this.formBuilder = formBuilder;
 		this.fc = fc;
 		
-		/**
-		 * the access objects should only be build, if the template engine can't call methods with params.
-		 * Not capable templates that need this: mustache...
-		 */
-		if (buildAccessObjects){
-			generateAccessObjects();
-		}
 	}
 	
-	private void generateAccessObjects() {
+	/**
+	 * the access objects should only be build, if the template engine can't call methods with params.
+	 * Not capable templates that need this: mustache...
+	 */
+	public View generateAccessObjects() {
 		elements = new HashMap<>();
 		inputs = new HashMap<>();
 		labels = new HashMap<>();
@@ -53,6 +50,7 @@ public class View {
 		form.elements.forEach((elem) -> labels.put(elem.getName(), getLabel(elem.getName())));
 		form.elements.forEach((elem) -> helps.put(elem.getName(), getHelp(elem.getName())));
 		form.elements.forEach((elem) -> isError.put(elem.getName(), isError(elem.getName())));
+		return this;
 	}
 
 	// this method is useless in most cases. You want to build your

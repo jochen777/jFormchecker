@@ -21,6 +21,10 @@ public class Wrapper {
 	public String getEnd() {
 		return end;
 	}
+	
+	public String wrap(String content) {
+		return new StringBuffer(start).append(content).append(end).toString();
+	}
 
 	public static Wrapper empty() {
 		return new Wrapper("", "");
