@@ -14,7 +14,7 @@ public class BasicBootstrapFormBuilder extends BasicFormBuilder {
 
 	@Override
 	public Wrapper getWrapperForInput(FormCheckerElement elem) {
-		return new Wrapper("", "");
+		return Wrapper.empty();
 	}
 
 	public TagAttributes getLabelAttributes(FormCheckerElement elem) {

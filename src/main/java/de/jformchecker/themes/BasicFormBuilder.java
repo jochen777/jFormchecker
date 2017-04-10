@@ -25,7 +25,7 @@ public class BasicFormBuilder extends GenericFormBuilder {
 	}
 
 	public Wrapper getWrapperForInput(FormCheckerElement elem) {
-		return new Wrapper("<div>", "</div>");
+		return Wrapper.ofTag("div");
 	}
 
 	public TagAttributes getFormAttributes() {
@@ -77,7 +77,7 @@ public class BasicFormBuilder extends GenericFormBuilder {
 
 	@Override
 	public Wrapper getWrapperForAllFormElements() {
-		return Wrapper.of("<fieldset>", "</fieldset>");
+		return Wrapper.ofTag("fieldset");
 	}
 
 	@Override

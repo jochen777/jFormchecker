@@ -106,7 +106,7 @@ public abstract class GenericFormBuilder {
 	}
 	
 	public Wrapper getWrapperForSumit() {
-		return new Wrapper("", "");
+		return Wrapper.empty();
 	}
 
 	public abstract String formatError(String error);
@@ -136,7 +136,7 @@ public abstract class GenericFormBuilder {
 	}
 
 	public Wrapper getWrapperForLabel(FormCheckerElement elem) {
-		return new Wrapper("", "");
+		return Wrapper.empty();
 	}
 
 	public boolean checkMultipart(List<FormCheckerElement> elements) {
