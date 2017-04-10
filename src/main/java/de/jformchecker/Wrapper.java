@@ -27,7 +27,11 @@ public class Wrapper {
 	}
 
 	public static Wrapper empty() {
-		return new Wrapper("", "");
+		return Wrapper.of("", "");
+	}
+	
+	public static Wrapper ofTag(String tagName) {
+		return Wrapper.of("<" + tagName + ">", "</" + tagName + ">");
 	}
 	
 }
