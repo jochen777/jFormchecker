@@ -43,7 +43,7 @@ public class RadioInput extends AbstractInput<RadioInput> implements FormChecker
 	}
 
 	public String getInputTag(Map<String, String> attributes) {
-		StringBuffer inputTag = new StringBuffer();
+		StringBuilder inputTag = new StringBuilder();
 		for (String key : possibleNames.keySet()) {
 			// leer - bedeutet: Radio - Button ist optional, also nicht als
 			// radio ausgeben!

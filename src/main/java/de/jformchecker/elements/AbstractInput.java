@@ -155,7 +155,7 @@ public abstract class AbstractInput <T extends FormCheckerElement> implements Fo
 		if (criteria != null) {
 			for (Criterion criterion : criteria) {
 				if (criterion instanceof MaxLength) {
-					return AttributeUtils.buildSingleAttribute("maxlength", "" + ((MaxLength) criterion).getMaxLength());
+					return AttributeUtils.buildSingleAttribute("maxlength", Integer.toString(((MaxLength) criterion).getMaxLength()));
 				}
 			}
 		}
@@ -215,11 +215,11 @@ public abstract class AbstractInput <T extends FormCheckerElement> implements Fo
 	}
 
 	public String getTabIndexTag() {
-		return AttributeUtils.buildSingleAttribute("tabindex", "" + getTabIndex());
+		return AttributeUtils.buildSingleAttribute("tabindex", Integer.toString(getTabIndex()));
 	}
 
 	public String getTabIndexTagIncreaseBy(int addition) {
-		return AttributeUtils.buildSingleAttribute("tabindex", "" + (getTabIndex() + addition));
+		return AttributeUtils.buildSingleAttribute("tabindex", Integer.toString(getTabIndex() + addition));
 	}
 
 	public T setTabIndex(int tabIndex) {

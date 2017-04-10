@@ -38,9 +38,10 @@ public class ValidationErrorTest {
 	}
 	
 	private TextInput getFormElement(boolean translatedMessage, String errorMsg) {
-		TextInput ti = (TextInput) TextInput.build("firstname").setPreSetValue("Jochen");
+		String content = "Jochen";
+		TextInput ti = (TextInput) TextInput.build("firstname").setPreSetValue(content);
 		ti.addCriteria(el -> {
-			return (!el.getValue().equals("Jochen") ? (
+			return (!el.getValue().equals(content) ? (
 					translatedMessage ? ValidationResult.failWithTranslated(errorMsg) :
 						ValidationResult.fail(errorMsg)
 					)

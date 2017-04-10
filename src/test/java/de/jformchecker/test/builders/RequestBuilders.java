@@ -19,9 +19,8 @@ public class RequestBuilders {
 	public static Request buildExampleHttpRequest(Map<String, String> reqVals) {
 		SampleRequest request = new SampleRequest();
 
-		for (String key : reqVals.keySet()) {
-			request.setParameter(key, reqVals.get(key));
-		}
+		reqVals.forEach((k,v) -> request.setParameter(k, reqVals.get(k)));
+		
 		return request;
 	}
 

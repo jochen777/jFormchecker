@@ -8,7 +8,7 @@ public class CustomValidation implements Criterion {
 
 	@Override
 	public ValidationResult validate(FormCheckerElement value) {
-		boolean isValid = value.getValue().equals("Jochen");
+		boolean isValid = "Jochen".equals(value.getValue());
 		if (!isValid) {
 			return ValidationResult.fail("Always enter 'Jochen'!");
 		}

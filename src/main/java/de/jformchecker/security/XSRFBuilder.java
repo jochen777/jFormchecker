@@ -1,3 +1,4 @@
+
 package de.jformchecker.security;
 
 import java.security.SecureRandom;
@@ -16,8 +17,8 @@ public class XSRFBuilder {
 	public String buildCSRFTokens(Request req, boolean firstRun, SessionGet sessionGet, SessionSet sessionSet) {
 		// is firstrun - then generate a complete new token
 		StringBuilder tags = new StringBuilder();
-		String name = "";
-		String xsrfVal = "";
+		String name;
+		String xsrfVal;
 
 		String tokenName = "tokenname";
 		String tokenVal = "tokenVal";

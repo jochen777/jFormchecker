@@ -43,9 +43,9 @@ public class DateInputCompound extends AbstractInput<DateInputCompound> implemen
 		internalDate = t;
 		GregorianCalendar gc = new GregorianCalendar();
 		gc.setTime(t);
-		day.setPreSetValue("" + gc.get(Calendar.DAY_OF_MONTH));
-		month.setPreSetValue("" + (gc.get(Calendar.MONTH) + 1));
-		year.setPreSetValue("" + gc.get(Calendar.YEAR));
+		day.setPreSetValue(Integer.toString(gc.get(Calendar.DAY_OF_MONTH)));
+		month.setPreSetValue(Integer.toString(gc.get(Calendar.MONTH) + 1));
+		year.setPreSetValue(Integer.toString(gc.get(Calendar.YEAR)));
 		return this;
 	}
 

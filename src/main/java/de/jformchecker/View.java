@@ -45,11 +45,11 @@ public class View {
 		helps = new HashMap<>();
 		isError = new HashMap<>();
 
-		form.elements.forEach((elem) -> elements.put(elem.getName(), getElement(elem.getName())));
-		form.elements.forEach((elem) -> inputs.put(elem.getName(), getInput(elem.getName())));
-		form.elements.forEach((elem) -> labels.put(elem.getName(), getLabel(elem.getName())));
-		form.elements.forEach((elem) -> helps.put(elem.getName(), getHelp(elem.getName())));
-		form.elements.forEach((elem) -> isError.put(elem.getName(), isError(elem.getName())));
+		form.elements.forEach(elem -> elements.put(elem.getName(), getElement(elem.getName())));
+		form.elements.forEach(elem -> inputs.put(elem.getName(), getInput(elem.getName())));
+		form.elements.forEach(elem -> labels.put(elem.getName(), getLabel(elem.getName())));
+		form.elements.forEach(elem -> helps.put(elem.getName(), getHelp(elem.getName())));
+		form.elements.forEach(elem -> isError.put(elem.getName(), isError(elem.getName())));
 		return this;
 	}
 

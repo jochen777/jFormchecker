@@ -19,7 +19,6 @@ public interface MessageSource {
 			String msg = this.getMessage(key);
 			return msg;
 		} catch (Exception e) {
-			e.printStackTrace();
 			return "??" + key + "??";
 		}
 	}
