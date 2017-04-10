@@ -2,7 +2,12 @@
 
 ### 0.1.8
 
-2017/xx/xx Allow setting form-method. Delivering "tags" for non capable tag-engines like mustache. Rearranged documentation
+2017/04/10 
+* Allow setting form-method. 
+* Delivering "tags" for non capable tag-engines like mustache. 
+* Rearranged documentation.
+* Introduce a Form-Surrounding Wrapper
+* Remove some deprecated methods. 
 
 
 ### 0.1.7
