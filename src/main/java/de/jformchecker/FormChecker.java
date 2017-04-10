@@ -126,48 +126,13 @@ public class FormChecker {
 		return this;
 	}
 
-	/**
-	 * moved to FormBuilder. please use:
-	 * formchecker.getConfig().getFormBuilder().getHelpBlockId(elem)...
-	 * 
-	 * @param elem
-	 * @return
-	 */
-	@Deprecated
-	public static String getHelpBlockId(FormCheckerElement elem) {
-		return "helpBlock_" + elem.getName();
-	}
 
 	public String getValue(String elementName) {
 		return form.getElement(elementName).getValue();
 	}
 
-	@Deprecated
-	public String getSubmitTag() {
-		return this.getView().getSubmit();
-	}
 
-	/**
-	 * use fc.getView().getLabelHtml(elementName) instead
-	 * 
-	 * @param elementName
-	 * @return
-	 */
-	@Deprecated
-	public String getLabelTag(String elementName) {
-		return this.getView().getLabel(elementName);
-	}
 
-	/**
-	 * use fc.getView().getLabelTag(elementName, map); instead
-	 * 
-	 * @param elementName
-	 * @return
-	 */
-	@Deprecated
-	public String getLabelTag(String elementName, Map<String, String> map) {
-		return this.getView().getLabel(elementName, map);
-	}
 
 	/**
 	 * Get the view for displaying html in the template
