@@ -38,13 +38,16 @@ public abstract class GenericFormBuilder {
 
 	public abstract ValidationResult getErrors(FormCheckerElement e, boolean firstRun);
 
+	public abstract Wrapper getWrapperForForm(FormCheckerForm form, boolean firstRun);
+
 	
 	
 	final public String generateGenericForm(String formAction, 
 			boolean firstRun, FormCheckerForm form, Request req, FormCheckerConfig config) {
 		// RFE: Get rid of this fc. object here. better: give FormCheckerForm
 		StringBuilder formHtml = new StringBuilder();
-
+		Wrapper formWrapper = getWrapperForForm(form, firstRun);
+		formHtml.append(formWrapper.start);
 		List<FormCheckerElement> elements = form.getElements();
 		
 		formHtml.append(generateFormStartTag(form, formAction));
@@ -61,7 +64,7 @@ public abstract class GenericFormBuilder {
 				.append(submitWrapper.end);
 		formHtml.append(allFormElements.end);
 		formHtml.append(getEndFormTag());
-
+		formHtml.append(formWrapper.end);
 		return formHtml.toString();
 	}
 

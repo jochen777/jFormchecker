@@ -3,6 +3,7 @@ package de.jformchecker.themes;
 import java.util.Map;
 
 import de.jformchecker.FormCheckerElement;
+import de.jformchecker.FormCheckerForm;
 import de.jformchecker.GenericFormBuilder;
 import de.jformchecker.TagAttributes;
 import de.jformchecker.Wrapper;
@@ -77,6 +78,11 @@ public class BasicFormBuilder extends GenericFormBuilder {
 	@Override
 	public Wrapper getWrapperForAllFormElements() {
 		return Wrapper.of("<fieldset>", "</fieldset>");
+	}
+
+	@Override
+	public Wrapper getWrapperForForm(FormCheckerForm form, boolean firstRun) {
+		return Wrapper.empty();
 	}
 
 }
