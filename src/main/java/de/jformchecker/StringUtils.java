@@ -1,7 +1,7 @@
 package de.jformchecker;
 
 /**
- * Some basic string utils to avoid dependance to Commons
+ * Some basic string utils to avoid dependance to commons
  * @author jochen
  *
  */
