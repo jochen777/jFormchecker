@@ -7,9 +7,9 @@ public class AttributeUtils {
 
 	public static String buildAttributes(Map<String, String> attributes) {
 		StringBuilder attrStr = new StringBuilder();
-		for (String attribute : attributes.keySet()) {
-			attrStr.append(AttributeUtils.buildSingleAttribute(attribute, attributes.get(attribute)));
-		}
+		attributes.forEach((k,v) ->
+			attrStr.append(AttributeUtils.buildSingleAttribute(k, attributes.get(k)))
+				);
 		return attrStr.toString();
 	}
 

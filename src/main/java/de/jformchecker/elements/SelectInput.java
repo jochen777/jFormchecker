@@ -45,13 +45,13 @@ public class SelectInput extends AbstractInput<SelectInput> implements FormCheck
 	public String getInputTag(Map<String, String> attributes) {
 
 		StringBuilder inputTag = new StringBuilder("<select " + buildAllAttributes(attributes) + " name=\"" + name + "\" >\n");
-		for (String key : possibleNames.keySet()) {
+		possibleNames.forEach((key,v)->{
 			String sel = "";
 			if (value != null && value.equals(key)) {
 				sel = " SELECTED ";
 			}
 			inputTag.append("<option value=\"" + key + "\"" + sel + ">" + possibleNames.get(key) + "</option>\n");
-		}
+		});
 		return inputTag.append("</select>\n").toString();
 	}
 

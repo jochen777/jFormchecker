@@ -44,16 +44,17 @@ public class RadioInput extends AbstractInput<RadioInput> implements FormChecker
 
 	public String getInputTag(Map<String, String> attributes) {
 		StringBuilder inputTag = new StringBuilder();
-		for (String key : possibleNames.keySet()) {
+		possibleNames.forEach((key, value) -> {
 			// leer - bedeutet: Radio - Button ist optional, also nicht als
 			// radio ausgeben!
-			if (!"".equals(possibleNames.get(key))) {
+			if (!"".equals(value)) {
 				inputTag.append(this.getInputTag(key, attributes) + " <label for=\"form-radio-" + name + "-" + key + "\" class=\""
-						+ "" + "\" id=\"label-" + name + "-" + key + "\">" + possibleNames.get(key) + " </label>\n");
+						+ "" + "\" id=\"label-" + name + "-" + key + "\">" + value + " </label>\n");
 			}
 			// do not increase tab-index:
 			// http://stackoverflow.com/questions/14322564/can-you-tab-through-all-radio-buttons
-		}
+			
+		});
 		return inputTag.toString();
 	}
 

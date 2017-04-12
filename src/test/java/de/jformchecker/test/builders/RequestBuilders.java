@@ -26,10 +26,7 @@ public class RequestBuilders {
 
 	public static Request buildExampleHttpRequestWithFirstRun(Map<String, String> reqVals) {
 		SampleRequest request = (SampleRequest)buildFirstRunEmptyHttpRequest();
-		
-		for (String key : reqVals.keySet()) {
-			request.setParameter(key, reqVals.get(key));
-		}
+		reqVals.forEach((k,v) -> request.setParameter(k, reqVals.get(k)));
 		return request;
 	}
 
