@@ -5,6 +5,7 @@
 2017/04/12 
 * Use "-" instead of "_" within class- and id-names
 * Some refactorings
+* Add ability to add custom tags to own elements 
  
 
 
