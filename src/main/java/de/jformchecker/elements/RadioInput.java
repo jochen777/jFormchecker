@@ -3,8 +3,8 @@ package de.jformchecker.elements;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import de.jformchecker.FormCheckerElement;
 import de.jformchecker.AttributeUtils;
+import de.jformchecker.FormCheckerElement;
 
 public class RadioInput extends AbstractInput<RadioInput> implements FormCheckerElement {
 

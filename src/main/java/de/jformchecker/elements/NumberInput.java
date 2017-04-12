@@ -7,7 +7,6 @@ import com.coverity.security.Escape;
 import de.jformchecker.FormCheckerElement;
 import de.jformchecker.StringUtils;
 import de.jformchecker.criteria.Criteria;
-import de.jformchecker.criteria.Number;
 
 /**
  * Input Element that handles numbers (starting with int)

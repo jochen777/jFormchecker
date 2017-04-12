@@ -1,5 +1,13 @@
 # jFormChecker changelog
 
+### 0.1.9
+
+2017/04/12 
+* Use "-" instead of "_" within class- and id-names
+* Some refactorings
+ 
+
+
 ### 0.1.8
 
 2017/04/10 

@@ -18,7 +18,6 @@ import de.jformchecker.elements.DateInputSelectCompound;
 import de.jformchecker.elements.TextInput;
 import de.jformchecker.request.Request;
 import de.jformchecker.test.builders.ExampleFormBuilder;
-import de.jformchecker.test.builders.FormCheckerBuilder;
 import de.jformchecker.test.builders.RequestBuilders;
 import de.jformchecker.validator.DefaultValidator;
 

@@ -2,8 +2,8 @@ package de.jformchecker.elements;
 
 import java.util.Map;
 
-import de.jformchecker.FormCheckerElement;
 import de.jformchecker.AttributeUtils;
+import de.jformchecker.FormCheckerElement;
 
 public class HiddenInput extends AbstractInput<HiddenInput> implements FormCheckerElement {
 
