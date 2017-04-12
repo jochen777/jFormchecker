@@ -8,6 +8,7 @@ import java.util.Map;
 
 import de.jformchecker.FormCheckerElement;
 import de.jformchecker.StringUtils;
+import de.jformchecker.TagAttributes;
 import de.jformchecker.criteria.ValidationResult;
 import de.jformchecker.message.CommonSelects;
 import de.jformchecker.request.Request;
@@ -45,8 +46,11 @@ public class DateInputSelectCompound extends AbstractInput<DateInputSelectCompou
 
 	@Override
 	public String getInputTag(Map<String, String> attributes) {
-		return  day.getInputTag(attributes) +  month.getInputTag(attributes) 
-				+ year.getInputTag(attributes);
+		TagAttributes tagAttributes = new TagAttributes(attributes);
+		tagAttributes.add(this.inputAttributes);
+
+		return  day.getInputTag(tagAttributes.getAttributes()) +  month.getInputTag(tagAttributes.getAttributes()) 
+				+ year.getInputTag(tagAttributes.getAttributes());
 
 	}
 

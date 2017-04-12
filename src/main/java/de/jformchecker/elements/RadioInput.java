@@ -5,6 +5,7 @@ import java.util.Map;
 
 import de.jformchecker.AttributeUtils;
 import de.jformchecker.FormCheckerElement;
+import de.jformchecker.TagAttributes;
 
 public class RadioInput extends AbstractInput<RadioInput> implements FormCheckerElement {
 
@@ -43,12 +44,14 @@ public class RadioInput extends AbstractInput<RadioInput> implements FormChecker
 	}
 
 	public String getInputTag(Map<String, String> attributes) {
+		TagAttributes tagAttributes = new TagAttributes(attributes);
+		tagAttributes.add(this.inputAttributes);
 		StringBuilder inputTag = new StringBuilder();
 		possibleNames.forEach((key, value) -> {
 			// leer - bedeutet: Radio - Button ist optional, also nicht als
 			// radio ausgeben!
 			if (!"".equals(value)) {
-				inputTag.append(this.getInputTag(key, attributes) + " <label for=\"form-radio-" + name + "-" + key + "\" class=\""
+				inputTag.append(this.getInputTag(key, tagAttributes.getAttributes()) + " <label for=\"form-radio-" + name + "-" + key + "\" class=\""
 						+ "" + "\" id=\"label-" + name + "-" + key + "\">" + value + " </label>\n");
 			}
 			// do not increase tab-index:

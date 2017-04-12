@@ -37,6 +37,7 @@ public abstract class AbstractInput <T extends FormCheckerElement> implements Fo
 	boolean required;
 	private int tabIndex;
 	ValidationResult validationResult;
+	protected TagAttributes inputAttributes;
 
 	
 	
@@ -53,10 +54,15 @@ public abstract class AbstractInput <T extends FormCheckerElement> implements Fo
 	FormChecker parent;
 	String helpText;
 
-	// builds attribs, elementId, TabIndex
+	
 	protected String buildAllAttributes(Map<String, String> attributes) {
+		return this.buildAllAttributes(new TagAttributes(attributes));
+	}
+	
+	// builds attribs, elementId, TabIndex
+	protected String buildAllAttributes(TagAttributes tagAttributes) {
 		StringBuilder allAttribs = new StringBuilder();
-		allAttribs.append(AttributeUtils.buildAttributes(attributes));
+		allAttribs.append(AttributeUtils.buildAttributes(tagAttributes));
 		allAttribs.append(getElementId());
 		allAttribs.append(getTabIndexTag());
 		allAttribs.append(buildRequiredAttribute());
@@ -247,5 +253,9 @@ public abstract class AbstractInput <T extends FormCheckerElement> implements Fo
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public void setInputAttributes(TagAttributes inputAttributes) {
+		this.inputAttributes = inputAttributes;
 	}
 }

@@ -45,17 +45,21 @@ public class TagAttributes {
 	public Set<String> keySet() {
 		return attributes.keySet();
 	}
+	
+	public Map<String, String> getAttributes() {
+		return attributes;
+	}
 
 	public void add(TagAttributes formAttributes) {
-		formAttributes.attributes.forEach((key, value)->
-			this.addToAttribute(key, value)
-		);
+		if (formAttributes != null) {
+			formAttributes.attributes.forEach((key, value) -> this.addToAttribute(key, value));
+		}
 	}
 
 	public void add(LinkedHashMap<String, String> attribs) {
-		attribs.forEach((key, value) -> 
-			this.addToAttribute(key, value)
-		);
+		if (attribs != null) {
+			attribs.forEach((key, value) -> this.addToAttribute(key, value));
+		}
 	}
 
 }

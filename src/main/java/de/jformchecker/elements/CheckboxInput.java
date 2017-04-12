@@ -3,6 +3,7 @@ package de.jformchecker.elements;
 import java.util.Map;
 
 import de.jformchecker.FormCheckerElement;
+import de.jformchecker.TagAttributes;
 import de.jformchecker.criteria.ValidationResult;
 import de.jformchecker.request.Request;
 import de.jformchecker.validator.Validator;
@@ -18,7 +19,10 @@ public class CheckboxInput extends AbstractInput<CheckboxInput> implements FormC
 	@Override
 	public String getInputTag(Map<String, String> attributes) {
 		String style = "";
-		return "<input " + buildAllAttributes(attributes) + " type=\"checkbox\" name=\"" + name + "\" id=\"" + name
+		TagAttributes tagAttributes = new TagAttributes(attributes);
+		tagAttributes.add(this.inputAttributes);
+
+		return "<input " + buildAllAttributes(tagAttributes) + " type=\"checkbox\" name=\"" + name + "\" id=\"" + name
 				+ "\" value=\"" + name + "\" " + style + " " + getCheckedStatus(name) + ">";
 	}
 

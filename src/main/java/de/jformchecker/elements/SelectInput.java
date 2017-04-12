@@ -4,6 +4,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 import de.jformchecker.FormCheckerElement;
+import de.jformchecker.TagAttributes;
 
 public class SelectInput extends AbstractInput<SelectInput> implements FormCheckerElement {
 
@@ -43,8 +44,9 @@ public class SelectInput extends AbstractInput<SelectInput> implements FormCheck
 
 	
 	public String getInputTag(Map<String, String> attributes) {
-
-		StringBuilder inputTag = new StringBuilder("<select " + buildAllAttributes(attributes) + " name=\"" + name + "\" >\n");
+		TagAttributes tagAttributes = new TagAttributes(attributes);
+		tagAttributes.add(this.inputAttributes);
+		StringBuilder inputTag = new StringBuilder("<select " + buildAllAttributes(tagAttributes) + " name=\"" + name + "\" >\n");
 		possibleNames.forEach((key,v)->{
 			String sel = "";
 			if (value != null && value.equals(key)) {

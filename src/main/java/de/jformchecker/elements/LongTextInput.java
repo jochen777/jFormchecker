@@ -3,6 +3,7 @@ package de.jformchecker.elements;
 import java.util.Map;
 
 import de.jformchecker.FormCheckerElement;
+import de.jformchecker.TagAttributes;
 
 public class LongTextInput extends TextInput implements FormCheckerElement {
 
@@ -14,7 +15,10 @@ public class LongTextInput extends TextInput implements FormCheckerElement {
 
 	@Override
 	public String getInputTag(Map<String, String> attributes) {
-		return "<textarea " + buildAllAttributes(attributes) + buildMaxLen() + " name=\"" + name + "\" id=\"" + name
+		TagAttributes tagAttributes = new TagAttributes(attributes);
+		tagAttributes.add(this.inputAttributes);
+
+		return "<textarea " + buildAllAttributes(tagAttributes) + buildMaxLen() + " name=\"" + name + "\" id=\"" + name
 				+ "\" " + ">" + (value == null ? "" : getValueHtmlEncoded()) + "</textarea>";
 	}
 	

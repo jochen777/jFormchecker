@@ -3,6 +3,7 @@ package de.jformchecker.elements;
 import java.util.Map;
 
 import de.jformchecker.FormCheckerElement;
+import de.jformchecker.TagAttributes;
 
 public class FileUploadInput extends AbstractInput<FileUploadInput> implements FormCheckerElement {
 
@@ -14,8 +15,11 @@ public class FileUploadInput extends AbstractInput<FileUploadInput> implements F
 
 	@Override
 	public String getInputTag(Map<String, String> attributes) {
+		TagAttributes tagAttributes = new TagAttributes(attributes);
+		tagAttributes.add(this.inputAttributes);
+
 		return String.format(
-				"<input " + buildAllAttributes(attributes) + buildMaxLen() + "type=\"file\" name=\"%s\" value=\"%s\">",
+				"<input " + buildAllAttributes(tagAttributes) + buildMaxLen() + "type=\"file\" name=\"%s\" value=\"%s\">",
 				name, (value == null ? "" : getValueHtmlEncoded()));
 	}
 	

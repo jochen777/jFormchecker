@@ -6,6 +6,7 @@ import com.coverity.security.Escape;
 
 import de.jformchecker.FormCheckerElement;
 import de.jformchecker.StringUtils;
+import de.jformchecker.TagAttributes;
 import de.jformchecker.criteria.Criteria;
 
 /**
@@ -31,7 +32,10 @@ public class NumberInput extends AbstractInput<NumberInput> implements FormCheck
 
 	@Override
 	public String getInputTag(Map<String, String> attributes) {
-		return String.format("<input " + buildAllAttributes(attributes) + buildMaxLen()
+		TagAttributes tagAttributes = new TagAttributes(attributes);
+		tagAttributes.add(this.inputAttributes);
+
+		return String.format("<input " + buildAllAttributes(tagAttributes) + buildMaxLen()
 				+ "type=\"number\" name=\"%s\" value=\"%s\"" + getPlaceholder() + ">", name,
 				(value == null ? "" : getValueHtmlEncoded()));
 	}

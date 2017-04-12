@@ -2,7 +2,9 @@ package de.jformchecker.elements;
 
 import java.util.Map;
 
+import de.jformchecker.AttributeUtils;
 import de.jformchecker.FormCheckerElement;
+import de.jformchecker.TagAttributes;
 
 public class ButtonInput extends AbstractInput<ButtonInput> implements FormCheckerElement {
 
@@ -21,7 +23,10 @@ public class ButtonInput extends AbstractInput<ButtonInput> implements FormCheck
 
 	@Override
 	public String getInputTag(Map<String, String> attributes) {
-		return "<button type=\"submit\" name=\"" + name + "\" value=\"" + getPreSetValue() + "\" " + getTabIndexTag()
+		TagAttributes tagAttributes = new TagAttributes(attributes);
+		tagAttributes.add(this.inputAttributes);
+
+		return "<button type=\"submit\" "+AttributeUtils.buildAttributes(tagAttributes)+" name=\"" + name + "\" value=\"" + getPreSetValue() + "\" " + getTabIndexTag()
 				+ ">" + buttonText + "</button><br/>\n";
 	}
 
