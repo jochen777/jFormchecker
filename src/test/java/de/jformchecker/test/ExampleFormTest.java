@@ -23,7 +23,7 @@ public class ExampleFormTest {
 		FormChecker fc = FormChecker.build(RequestBuilders.buildEmptyHttpRequest(), exampleForm);
 		fc.run();
 		InputStream in = this.getClass().getClassLoader()
-                .getResourceAsStream("de/jformchecker/test/forms/expectedHTMLExampleForm.html");
+                .getResourceAsStream("test/expectedHTMLExampleForm.html");
 		assertEquals(fc.getView().getForm(), convertStreamToString(in));
 	}
 	
