@@ -31,7 +31,7 @@ public class XSRFBuilder {
 			}
 
 		}
-		name = "token_" + Math.random();
+		name = "token-" + Math.random();
 		xsrfVal = getRandomValue();
 		sessionSet.setAttribute(name, xsrfVal);
 

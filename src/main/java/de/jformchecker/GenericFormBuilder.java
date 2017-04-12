@@ -214,8 +214,8 @@ public abstract class GenericFormBuilder {
 	}
 
 	public String getLabelForElement(FormCheckerElement e, TagAttributes attribs, boolean firstRun) {
-		return ("<label " + AttributeUtils.buildAttributes(attribs) + " for=\"form_" + e.getName() + "\"" + " id=\""
-				+ e.getName() + "_label\">" + e.getDescription() + getAddToLabel() + (e.isRequired() ? getRequiredChar() : "")
+		return ("<label " + AttributeUtils.buildAttributes(attribs) + " for=\"form-" + e.getName() + "\"" + " id=\""
+				+ e.getName() + "-label\">" + e.getDescription() + getAddToLabel() + (e.isRequired() ? getRequiredChar() : "")
 				+ "</label>");
 	}
 

@@ -42,7 +42,7 @@ public class FormChecker {
 	private MessageSource tempProperties;
 
 	public static final String SUBMIT_KEY = "submitted";
-	public static final String SUBMIT_VALUE_PREFIX = "FORMCHECKER_";
+	public static final String SUBMIT_VALUE_PREFIX = "FORMCHECKER-";
 
 	/**
 	 * Deprecated: Put id into the FormcheckerForm and use build(request, form)
