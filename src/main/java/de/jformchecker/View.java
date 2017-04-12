@@ -56,7 +56,7 @@ public class View {
 	// this method is useless in most cases. You want to build your
 	// input-element via a macro!
 	public String getElement(String name) {
-		return formBuilder.generateHtmlForElement(fc.firstRun, fc.config, form.getElement(name));
+		return formBuilder.generateHtmlForElement(fc.firstRun, fc.config.getProperties(), form.getElement(name));
 	}
 	
 	public List<String> getElementNames() {
@@ -122,7 +122,7 @@ public class View {
 	}
 
 	public String getForm() {
-		return formBuilder.generateGenericForm(fc.formAction, fc.firstRun, form, fc.req, fc.config);
+		return formBuilder.generateGenericForm(fc.formAction, fc.firstRun, form, fc.req, fc.config.getProperties());
 	}
 
 	public String getSubmit(String label) {

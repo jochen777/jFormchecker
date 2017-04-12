@@ -183,7 +183,7 @@ public class FormChecker {
 	}
 
 	private String getGenericForm() {
-		return config.getFormBuilder().generateGenericForm(formAction, firstRun, form, req, config);
+		return config.getFormBuilder().generateGenericForm(formAction, firstRun, form, req, config.properties);
 	}
 
 	// move to ViewFacade

@@ -6,6 +6,7 @@ import java.util.Map;
 
 import de.jformchecker.criteria.ValidationResult;
 import de.jformchecker.elements.FileUploadInput;
+import de.jformchecker.message.MessageSource;
 import de.jformchecker.request.Request;
 import de.jformchecker.security.XSRFBuilder;
 
@@ -42,9 +43,16 @@ public abstract class GenericFormBuilder {
 
 	
 	
+	
+	// Renders the html for the complete form with all elements within.
+	@Deprecated
 	final public String generateGenericForm(String formAction, 
 			boolean firstRun, FormCheckerForm form, Request req, FormCheckerConfig config) {
-		// RFE: Get rid of this fc. object here. better: give FormCheckerForm
+		return this.generateGenericForm(formAction, firstRun, form, req, config.properties);
+	}
+
+	final public String generateGenericForm(String formAction, 
+			boolean firstRun, FormCheckerForm form, Request req, MessageSource messages) {
 		StringBuilder formHtml = new StringBuilder();
 		Wrapper formWrapper = getWrapperForForm(form, firstRun);
 		formHtml.append(formWrapper.start);
@@ -56,7 +64,7 @@ public abstract class GenericFormBuilder {
 		Wrapper allFormElements = getWrapperForAllFormElements();
 		formHtml.append(allFormElements.start);
 		for (FormCheckerElement elem : elements) {
-			formHtml.append(generateHtmlForElement(firstRun, config, elem));
+			formHtml.append(generateHtmlForElement(firstRun, messages, elem));
 			lastTabIndex = elem.getLastTabIndex();
 		}
 		Wrapper submitWrapper = getWrapperForSumit();
@@ -68,13 +76,17 @@ public abstract class GenericFormBuilder {
 		return formHtml.toString();
 	}
 
-	// builds the html for one element
+	@Deprecated
 	String generateHtmlForElement(boolean firstRun, FormCheckerConfig config, FormCheckerElement elem) {
+		return this.generateHtmlForElement(firstRun, config.getProperties(), elem);
+	}	
+	// builds the html for one element
+	String generateHtmlForElement(boolean firstRun, MessageSource messageSource, FormCheckerElement elem) {
 		InputElementStructure inputStruct = new InputElementStructure();
 		// errors
 		ValidationResult vr = getErrors(elem, firstRun);
 		if (!vr.isValid()) {
-			inputStruct.setErrors(formatError(config.getProperties().getMessage(vr)));
+			inputStruct.setErrors(formatError(messageSource.getMessage(vr)));
 		}
 
 		// label
@@ -154,21 +166,7 @@ public abstract class GenericFormBuilder {
 		return "</form>\n";
 	}
 
-	@Deprecated
-	public String generateFormStartTag(String id, String formAction, boolean isMultipart,
-			TagAttributes formTagAttributes) {
-		StringBuilder formStartTag = new StringBuilder();
-		if (isMultipart) {
-			formStartTag.append("<form name=\"" + id + "\" id=\"" + buildFormCSSId(id) + "\" action=\"" + formAction
-					+ "\" " + AttributeUtils.buildAttributes(formTagAttributes)
-					+ "  method=\"POST\" enctype=\"multipart/form-data\">\n");
-		} else {
-			formStartTag.append("<form name=\"" + id + "\" id=\"" + buildFormCSSId(id) + "\" "
-					+ AttributeUtils.buildAttributes(formTagAttributes) + " action=\"" + formAction + "\" method=\"POST\" >\n");
-		}
-		formStartTag.append(getSubmittedTag(id));
-		return formStartTag.toString();
-	}
+
 
 	public String generateFormStartTag(FormCheckerForm form, String formAction
 			) {
