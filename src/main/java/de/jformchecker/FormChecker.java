@@ -164,6 +164,7 @@ public class FormChecker {
 	
 		sortTabIndexes();
 	
+		// init form and process and validate can be done in one loop!
 		initForm();
 	
 		checkIfFirstRun();

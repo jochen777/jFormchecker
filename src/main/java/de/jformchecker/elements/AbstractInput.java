@@ -26,7 +26,7 @@ import de.jformchecker.validator.Validator;
  * @author jochen
  *
  */
-public abstract class AbstractInput <T extends FormCheckerElement> implements FormCheckerElement {
+public abstract class AbstractInput<T extends FormCheckerElement> implements FormCheckerElement {
 
 	protected String name;
 	protected String value;
@@ -39,8 +39,6 @@ public abstract class AbstractInput <T extends FormCheckerElement> implements Fo
 	ValidationResult validationResult;
 	protected TagAttributes inputAttributes;
 
-	
-	
 	public ValidationResult getValidationResult() {
 		return validationResult;
 	}
@@ -54,11 +52,10 @@ public abstract class AbstractInput <T extends FormCheckerElement> implements Fo
 	FormChecker parent;
 	String helpText;
 
-	
 	protected String buildAllAttributes(Map<String, String> attributes) {
 		return this.buildAllAttributes(new TagAttributes(attributes));
 	}
-	
+
 	// builds attribs, elementId, TabIndex
 	protected String buildAllAttributes(TagAttributes tagAttributes) {
 		StringBuilder allAttribs = new StringBuilder();
@@ -69,9 +66,8 @@ public abstract class AbstractInput <T extends FormCheckerElement> implements Fo
 		allAttribs.append(buildSizeAttribute());
 		// help-text
 		if (!StringUtils.isEmpty(helpText)) {
-			allAttribs.append(
-					AttributeUtils.buildAttributes(new TagAttributes("aria-describedby", 
-							parent.getConfig().getFormBuilder().getHelpBlockId(this))));
+			allAttribs.append(AttributeUtils.buildAttributes(
+					new TagAttributes("aria-describedby", parent.getConfig().getFormBuilder().getHelpBlockId(this))));
 		}
 		return allAttribs.toString();
 	}
@@ -79,7 +75,7 @@ public abstract class AbstractInput <T extends FormCheckerElement> implements Fo
 	public void addCriteria(Criterion c) {
 		criteria.add(c);
 	}
-	
+
 	private Object buildSizeAttribute() {
 		if (size != -1) {
 			return AttributeUtils.buildSingleAttribute("size", Integer.toString(size));
@@ -161,7 +157,8 @@ public abstract class AbstractInput <T extends FormCheckerElement> implements Fo
 		if (criteria != null) {
 			for (Criterion criterion : criteria) {
 				if (criterion instanceof MaxLength) {
-					return AttributeUtils.buildSingleAttribute("maxlength", Integer.toString(((MaxLength) criterion).getMaxLength()));
+					return AttributeUtils.buildSingleAttribute("maxlength",
+							Integer.toString(((MaxLength) criterion).getMaxLength()));
 				}
 			}
 		}
