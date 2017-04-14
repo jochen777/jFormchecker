@@ -8,7 +8,7 @@ import de.jformchecker.request.SampleRequest;
 
 public class RequestBuilders {
 
-	public static final String FC_ID = "id44";
+	public static final String FC_ID = FormIdHolder.COMMON_TEST_FORM_ID;
 
 	public static Request buildExampleHttpRequest() {
 		SampleRequest request = new SampleRequest();

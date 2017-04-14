@@ -24,11 +24,22 @@ public class ExampleFormTest {
 		fc.run();
 		InputStream in = this.getClass().getClassLoader()
                 .getResourceAsStream("test/expectedHTMLExampleForm.html");
-		assertEquals(fc.getView().getForm(), convertStreamToString(in));
+		assertEquals(fc.getView().getForm().trim(), convertStreamToString(in).trim());
 	}
 	
 	static String convertStreamToString(java.io.InputStream is) {
 	    java.util.Scanner s = new java.util.Scanner(is).useDelimiter("\\A");
 	    return s.hasNext() ? s.next() : "";
+	}
+	
+	
+	@Test
+	public void testCompleteFormSubmitted() {
+		ExampleForm exampleForm = new ExampleForm();
+		FormChecker fc = FormChecker.build(RequestBuilders.buildRequestwithFirstRun("firstname", "Horst"), exampleForm);
+		fc.run();
+		InputStream in = this.getClass().getClassLoader()
+                .getResourceAsStream("test/expectedHTMLExampleForm_submitted.html");
+		assertEquals(fc.getView().getForm().trim(), convertStreamToString(in).trim());
 	}
 }

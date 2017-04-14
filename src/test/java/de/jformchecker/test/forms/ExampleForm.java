@@ -16,6 +16,7 @@ import de.jformchecker.elements.PasswordInput;
 import de.jformchecker.elements.RadioInput;
 import de.jformchecker.elements.SelectInput;
 import de.jformchecker.elements.TextInput;
+import de.jformchecker.test.builders.FormIdHolder;
 
 public class ExampleForm extends FormCheckerForm {
 
@@ -61,7 +62,7 @@ public class ExampleForm extends FormCheckerForm {
 		add(CheckboxInput.build("check").setDescription("I order everything"));
 
 
-		this.setId("example");
+		this.setId(FormIdHolder.COMMON_TEST_FORM_ID);
 		
 		this.disableHtml5Validation();
 

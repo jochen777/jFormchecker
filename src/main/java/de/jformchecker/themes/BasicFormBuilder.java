@@ -47,7 +47,7 @@ public class BasicFormBuilder extends GenericFormBuilder {
 			}
 
 		}
-		return new Wrapper("<div class=\"form-group" + state + "\">", "</div>");
+		return new Wrapper("<div class=\"form-group" + state + "\">", "</div>\n");
 	}
 
 	final public void setDivSuccessClass(String divSuccessClass) {
