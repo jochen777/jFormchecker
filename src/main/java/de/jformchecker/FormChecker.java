@@ -23,6 +23,7 @@ public class FormChecker {
 	boolean isValid = true;
 	FormCheckerForm form = null;
 	Validator validator = new DefaultValidator();
+	View view;
 
 	@Deprecated
 	String id;
@@ -123,12 +124,10 @@ public class FormChecker {
 	}
 
 
+	// convenience method! But better use form.getYourStuff() 
 	public String getValue(String elementName) {
 		return form.getElement(elementName).getValue();
 	}
-
-
-
 
 	/**
 	 * Get the view for displaying html in the template
@@ -136,22 +135,46 @@ public class FormChecker {
 	 * @return
 	 */
 	public View getView() {
-		return new View(form, config.getFormBuilder(), this);
+		return view;
 	}
 
-	/**
-	 * Get the view for displaying html in the template
-	 * 
-	 * @return
-	 */
-	@Deprecated
-	public View getViewWithAccessObjects() {
-		return new View(form, config.getFormBuilder(), this).generateAccessObjects();
-	}
-
-	
 	public void setFormAction(String formAction) {
 		this.formAction = formAction;
+	}
+
+	// move to ViewFacade
+	public String getCompleteForm() {
+		return this.getGenericForm();
+	}
+
+	public FormCheckerConfig getConfig() {
+		return config;
+	}
+
+	public void addForm(FormCheckerForm form) {
+		this.form = form;
+		if (id != null) { // Internal id overrides id from form
+			form.setId(id);
+		}
+	}
+
+	public FormChecker run() {
+	
+		setupConfig();
+	
+		sortTabIndexes();
+	
+		initForm();
+	
+		checkIfFirstRun();
+	
+		processAndValidateElements();
+	
+		validateCompleteForm();
+		
+		createView();
+	
+		return this;
 	}
 
 	private void prepareElement(FormCheckerElement element) {
@@ -171,37 +194,23 @@ public class FormChecker {
 		}
 	}
 
-	public void addForm(FormCheckerForm form) {
-		this.form = form;
-		if (id != null) { // Internal id overrides id from form
-			form.setId(id);
-		}
-	}
-
 	private String getGenericForm() {
-		return config.getFormBuilder().generateGenericForm(formAction, firstRun, form, req, config.properties);
+		return config.getFormBuilder().generateGenericForm(formAction, firstRun, form, req, config.getMessageSource());
 	}
 
-	// move to ViewFacade
+	/**
+	 * Use instead fc.getView().getLabel(...)
+	 * @param e
+	 * @param attribs
+	 * @return
+	 */
+	@Deprecated
 	public String getLabelForElement(FormCheckerElement e, Map<String, String> attribs) {
 		return config.getFormBuilder().getLabelForElement(e, new TagAttributes(attribs), firstRun);
 	}
 
-	public FormChecker run() {
-
-		setupConfig();
-
-		sortTabIndexes();
-
-		initForm();
-
-		checkIfFirstRun();
-
-		processAndValidateElements();
-
-		validateCompleteForm();
-
-		return this;
+	private void createView() {
+		view = new View(form, config.getFormBuilder(), this);
 	}
 
 	private void validateCompleteForm() {
@@ -226,7 +235,7 @@ public class FormChecker {
 	}
 
 	private void initForm() {
-		form.setMessageSource(this.getConfig().getProperties());
+		form.setMessageSource(this.getConfig().getMessageSource());
 		form.init();
 
 		for (FormCheckerElement element : form.getElements()) {
@@ -265,14 +274,5 @@ public class FormChecker {
 		if ((FormChecker.SUBMIT_VALUE_PREFIX + form.getId()).equals(req.getParameter(FormChecker.SUBMIT_KEY))) {
 			firstRun = false;
 		}
-	}
-
-	// move to ViewFacade
-	public String getCompleteForm() {
-		return this.getGenericForm();
-	}
-
-	public FormCheckerConfig getConfig() {
-		return config;
 	}
 }

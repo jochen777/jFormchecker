@@ -48,7 +48,7 @@ public abstract class GenericFormBuilder {
 	@Deprecated
 	final public String generateGenericForm(String formAction, 
 			boolean firstRun, FormCheckerForm form, Request req, FormCheckerConfig config) {
-		return this.generateGenericForm(formAction, firstRun, form, req, config.properties);
+		return this.generateGenericForm(formAction, firstRun, form, req, config.getMessageSource());
 	}
 
 	final public String generateGenericForm(String formAction, 

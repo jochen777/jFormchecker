@@ -11,20 +11,26 @@ import de.jformchecker.message.MessageSource;
  */
 public class FormCheckerConfig {
 	// Translation-Sources
-	MessageSource properties;
+	private MessageSource messageSource;
 
 	// FormBuilder that renders the form to html
-	GenericFormBuilder formBuilder;
+	private GenericFormBuilder formBuilder;
 
-	public FormCheckerConfig(MessageSource properties, GenericFormBuilder formBuilder) {
+	public FormCheckerConfig(MessageSource messageSource, GenericFormBuilder formBuilder) {
 		super();
-		this.properties = properties;
+		this.messageSource = messageSource;
 		this.formBuilder = formBuilder;
 	}
 
 
+
+	public MessageSource getMessageSource() {
+		return messageSource;
+	}
+
+	@Deprecated
 	public MessageSource getProperties() {
-		return properties;
+		return messageSource;
 	}
 
 	public GenericFormBuilder getFormBuilder() {
