@@ -101,7 +101,7 @@
 * Support enums for validation
 * TBD: for security: Cut input after a max input field lenght - despite of maxlen!!
 
-* generate standard-form with alternative rendering in template (for mobile)
+* generate standard-form with alternative rendering in template (for mobile) (OK)
 * more attributes: (http://www.w3schools.com/tags/tag_input.asp)
 * Perhaps form-Class mandatory? So no own handling of the form-elements within the FormChecker class (OK)
 * influence standard-form in template

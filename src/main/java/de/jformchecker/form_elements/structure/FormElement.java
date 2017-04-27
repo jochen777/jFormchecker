@@ -1,5 +1,8 @@
 package de.jformchecker.form_elements.structure;
 
+import java.util.List;
+
+import de.jformchecker.criteria.ValidationResult;
 import de.jformchecker.request.Request;
 import de.jformchecker.validator.Validator;
 
@@ -10,17 +13,10 @@ import de.jformchecker.validator.Validator;
  */
 public interface FormElement {
 	
-	// tab index -> something within the form -> solve this via an extra interface (TagIndexAware)
+	// tab index -> something within the form -> solve this via an extra interface (TabIndexAware)
 	// criteria ? -> nope
 	
-	public boolean isValid();
-	
-	public void forceValidState(boolean valid);
-	
-	public Renderer getRenderer();
-	
-	// Do we need this firstrun thing? In case of the first run, we do not validate!
-	public void init(Request request, boolean firstRun, Validator validator);
+	String getId();
 	
 	
 }
@@ -43,5 +39,14 @@ processAndValidateElements();
 validateCompleteForm();
 		
 createView();
+
+- xsrf
+- invisble captcha (decorate submit-button)
+- getValue
+- ajax (validationResult)
+- maxvalue
+- expose javascript
+- bean validation?!?
+
 
 */

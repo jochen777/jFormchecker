@@ -2,6 +2,7 @@ package de.jformchecker;
 
 import java.util.Map;
 
+// RFE: do not use public, include this within TagAttributes
 public class AttributeUtils {
 
 
