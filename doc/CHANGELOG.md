@@ -2,8 +2,9 @@
 
 ### 0.1.10
 
-2017/xx/xx 
-* More tests: Complete form submitted, Refactored tests
+2017/04/27 
+* More tests: Complete form submitted 
+* Refactored tests, bump version for new integration feature (trim)
  
 
 
