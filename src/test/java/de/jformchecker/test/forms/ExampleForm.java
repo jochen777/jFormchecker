@@ -9,6 +9,7 @@ import de.jformchecker.elements.CheckboxInput;
 import de.jformchecker.elements.DateInputCompound;
 import de.jformchecker.elements.DateInputSelectCompound;
 import de.jformchecker.elements.DateInputSelectCompound.YearRange;
+import de.jformchecker.message.MinimalMessageSource;
 import de.jformchecker.elements.HTMLSnippet;
 import de.jformchecker.elements.HiddenInput;
 import de.jformchecker.elements.LongTextInput;
@@ -40,7 +41,7 @@ public class ExampleForm extends FormCheckerForm {
 
 		add(ButtonInput.build("btn").setButtonText("Add...").setPreSetValue("add"));
 
-		add(DateInputSelectCompound.build("date", YearRange.aroundNow(5)).setDescription("Birthday"));
+		add(DateInputSelectCompound.build("date", YearRange.aroundNow(5),new MinimalMessageSource()).setDescription("Birthday"));
 
 		add(DateInputCompound.build("date2").setDescription("Mein Tag"));
 
