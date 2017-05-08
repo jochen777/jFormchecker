@@ -1,5 +1,11 @@
 # jFormChecker changelog
 
+### 0.1.11
+
+2017/05/08 
+* DateInputSelectCompound with working setPresetValue  
+
+
 ### 0.1.10
 
 2017/04/27 

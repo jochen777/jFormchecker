@@ -11,6 +11,8 @@ import de.jformchecker.StringUtils;
 import de.jformchecker.TagAttributes;
 import de.jformchecker.criteria.ValidationResult;
 import de.jformchecker.message.CommonSelects;
+import de.jformchecker.message.MessageSource;
+import de.jformchecker.message.MinimalMessageSource;
 import de.jformchecker.request.Request;
 import de.jformchecker.validator.Validator;
 
@@ -28,18 +30,30 @@ public class DateInputSelectCompound extends AbstractInput<DateInputSelectCompou
 	int yearStart;
 	int yearEnd;
 	
+	@Deprecated
 	public static DateInputSelectCompound build(String name, int yearStart, int yearEnd) {
+		return DateInputSelectCompound.build(name, yearStart, yearEnd, new MinimalMessageSource());
+	}
+
+	public static DateInputSelectCompound build(String name, int yearStart, int yearEnd, MessageSource messageSource) {
 		DateInputSelectCompound i = new DateInputSelectCompound();
 		i.yearStart = yearStart;
 		i.yearEnd = yearEnd;
 		i.name = name;
+		i.createSelectInputs(messageSource);
 		return i;
 	}
 
+	
+	@Deprecated
 	public static DateInputSelectCompound build(String name, YearRange yearRange) {
 		return DateInputSelectCompound.build(name, yearRange.start, yearRange.end);
 	}
 
+	
+	public static DateInputSelectCompound build(String name, YearRange yearRange, MessageSource messageSource) {
+		return DateInputSelectCompound.build(name, yearRange.start, yearRange.end, messageSource);
+	}
 
 	
 	LocalDate internalDate = null;
@@ -94,21 +108,6 @@ public class DateInputSelectCompound extends AbstractInput<DateInputSelectCompou
 
 	@Override
 	public void init(Request request, boolean firstRun, Validator validator) {
-		CommonSelects commonSelects = new CommonSelects(parent.getConfig().getProperties());
-		day = SelectInput.build("day-" + name);
-		day.setPossibleValues(commonSelects.buildDays());
-		
-		month = SelectInput.build("month-" + name);
-		month.setPossibleValues(commonSelects.buildMonths());
-		
-		year = SelectInput.build("year-" + name);
-		// iterate from large to small for years
-		if (yearStart < yearEnd) {
-			int temp = yearStart;
-			yearStart = yearEnd;
-			yearEnd = temp;
-		}
-		year.setPossibleValues(commonSelects.getYears(this.yearStart, this.yearEnd));
 
 		if (firstRun) {
 			this.setValue(this.getPreSetValue());
@@ -138,6 +137,24 @@ public class DateInputSelectCompound extends AbstractInput<DateInputSelectCompou
 				}
 			}
 		}
+	}
+
+	private void createSelectInputs(MessageSource messageSource) {
+		CommonSelects commonSelects = new CommonSelects(messageSource);
+		day = SelectInput.build("day-" + name);
+		day.setPossibleValues(commonSelects.buildDays());
+		
+		month = SelectInput.build("month-" + name);
+		month.setPossibleValues(commonSelects.buildMonths());
+		
+		year = SelectInput.build("year-" + name);
+		// iterate from large to small for years
+		if (yearStart < yearEnd) {
+			int temp = yearStart;
+			yearStart = yearEnd;
+			yearEnd = temp;
+		}
+		year.setPossibleValues(commonSelects.getYears(this.yearStart, this.yearEnd));
 	}
 
 
