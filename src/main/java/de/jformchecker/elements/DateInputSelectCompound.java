@@ -30,30 +30,21 @@ public class DateInputSelectCompound extends AbstractInput<DateInputSelectCompou
 	int yearStart;
 	int yearEnd;
 	
-	@Deprecated
-	public static DateInputSelectCompound build(String name, int yearStart, int yearEnd) {
-		return DateInputSelectCompound.build(name, yearStart, yearEnd, new MinimalMessageSource());
-	}
 
-	public static DateInputSelectCompound build(String name, int yearStart, int yearEnd, MessageSource messageSource) {
+	public static DateInputSelectCompound build(String name, int yearStart, int yearEnd) {
 		DateInputSelectCompound i = new DateInputSelectCompound();
 		i.yearStart = yearStart;
 		i.yearEnd = yearEnd;
 		i.name = name;
-		i.createSelectInputs(messageSource);
 		return i;
 	}
 
 	
-	@Deprecated
 	public static DateInputSelectCompound build(String name, YearRange yearRange) {
 		return DateInputSelectCompound.build(name, yearRange.start, yearRange.end);
 	}
 
 	
-	public static DateInputSelectCompound build(String name, YearRange yearRange, MessageSource messageSource) {
-		return DateInputSelectCompound.build(name, yearRange.start, yearRange.end, messageSource);
-	}
 
 	
 	LocalDate internalDate = null;
@@ -71,18 +62,11 @@ public class DateInputSelectCompound extends AbstractInput<DateInputSelectCompou
 	// please use setPresetValue
 	@Deprecated
 	public DateInputSelectCompound presetValue(LocalDate t) {
-		internalDate = t;
-		day.setPreSetValue(Integer.toString(t.getDayOfMonth()));
-		month.setPreSetValue(Integer.toString(t.getMonthValue()));
-		year.setPreSetValue(Integer.toString(t.getYear()));
-		return this;
+		return setPresetValue(t);
 	}
 	
 	public DateInputSelectCompound setPresetValue(LocalDate t) {
 		internalDate = t;
-		day.setPreSetValue(Integer.toString(t.getDayOfMonth()));
-		month.setPreSetValue(Integer.toString(t.getMonthValue()));
-		year.setPreSetValue(Integer.toString(t.getYear()));
 		return this;
 	}
 
@@ -109,8 +93,16 @@ public class DateInputSelectCompound extends AbstractInput<DateInputSelectCompou
 	@Override
 	public void init(Request request, boolean firstRun, Validator validator) {
 
+		createSelectInputs(this.parent.getConfig().getProperties());
+
 		if (firstRun) {
-			this.setValue(this.getPreSetValue());
+			if (internalDate != null) {
+				this.setValue(this.getPreSetValue());
+				day.setPreSetValue(Integer.toString(internalDate.getDayOfMonth()));
+				month.setPreSetValue(Integer.toString(internalDate.getMonthValue()));
+				year.setPreSetValue(Integer.toString(internalDate.getYear()));
+			}
+			
 		} else {
 			day.init(request, firstRun, validator);
 			month.init(request, firstRun, validator);

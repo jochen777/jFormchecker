@@ -41,7 +41,7 @@ public class ExampleForm extends FormCheckerForm {
 
 		add(ButtonInput.build("btn").setButtonText("Add...").setPreSetValue("add"));
 
-		add(DateInputSelectCompound.build("date", YearRange.aroundNow(5),new MinimalMessageSource()).setDescription("Birthday"));
+		add(DateInputSelectCompound.build("date", YearRange.aroundNow(5)).setDescription("Birthday"));
 
 		add(DateInputCompound.build("date2").setDescription("Mein Tag"));
 

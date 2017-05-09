@@ -42,7 +42,7 @@ public class FormElementTests {
 	
 	@Test
 	public void testDateSelectValidDate() {
-		DateInputSelectCompound dateInputSelectCompound = DateInputSelectCompound.build("test", 2000, 2010, new MinimalMessageSource());
+		DateInputSelectCompound dateInputSelectCompound = DateInputSelectCompound.build("test", 2000, 2010);
 		FormCheckerForm form = ExampleFormBuilder.getFormWithElements(RequestBuilders.FC_ID,  
 				Arrays.asList(dateInputSelectCompound));
 		Map<String, String> reqVals = new HashMap<>();
@@ -58,7 +58,7 @@ public class FormElementTests {
 
 	@Test
 	public void testDateSelectGetLegacyDateNPE() {
-		DateInputSelectCompound dateInputSelectCompound = DateInputSelectCompound.build("test", 2000, 2010,new MinimalMessageSource());
+		DateInputSelectCompound dateInputSelectCompound = DateInputSelectCompound.build("test", 2000, 2010);
 		FormCheckerForm form = ExampleFormBuilder.getFormWithElements(RequestBuilders.FC_ID,  
 				Arrays.asList(dateInputSelectCompound));
 		Request request = RequestBuilders.buildFirstRunEmptyHttpRequest();
