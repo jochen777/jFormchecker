@@ -22,8 +22,7 @@ public class CheckboxInput extends AbstractInput<CheckboxInput> implements FormC
 		TagAttributes tagAttributes = new TagAttributes(attributes);
 		tagAttributes.add(this.inputAttributes);
 
-		return "<input " + buildAllAttributes(tagAttributes) + " type=\"checkbox\" name=\"" + name + "\" id=\"" + name
-				+ "\" value=\"" + name + "\" " + style + " " + getCheckedStatus(name) + ">";
+		return "<input " + buildAllAttributes(tagAttributes) + " type=\"checkbox\" name=\"" + name + "\" value=\"" + name + "\" " + style + " " + getCheckedStatus(name) + ">";
 	}
 
 	private String getCheckedStatus(String name) {
