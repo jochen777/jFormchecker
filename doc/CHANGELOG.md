@@ -5,6 +5,7 @@
 2017/xx/xx 
 * Fix double id problem on CheckBoxInput
 * Placeholder in TextArea
+* convenience methods in TagAttributes
 
 
 ### 0.1.12

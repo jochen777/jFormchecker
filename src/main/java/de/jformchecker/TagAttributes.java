@@ -6,6 +6,16 @@ import java.util.Set;
 
 // class that holds html tag-attributes
 public class TagAttributes {
+	
+	// conveniance methods
+	public static TagAttributes of(String key, String value) {
+		return new TagAttributes(key, value);
+	}
+	
+	public static TagAttributes of(Map<String, String> attribs) {
+		return new TagAttributes(attribs);
+	}
+	
 	LinkedHashMap<String, String> attributes;
 
 	public TagAttributes(Map<String, String> attribs) {
