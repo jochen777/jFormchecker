@@ -1,5 +1,11 @@
 # jFormChecker changelog
 
+### 0.1.13
+
+2017/xx/xx 
+* Fix double id problem on CheckBoxInput  
+
+
 ### 0.1.12
 
 2017/05/09 
