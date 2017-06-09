@@ -19,7 +19,7 @@ public class LongTextInput extends TextInput implements FormCheckerElement {
 		tagAttributes.add(this.inputAttributes);
 
 		return "<textarea " + buildAllAttributes(tagAttributes) + buildMaxLen() + " name=\"" + name + "\" id=\"" + name
-				+ "\" " + ">" + (value == null ? "" : getValueHtmlEncoded()) + "</textarea>";
+				+ "\"" +getPlaceholder() + ">" + (value == null ? "" : getValueHtmlEncoded()) + "</textarea>";
 	}
 	
 	@Override

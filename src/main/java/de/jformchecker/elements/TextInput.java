@@ -32,7 +32,7 @@ public class TextInput extends AbstractInput<TextInput> implements FormCheckerEl
 				(value == null ? "" : getValueHtmlEncoded()));
 	}
 
-	private String getPlaceholder() {
+	protected String getPlaceholder() {
 		return StringUtils.isEmpty(placeholderText) ? ""
 				: " placeholder=\"" + Escape.htmlText(placeholderText) + "\"";
 	}

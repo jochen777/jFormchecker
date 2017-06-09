@@ -24,7 +24,7 @@ public class ExampleFormTest {
 		fc.run();
 		InputStream in = this.getClass().getClassLoader()
                 .getResourceAsStream("test/expectedHTMLExampleForm.html");
-		assertEquals(fc.getView().getForm().trim(), convertStreamToString(in).trim());
+		assertEquals(convertStreamToString(in).trim(), fc.getView().getForm().trim());
 	}
 	
 	static String convertStreamToString(java.io.InputStream is) {
@@ -40,6 +40,6 @@ public class ExampleFormTest {
 		fc.run();
 		InputStream in = this.getClass().getClassLoader()
                 .getResourceAsStream("test/expectedHTMLExampleForm_submitted.html");
-		assertEquals(fc.getView().getForm().trim(), convertStreamToString(in).trim());
+		assertEquals(convertStreamToString(in).trim(), fc.getView().getForm().trim());
 	}
 }

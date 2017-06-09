@@ -3,7 +3,8 @@
 ### 0.1.13
 
 2017/xx/xx 
-* Fix double id problem on CheckBoxInput  
+* Fix double id problem on CheckBoxInput
+* Placeholder in TextArea
 
 
 ### 0.1.12

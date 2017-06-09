@@ -49,7 +49,7 @@ public class ExampleForm extends FormCheckerForm {
 
 		add(PasswordInput.build("password2").setRequired().setDescription("Repeat password"));
 
-		add(LongTextInput.build("description").setRequired().setDescription("Your Description"));
+		add(LongTextInput.build("description").setPlaceholerText("areaplaceholder").setRequired().setDescription("Your Description"));
 
 		// RFE: simple map-builder
 		LinkedHashMap<String, String> radioEntries = createRadioMap();
