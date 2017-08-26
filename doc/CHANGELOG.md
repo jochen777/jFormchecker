@@ -1,5 +1,11 @@
 # jFormChecker changelog
 
+### 0.1.14
+
+2017/xx/xx 
+* Change implementation of SelectInput, so you can use more than one entry with the same key.
+
+
 ### 0.1.13
 
 2017/08/10 
