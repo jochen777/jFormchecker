@@ -2,7 +2,7 @@
 
 ### 0.1.14
 
-2017/xx/xx 
+2017/08/26 
 * Change implementation of SelectInput, so you can use more than one entry with the same key.
 
 
