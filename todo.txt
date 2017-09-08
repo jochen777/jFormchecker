@@ -80,6 +80,8 @@
 * test non trivial tag-output (with different tags) (OK)
 * provide example with theming with templates (pebble and freemarker) (OK)
 
+
+* Maybe implement custom error html5 error messages with this: https://github.com/javanto/civem.js
 * Provide methods in view for ajax handling
 * If a wrong name is used in the template, provide a good error-message 
 
