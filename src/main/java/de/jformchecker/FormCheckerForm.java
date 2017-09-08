@@ -19,6 +19,8 @@ public abstract class FormCheckerForm {
 	private MessageSource messageSource;
 	
 	boolean protectedAgainstCSRF = false;
+	boolean showSubmitButton = true;
+	
 	SessionSet sessionSet;
 	SessionGet sessionGet;
 	
@@ -148,6 +150,16 @@ public abstract class FormCheckerForm {
 
 	public void setMethod(Method method) {
 		this.method = method;
+	}
+
+
+	public void hideSubmitButton() {
+		this.showSubmitButton = false;
+	}
+
+
+	public boolean isShowSubmitButton() {
+		return this.showSubmitButton;
 	}
 	
 }

@@ -67,9 +67,11 @@ public abstract class GenericFormBuilder {
 			formHtml.append(generateHtmlForElement(firstRun, messages, elem));
 			lastTabIndex = elem.getLastTabIndex();
 		}
-		Wrapper submitWrapper = getWrapperForSumit();
-		formHtml.append(submitWrapper.start).append(getSubmit(lastTabIndex + 1, form.getSubmitLabel()))
-				.append(submitWrapper.end);
+		if (form.isShowSubmitButton()) {
+			Wrapper submitWrapper = getWrapperForSumit();
+			formHtml.append(submitWrapper.start).append(getSubmit(lastTabIndex + 1, form.getSubmitLabel()))
+					.append(submitWrapper.end);
+		}
 		formHtml.append(allFormElements.end);
 		formHtml.append(getEndFormTag());
 		formHtml.append(formWrapper.end);

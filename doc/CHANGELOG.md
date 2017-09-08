@@ -1,5 +1,11 @@
 # jFormChecker changelog
 
+### 0.1.15
+
+2017/xx/xx 
+* Submit button can be disabled
+
+
 ### 0.1.14
 
 2017/08/26 
