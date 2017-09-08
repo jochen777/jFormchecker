@@ -26,6 +26,8 @@ public abstract class FormCheckerForm {
 	
 	String id="id";	// default
 
+	boolean html5Validation = true;
+
 	Method method = Method.POST;
 
 
@@ -52,11 +54,7 @@ public abstract class FormCheckerForm {
 		return fastAccess;
 	}
 
-	boolean html5Validation = true;
 
-	{
-		//init();
-	}
 
 	// Should be overriden
 	public abstract void init();
