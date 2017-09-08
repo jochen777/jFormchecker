@@ -11,6 +11,7 @@ import de.jformchecker.TagAttributes;
 public class SelectInput extends AbstractInput<SelectInput> implements FormCheckerElement {
 
 	List<SelectInputEntry> entries = new ArrayList<>();
+	List<SelectInputEntryGroup> groups = new ArrayList<>();
 	
 
 	public static SelectInput build(String name) {
@@ -41,19 +42,40 @@ public class SelectInput extends AbstractInput<SelectInput> implements FormCheck
 		return si;
 	}
 
+	// build a select-box with groups (This may be impossible to build)
+	public static SelectInput build(String name, List<SelectInputEntryGroup> inputGroups) {
+		SelectInput si = SelectInput.build(name);
+		si.setGroups(inputGroups);
+		return si;
+	}
+	
 	
 	public String getInputTag(Map<String, String> attributes) {
 		TagAttributes tagAttributes = new TagAttributes(attributes);
 		tagAttributes.add(this.inputAttributes);
 		StringBuilder inputTag = new StringBuilder("<select " + buildAllAttributes(tagAttributes) + " name=\"" + name + "\" >\n");
-		entries.forEach(entry->{
+		if (groups.size() > 0) {
+			groups.forEach(group ->
+			{
+				inputTag.append("<optgroup label=\""+group.getLabel()+"\">");
+				buildEntries(inputTag, group.getEntries());
+				inputTag.append("</optgroup>");
+			}
+			);
+		} else {
+			buildEntries(inputTag, entries);
+		}
+		return inputTag.append("</select>\n").toString();
+	}
+
+	private void buildEntries(StringBuilder inputTag, List<SelectInputEntry> entries2) {
+		entries2.forEach(entry->{
 			String sel = "";
 			if (value != null && value.equals(entry.key)) {
 				sel = " SELECTED ";
 			}
 			inputTag.append("<option value=\"" + entry.key + "\"" + sel + ">" + entry.value + "</option>\n");
 		});
-		return inputTag.append("</select>\n").toString();
 	}
 
 	@Deprecated
@@ -70,7 +92,12 @@ public class SelectInput extends AbstractInput<SelectInput> implements FormCheck
 		this.entries = entries;
 		return this;
 	}
-	
+
+	public SelectInput setGroups(List<SelectInputEntryGroup> groups) {
+		this.groups = groups;
+		return this;
+	}
+
 
 	@Override
 	public void setValue(String value) {
@@ -105,8 +132,34 @@ public class SelectInput extends AbstractInput<SelectInput> implements FormCheck
 		public String getValue() {
 			return value;
 		}
-		
+	}
+	
+	// class that groups several inputEntries
+	// See: https://www.w3schools.com/tags/tag_optgroup.asp
+	public class SelectInputEntryGroup {
+		private final String label;
+		List<SelectInputEntry> entries;
+		public SelectInputEntryGroup(String label, List<SelectInputEntry> entries) {
+			this.label = label;
+			this.entries = entries;
+		}
+		public SelectInputEntryGroup(String label) {
+			this(label, new ArrayList<>());
+		}
+		public void addSelectInputEntry(SelectInputEntry entry) {
+			entries.add(entry);
+		}
+		public String getLabel() {
+			return label;
+		}
+		public List<SelectInputEntry> getEntries() {
+			return entries;
+		}
 		
 	}
 
+	public SelectInputEntryGroup generateEntryGroup(String name) {
+		return new SelectInputEntryGroup(name);
+	}
+	
 }

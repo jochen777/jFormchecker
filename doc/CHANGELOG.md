@@ -4,6 +4,7 @@
 
 2017/xx/xx 
 * Submit button can be disabled
+* SelectInput with "optgroups"
 
 
 ### 0.1.14
