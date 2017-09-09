@@ -17,6 +17,7 @@ import de.jformchecker.StringUtils;
 import de.jformchecker.TagAttributes;
 import de.jformchecker.criteria.MaxLength;
 import de.jformchecker.criteria.ValidationResult;
+import de.jformchecker.message.MessageSource;
 import de.jformchecker.request.Request;
 import de.jformchecker.validator.Validator;
 
@@ -56,16 +57,23 @@ public abstract class AbstractInput <T extends FormCheckerElement> implements Fo
 
 	
 	protected String buildAllAttributes(Map<String, String> attributes) {
-		return this.buildAllAttributes(new TagAttributes(attributes));
+		return this.buildAllAttributes(new TagAttributes(attributes), t -> "", false);
+	}
+
+	protected String buildAllAttributes(TagAttributes tagAttributes) {
+		return this.buildAllAttributes(tagAttributes, t -> "", false);
 	}
 	
 	// builds attribs, elementId, TabIndex
-	protected String buildAllAttributes(TagAttributes tagAttributes) {
+	protected String buildAllAttributes(TagAttributes tagAttributes, MessageSource messageSource, boolean html5Validation) {
 		StringBuilder allAttribs = new StringBuilder();
 		allAttribs.append(AttributeUtils.buildAttributes(tagAttributes));
 		allAttribs.append(getElementId());
 		allAttribs.append(getTabIndexTag());
-		allAttribs.append(buildRequiredAttribute());
+		if (html5Validation) {
+			allAttribs.append(buildRequiredAttribute());
+			allAttribs.append(buildFcRequiredMessage(messageSource));
+		}
 		allAttribs.append(buildSizeAttribute());
 		// help-text
 		if (!StringUtils.isEmpty(helpText)) {
@@ -74,6 +82,14 @@ public abstract class AbstractInput <T extends FormCheckerElement> implements Fo
 							parent.getConfig().getFormBuilder().getHelpBlockId(this))));
 		}
 		return allAttribs.toString();
+	}
+
+	private String buildFcRequiredMessage(MessageSource messageSource) {
+		String requiredMessage = messageSource.getMessage("jformchecker.required");
+		if (!StringUtils.isEmpty(requiredMessage)) {
+			return " data-errormessage-value-missing=\""+ requiredMessage +"\" ";
+		}
+		return "";
 	}
 
 	public void addCriteria(Criterion c) {
@@ -96,7 +112,20 @@ public abstract class AbstractInput <T extends FormCheckerElement> implements Fo
 	}
 
 	public String getInputTag() {
-		return getInputTag(new HashMap<>());
+		return getInputTag(new HashMap<>(), t -> "", false);
+	}
+
+	public String getInputTag(Map<String, String> attributes, MessageSource messageSource, boolean html5Validation) {
+		return getInputTag(attributes);
+	}
+	
+	/**
+	 * This is deprecated. Please use the getInputTag(attributes, messageSource) method
+	 * 
+	 */
+	@Deprecated
+	public String getInputTag(Map<String, String> attributes) {
+		return "";
 	}
 
 	// return highest tabindex of this element
@@ -258,4 +287,6 @@ public abstract class AbstractInput <T extends FormCheckerElement> implements Fo
 	public void setInputAttributes(TagAttributes inputAttributes) {
 		this.inputAttributes = inputAttributes;
 	}
+
+	
 }

@@ -159,5 +159,10 @@ public abstract class FormCheckerForm {
 	public boolean isShowSubmitButton() {
 		return this.showSubmitButton;
 	}
+
+
+	public boolean isHtml5Validation() {
+		return html5Validation;
+	}
 	
 }

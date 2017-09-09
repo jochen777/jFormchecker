@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import de.jformchecker.criteria.ValidationResult;
+import de.jformchecker.message.MessageSource;
 import de.jformchecker.request.Request;
 import de.jformchecker.validator.Validator;
 
@@ -67,6 +68,9 @@ public interface FormCheckerElement {
 
 	public String getInputTag();
 
+	public String getInputTag(Map<String, String> attributes, MessageSource messageSource, boolean html5Validation);
+	
+	@Deprecated
 	public String getInputTag(Map<String, String> attributes);
 
 	public boolean isRequired();

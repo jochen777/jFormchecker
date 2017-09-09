@@ -1,5 +1,12 @@
 # jFormChecker changelog
 
+### 0.1.16
+
+2017/xx/xx 
+* provide custom html5 validation messages (in combination of a small js-lib) 
+
+
+
 ### 0.1.15
 
 2017/09/08 

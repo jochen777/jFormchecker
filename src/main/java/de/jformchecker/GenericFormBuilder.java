@@ -64,7 +64,7 @@ public abstract class GenericFormBuilder {
 		Wrapper allFormElements = getWrapperForAllFormElements();
 		formHtml.append(allFormElements.start);
 		for (FormCheckerElement elem : elements) {
-			formHtml.append(generateHtmlForElement(firstRun, messages, elem));
+			formHtml.append(generateHtmlForElement(firstRun, messages, elem, form.isHtml5Validation()));
 			lastTabIndex = elem.getLastTabIndex();
 		}
 		if (form.isShowSubmitButton()) {
@@ -80,10 +80,10 @@ public abstract class GenericFormBuilder {
 
 	@Deprecated
 	String generateHtmlForElement(boolean firstRun, FormCheckerConfig config, FormCheckerElement elem) {
-		return this.generateHtmlForElement(firstRun, config.getProperties(), elem);
+		return this.generateHtmlForElement(firstRun, config.getProperties(), elem, false);
 	}	
 	// builds the html for one element
-	String generateHtmlForElement(boolean firstRun, MessageSource messageSource, FormCheckerElement elem) {
+	String generateHtmlForElement(boolean firstRun, MessageSource messageSource, FormCheckerElement elem, boolean html5Validation) {
 		InputElementStructure inputStruct = new InputElementStructure();
 		// errors
 		ValidationResult vr = getErrors(elem, firstRun);
@@ -99,7 +99,7 @@ public abstract class GenericFormBuilder {
 		// input tag
 		Map<String, String> attribs = new LinkedHashMap<>();
 		addAttributesToInputFields(attribs, elem);
-		inputStruct.setInput(elem.getInputTag(attribs));
+		inputStruct.setInput(elem.getInputTag(attribs, messageSource, html5Validation));
 		// help tag
 		if (!StringUtils.isEmpty(elem.getHelpText())) {
 			inputStruct.setHelp(getHelpTag(elem.getHelpText(), elem));

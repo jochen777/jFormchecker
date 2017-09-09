@@ -65,7 +65,7 @@ public class ExampleForm extends FormCheckerForm {
 
 		this.setId(FormIdHolder.COMMON_TEST_FORM_ID);
 		
-		this.disableHtml5Validation();
+		//this.disableHtml5Validation();
 
 	}
 

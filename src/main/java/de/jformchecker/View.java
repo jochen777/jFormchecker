@@ -56,7 +56,7 @@ public class View {
 	// this method is useless in most cases. You want to build your
 	// input-element via a macro!
 	public String getElement(String name) {
-		return formBuilder.generateHtmlForElement(fc.firstRun, fc.config.getProperties(), form.getElement(name));
+		return formBuilder.generateHtmlForElement(fc.firstRun, fc.config.getProperties(), form.getElement(name), this.form.isHtml5Validation());
 	}
 	
 	public List<String> getElementNames() {

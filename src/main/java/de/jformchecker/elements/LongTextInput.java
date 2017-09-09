@@ -4,6 +4,7 @@ import java.util.Map;
 
 import de.jformchecker.FormCheckerElement;
 import de.jformchecker.TagAttributes;
+import de.jformchecker.message.MessageSource;
 
 public class LongTextInput extends TextInput implements FormCheckerElement {
 
@@ -14,13 +15,14 @@ public class LongTextInput extends TextInput implements FormCheckerElement {
 	}
 
 	@Override
-	public String getInputTag(Map<String, String> attributes) {
+	public String getInputTag(Map<String, String> attributes, MessageSource messageSource, boolean html5Validation) {
 		TagAttributes tagAttributes = new TagAttributes(attributes);
 		tagAttributes.add(this.inputAttributes);
 
-		return "<textarea " + buildAllAttributes(tagAttributes) + buildMaxLen() + " name=\"" + name + "\" id=\"" + name
+		return "<textarea " + buildAllAttributes(tagAttributes, messageSource, html5Validation) + buildMaxLen() + " name=\"" + name + "\" id=\"" + name
 				+ "\"" +getPlaceholder() + ">" + (value == null ? "" : getValueHtmlEncoded()) + "</textarea>";
 	}
+	
 	
 	@Override
 	public String getType() {
