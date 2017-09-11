@@ -101,7 +101,16 @@ public class SelectInput extends AbstractInput<SelectInput> implements FormCheck
 
 	@Override
 	public void setValue(String value) {
-		for (SelectInputEntry entry : entries) {
+		if (groups.isEmpty()) {
+			setValueForEntryList(entries, value);	
+		} else {
+			groups.forEach(group -> setValueForEntryList(group.getEntries(), value));
+		}
+		
+	}
+
+	private void setValueForEntryList(List<SelectInputEntry> entryList, String value) {
+		for (SelectInputEntry entry : entryList) {
 			if (value != null && value.equals(entry.getKey())){
 				this.value = value;
 				break;
