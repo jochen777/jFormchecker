@@ -57,7 +57,7 @@ The concept is simple:
 <dependency>
     <groupId>de.cyclon-softworx</groupId>
     <artifactId>jformchecker</artifactId>
-    <version>0.1.15</version> <!-- check on maven central for the latest version -->
+    <version>0.1.16</version> <!-- check on maven central for the latest version -->
 </dependency>
 ...
 ```

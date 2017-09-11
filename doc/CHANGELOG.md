@@ -2,8 +2,9 @@
 
 ### 0.1.16
 
-2017/xx/xx 
-* provide custom html5 validation messages (in combination of a small js-lib) 
+2017/09/11 
+* provide custom html5 validation messages (in combination of a small js-lib)
+* fix bug with SelectInput and optgroups 
 
 
 
