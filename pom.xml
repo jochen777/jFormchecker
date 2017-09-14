@@ -9,9 +9,7 @@
 	<url>https://github.com/jochen777/jFormchecker</url>
 	<description>jFormchecker is a library to build HTML forms on top of MVC frameworks.</description>
 
-	<scm>
-		<url>https://github.com/jochen777/jFormchecker.git</url>
-	</scm>
+
 
 	<developers>
 		<developer>
@@ -31,7 +29,16 @@
 	</licenses>
 
 
-
+	<distributionManagement>
+		<snapshotRepository>
+			<id>ossrh</id>
+			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+		</snapshotRepository>
+		<repository>
+			<id>ossrh</id>
+			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
+		</repository>
+	</distributionManagement>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -40,7 +47,9 @@
 		<maven.compiler.target>1.8</maven.compiler.target>
 	</properties>
 
-
+<scm>
+    		<url>https://github.com/jochen777/jFormchecker.git</url>
+  	</scm>
 	<dependencies>
 		<dependency>
 			<groupId>junit</groupId>
@@ -49,7 +58,17 @@
 			<scope>test</scope>
 		</dependency>
 
-		
+		<!-- <dependency> -->
+		<!-- <groupId>javax.servlet</groupId> -->
+		<!-- <artifactId>javax.servlet-api</artifactId> -->
+		<!-- <version>3.1.0</version> -->
+		<!-- </dependency> -->
+
+		<!-- <dependency> -->
+		<!-- <groupId>org.apache.commons</groupId> -->
+		<!-- <artifactId>commons-lang3</artifactId> -->
+		<!-- <version>3.4</version> -->
+		<!-- </dependency> -->
 
 		<dependency>
 			<groupId>com.coverity.security</groupId>
@@ -58,23 +77,73 @@
 		</dependency>
 		
 
+
+
 	</dependencies>
+
+
+
 	<build>
 		<finalName>jformchecker</finalName>
-
 		<plugins>
 			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.3</version>
+			</plugin>
+			<plugin>
+				<groupId>org.sonatype.plugins</groupId>
+				<artifactId>nexus-staging-maven-plugin</artifactId>
+				<version>1.6.7</version>
+				<extensions>true</extensions>
 				<configuration>
-					<source>1.8</source>
-					<target>1.8</target>
+					<serverId>ossrh</serverId>
+					<nexusUrl>https://oss.sonatype.org/</nexusUrl>
+					<autoReleaseAfterClose>true</autoReleaseAfterClose>
 				</configuration>
 			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>2.2.1</version>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<goals>
+							<goal>jar-no-fork</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>2.9.1</version>
+				<executions>
+					<execution>
+						<id>attach-javadocs</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-gpg-plugin</artifactId>
+				<version>1.5</version>
+				<executions>
+					<execution>
+						<id>sign-artifacts</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>sign</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
-
 	</build>
-
 
 
 </project>
