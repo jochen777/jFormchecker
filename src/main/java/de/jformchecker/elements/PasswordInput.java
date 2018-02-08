@@ -4,6 +4,7 @@ import java.util.Map;
 
 import de.jformchecker.FormCheckerElement;
 import de.jformchecker.TagAttributes;
+import de.jformchecker.message.MessageSource;
 
 public class PasswordInput extends TextInput implements FormCheckerElement {
 
@@ -14,7 +15,7 @@ public class PasswordInput extends TextInput implements FormCheckerElement {
 	}
 
 	@Override
-	public String getInputTag(Map<String, String> attributes) {
+	public String getInputTag(Map<String, String> attributes, MessageSource messageSource, boolean html5Validation) {
 		TagAttributes tagAttributes = new TagAttributes(attributes);
 		tagAttributes.add(this.inputAttributes);
 		return String.format(
@@ -22,7 +23,7 @@ public class PasswordInput extends TextInput implements FormCheckerElement {
 						+ " type=\"password\" name=\"%s\" value=\"%s\">",
 				name, (value == null ? "" : getValueHtmlEncoded()));
 	}
-	
+
 	@Override
 	public String getType() {
 		return "password";
