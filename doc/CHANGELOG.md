@@ -1,5 +1,11 @@
 # jFormChecker changelog
 
+### 0.1.17
+
+2018/02/08 
+* fix pw-input type
+
+
 ### 0.1.16
 
 2017/09/11 

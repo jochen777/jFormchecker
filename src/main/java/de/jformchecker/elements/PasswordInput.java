@@ -18,12 +18,12 @@ public class PasswordInput extends TextInput implements FormCheckerElement {
 	public String getInputTag(Map<String, String> attributes, MessageSource messageSource, boolean html5Validation) {
 		TagAttributes tagAttributes = new TagAttributes(attributes);
 		tagAttributes.add(this.inputAttributes);
-		return String.format(
-				"<input " + buildAllAttributes(tagAttributes) + buildMaxLen()
-						+ " type=\"password\" name=\"%s\" value=\"%s\">",
-				name, (value == null ? "" : getValueHtmlEncoded()));
+        return String.format("<input " + buildAllAttributes(tagAttributes, messageSource, html5Validation) + buildMaxLen()
+        + "type=\"password\" name=\"%s\" value=\"%s\"" + getPlaceholder() + ">", name,
+        (value == null ? "" : getValueHtmlEncoded()));
 	}
 
+	
 	@Override
 	public String getType() {
 		return "password";
