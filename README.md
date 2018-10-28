@@ -1,14 +1,14 @@
 # jFormChecker
 HTML Forms in Java made easy.  
 
-Please be aware, that this project will not be maintained by me any longer. 
+*Please be aware, that this project will not be maintained by me any longer.* 
 
 I created a successor which is far better:
 
-[jWebForm] https://github.com/jochen777/jWebForm
+https://github.com/jochen777/jWebForm
 
 and:
-[jWebForm vs jFormChecker] https://github.com/jochen777/jWebForm/blob/master/doc/jformchecker_compare.md
+https://github.com/jochen777/jWebForm/blob/master/doc/jformchecker_compare.md
 
 
 [Quickstart](doc/quickstart.md)
